@@ -5,28 +5,37 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Bienvenido</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="css/login.css" rel="stylesheet">
+
 </head>
 <body>
-<form action="init" method="post">
 
-  <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="email" required>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password"required>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
 
-    <button type="submit">Login</button>
-    <label> 
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form action="init" method="post">
+      <input type="text" id="login" class="fadeIn second" placeholder="email" name="email" required>
+      <input type="text" id="password" class="fadeIn third" placeholder="password" name="password" required>
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
   </div>
-
-  <div class="container" style="background-color:#f1f1f1">
-    <!--  <button type="button" class="cancelbtn">Cancel</button> -->
-    <input type="button" onclick="history.back()" name="Cancelar" value="Cancelar">
-    <span class="psw">Forgot <a href="#">password?</a></span>
-  </div>
-</form>
+</div>
 </body>
 </html>

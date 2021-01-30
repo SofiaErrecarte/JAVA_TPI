@@ -30,7 +30,16 @@ public class modificarProveedorServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		ProveedorController ctrlProv = new ProveedorController();
+		int ID = Integer.parseInt(request.getParameter("idProveedor"));
+		Proveedor prov = new Proveedor();
+		prov.setIdProveedor(ID);
+		Proveedor p = ctrlProv.getById(prov);
+		
+		request.setAttribute("proveedorAEditar", p);
+		request.getRequestDispatcher("modificarProveedor.jsp").forward(request, response);
+	
 	}
 
 	/**

@@ -33,7 +33,21 @@ public class borrarLibroServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		LibroController ctrlLibro =  new LibroController();
+		int  ID  =  Integer.parseInt (request.getParameter("id"));
+		Libro lib = new Libro(); 
+		lib.setIdLibro(ID);
+		Libro l = ctrlLibro.getByIdLibro(lib);
+		LinkedList<Ejemplar> ej = new LinkedList<>();
+		ej= ctrlLibro.getEjByIdLibro(lib);
+		for(Ejemplar e : ej) {
+			ctrlLibro.deleteEjemplar(e);
+		}
+		ctrlLibro.deleteLibro(l);
+		request.setAttribute("listaLibros",ctrlLibro.getAllLibros());
+		request.getRequestDispatcher ("listaLibros.jsp").forward(request, response);
+		
 	}
 
 	/**

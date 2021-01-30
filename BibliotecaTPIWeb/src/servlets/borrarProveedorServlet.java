@@ -30,7 +30,17 @@ public class borrarProveedorServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		ProveedorController ctrlProv = new ProveedorController();
+		int ID = Integer.parseInt(request.getParameter("idProveedor"));
+		Proveedor prov = new Proveedor();
+		prov.setIdProveedor(ID);
+		Proveedor p = ctrlProv.getById(prov);
+		ctrlProv.deleteProveedor(p);
+		request.setAttribute("listaProveedores",ctrlProv.getAllProveedores());
+		request.getRequestDispatcher ("listaProveedores.jsp").forward(request, response);
+		
+		
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

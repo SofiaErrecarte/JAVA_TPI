@@ -41,12 +41,21 @@ public class modificarLibroServlet extends HttpServlet {
 		 * response);
 		 */
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		LibroController ctrlLibro = new LibroController();
-		request.setAttribute("listaLibros", ctrlLibro.getAllLibros());
+//		LibroController ctrlLibro = new LibroController();
+		//request.setAttribute("listaLibros", ctrlLibro.getAllLibros());
+		//request.getRequestDispatcher("modificarLibro.jsp").forward(request, response);
+		LibroController ctrlLibro =  new  LibroController  ();
+		int  ID  =  Integer.parseInt (request.getParameter("id"));
+		Libro lib = new Libro();
+		lib.setIdLibro(ID);
+		Libro l = ctrlLibro.getByIdLibro(lib);
+		
+		request.setAttribute ("libroAEditar",l);
 		request.getRequestDispatcher("modificarLibro.jsp").forward(request, response);
+		
 	}
 
-	/**
+	/*
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

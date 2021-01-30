@@ -1,4 +1,3 @@
-
 package servlets;
 
 import java.io.IOException;
@@ -9,21 +8,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import entities.Libro;
-import logic.LibroController;
+import entities.*;
+import logic.PoliticaPrestamoController;
 
 /**
- * Servlet implementation class agregarLibroServlet
+ * Servlet implementation class listarPoliticaServlet
  */
-@WebServlet("/agregarLibroServlet")
-public class agregarLibroServlet extends HttpServlet {
+@WebServlet("/listarPoliticaServlet")
+public class listarPoliticaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public agregarLibroServlet() {
+    public listarPoliticaServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,29 +39,11 @@ public class agregarLibroServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		LibroController ctrlLibro = new LibroController();
-		Libro lib = new Libro();
-		
-		String titulo = request.getParameter("titulo");
-		int isbn = Integer.parseInt(request.getParameter("isbn"));
-		int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
-		int nroedicion = Integer.parseInt(request.getParameter("nroedicion"));
-		int cantdias = Integer.parseInt(request.getParameter("cantdiasprestamo"));
-		String genero = request.getParameter("genero");
-		
-		
-		lib.setTitulo(titulo);
-		lib.setIsbn(isbn);
-		lib.setIdProveedor(idProveedor);
-		lib.setNroEdicion(nroedicion);
-		lib.setGenero(genero);
-		lib.setCantDiasMaxPrestamo(cantdias);
-		
-		ctrlLibro.createLibro(lib);
-		
-		request.setAttribute("nuevoLibro", lib);
-		request.getRequestDispatcher("listarLibroServlet").forward(request, response);
 		//doGet(request, response);
+		PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController(); 
+		LinkedList<PoliticaPrestamo> politicas = ctrlPP.ppGetAll();	
+		request.setAttribute("listapoliticas", politicas);
+		request.getRequestDispatcher("listaPoliticas.jsp").forward(request, response);
 		
 	}
 

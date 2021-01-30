@@ -34,5 +34,9 @@ public class ProveedorController {
 		return dpr.deleteProveedor(prov);
 	}
 	
+	public Proveedor getById(Proveedor prov) {
+		return dpr.getById(prov);
+	}
+	
 	
 }

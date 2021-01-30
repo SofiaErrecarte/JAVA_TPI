@@ -1,8 +1,8 @@
-
 package servlets;
 
 import java.io.IOException;
-import java.util.LinkedList;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entities.Libro;
-import logic.LibroController;
+import entities.PoliticaPrestamo;
+import logic.PoliticaPrestamoController;
 
 /**
- * Servlet implementation class agregarLibroServlet
+ * Servlet implementation class editarPoliticaServlet
  */
-@WebServlet("/agregarLibroServlet")
-public class agregarLibroServlet extends HttpServlet {
+@WebServlet("/editarPoliticaServlet")
+public class editarPoliticaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public agregarLibroServlet() {
+    public editarPoliticaServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,30 +41,22 @@ public class agregarLibroServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		LibroController ctrlLibro = new LibroController();
-		Libro lib = new Libro();
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-mm-dd");
+		PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController();
+		PoliticaPrestamo pp = new PoliticaPrestamo();
+		/*try {
+			pp.setFechaAlta((Date)formato.parse(request.getParameter("fechaalta")));
+		} catch (java.text.ParseException e) {
+			e.printStackTrace();
+		}*/
+		pp.setIdPoliticaPrestamo(Integer.parseInt(request.getParameter("idPolitica")));
+		pp.setCantMaximaNoSocio(Integer.parseInt(request.getParameter("librosSocio")));
+		pp.setCantMaximaSocio(Integer.parseInt(request.getParameter("librosNoSocio")));
 		
-		String titulo = request.getParameter("titulo");
-		int isbn = Integer.parseInt(request.getParameter("isbn"));
-		int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
-		int nroedicion = Integer.parseInt(request.getParameter("nroedicion"));
-		int cantdias = Integer.parseInt(request.getParameter("cantdiasprestamo"));
-		String genero = request.getParameter("genero");
+		ctrlPP.editPolitica(pp);
+		request.getRequestDispatcher("listarPoliticaServlet").forward(request, response);
 		
-		
-		lib.setTitulo(titulo);
-		lib.setIsbn(isbn);
-		lib.setIdProveedor(idProveedor);
-		lib.setNroEdicion(nroedicion);
-		lib.setGenero(genero);
-		lib.setCantDiasMaxPrestamo(cantdias);
-		
-		ctrlLibro.createLibro(lib);
-		
-		request.setAttribute("nuevoLibro", lib);
-		request.getRequestDispatcher("listarLibroServlet").forward(request, response);
 		//doGet(request, response);
-		
 	}
 
 }

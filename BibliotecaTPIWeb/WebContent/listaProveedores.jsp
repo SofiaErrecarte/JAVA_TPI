@@ -41,6 +41,12 @@
                     				<td>
                     				    
                     				</td>
+                    				<td> <a class="editbutton"
+									href="modificarProveedorServlet?id=<%=prov.getIdProveedor()%>">
+										Editar </a>
+										<a class="deletebutton"
+									href="borrarProveedorServlet?id=<%=prov.getIdProveedor()%>">
+										Eliminar</a></td>
                     				<td></td><!-- editar -->
                     				<td></td><!-- borrar -->
                     			</tr>

@@ -1,5 +1,6 @@
 <%@page import="java.util.LinkedList"%>
 <%@page import="entities.Libro"%>
+<%@page import="logic.LibroController"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -7,13 +8,16 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Modificar libro</title>
-  <% //Libro lib = (Libro)request.getAttribute("libroAEditar");
-   LinkedList<Libro> ll = (LinkedList<Libro>)request.getAttribute("listaLibros");
-%>
+
 
 </head>
 <body>
-
+ <% //Libro lib = (Libro)request.getAttribute("libroAEditar");
+ 	LinkedList<Libro> ll = (LinkedList<Libro>)request.getAttribute("listaLibros");
+    Libro lib=(Libro)request.getAttribute("LibroAEditar");
+     //ArrayList < Opcion > opciones = cc . getOpcionesByIdCaracteristica (c . getIdCaracteristica ());
+     
+ %>
 <form action="modificarLibroServlet" method="post">
 <label for="id"><b>ID Libro</b></label>
     <input type="text" name="id" required>

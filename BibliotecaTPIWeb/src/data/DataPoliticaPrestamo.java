@@ -22,8 +22,8 @@ public class DataPoliticaPrestamo {
 					PoliticaPrestamo pp = new PoliticaPrestamo();
 					pp.setIdPoliticaPrestamo(rs.getInt("idPolitica"));
 					pp.setFechaAlta(rs.getDate("fechaAlta"));
-					pp.setCantMaximaNoSocio(rs.getInt("cantMaximaSocio"));
-					pp.setCantMaximaSocio(rs.getInt("cantMaximaNoSocio"));
+					pp.setCantMaximaSocio(rs.getInt("cantMaximaSocio"));
+					pp.setCantMaximaNoSocio(rs.getInt("cantMaximaNoSocio"));
 					
 					politicas.add(pp);
 				}
@@ -124,7 +124,7 @@ public class DataPoliticaPrestamo {
 							);
 			stmt.setInt(1,pp.getCantMaximaSocio());
 			stmt.setInt(2,pp.getCantMaximaNoSocio());
-			stmt.setDate(3,(Date) pp.getFechaAlta());
+			stmt.setInt(3,pp.getIdPoliticaPrestamo());
 			stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();

@@ -7,7 +7,7 @@
 <meta charset="ISO-8859-1">
 <title>Modificar Proveedor</title>
 <% //Libro lib = (Libro)request.getAttribute("libroAEditar");
-Proveedor prov = (Proveedor)session.getAttribute("proveedorAEditar"); %>
+Proveedor prov=(Proveedor)request.getAttribute("proveedorAEditar"); %>
 </head>
 <body>
 <form action="modificarProveedorServlet" method="post">
