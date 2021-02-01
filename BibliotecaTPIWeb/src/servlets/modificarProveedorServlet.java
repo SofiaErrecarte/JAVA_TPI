@@ -32,7 +32,7 @@ public class modificarProveedorServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		ProveedorController ctrlProv = new ProveedorController();
-		int ID = Integer.parseInt(request.getParameter("idProveedor"));
+		int ID = Integer.parseInt(request.getParameter("id"));
 		Proveedor prov = new Proveedor();
 		prov.setIdProveedor(ID);
 		Proveedor p = ctrlProv.getById(prov);
@@ -48,7 +48,7 @@ public class modificarProveedorServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProveedorController ctrlProv = new ProveedorController();
 		Proveedor prov = new Proveedor();
-		prov.setIdProveedor(Integer.parseInt(request.getParameter("idProveedor")));
+		prov.setIdProveedor(Integer.parseInt(request.getParameter("id")));
 		
 		String razonSocial = request.getParameter("razonSocial");
 		String CUIT = request.getParameter("cuit");

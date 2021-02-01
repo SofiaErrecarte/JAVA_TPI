@@ -51,17 +51,7 @@
 	<form action="listarPoliticaServlet" method="post">
     <button type="submit">Listar Politica de Prestamo</button>
  	</form> 
- 	
- 	<form action="agregarPolitica.jsp" method="post">
-    <button type="submit">Agregar Politica de Prestamo</button>
- 	</form> 
- 	
- 	<form action="editarPolitica.jsp" method="post">
-    <button type="submit">Editar Politica de Prestamo</button>
- 	</form> 
- 	
- 	<form action="borrarPolitica.jsp" method="post">
-    <button type="submit">Borrar Politica de Prestamo</button>
+
  	</form> 
  	
 

@@ -31,7 +31,7 @@ public class borrarProveedorServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		ProveedorController ctrlProv = new ProveedorController();
-		int ID = Integer.parseInt(request.getParameter("idProveedor"));
+		int ID = Integer.parseInt(request.getParameter("id"));
 		Proveedor prov = new Proveedor();
 		prov.setIdProveedor(ID);
 		Proveedor p = ctrlProv.getById(prov);

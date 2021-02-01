@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Libro;
+import entities.PoliticaPrestamo;
 import entities.Proveedor;
 import logic.LibroController;
+import logic.PoliticaPrestamoController;
 import logic.ProveedorController;
 
 /**
@@ -45,6 +47,12 @@ public class listarLibroServlet extends HttpServlet {
 		LibroController ctrlLibro = new LibroController();
 		LinkedList<Libro> libros = ctrlLibro.getAllLibros();
 		request.setAttribute("listaLibros", libros);
+		PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController(); 
+		LinkedList<PoliticaPrestamo> politicas = ctrlPP.ppGetAll();	
+		request.setAttribute("listapoliticas", politicas);
+		ProveedorController ctrlProv = new ProveedorController();
+		LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
+		request.setAttribute("listaProveedores", proveedores);
 		request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
 		//doGet(request, response);
 	}

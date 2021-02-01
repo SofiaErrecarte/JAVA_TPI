@@ -33,7 +33,21 @@ public class editarPoliticaServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController();
+		int ID = Integer.parseInt(request.getParameter("id"));
+		PoliticaPrestamo pp = new PoliticaPrestamo();
+		pp.setIdPoliticaPrestamo(ID);
+		PoliticaPrestamo p = ctrlPP.getByIdPolitica(pp);
+		
+		request.setAttribute("politicaAEditar", p);
+		request.getRequestDispatcher("editarPolitica.jsp").forward(request, response);
+		
+		
+		
+		
+		
+		
 	}
 
 	/**
@@ -49,7 +63,7 @@ public class editarPoliticaServlet extends HttpServlet {
 		} catch (java.text.ParseException e) {
 			e.printStackTrace();
 		}*/
-		pp.setIdPoliticaPrestamo(Integer.parseInt(request.getParameter("idPolitica")));
+		pp.setIdPoliticaPrestamo(Integer.parseInt(request.getParameter("id")));
 		pp.setCantMaximaNoSocio(Integer.parseInt(request.getParameter("librosSocio")));
 		pp.setCantMaximaSocio(Integer.parseInt(request.getParameter("librosNoSocio")));
 		

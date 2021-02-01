@@ -12,7 +12,7 @@ Proveedor prov=(Proveedor)request.getAttribute("proveedorAEditar"); %>
 <body>
 <form action="modificarProveedorServlet" method="post">
 <label for="id"><b>ID Proveedor</b></label>
-    <input type="number" name="idProveedor" required>
+    <input type="number" name="id" required>
   <div class="container">
     <label for="cuit"><b>CUIT</b></label>
     <input type="text" name="cuit" required>

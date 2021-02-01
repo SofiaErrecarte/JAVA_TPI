@@ -13,7 +13,7 @@
   	<div class="container">
   	
     <label for="id"><b>Ingrese el ID del proveedor que desea borrar:</b></label>
-    <input type="number"  name="idProveedor">
+    <input type="number"  name="id">
 
 	
     <button type="submit">Borrar proveedor</button>

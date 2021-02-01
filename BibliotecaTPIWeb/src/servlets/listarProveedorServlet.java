@@ -42,7 +42,7 @@ public class listarProveedorServlet extends HttpServlet {
 		ProveedorController ctrlProv = new ProveedorController();
 		LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
 		request.setAttribute("listaProveedores", proveedores);
-		request.getRequestDispatcher("listaProveedores.jsp").forward(request, response);
+		request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
 		//doGet(request, response);
 	}
 

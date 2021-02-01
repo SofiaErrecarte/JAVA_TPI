@@ -34,17 +34,28 @@
                     				<td><%=pp.getFechaAlta()%></td>
                     				<td><%=pp.getCantMaximaSocio()%></td>
                     				<td><%=pp.getCantMaximaNoSocio()%></td>
-                    				<td>
-                    				    
-                    				</td>
+                    				<td> <a class="editbutton"
+									href="editarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>">
+										Editar </a>
+										<a class="deletebutton"
+									href="editarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>">
+										Eliminar</a></td>
                     				<td></td><!-- editar -->
                     				<td></td><!-- borrar -->
                     			</tr>
                     		<% } %>
                     		</tbody>	
-<form action="agregarPoliticaServlet" method="post">
+ 	
+ 	<form action="agregarPolitica.jsp" method="post">
     <button type="submit">Agregar Politica de Prestamo</button>
  	</form> 
+ 	
+ 	<form action="editarPolitica.jsp" method="post">
+    <button type="submit">Editar Politica de Prestamo</button>
+ 	</form> 
+ 	
+ 	<form action="borrarPolitica.jsp" method="post">
+    <button type="submit">Borrar Politica de Prestamo</button>
 	 
 </body>
 </html>

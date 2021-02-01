@@ -43,7 +43,7 @@ public class listarPoliticaServlet extends HttpServlet {
 		PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController(); 
 		LinkedList<PoliticaPrestamo> politicas = ctrlPP.ppGetAll();	
 		request.setAttribute("listapoliticas", politicas);
-		request.getRequestDispatcher("listaPoliticas.jsp").forward(request, response);
+		request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
 		
 	}
 

@@ -7,12 +7,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Editar Politica de Prestamo</title>
+<% PoliticaPrestamo pp=(PoliticaPrestamo)request.getAttribute("politicaAEditar"); %>
 </head>
 <body>
 
 <form action="editarPoliticaServlet" method="post">
 <label for="id"><b>ID Politica</b></label>
-    <input type="number" name="idPolitica"required>
+    <input type="number" name="id"required>
   <div class="container">
     <label for="librosSoc"><b>Cantidad libros Socio</b></label>
     <input type="number" name="librosSocio"required>
