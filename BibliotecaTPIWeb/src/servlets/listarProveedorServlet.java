@@ -32,7 +32,11 @@ public class listarProveedorServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		ProveedorController ctrlProv = new ProveedorController();
+		LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
+		request.setAttribute("listaProveedores", proveedores);
+		request.getRequestDispatcher("listaProveedores.jsp").forward(request, response);
 	}
 
 	/**
@@ -42,7 +46,7 @@ public class listarProveedorServlet extends HttpServlet {
 		ProveedorController ctrlProv = new ProveedorController();
 		LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
 		request.setAttribute("listaProveedores", proveedores);
-		request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
+		request.getRequestDispatcher("listaProveedores.jsp").forward(request, response);
 		//doGet(request, response);
 	}
 

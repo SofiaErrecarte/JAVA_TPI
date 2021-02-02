@@ -31,9 +31,12 @@ public class listarPoliticaServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController(); 
+		LinkedList<PoliticaPrestamo> politicas = ctrlPP.ppGetAll();	
+		request.setAttribute("listapoliticas", politicas);
+		request.getRequestDispatcher("listaPoliticas.jsp").forward(request, response);
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -43,7 +46,7 @@ public class listarPoliticaServlet extends HttpServlet {
 		PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController(); 
 		LinkedList<PoliticaPrestamo> politicas = ctrlPP.ppGetAll();	
 		request.setAttribute("listapoliticas", politicas);
-		request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
+		request.getRequestDispatcher("listaPoliticas.jsp").forward(request, response);
 		
 	}
 

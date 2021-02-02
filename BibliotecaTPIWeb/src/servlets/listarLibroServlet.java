@@ -36,7 +36,10 @@ public class listarLibroServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		LibroController ctrlLibro = new LibroController();
+		LinkedList<Libro> libros = ctrlLibro.getAllLibros();
+		request.setAttribute("listaLibros", libros);
+		request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
 	}
 
 	/**
@@ -47,13 +50,8 @@ public class listarLibroServlet extends HttpServlet {
 		LibroController ctrlLibro = new LibroController();
 		LinkedList<Libro> libros = ctrlLibro.getAllLibros();
 		request.setAttribute("listaLibros", libros);
-		PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController(); 
-		LinkedList<PoliticaPrestamo> politicas = ctrlPP.ppGetAll();	
-		request.setAttribute("listapoliticas", politicas);
-		ProveedorController ctrlProv = new ProveedorController();
-		LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
-		request.setAttribute("listaProveedores", proveedores);
 		request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
+		
 		//doGet(request, response);
 	}
 
