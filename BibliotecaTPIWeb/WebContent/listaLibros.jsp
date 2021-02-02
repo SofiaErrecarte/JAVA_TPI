@@ -18,10 +18,27 @@ LinkedList<Libro> ll = (LinkedList<Libro>)request.getAttribute("listaLibros");
 <link href = "css/listado.css" rel="stylesheet">
 </head>
 <body>
+
 	<section id="tabs" class="project-tab">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
+                <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
+                                	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="false">Libros</a>
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" 
+                                	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <table class="table" cellspacing="0">
@@ -64,11 +81,11 @@ LinkedList<Libro> ll = (LinkedList<Libro>)request.getAttribute("listaLibros");
                     </div>
                 </div>
             </div>
-        </section>
- 	<table>
+       <table>
                             <td>
+                           
                              <form action="agregarLibro.jsp" method="post">
-                             <button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt">Agregar Libro</button>
+                             <button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Agregar Libro</button>
 							 </form> 
 							</td>
 							 	<!--  <form action="borrarLibro.jsp" method="post">
@@ -77,12 +94,17 @@ LinkedList<Libro> ll = (LinkedList<Libro>)request.getAttribute("listaLibros");
 							 	<form  action="modificarLibro.jsp" method="post">
 							 	 <button class="btn btn-lg btn-primary">Modificar Libro</button>
 							    </form>-->
-							 <td><div class="container" style="background-color:#f1f1f1">
+							 <td>
 							    <!--   <button type="button" class="cancelbtn">Cancel</button> -->
-							  <input type="button" onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt">
-							  </div>
+							  <input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
+							
 							  </td>
-                             </table>
+							 
+                            </table>
+                            
+        </section>
+         
+ 						
  	<!--  <form action="agregarPolitica.jsp" method="post">
     <button type="submit">Agregar Politica de Prestamo</button>
  	</form> 

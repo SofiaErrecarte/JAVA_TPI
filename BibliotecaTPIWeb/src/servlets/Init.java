@@ -43,7 +43,8 @@ public class Init extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
@@ -59,8 +60,8 @@ public class Init extends HttpServlet {
 		
 		
 		//request.getSession().setAttribute("usuario", per);
-		processRequest (request, response);
 		
+		processRequest (request, response);
 	}	
 	
 	protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -72,11 +73,14 @@ public class Init extends HttpServlet {
 	    	{
 	    		if (password.equalsIgnoreCase("1234"))
 	        	{
+	    		LibroController ctrlLibro = new LibroController();
+	    		LinkedList<Libro> libros = ctrlLibro.getAllLibros();
+	    		request.setAttribute("listaLibros", libros);
 	    		  per.setEmail(email);
 	    		  per.setContraseña(password);
 	        	  HttpSession sesion = request.getSession();
 	        	  sesion.setAttribute("usuario", per);
-	        	  RequestDispatcher rd = request.getRequestDispatcher("menu.jsp");
+	        	  RequestDispatcher rd = request.getRequestDispatcher("listaLibros.jsp");
 	  			  rd.forward(request, response);
 	     	  
 	        	}	
@@ -95,6 +99,10 @@ public class Init extends HttpServlet {
 			}
 	    	
 	    	//doGet(request, response);
+	    	LibroController ctrlLibro = new LibroController();
+			LinkedList<Libro> libros = ctrlLibro.getAllLibros();
+			request.setAttribute("listaLibros", libros);
+			request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
 	}
 
 }
