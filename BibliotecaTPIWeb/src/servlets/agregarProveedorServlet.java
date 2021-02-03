@@ -39,26 +39,37 @@ public class agregarProveedorServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProveedorController ctrlProv = new ProveedorController();
-		Proveedor prov = new Proveedor();
+		Proveedor p = new Proveedor();
 		
 		String razonSocial = request.getParameter("razonSocial");
 		String CUIT = request.getParameter("cuit");
 		String telefono = request.getParameter("telefono");
 		String mail = request.getParameter("mail");
 		String direccion = request.getParameter("direccion");
+		p.setCUIT(CUIT);
 		
-		prov.setCUIT(CUIT);
-		prov.setRazonSocial(razonSocial);
-		prov.setMail(mail);
-		prov.setTelefono(telefono);
-		prov.setDireccion(direccion);
+		p=ctrlProv.getByCUIT(p);
 		
-		ctrlProv.createProveedor(prov);
+		if(p==null) {
+			Proveedor prov = new Proveedor();
+			prov.setRazonSocial(razonSocial);
+			prov.setMail(mail);
+			prov.setTelefono(telefono);
+			prov.setDireccion(direccion);
+			prov.setCUIT(CUIT);
+			
+			ctrlProv.createProveedor(prov);
+			
+			request.setAttribute("nuevoProveedor", prov);
+			request.getRequestDispatcher("listarProveedorServlet").forward(request, response);
+		}else {
+			request.setAttribute("error", "El proveedor ingresado ya existe.");
+			request.getRequestDispatcher("agregarProveedor.jsp").forward(request, response); }
+			
+		}
+	
 		
-		request.setAttribute("nuevoProveedor", prov);
-		request.getRequestDispatcher("listarProveedorServlet").forward(request, response);
-		//doGet(request, response);
 		
 	}
 
-}
+

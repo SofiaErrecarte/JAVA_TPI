@@ -35,7 +35,11 @@
     <button type="submit">Agregar</button>
     
   </div>
-
+	<!-- CARTEL -->
+	<%if ((request.getAttribute("error"))!=null) { %>
+		<p style="color:red"> <%=request.getAttribute("error")%> </p>		
+	<% } %>
+	
   <div class="container" style="background-color:#f1f1f1">
     <!--   <button type="button" class="cancelbtn">Cancel</button> -->
     <input type="button" onclick="history.back()" name="Cancelar" value="Cancelar">

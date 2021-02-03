@@ -394,6 +394,43 @@ public class DataLibro {
 		
 	}
 
+
+	public Libro getByISBN(Libro lib) {
+		Libro l = null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from libro where isbn=?");
+			stmt.setInt(1, lib.getIsbn());
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()) {
+				l = new Libro();
+				l.setIdLibro(rs.getInt("idLibro"));
+				l.setIsbn(rs.getInt("isbn"));
+				l.setTitulo(rs.getString("titulo"));
+				l.setFechaEdicion(rs.getDate("fechaEdicion"));
+				l.setNroEdicion(rs.getInt("nroEdicion"));
+				l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+				l.setGenero(rs.getString("genero"));
+				l.setIdProveedor(rs.getInt("idProveedor"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return l;
+	}
+
+
 	/*public Ejemplar getByIdEjemplar(Ejemplar ej) {
 		Ejemplar ejemp = null;
 		DataLibro dl = new DataLibro();

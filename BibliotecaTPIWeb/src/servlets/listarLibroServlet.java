@@ -47,7 +47,10 @@ public class listarLibroServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		LibroController ctrlLibro = new LibroController();
+		LinkedList<Libro> libros = ctrlLibro.getAllLibros();
+		request.setAttribute("listaLibros", libros);
+		request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
 		
 		//doGet(request, response);
 	}

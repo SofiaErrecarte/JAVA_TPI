@@ -86,15 +86,19 @@ public class Init extends HttpServlet {
 	        	}	
 	    		else
 	    		{
-	    			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-	    			rd.forward(request, response);
+	    			//RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+	    			//rd.forward(request, response);
+	    			request.setAttribute("error", "Usuario o contraseña incorrecta. Inténtelo nuevamente.");
+	    			request.getRequestDispatcher("index.jsp").forward(request, response);
 	    			
 	    		}
 	    	}
 	    	else
 			{
-				RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-				rd.forward(request, response);
+				//RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+				//rd.forward(request, response);
+	    		request.setAttribute("error", "Usuario o contraseña incorrecta.");
+    			request.getRequestDispatcher("index.jsp").forward(request, response);
 				
 			}
 	    	

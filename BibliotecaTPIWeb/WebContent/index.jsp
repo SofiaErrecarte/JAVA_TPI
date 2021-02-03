@@ -22,7 +22,9 @@
     <div class="fadeIn first">
       <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
     </div>
-
+	<%if ((request.getAttribute("error"))!=null) { %>
+		<p style="color:red"> <%=request.getAttribute("error")%> </p>		
+	<% } %>
     <!-- Login Form -->
     <form action="init" method="post">
       <input type="text" id="login" class="fadeIn second" placeholder="email" name="email" required>

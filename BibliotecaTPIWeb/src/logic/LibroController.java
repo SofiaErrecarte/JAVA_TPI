@@ -55,6 +55,10 @@ public class LibroController {
 	public Ejemplar deleteEjemplarPorIdLibro (Ejemplar ej, Libro lib) {
 		return dl.deleteEjemplar(ej);		
 	}
+
+	public Libro getByIsbnLibro(Libro lib) {
+		return dl.getByISBN(lib);
+	}
 	
 	/*public Ejemplar getByIdEjemplar(Ejemplar ej) {
 		return de.getByIdEjemplar(ej);
