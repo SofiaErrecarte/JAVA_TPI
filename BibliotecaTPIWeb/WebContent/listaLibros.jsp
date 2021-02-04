@@ -52,6 +52,9 @@ LinkedList<Libro> ll = (LinkedList<Libro>)request.getAttribute("listaLibros");
 		                        			<th>Cant. dias</th>
 		                        			<th>Genero</th>
 		                        			<th>Id Proveedor</th>
+		                        			<th>Id Proveedor</th>
+		                        			<th>Id Proveedor</th>
+		                        			<th>Id Proveedor</th>
                                         </tr>
                                     </thead>
                                     <tbody>
