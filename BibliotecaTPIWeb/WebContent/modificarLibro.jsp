@@ -35,7 +35,8 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
     <input type="text" name="titulo" value=<%=lib.getTitulo()%> required>
 
     <label for="psw"><b>ISBN</b></label>
-    <input type="text"  name="isbn" value=<%=lib.getIsbn()%> required>
+    <input type="text"  name="isbn" value=<%=lib.getIsbn()%> hidden="true">
+    <input type="text"  name="isbnLibro" value=<%=lib.getIsbn()%> disabled>
     
     <label for="nroed"><b>Numero Edicion</b></label>
     <input type="text" name="nroedicion" value=<%=lib.getNroEdicion()%> required>

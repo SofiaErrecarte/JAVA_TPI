@@ -18,8 +18,9 @@ Proveedor prov=(Proveedor)request.getAttribute("proveedorAEditar"); %>
     <input type="text" name="idLibro" value=<%=prov.getIdProveedor()%> disabled>
   <div class="container">
     <label for="cuit"><b>CUIT</b></label>
-    <input type="text" name="cuit" value=<%=prov.getCUIT()%> required>
-
+    <input type="text" name="cuit" value=<%=prov.getCUIT()%> hidden="true">
+	<input type="text" name="cuit" value=<%=prov.getCUIT()%> disabled>
+	
     <label for="razonsoc"><b>Razón Social</b></label>
     <input type="text" name="razonSocial" value=<%=prov.getRazonSocial()%> required>
 
