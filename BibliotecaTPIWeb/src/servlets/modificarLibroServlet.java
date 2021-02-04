@@ -70,6 +70,8 @@ public class modificarLibroServlet extends HttpServlet {
 		//int id = Integer.parseInt(request.getParameter("id"));
 		int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
 		
+		
+		
 		lib.setTitulo(titulo);
 		lib.setIsbn(isbn);
 		
@@ -85,4 +87,3 @@ public class modificarLibroServlet extends HttpServlet {
 	}
 
 }
-

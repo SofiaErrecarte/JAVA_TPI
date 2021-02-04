@@ -12,22 +12,25 @@ Proveedor prov=(Proveedor)request.getAttribute("proveedorAEditar"); %>
 <body>
 <form action="modificarProveedorServlet" method="post">
 <label for="id"><b>ID Proveedor</b></label>
-    <input type="number" name="id" required>
+   <!-- Este me guarda el atributo id -->
+    <input type="text" name="id" value=<%=prov.getIdProveedor()%> hidden="true">
+    <!--  Este me lo muestra deshabilitado para q se vea el numero -->
+    <input type="text" name="idLibro" value=<%=prov.getIdProveedor()%> disabled>
   <div class="container">
     <label for="cuit"><b>CUIT</b></label>
-    <input type="text" name="cuit" required>
+    <input type="text" name="cuit" value=<%=prov.getCUIT()%> required>
 
     <label for="razonsoc"><b>Razón Social</b></label>
-    <input type="text" name="razonSocial"required>
+    <input type="text" name="razonSocial" value=<%=prov.getRazonSocial()%> required>
 
 	<label for="tel"><b>Telefono</b></label>
-    <input type="text" name="telefono"required>
+    <input type="text" name="telefono" value=<%=prov.getTelefono() %> required>
     
     <label for="email"><b>E-Mail</b></label>
-    <input type="text" name="mail"required>
+    <input type="text" name="mail" value=<%=prov.getMail() %> required>
 
 	<label for="dir"><b>Dirección</b></label>
-    <input type="text" name="direccion"required>
+    <input type="text" name="direccion" value=<%=prov.getDireccion() %>required>
 
     <button type="submit">Modificar</button>
     
