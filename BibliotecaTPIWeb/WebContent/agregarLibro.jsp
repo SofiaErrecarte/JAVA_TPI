@@ -14,43 +14,94 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
 <meta charset="ISO-8859-1">
 <title>Nuevo Libro</title>
 <% Libro lib = (Libro)session.getAttribute("nuevoLibro"); %>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href = "css/listado.css" rel="stylesheet">
 </head>
 <body>
+<section id="tabs" class="project-tab">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
+                                	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="true">Libros</a>
+                                <a class="nav-item nav-link " id="nav-profile-tab" data-toggle="tab" 
+                                	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+ <%if (lib!= null){%>
+	<h4> Libro agregado con éxito</h4>
+	<String> mensaje="<script type="text/javascript">alert('Esto se debe de mostrar en el msgbox');</script>";
+	out.println(mensaje);
+<%} else {%>
+<form class="form-horizontal" action="agregarLibroServlet" method="post">
+<section>
+<fieldset>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="titulo">Título: </label>  
+  <div class="col-md-4">
+  <input id="titulo" name="titulo" type="text" placeholder="Titulo" class="form-control input-md" required="">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="isbn">ISBN: </label>  
+  <div class="col-md-4">
+  <input id="isbn" name="isbn" type="text" placeholder="ISBN" class="form-control input-md" required="">
+  </div>
+</div>
 
 
-	<form action="agregarLibroServlet" method="post">
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="nroedicion">Numero de edicion: </label>  
+  <div class="col-md-4">
+  <input id="nroedicion" name="nroedicion" type="text" placeholder="Numero Edicion" class="form-control input-md" required="">
+  </div>
+</div>
 
-  <div class="container">
-    <label for="uname"><b>Titulo</b></label>
-    <input type="text" name="titulo" required>
+<!-- Select Basic 
+<div class="form-group">
+  <label class="col-md-4 control-label" for="selectEstadoCivil">Estado Civil: </label>
+  <div class="col-md-4">
+    <select id="selectEstadoCivil" name="selectEstadoCivil" class="form-control">
+      <option value="s">Soltero</option>
+      <option value="c">Casado</option>
+      <option value="d">Divorciado</option>
+      <option value="v">Viudo</option>
+    </select>
+  </div>
+</div>-->
 
-    <label for="psw"><b>ISBN</b></label>
-    <input type="number"  name="isbn"required>
-    <!-- <label for="start">Start date:</label>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="cantdiasprestamo">Cant días prestamo: </label>  
+  <div class="col-md-4">
+  <input id="cantdiasprestamo" name="cantdiasprestamo" type="text" placeholder="Cantidad dias préstamo" class="form-control input-md" required="">
+  </div>
+</div>
 
-	<input type="date" id="start" name="trip-start"
-       value="2018-07-22"
-       min="2018-01-01" max="2018-12-31"> -->
+<!-- Text input-->
 
-	<label for="psw"><b>Fecha Edicion</b></label>
-    <input type="date" name="fechaedicion"required>
-    
-    <label for="nroed"><b>Numero Edicion</b></label>
-    <input type="number" name="nroedicion"required>
-
-	<label for="cantd"><b>Cant Dias Prestamo</b></label>
-    <input type="number" name="cantdiasprestamo"required>
-    
-    <label for="gen"><b>Genero</b></label>
-    <input type="text" name="genero"required>
-    
-    <label for="prov"><b>Id Proveedor</b></label>
-    <% if( proveedores != null) {%>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="prov">Genero: </label>  
+  <div class="col-md-4">
+   <% if( proveedores != null) {%>
                             <select name="idProveedor" class="form-control">
                                 <%  for(int i = 0; i < proveedores.size(); i++) {
                                     Proveedor p = (Proveedor)proveedores.get(i);
                                 %>
-                                <option value="<%= p.getIdProveedor() %>"><%= p.getRazonSocial()%></option>>
+                                <option value="<%= p.getIdProveedor() %>"><%= p.getRazonSocial()%></option>
                                 <% } %>
                             </select>
                             <% }else{ %> <td> No hay proveedores cargados. <a class="agreggatebutton"
@@ -59,24 +110,36 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
                         	<td> Su proveedor no se encuentra en la lista? <a class="agreggatebutton"
 									href="agregarProveedor.jsp">
 										Añadir un nuevo proveedor</a></td>
-	
-    <button type="submit">Agregar</button>
-    
   </div>
-	<!-- CARTEL -->
-	<%if ((request.getAttribute("error"))!=null) { %>
+</div>
+</fieldset>
+<table>
+<td>
+<button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Agregar Libro</button>
+</td>
+<td>
+<input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
+</td>
+</table>
+                            
+        </section>
+<%if ((request.getAttribute("error"))!=null) { %>
 		<p style="color:red"> <%=request.getAttribute("error")%> </p>		
 	<% } %>
-  
-  <div class="container" style="background-color:#f1f1f1">
-    <!--   <button type="button" class="cancelbtn">Cancel</button> -->
-    <input type="button" onclick="history.back()" name="Cancelar" value="Cancelar">
-  </div>
-</form>
-	<%if (lib!= null){%>
-	<h4 style="color:green"> Libro agregado con éxito</h4>
-	
-<%} %>
 
+</form>
+<% }%>
+  </section>
+  
+  
+  
+  
+	
+<footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
 </body>
 </html>

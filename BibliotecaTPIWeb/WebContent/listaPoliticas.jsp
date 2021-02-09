@@ -15,6 +15,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
+<link href = "css/botones.css" rel="stylesheet">
 </head>
 <body>
 
@@ -58,12 +59,11 @@
                     				<td><%=pp.getCantMaximaNoSocio()%></td>
                     				<td> <a class="editbutton"
 									href="editarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>">
-										Editar </a>
-										<a class="deletebutton"
-									href="editarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>">
+										Editar </a></td>
+										<td><a class="deletebutton"
+									href="borrarLibroServlet?id=<%=pp.getIdPoliticaPrestamo()%>">
 										Eliminar</a></td>
-                    				<td></td><!-- editar -->
-                    				<td></td><!-- borrar -->
+                    				
                     			</tr>
                     		<% } %>
                     		</tbody>	
@@ -74,11 +74,12 @@
                     </div>
                 </div>
             </div>
-        </section>
- 	<table>
+       
+ 	 <table>
                             <td>
-                             <form action="agregarLibro.jsp" method="post">
-                             <button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt">Agregar Política de Préstamo</button>
+                           
+                             <form action="agregarPolitica.jsp" method="post">
+                             <button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Agregar Politica</button>
 							 </form> 
 							</td>
 							 	<!--  <form action="borrarLibro.jsp" method="post">
@@ -87,12 +88,14 @@
 							 	<form  action="modificarLibro.jsp" method="post">
 							 	 <button class="btn btn-lg btn-primary">Modificar Libro</button>
 							    </form>-->
-							 <td><div class="container" style="background-color:#f1f1f1">
+							 <td>
 							    <!--   <button type="button" class="cancelbtn">Cancel</button> -->
-							  <input type="button" onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt">
-							  </div>
+							  <input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
+							
 							  </td>
-                             </table>
+							 
+                            </table>
+                             </section>
  	<!--  <form action="agregarPolitica.jsp" method="post">
     <button type="submit">Agregar Politica de Prestamo</button>
  	</form> 

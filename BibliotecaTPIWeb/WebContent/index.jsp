@@ -14,6 +14,7 @@
 <body>
 
 
+<%@ include file="navInicio.jsp"%>
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
