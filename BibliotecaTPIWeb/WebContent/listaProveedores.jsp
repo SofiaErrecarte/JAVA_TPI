@@ -19,7 +19,7 @@
 </head>
 <body>
            
-
+<%@ include file="navInicio.jsp"%>
 	<section id="tabs" class="project-tab">
             <div class="container">
                 <div class="row">

@@ -19,7 +19,7 @@ LinkedList<Libro> ll = (LinkedList<Libro>)request.getAttribute("listaLibros");
 <link href = "css/botones.css" rel="stylesheet">
 </head>
 <body>
-
+<%@ include file="navInicio.jsp"%>
 	<section id="tabs" class="project-tab">
             <div class="container">
                 <div class="row">
