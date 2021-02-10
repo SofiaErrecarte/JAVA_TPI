@@ -51,6 +51,11 @@
     <!--   <button type="button" class="cancelbtn">Cancel</button> -->
     <input type="button" onclick="history.back()" name="Volver" value="Volver">
   </div>
-  
+   <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
 </body>
 </html>

@@ -64,7 +64,7 @@
                     				<td><%=prov.getDireccion()%></td>
                     				<td>
                     				  <td> <a class="editbutton"
-									href="editarProveedorServlet?id=<%=prov.getIdProveedor()%>">
+									href="modificarProveedorServlet?id=<%=prov.getIdProveedor()%>">
 										Editar </a></td>
 										<td><a class="deletebutton"
 									href="borrarProveedorServlet?id=<%=prov.getIdProveedor()%>">
