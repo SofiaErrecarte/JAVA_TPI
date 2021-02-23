@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import entities.Libro;
 import entities.Persona;
 import logic.LibroController;
+import logic.PersonaController;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -66,18 +67,19 @@ public class Init extends HttpServlet {
 	
 	protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub
+			PersonaController ctrlp = new PersonaController();
 	    	String email = request.getParameter("email");
 	    	String password = request.getParameter("password");
 	    	Persona per = new Persona();
-	    	if (email.equalsIgnoreCase("sofia"))
+	    	per.setEmail(email);
+	    	per.setContraseña(password);
+	    	per = ctrlp.getByEmail(per);
+	    	if (per!=null)
 	    	{
-	    		if (password.equalsIgnoreCase("1234"))
-	        	{
+	    		
 	    		LibroController ctrlLibro = new LibroController();
 	    		LinkedList<Libro> libros = ctrlLibro.getAllLibros();
 	    		request.setAttribute("listaLibros", libros);
-	    		  per.setEmail(email);
-	    		  per.setContraseña(password);
 	        	  HttpSession sesion = request.getSession();
 	        	  sesion.setAttribute("usuario", per);
 	        	  RequestDispatcher rd = request.getRequestDispatcher("listaLibros.jsp");
@@ -92,15 +94,7 @@ public class Init extends HttpServlet {
 	    			request.getRequestDispatcher("index.jsp").forward(request, response);
 	    			
 	    		}
-	    	}
-	    	else
-			{
-				//RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-				//rd.forward(request, response);
-	    		request.setAttribute("error", "Usuario o contraseña incorrecta.");
-    			request.getRequestDispatcher("index.jsp").forward(request, response);
-				
-			}
+	    	
 	    	
 	    	//doGet(request, response);
 	    	LibroController ctrlLibro = new LibroController();

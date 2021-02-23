@@ -3,7 +3,7 @@ package logic;
 import java.util.LinkedList;
 
 import data.DataPoliticaPrestamo;
-import entities.Persona;
+
 import entities.PoliticaPrestamo;
 
 public class PoliticaPrestamoController {

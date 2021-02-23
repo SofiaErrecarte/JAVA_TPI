@@ -2,6 +2,7 @@
 <%@page import="entities.Proveedor"%>
 <%@page import="entities.PoliticaPrestamo"%>
 <%@page import="entities.Libro"%>
+<%@page import="entities.Persona"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -11,6 +12,7 @@
 <title>Libros</title>
 <% 
 LinkedList<Libro> ll = (LinkedList<Libro>)request.getAttribute("listaLibros");
+Persona user = (Persona)session.getAttribute("usuario");
 %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -31,10 +33,12 @@ LinkedList<Libro> ll = (LinkedList<Libro>)request.getAttribute("listaLibros");
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
                                 	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="false">Libros</a>
+                                	 <%if (user.isAdmin()) {%>
                                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" 
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
+                                <%} %>
                             </div>
                         </nav>
                     </div>
@@ -66,12 +70,14 @@ LinkedList<Libro> ll = (LinkedList<Libro>)request.getAttribute("listaLibros");
                     				<td><%=lib.getCantDiasMaxPrestamo()%></td>
                     				<td><%=lib.getGenero()%></td>
                     				<td><%=lib.getIdProveedor()%></td>
+                    				<%if (user.isAdmin()) {%>
                     				<td> <a class="editbutton"
 									href="modificarLibroServlet?id=<%=lib.getIdLibro()%>">
 										Editar </a></td>
 										<td><a class="deletebutton"
 									href="borrarLibroServlet?id=<%=lib.getIdLibro()%>">
-										Eliminar</a></td>
+										Eliminar</a></td> 
+										<%} %>
                     				 </tr>
                     		<% } %>
                                     </tbody>

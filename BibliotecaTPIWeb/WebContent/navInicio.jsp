@@ -30,7 +30,7 @@
 						</li>
 						<li class="nav-item"><a class="nav-link"
 							href="perfilUsuario.jsp">Mi Perfil</a></li>
-						<li class="nav-item"><a class="nav-link" href="LoginServlet">Cerrar
+						<li class="nav-item"><a class="nav-link" href="index.jsp">Cerrar
 								Sesión</a></li>
 					</ul>
 
