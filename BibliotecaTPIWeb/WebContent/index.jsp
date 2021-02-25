@@ -9,7 +9,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="css/login.css" rel="stylesheet">
-
+<link rel="icon" type="image/png" sizes="16x16" href="images/user_init.png">
 </head>
 <body>
 
@@ -20,8 +20,8 @@
     <!-- Tabs Titles -->
 
     <!-- Icon -->
-    <div class="fadeIn first">
-      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+    <div class="fadeIn first"> 
+       <img src="images/user_init.png" alt="User_Icon" />
     </div>
 	<%if ((request.getAttribute("error"))!=null) { %>
 		<p style="color:red"> <%=request.getAttribute("error")%> </p>		

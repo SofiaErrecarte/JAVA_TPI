@@ -22,9 +22,9 @@ Proveedor prov=(Proveedor)request.getAttribute("proveedorAEditar"); %>
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link " id="nav-home-tab" data-toggle="tab"
                                 	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="true">Libros</a>
-                                <a class="nav-item nav-link " id="nav-profile-tab" data-toggle="tab" 
+                                <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" 
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
-                                <a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab" 	
+                                <a class="nav-item nav-link " id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
                             </div>
                         </nav>
@@ -47,7 +47,7 @@ Proveedor prov=(Proveedor)request.getAttribute("proveedorAEditar"); %>
   <div class="col-md-4">
   
   <input type="text" name="cuit" value=<%=prov.getCUIT()%> class="form-control input-md"  hidden="false" >
-   <input type="text" name="cuit" value=<%=prov.getCUIT()%> class="form-control input-md" disabled >
+   <input type="text" name="cuit" value=<%=prov.getCUIT()%> class="form-control input-md" disabled hidden="true" >
  
   </div>
 </div>
