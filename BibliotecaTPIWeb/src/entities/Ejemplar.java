@@ -3,13 +3,16 @@ package entities;
 public class Ejemplar {
 	private int idEjemplar;
 	private int idLibro;
-	private boolean estado;  
-	public boolean getEstado() {
-		return estado;
+	private boolean disponible;  
+	
+	
+
+	public boolean isDisponible() {
+		return disponible;
 	}
 
-	public void setEstado(boolean estado) {
-		this.estado = estado;
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
 	}
 
 	public int getIdEjemplar() {
@@ -34,6 +37,6 @@ public class Ejemplar {
 	
 	@Override
 	public String toString() {
-		return "Ejemplar [Id Ejemplar=" + idEjemplar + ", Id Libro=" + idLibro  + ", estado="+ estado +"]";
+		return "Ejemplar [Id Ejemplar=" + idEjemplar + ", Id Libro=" + idLibro  + ", estado="+ disponible +"]";
 	}
 }

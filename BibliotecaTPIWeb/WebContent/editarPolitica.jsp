@@ -34,11 +34,22 @@
 <form class="form-horizontal" action="editarPoliticaServlet" method="post">
 <section>
 <fieldset>
-
+  
+<div class="form-group">
+  <label class="col-md-4 control-label" for="idpolitica">Id Política: </label>  
+  <div class="col-md-4">
+  <!-- Este me guarda el atributo id -->	
+    <input type="text" name="id" value=<%=pp.getIdPoliticaPrestamo()%> hidden="true">	  
+     <!--  Este me lo muestra deshabilitado para q se vea el numero -->  
+   <input type="text" name="idPP" value=<%=pp.getIdPoliticaPrestamo()%> class="form-control input-md" disabled hidden="true" >
+  </div>
+</div> 
+ 
 <div class="form-group">
   <label class="col-md-4 control-label" for="fechaalta">Fecha Alta: </label>  
   <div class="col-md-4">
-  <input id="cfechaalta" name="fechaalta" type="text" placeholder="Fecha Alta" class="form-control input-md" required="">
+ <!--  Este me lo muestra deshabilitado para q se vea el numero -->  
+   <input type="text" name="idPP" value=<%=pp.getFechaAlta()%> class="form-control input-md" disabled hidden="true" >
   </div>
 </div>
 
@@ -46,7 +57,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="numsocio">Cantidad maxima de libros Socio: </label>  
   <div class="col-md-4">
-  <input id="numsocio" name="numsocio" type="text" placeholder="Cant libros Socio" class="form-control input-md" required="">
+  <input type="text" name="librosSocio" value=<%=pp.getCantMaximaSocio() %> placeholder="Cant libros Socio" class="form-control input-md" required>
   </div>
 </div>
 
@@ -55,7 +66,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="numnosocio">Cantidad maxima de libros No Socio: </label>  
   <div class="col-md-4">
-  <input id="numnosocio" name="numnosocio" type="text" placeholder="Cant de Libros No socio" class="form-control input-md" required="">
+  <input name="librosNoSocio" type="text" value=<%=pp.getCantMaximaNoSocio() %> placeholder="Cant de Libros No socio" class="form-control input-md" required>
   </div>
 </div>
 
@@ -65,7 +76,7 @@
 <button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Modificar</button>
 </td>
 <td>
-<input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
+<input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Cancelar" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
 </td>
 </table>
 <%if ((request.getAttribute("error"))!=null) { %>

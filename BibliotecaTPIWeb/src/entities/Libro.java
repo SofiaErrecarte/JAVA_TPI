@@ -11,6 +11,14 @@ private int nroEdicion;
 private int cantDiasMaxPrestamo;
 private String genero;
 private int idProveedor;
+private ArrayList<Ejemplar> ejemplaresL;
+
+public ArrayList<Ejemplar> getEjemplaresL() {
+	return ejemplaresL;
+}
+public void setEjemplaresL(ArrayList<Ejemplar> ejemplaresL) {
+	this.ejemplaresL = ejemplaresL;
+}
 public int getIdProveedor() {
 	return idProveedor;
 }
@@ -18,7 +26,6 @@ public void setIdProveedor(int idProveedor) {
 	this.idProveedor = idProveedor;
 }
 
-private ArrayList<Ejemplar> ejemplaresL;
 //private Blog imagen; ver esto
 
 public String getTitulo() {

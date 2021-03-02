@@ -51,9 +51,21 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
 <div class="form-group">
   <label class="col-md-4 control-label" for="id">ID Libro: </label>  
   <div class="col-md-4">
-      <input type="text" name="id" value=<%=lib.getIdLibro()%> class="form-control input-md" hidden="true">
+      <%-- <input type="text" name="id" value=<%=lib.getIdLibro()%> class="form-control input-md" hidden="true"> --%>
+      <!-- Este me guarda el atributo id -->
+       <input type="text" name="id" value=<%=lib.getIdLibro()%> hidden="true">
+       <!--  Este me lo muestra deshabilitado para q se vea el numero -->
 	 <input type="text" name="idLibro" value=<%=lib.getIdLibro()%> class="form-control input-md" disabled>
   </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="razonSocial">ISBN:</label>  
+  <div class="col-md-4">
+   <%-- <input type="text"  name="isbn" value=<%=lib.getIsbn()%> class="form-control input-md" hidden="true"> --%>
+   <input type="text" name="isbn" value=<%=lib.getIsbn()%> hidden="true">
+    <input type="text"  name="isbnLibro" value=<%=lib.getIsbn()%> class="form-control input-md" disabled>
+     </div>
 </div>
 
 <div class="form-group">
@@ -63,13 +75,7 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
   </div>
 </div>
 
-<div class="form-group">
-  <label class="col-md-4 control-label" for="razonSocial">ISBN:</label>  
-  <div class="col-md-4">
-   <input type="text"  name="isbn" value=<%=lib.getIsbn()%> class="form-control input-md" hidden="true">
-    <input type="text"  name="isbnLibro" value=<%=lib.getIsbn()%> class="form-control input-md" disabled>
-     </div>
-</div>
+
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="razonSocial">Nro Edición:</label>  
@@ -118,7 +124,7 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
 <button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Modificar</button>
 </td>
 <td>
-<input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
+<input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Cancelar" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
 </td>
 </table>
 <%if ((request.getAttribute("error"))!=null) { %>

@@ -247,7 +247,7 @@ public class DataLibro {
 					Ejemplar ej = new Ejemplar();
 					ej.setIdEjemplar(rs.getInt("idEjemplar"));
 					ej.setIdLibro(rs.getInt("idLibro"));
-					ej.setEstado(rs.getBoolean("estado"));
+					ej.setDisponible(rs.getBoolean("disponible"));
 					ejemplares.add(ej);
 				}
 			}
@@ -285,7 +285,7 @@ public class DataLibro {
 				ej = new Ejemplar();
 				ej.setIdEjemplar(rs.getInt("idEjemplar"));
 				ej.setIdLibro(rs.getInt("idLibro"));
-				ej.setEstado(rs.getBoolean("estado"));
+				ej.setDisponible(rs.getBoolean("disponible"));
 				ejemplares.add(ej);
 			}}
 		} catch (SQLException e) {
@@ -302,7 +302,37 @@ public class DataLibro {
 		
 		return ejemplares;
 	}
-
+	
+	
+	//me devuelve la cant de ejemplares diponibles de un libro
+	public int cantEjemLibroDisponibles(Libro lib) {
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		int cantDisp=0;
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select count(idEjemplar) 'cantidad' FROM ejemplar where idLibro=? and disponible=1"
+					);
+			stmt.setLong(1, lib.getIdLibro());
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				cantDisp = rs.getInt("cantidad");
+				}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cantDisp;
+		
+	}
+	
 	public Ejemplar addEjemplar(Ejemplar ej) {
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
@@ -313,7 +343,7 @@ public class DataLibro {
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			stmt.setLong(1, ej.getIdLibro());
-			stmt.setBoolean(2,  ej.getEstado());
+			stmt.setBoolean(2,  ej.isDisponible());
 
             stmt.executeUpdate();
 			

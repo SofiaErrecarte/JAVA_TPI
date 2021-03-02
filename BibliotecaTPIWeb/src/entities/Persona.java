@@ -4,6 +4,13 @@ public class Persona {
 	private String email; 
 	private String contraseña;
 	private boolean admin;
+	private int idPersona;
+	private String apellido;
+	private String nombre;
+	private String telefono;
+	private String direccion;
+	private String dni;
+	private float montoAPagar;
 	public String getApellido() {
 		return apellido;
 	}
@@ -40,13 +47,7 @@ public class Persona {
 	public void setMontoAPagar(float montoAPagar) {
 		this.montoAPagar = montoAPagar;
 	}
-	private int idPersona;
-	private String apellido;
-	private String nombre;
-	private String telefono;
-	private String direccion;
-	private String dni;
-	private float montoAPagar;
+	
 	
 	
 	

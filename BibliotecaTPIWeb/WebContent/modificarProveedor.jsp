@@ -37,7 +37,9 @@ Proveedor prov=(Proveedor)request.getAttribute("proveedorAEditar"); %>
 <div class="form-group">
   <label class="col-md-4 control-label" for="id">ID proveedor: </label>  
   <div class="col-md-4">
-      <input type="text" name="id" value=<%=prov.getIdProveedor()%> class="form-control input-md" hidden="true">
+      <!-- Este me guarda el atributo id -->	
+    <input type="text" name="id" value=<%=prov.getIdProveedor()%> hidden="true">	  
+     <!--  Este me lo muestra deshabilitado para q se vea el numero -->  
 	 <input type="text" name="idLibro" value=<%=prov.getIdProveedor()%>  class="form-control input-md" disabled>
   </div>
 </div>
@@ -45,9 +47,10 @@ Proveedor prov=(Proveedor)request.getAttribute("proveedorAEditar"); %>
 <div class="form-group">
   <label class="col-md-4 control-label" for="cuit">CUIT:</label>  
   <div class="col-md-4">
-  
-  <input type="text" name="cuit" value=<%=prov.getCUIT()%> class="form-control input-md"  hidden="false" >
-   <input type="text" name="cuit" value=<%=prov.getCUIT()%> class="form-control input-md" disabled hidden="true" >
+     <!-- Este me guarda el atributo cuit -->	
+    <input type="text" name="cuit" value=<%=prov.getCUIT()%> hidden="true">	  
+     <!--  Este me lo muestra deshabilitado para q se vea el numero -->  
+   <input type="text" name="cuitProv" value=<%=prov.getCUIT()%> class="form-control input-md" disabled hidden="true" >
  
   </div>
 </div>
@@ -87,7 +90,7 @@ Proveedor prov=(Proveedor)request.getAttribute("proveedorAEditar"); %>
 <button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Modificar</button>
 </td>
 <td>
-<input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
+<input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Cancelar" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
 </td>
 </table>
 <%if ((request.getAttribute("error"))!=null) { %>

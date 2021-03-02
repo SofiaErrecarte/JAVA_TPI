@@ -63,6 +63,7 @@ public class editarPoliticaServlet extends HttpServlet {
 		} catch (java.text.ParseException e) {
 			e.printStackTrace();
 		}*/
+		
 		pp.setIdPoliticaPrestamo(Integer.parseInt(request.getParameter("id")));
 		pp.setCantMaximaNoSocio(Integer.parseInt(request.getParameter("librosSocio")));
 		pp.setCantMaximaSocio(Integer.parseInt(request.getParameter("librosNoSocio")));
