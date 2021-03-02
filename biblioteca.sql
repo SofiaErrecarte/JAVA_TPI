@@ -52,13 +52,13 @@ DROP TABLE IF EXISTS `ejemplar`;
 CREATE TABLE `ejemplar` (
   `idEjemplar` int(11) NOT NULL AUTO_INCREMENT,
   `idLibro` int(11) unsigned NOT NULL,
-  `estado` tinyint(4) NOT NULL,
+  `disponible` tinyint(4) NOT NULL,
   PRIMARY KEY (`idEjemplar`),
   UNIQUE KEY `idejemplar_UNIQUE` (`idEjemplar`),
   KEY `fk_ejemplar_libro_idx` (`idLibro`),
-  KEY `fk_ejemplar_lineaPrestamo_idx` (`estado`),
+  KEY `fk_ejemplar_lineaPrestamo_idx` (`disponible`),
   CONSTRAINT `fk_ejemplar_libro` FOREIGN KEY (`idLibro`) REFERENCES `libro` (`idLibro`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,6 +67,7 @@ CREATE TABLE `ejemplar` (
 
 LOCK TABLES `ejemplar` WRITE;
 /*!40000 ALTER TABLE `ejemplar` DISABLE KEYS */;
+INSERT INTO `ejemplar` VALUES (1,17,1),(2,17,1),(3,18,0);
 /*!40000 ALTER TABLE `ejemplar` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,7 +102,7 @@ CREATE TABLE `libro` (
 
 LOCK TABLES `libro` WRITE;
 /*!40000 ALTER TABLE `libro` DISABLE KEYS */;
-INSERT INTO `libro` VALUES (11,'aber',8,NULL,9,8,'uuuu',NULL,1),(12,'aber2',18,NULL,8,8,'tristeza',NULL,1),(16,'aber4',8,NULL,9,9,'io',NULL,1),(17,'prueba1000',88,NULL,8,8,'iii',NULL,1),(18,'uuuu',6,NULL,6,6,'yyyy',NULL,1),(19,'qqq',8,NULL,8,8,'u',NULL,10),(20,'plis',8,NULL,8,8,'o',NULL,1),(21,'plis',77,NULL,5,5,'ttt',NULL,1),(22,'uuu',8,NULL,9,9,'ujj',NULL,1),(23,'porfavor',666,NULL,6,6,'uiui',NULL,6),(24,'uuu',6,NULL,6,6,'yyy',NULL,1),(25,'uu',6,NULL,6,6,'yy',NULL,1),(26,'ttt',6,NULL,7,7,'eee',NULL,1),(27,'uuu',7,NULL,7,7,'uu',NULL,1),(28,'yyuy',0,NULL,7,7,'uu',NULL,1),(29,'iuiu',20,NULL,7,7,'yyy',NULL,1),(30,'uuu',78,NULL,7,7,'uiui',NULL,1),(31,'uu',100,NULL,8,8,'uu',NULL,1),(32,'uu',101,NULL,9,9,'ii',NULL,1),(33,'uu',102,NULL,9,9,'ii',NULL,1),(35,'tt',5,NULL,5,5,'tt',NULL,1),(39,'oioio',1,NULL,8,8,'ii',NULL,1),(40,'uu',11,NULL,7,8,'u',NULL,1),(41,'uu',1234,NULL,7,7,'uu',NULL,1),(42,'uuu',456,NULL,7,7,'uu',NULL,1);
+INSERT INTO `libro` VALUES (17,'prueba123',6,NULL,8,8,'iii',NULL,1),(18,'uuuu',6,NULL,6,6,'yyyy',NULL,1),(21,'plis',77,NULL,5,5,'ttt',NULL,1),(23,'porfavor',666,NULL,6,6,'uiui',NULL,6),(26,'ttt',6,NULL,7,7,'eee',NULL,1),(27,'uuu',7,NULL,7,7,'uu',NULL,1),(28,'yyuy',0,NULL,7,7,'uu',NULL,1),(29,'iuiu',20,NULL,7,7,'yyy',NULL,1),(30,'uuu',78,NULL,7,7,'uiui',NULL,1),(31,'uu',100,NULL,8,8,'uu',NULL,1),(32,'uu',101,NULL,9,9,'ii',NULL,1),(33,'uu',102,NULL,9,9,'ii',NULL,1),(35,'tt',5,NULL,5,5,'tt',NULL,1),(39,'oioio',1,NULL,8,8,'ii',NULL,1),(40,'uu',11,NULL,7,8,'u',NULL,1),(41,'uu',1234,NULL,7,7,'uu',NULL,1),(42,'uuu',456,NULL,7,7,'uu',NULL,1);
 /*!40000 ALTER TABLE `libro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +148,7 @@ CREATE TABLE `persona` (
   `apellido` varchar(45) COLLATE utf8_bin NOT NULL,
   `nombre` varchar(45) COLLATE utf8_bin NOT NULL,
   `telefono` varchar(45) COLLATE utf8_bin DEFAULT NULL,
-  `email` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+  `email` varchar(45) COLLATE utf8_bin NOT NULL,
   `direccion` varchar(45) COLLATE utf8_bin DEFAULT NULL,
   `dni` varchar(10) COLLATE utf8_bin NOT NULL,
   `idPersona` int(11) NOT NULL AUTO_INCREMENT,
@@ -192,7 +193,7 @@ CREATE TABLE `politica_prestamo` (
 
 LOCK TABLES `politica_prestamo` WRITE;
 /*!40000 ALTER TABLE `politica_prestamo` DISABLE KEYS */;
-INSERT INTO `politica_prestamo` VALUES (8,'9','2020-09-04',1),(3,'4','2020-09-07',2),(10,'5','2020-09-07',3);
+INSERT INTO `politica_prestamo` VALUES (9,'9','2020-09-04',1),(3,'4','2020-09-07',2),(10,'5','2020-09-07',3);
 /*!40000 ALTER TABLE `politica_prestamo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +241,7 @@ CREATE TABLE `proveedor` (
   `direccion` varchar(45) COLLATE utf8_bin DEFAULT NULL,
   `idProveedor` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`idProveedor`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -249,7 +250,7 @@ CREATE TABLE `proveedor` (
 
 LOCK TABLES `proveedor` WRITE;
 /*!40000 ALTER TABLE `proveedor` DISABLE KEYS */;
-INSERT INTO `proveedor` VALUES ('1','e','3','e','e',1),('1333','yyy','97979','lolaa','gugugrequiredrequiredrequired',6),('99-99','y','7','y','yyrequired',9),('7444','uu','78','uuu','uurequired',10);
+INSERT INTO `proveedor` VALUES ('13333','e','3','e','e',1),('13333','yyy','97979','lolaa','gugugrequiredrequiredrequired',6),('99-99','y','7','y','yyrequired',9),('7444','uu','78','uuu','uurequired',10),('6789','rr','44','rr','rr',11),('111','eee','333','eee','eee',12);
 /*!40000 ALTER TABLE `proveedor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,4 +267,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-23 19:12:34
+-- Dump completed on 2021-03-02  9:27:50
