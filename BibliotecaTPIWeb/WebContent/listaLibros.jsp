@@ -77,7 +77,11 @@ Persona user = (Persona)session.getAttribute("usuario");
 										<td><a class="deletebutton"
 									href="borrarLibroServlet?id=<%=lib.getIdLibro()%>">
 										Eliminar</a></td> 
+										<td> <a class="ejemplaresbutton"
+									href="listarEjemplaresServlet?id=<%=lib.getIdLibro()%>">
+										Ejemplares </a></td>
 										<%} %>
+										
                     				 </tr>
                     		<% } %>
                                     </tbody>
@@ -92,7 +96,7 @@ Persona user = (Persona)session.getAttribute("usuario");
                             <td>
                            
                              <form action="agregarLibro.jsp" method="post">
-                             <button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Agregar Libro</button>
+                             <button class="addbutton">Agregar Libro</button>
 							 </form> 
 							</td>
 							 	<!--  <form action="borrarLibro.jsp" method="post">
@@ -103,7 +107,7 @@ Persona user = (Persona)session.getAttribute("usuario");
 							    </form>-->
 							 <td>
 							    <!--   <button type="button" class="cancelbtn">Cancel</button> -->
-							  <input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
+							  <input type="button" = onclick="history.back()" class= "addbutton" name="Volver" value="Volver">
 							
 							  </td>
 							 

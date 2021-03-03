@@ -6,70 +6,29 @@ import java.util.LinkedList;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import entities.*;
 
-import entities.Libro;
-import entities.LineaPrestamo;
-import entities.Prestamo;
+public class DataLineaPrestamo {
 
-public class DataPrestamo {
-	public LinkedList<Prestamo> getAll(){
-		Statement stmt=null;
-		ResultSet rs=null;
-		LinkedList<Prestamo> prestamos= new LinkedList<>();
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-		
-		try {
-			stmt= DbConnector.getInstancia().getConn().createStatement();
-			rs= stmt.executeQuery("select * from prestamo");
-			if(rs!=null) {
-				while(rs.next()) {
-					Prestamo p = new Prestamo();
-					p.setIdPrestamo(rs.getInt("idPrestamo"));
-					p.setFechaPrestamo(rs.getDate("fechaHoraPrestamo"));
-					p.setFechaADevoler(rs.getDate("FechaADevolver"));
-					p.setIdPersona(rs.getInt("idPersona"));
-					prestamos.add(p);
-				}
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-			
-		} finally {
-			try {
-				if(rs!=null) {rs.close();}
-				if(stmt!=null) {stmt.close();}
-				DbConnector.getInstancia().releaseConn();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		
-		return prestamos;
-	}
-	
-	public Prestamo add(Prestamo p ) {
+	public LineaPrestamo add(LineaPrestamo lp) {
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"INSERT INTO `biblioteca`.`prestamo` ( `idPrestamo`, `fechaHoraPrestamo`, `fechaADevolver`, `idPrestamo`) VALUES(?,?,?,?)",
+							"INSERT INTO `biblioteca`.`linea_prestamo` ( `idLineaPrestamo`, `fechaDevolucion`, `devuelto`, `idPrestamo`, `idEjemplar`) VALUES(?,?,?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							); //, `fechaEdicion`
-			stmt.setTimestamp(1, new java.sql.Timestamp(p.getFechaPrestamo().getTime()));
-			stmt.setTimestamp(2, new java.sql.Timestamp(p.getFechaADevoler().getTime()));
-			stmt.setLong(3,p.getIdPersona());
+			stmt.setTimestamp(1, new java.sql.Timestamp(lp.getFechaDevolucion().getTime()));
+			stmt.setBoolean(2, lp.isDevuelto());
+			stmt.setLong(3, lp.getIdPrestamo());
+			stmt.setLong(4, lp.getIdEjemplar());
 			
 			stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();
             if(keyResultSet!=null && keyResultSet.next()){
-                p.setIdPrestamo(keyResultSet.getInt(1));
+                lp.setIdLineaPrestamo(keyResultSet.getInt(1));
             }
 			
 		}  catch (SQLException e) {
@@ -84,25 +43,26 @@ public class DataPrestamo {
             }
 		}
 		
-		return p;
+		return lp;
 	}
 	
-	public Prestamo editPrestamo(Prestamo p) {
+	public LineaPrestamo editLineaPrestamo(LineaPrestamo lp) {
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"UPDATE `biblioteca`.`prestamo` SET `fechaHoraPrestamo` = ?, `fechaADevolver` = ?, `idPersona` = ? WHERE (`idLineaPrestamo` = ?);",
+							"UPDATE `biblioteca`.`linea_prestamo` SET `fechadevolucion` = ?, `devuelto` = ?, `idPrestamo` = ?, `idEjemplar` = ? WHERE (`idLineaPrestamo` = ?);",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
-			stmt.setTimestamp(1, new java.sql.Timestamp(p.getFechaPrestamo().getTime()));
-			stmt.setTimestamp(2, new java.sql.Timestamp(p.getFechaADevoler().getTime()));
-			stmt.setLong(3, p.getIdPersona());
+			stmt.setTimestamp(6, new java.sql.Timestamp(lp.getFechaDevolucion().getTime()));
+			stmt.setBoolean(2, lp.isDevuelto());
+			stmt.setLong(3, lp.getIdPrestamo());
+			stmt.setLong(4, lp.getIdEjemplar());
 			//stmt.setTimestamp(6, new java.sql.Timestamp(lib.getFechaEdicion().getTime()));
 			//stmt.setTimestamp(6, null);
 			
-			stmt.setInt(4, p.getIdPrestamo());
+			stmt.setInt(5, lp.getIdLineaPrestamo());
 			stmt.executeUpdate();
 			
 		}  catch (SQLException e) {
@@ -116,19 +76,19 @@ public class DataPrestamo {
             	e.printStackTrace();
             }
 		}
-		return p;
+		return lp;
 	}
 	
-	public Prestamo deletePrestamo (Prestamo p) {
+	public LineaPrestamo deleteLineaPrestamo (LineaPrestamo lp) {
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"DELETE FROM `biblioteca`.`prestamo` WHERE (`idPrestamo` = ?);",
+							"DELETE FROM `biblioteca`.`linea_prestamo` WHERE (`idLineaPrestamo` = ?);",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
-			stmt.setInt(1, p.getIdPrestamo());
+			stmt.setInt(1, lp.getIdLineaPrestamo());
 			stmt.executeUpdate();	
             
 		}  catch (SQLException e) {
@@ -142,6 +102,8 @@ public class DataPrestamo {
             	e.printStackTrace();
             }
 		}
-		return p;
+		return lp;
 	}
+	
+	
 }
