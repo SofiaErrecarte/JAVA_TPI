@@ -70,13 +70,6 @@ public String getGenero() {
 public void setGenero(String genero) {
 	this.genero = genero;
 }
-private ArrayList<Ejemplar> ejLib;
-public ArrayList<Ejemplar> getEjLib() {
-	return ejLib;
-}
-public void setEjLib(ArrayList<Ejemplar> ejLib) {
-	this.ejLib = ejLib;
-}
 
 @Override
 public String toString() {

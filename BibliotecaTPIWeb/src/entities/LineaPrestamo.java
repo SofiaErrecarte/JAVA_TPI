@@ -1,14 +1,10 @@
 package entities;
 
-import java.sql.Date;
-
 public class LineaPrestamo {
 	private int idLineaPrestamo;
 	private int idEjemplar;
 	private boolean devuelto; //se calcularía
 	private int idPrestamo;
-	private Date fechaDevolucion; 
-	
 	
 	public int getIdPrestamo() {
 		return idPrestamo;
@@ -33,11 +29,5 @@ public class LineaPrestamo {
 	}
 	public void setDevuelto(boolean devuelto) {
 		this.devuelto = devuelto;
-	}
-	public Date getFechaDevolucion() {
-		return fechaDevolucion;
-	}
-	public void setFechaDevolucion(Date fechaDevolucion) {
-		this.fechaDevolucion = fechaDevolucion;
 	}
 }
