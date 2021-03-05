@@ -62,7 +62,7 @@ public class Init extends HttpServlet {
 		
 		//request.getSession().setAttribute("usuario", per);
 		
-		processRequest (request, response);
+		//processRequest (request, response);
 	}	
 	
 	protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -83,7 +83,7 @@ public class Init extends HttpServlet {
 	        	  HttpSession sesion = request.getSession();
 	        	  sesion.setAttribute("usuario", per);
 	        	  RequestDispatcher rd = request.getRequestDispatcher("listaLibros.jsp");
-	  			  rd.forward(request, response);
+	  			  //rd.forward(request, response);
 	     	  
 	        	}	
 	    		else
@@ -100,7 +100,7 @@ public class Init extends HttpServlet {
 	    	LibroController ctrlLibro = new LibroController();
 			LinkedList<Libro> libros = ctrlLibro.getAllLibros();
 			request.setAttribute("listaLibros", libros);
-			request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
+			//request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
 	}
 
 }
