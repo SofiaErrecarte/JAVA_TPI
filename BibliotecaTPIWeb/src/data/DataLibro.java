@@ -240,7 +240,7 @@ public class DataLibro {
 		
 		try {
 			stmt= DbConnector.getInstancia().getConn().createStatement();
-			rs= stmt.executeQuery("select idEjemplar, idLibro, estado from ejemplar");
+			rs= stmt.executeQuery("select idEjemplar, idLibro, disponible from ejemplar");
 			//intencionalmente no se recupera la password
 			if(rs!=null) {
 				while(rs.next()) {
@@ -276,7 +276,7 @@ public class DataLibro {
 		LinkedList<Ejemplar> ejemplares = new LinkedList<>();
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"select idEjemplar,idLibro,estado from ejemplar where idLibro=?"
+					"select idEjemplar,idLibro,disponible from ejemplar where idLibro=?"
 					);
 			stmt.setLong(1, lib.getIdLibro());
 			rs=stmt.executeQuery();
@@ -339,7 +339,7 @@ public class DataLibro {
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"INSERT INTO `biblioteca`.`ejemplar` ( `idLibro`,`estado` ) VALUES(?, ?)",
+							"INSERT INTO `biblioteca`.`ejemplar` ( `idLibro`,`disponible` ) VALUES(?, ?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			stmt.setLong(1, ej.getIdLibro());

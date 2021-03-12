@@ -27,6 +27,13 @@ public void setIdProveedor(int idProveedor) {
 }
 
 //private Blog imagen; ver esto
+private ArrayList<Ejemplar> ejLib;
+public ArrayList<Ejemplar> getEjLib() {
+	return ejLib;
+}
+public void setEjLib(ArrayList<Ejemplar> ejLib) {
+	this.ejLib = ejLib;
+}
 
 public String getTitulo() {
 	return titulo;

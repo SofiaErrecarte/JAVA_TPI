@@ -26,7 +26,7 @@
  }
 
   .addbutton{
-  background-color: #5ac146; 
+  background-color: #0080ff; 
   border: none;
   border-radius:10px;
   color: white;
@@ -37,7 +37,7 @@
   cursor:pointer;
   margin:5px;
  }
- .editbutton:hover, .deletebutton:hover, .addbutton:hover{
+ .editbutton:hover, .deletebutton:hover, .addbutton:hover, .ejemplaresbutton:hover{
  	 color:white;
  	 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
  }
@@ -55,4 +55,17 @@
   margin:5px;
   height:50px;
   width:10px;
+ }
+
+ .ejemplaresbutton{
+  background-color:#7A9FBD;
+  border: none;
+  border-radius:10px;
+  color: white;
+  padding: 5px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+   cursor:pointer;
+   margin:5px;
  }
