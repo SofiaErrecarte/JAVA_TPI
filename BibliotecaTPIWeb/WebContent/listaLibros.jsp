@@ -95,7 +95,7 @@ Persona user = (Persona)session.getAttribute("usuario");
                             <td>
                            
                              <form action="agregarLibro.jsp" method="post">
-                             <button <button class="addbutton">Agregar Libro</button>>Agregar Libro</button>
+                             <button class="addbutton">Agregar Libro</button>
 							 </form> 
 							</td>
 							 	<!--  <form action="borrarLibro.jsp" method="post">
