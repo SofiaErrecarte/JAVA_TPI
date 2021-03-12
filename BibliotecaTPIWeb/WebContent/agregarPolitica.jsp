@@ -9,10 +9,9 @@
 <title>Agragar Politica de Prestamo</title>
 <% PoliticaPrestamo politica = (PoliticaPrestamo)session.getAttribute("nuevaPolitica"); %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
-<style type="text/css">@import url("css/calendar-blue.css");</style>
-
 </head>
 <body>
 <section id="tabs" class="project-tab">
@@ -43,23 +42,10 @@
 <section>
 <fieldset>
 
-
-
 <div class="form-group">
   <label class="col-md-4 control-label" for="fechaalta">Fecha Alta: </label>  
   <div class="col-md-4">
-  <input type="text" name="fecha" id="fecha" readonly="readonly" placeholder="Fecha Alta" class="form-control input-md" />
-<img src="calendario.png" id="selector" />
-<script type="text/javascript">
-window.onload = function() {
-  Calendar.setup({
-    inputField: "fecha",
-    ifFormat:   "%Y-%m-%d",
-    button:     "selector"
-  });
-}
-</script>
-  
+  <input id="cfechaalta" name="fechaalta" type="text" placeholder="Fecha Alta" class="form-control input-md" required="">
   </div>
 </div>
 
@@ -100,20 +86,11 @@ window.onload = function() {
 </form>
 <% }%>
   </section>
-  
-
-
  <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
     </div>
     <!-- /.container -->
   </footer>
-  
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="js/calendar.js" /></script>
-<script type="text/javascript" src="js/calendar-es.js" /></script>
-<script type="text/javascript" src="js/calendar-setup.js" /></script>
 </body>
 </html>

@@ -19,7 +19,7 @@
 </head>
 <body>
 <%@ include file="navInicio.jsp"%>
-	<section id="tabs" class="project-tab" style = "font-family:arial" size=3>
+	<section id="tabs" class="project-tab">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -39,40 +39,31 @@
                     </div>
                 </div>
             </div>
-            </div>
-             </div>
-                </div>
-                <div class="container buscar">
-                <a href="agregarPolitica.jsp" method="post" class="btn btn-success">+ Nuevo</a>
-               	<form action="buscarPoliticaServlet" class="form">
-               			<input class="form-control" type="text" name="txtbuscar">
-               			<input class="btn btn" type="submit" value="Buscar"	>
-               			               
-               	</form>
-                </div>
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                <table class="table" class="text-center">
+                                <table class="table" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                    		    	<th class="text-center">Fecha Alta</th>
-                        			<th class="text-center">Libros Socio</th>
-                        			<th class="text-center">Libros No Socio </th>
-                        			<th class="text-center"> Acciones </th>
+                    		    	<th>Fecha Alta</th>
+                        			<th>Libros Socio</th>
+                        			<th>libros No Socio </th>
                                         </tr>
                                     </thead>
                                  <tbody>
                     		<% for (PoliticaPrestamo pp : politicas) { %>
                     			<tr>
-                    				<td class="text-center"><%=pp.getIdPoliticaPrestamo()%></td>
-                    				<td class="text-center"><%=pp.getFechaAlta()%></td>
-                    				<td class="text-center"><%=pp.getCantMaximaSocio()%></td>
-                    				<td class="text-center"><%=pp.getCantMaximaNoSocio()%></td>
-                    				<td class="text-center">
-                                <a href="editarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>" class="editbutton">Editar</a>
-                               <a href="borrarLibroServlet?id=<%=pp.getIdPoliticaPrestamo()%>" class="deletebutton">Delete</a>
-                            		</td>                    			                    				
+                    				<td><%=pp.getIdPoliticaPrestamo()%></td>
+                    				<td><%=pp.getFechaAlta()%></td>
+                    				<td><%=pp.getCantMaximaSocio()%></td>
+                    				<td><%=pp.getCantMaximaNoSocio()%></td>
+                    				<td> <a class="editbutton"
+									href="editarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>">
+										Editar </a></td>
+										<td><a class="deletebutton"
+									href="borrarLibroServlet?id=<%=pp.getIdPoliticaPrestamo()%>">
+										Eliminar</a></td>
+                    				
                     			</tr>
                     		<% } %>
                     		</tbody>	
@@ -80,12 +71,31 @@
                             </div>
                             
                         </div>
-                   
-            </section>
+                    </div>
+                </div>
+            </div>
        
-
-<%@ include file = "footer.jsp" %>
-
+ 	 <table>
+                            <td>
+                           
+                             <form action="agregarPolitica.jsp" method="post">
+                             <button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Agregar Politica</button>
+							 </form> 
+							</td>
+							 	<!--  <form action="borrarLibro.jsp" method="post">
+							 	 <button class="btn btn-lg btn-primary">Borrar Libro</button>
+							 	</form>
+							 	<form  action="modificarLibro.jsp" method="post">
+							 	 <button class="btn btn-lg btn-primary">Modificar Libro</button>
+							    </form>-->
+							 <td>
+							    <!--   <button type="button" class="cancelbtn">Cancel</button> -->
+							  <input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
+							
+							  </td>
+							 
+                            </table>
+                             </section>
  	<!--  <form action="agregarPolitica.jsp" method="post">
     <button type="submit">Agregar Politica de Prestamo</button>
  	</form> 
@@ -99,6 +109,11 @@
 	 -->
 
          <!-- Footer -->
-
+ <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
 </body>
 </html>
