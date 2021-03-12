@@ -52,12 +52,13 @@ public class DataPoliticaPrestamo {
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"insert into politica_prestamo(fechaAlta,cantMaximaSocio,cantMaximaNoSocio) values(?,?,?)",
+							"insert into politica_prestamo(cantMaximaSocio,cantMaximaNoSocio,fechaAlta) values(?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
-			stmt.setDate(1, (Date) pp.getFechaAlta());
-			stmt.setInt(2, pp.getCantMaximaSocio());
-			stmt.setInt(3, pp.getCantMaximaNoSocio());
+			
+			stmt.setInt(1, pp.getCantMaximaSocio());
+			stmt.setInt(2, pp.getCantMaximaNoSocio());
+			stmt.setDate(3, (Date) pp.getFechaAlta());
 			stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();
@@ -178,6 +179,45 @@ public class DataPoliticaPrestamo {
 		return pp;
 		
 	}
+	
 
 
+	public LinkedList<PoliticaPrestamo> getbybusqueda(int nombuscar){
+		Statement stmt=null;
+		ResultSet rs=null;
+		LinkedList<PoliticaPrestamo> politicas = new LinkedList<>();
+		
+		try {
+			stmt= DbConnector.getInstancia().getConn().createStatement();
+			rs= stmt.executeQuery("select idPolitica,fechaAlta,cantMaximaSocio,cantMaximaNoSocio from politica_prestamo where idPolitica LIKE "+"'%"+"nombuscar"+"%'"
+					);
+			//intencionalmente no se recupera la password
+			if(rs!=null) {
+				while(rs.next()) {
+					PoliticaPrestamo pp = new PoliticaPrestamo();
+					pp.setIdPoliticaPrestamo(rs.getInt("idPolitica"));
+					pp.setFechaAlta(rs.getDate("fechaAlta"));
+					pp.setCantMaximaSocio(rs.getInt("cantMaximaSocio"));
+					pp.setCantMaximaNoSocio(rs.getInt("cantMaximaNoSocio"));
+					
+					politicas.add(pp);
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return politicas;
+	}
 }

@@ -49,13 +49,23 @@ public class agregarPoliticaServlet extends HttpServlet {
 				PoliticaPrestamo pp = new PoliticaPrestamo();
 				int numSocio = Integer.parseInt(request.getParameter("numsocio"));
 				int numNoSocio = Integer.parseInt(request.getParameter("numnosocio"));
-				
-				
+				java.util.Date utilStartDate;
 				try {
-					pp.setFechaAlta((Date)formato.parse(request.getParameter("fechaalta")));
-				} catch (java.text.ParseException e) {
-					e.printStackTrace();
+					utilStartDate = formato.parse(request.getParameter("fecha"));
+					java.sql.Date date = new java.sql.Date(utilStartDate.getTime());
+					pp.setFechaAlta(date);
+				} catch (java.text.ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
+				
+				/*try {
+					pp.setFechaAlta((java.sql.Date) formato.parse(request.getParameter("fecha")));
+				} catch (ParseException | java.text.ParseException e) {
+					e.printStackTrace();
+				} */
+				
+				
 				pp.setCantMaximaSocio(numSocio);
 				pp.setCantMaximaNoSocio(numNoSocio);
 				
