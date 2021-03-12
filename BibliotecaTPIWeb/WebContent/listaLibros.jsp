@@ -19,7 +19,7 @@ Persona user = (Persona)session.getAttribute("usuario");
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
-</head>
+
 <body>
 <%@ include file="navInicio.jsp"%>
 	<section id="tabs" class="project-tab">

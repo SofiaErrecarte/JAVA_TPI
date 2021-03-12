@@ -38,3 +38,11 @@
     color: #333;
     font-weight: 600;
 }
+
+.buscar{
+	display: flex;
+}
+.form{
+	display:flex;
+	padding-left :400px;
+}
