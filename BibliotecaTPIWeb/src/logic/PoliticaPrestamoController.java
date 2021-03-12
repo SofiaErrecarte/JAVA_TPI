@@ -27,4 +27,8 @@ public class PoliticaPrestamoController {
 	public PoliticaPrestamo deletePoliticaPrestamo (PoliticaPrestamo pp) {
 		return dpp.deletePolitica(pp);
 	}
+	
+	public LinkedList<PoliticaPrestamo> ppGetByBusqueda(int nombuscar){
+		return dpp.getbybusqueda(nombuscar);
+	}
 }
