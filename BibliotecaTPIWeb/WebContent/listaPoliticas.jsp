@@ -71,7 +71,7 @@
                     				<td class="text-center"><%=pp.getCantMaximaNoSocio()%></td>
                     				<td class="text-center">
                                 <a href="editarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>" class="editbutton">Editar</a>
-                               <a href="borrarLibroServlet?id=<%=pp.getIdPoliticaPrestamo()%>" class="deletebutton">Delete</a>
+                               <a href="borrarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>" class="deletebutton">Delete</a>
                             		</td>                    			                    				
                     			</tr>
                     		<% } %>
