@@ -3,6 +3,7 @@ package logic;
 import data.*;
 import entities.*;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -30,7 +31,7 @@ public class ProveedorController {
 		return dpr.editProveedor(prov);
 	}
 
-	public Proveedor deleteProveedor(Proveedor prov) {
+	public MyResult deleteProveedor(Proveedor prov) {
 		return dpr.deleteProveedor(prov);
 	}
 	

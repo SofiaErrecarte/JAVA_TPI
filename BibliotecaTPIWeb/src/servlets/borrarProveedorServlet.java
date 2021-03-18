@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entities.MyResult;
 import entities.Proveedor;
 import logic.ProveedorController;
 
@@ -35,10 +36,10 @@ public class borrarProveedorServlet extends HttpServlet {
 		Proveedor prov = new Proveedor();
 		prov.setIdProveedor(ID);
 		Proveedor p = ctrlProv.getById(prov);
-		ctrlProv.deleteProveedor(p);
+		MyResult res = ctrlProv.deleteProveedor(p);
+		request.setAttribute("result", res);
 		request.setAttribute("listaProveedores",ctrlProv.getAllProveedores());
-		request.getRequestDispatcher ("listaProveedores.jsp").forward(request, response);
-		
+		request.getRequestDispatcher ("listaProveedores.jsp").forward(request,response);
 		
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -47,13 +48,20 @@ public class borrarProveedorServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProveedorController ctrlProv = new ProveedorController();
-		Proveedor prov = new Proveedor();
-		
-		prov.setIdProveedor(Integer.parseInt(request.getParameter("idProveedor")));
-		ctrlProv.deleteProveedor(prov);
-		
-		request.getRequestDispatcher("listarProveedorServlet").forward(request, response);
+		/*
+		 * ProveedorController ctrlProv = new ProveedorController(); Proveedor prov =
+		 * new Proveedor();
+		 * 
+		 * prov.setIdProveedor(Integer.parseInt(request.getParameter("idProveedor")));
+		 * MyResult res = ctrlProv.deleteProveedor(prov); if
+		 * (res.getResult().equals(entities.MyResult.results.Err)) {
+		 * request.setAttribute("result", res);
+		 * request.getRequestDispatcher("listarProveedorServlet").forward(request,
+		 * response); }
+		 * request.getRequestDispatcher("listarProveedorServlet").forward(request,
+		 * response);
+		 */
+		doGet(request, response);
 	}
 
 }

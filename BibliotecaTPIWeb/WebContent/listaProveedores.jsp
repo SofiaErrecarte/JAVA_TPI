@@ -1,5 +1,5 @@
 <%@page import="java.util.LinkedList"%>
-<%@page import="entities.Proveedor"%>
+<%@page import="entities.*"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -40,6 +40,18 @@
                     </div>
                 </div>
             </div>
+            <% if (request.getAttribute("result")!=null) {
+        	   MyResult res = (MyResult)request.getAttribute("result");
+        	   if(res.getResult().equals(MyResult.results.OK)){
+        		   %>
+                   <p style="color:green"><%=res.getErr_message()%></p>
+                  <%
+        	   } else {
+        	      %>
+                   <p style="color:red"><%=res.getErr_message()%></p>
+                   <%}
+                   }
+                 %>
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <table class="table" cellspacing="0">

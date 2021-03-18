@@ -3,11 +3,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+
+
+
 import java.sql.Statement;
-
 import entities.*;
+import entities.MyResult;
 
-public class DataProveedor {
+public class DataProveedor extends DataMethods{
 	
 	public LinkedList<Proveedor> getAll(){
 		Statement stmt=null;
@@ -178,33 +181,69 @@ public class DataProveedor {
 		return prov;
 	}
 
-	public Proveedor deleteProveedor(Proveedor prov) {
+	/*
+	 * public Proveedor deleteProveedor(Proveedor prov) { PreparedStatement stmt=
+	 * null; ResultSet keyResultSet=null; try {
+	 * stmt=DbConnector.getInstancia().getConn(). prepareStatement(
+	 * "DELETE FROM `biblioteca`.`proveedor` WHERE (`idProveedor` = ?);",
+	 * PreparedStatement.RETURN_GENERATED_KEYS ); stmt.setInt(1,
+	 * prov.getIdProveedor()); stmt.executeUpdate();
+	 * 
+	 * } catch (SQLException e) { e.printStackTrace(); } finally { try {
+	 * if(keyResultSet!=null)keyResultSet.close(); if(stmt!=null)stmt.close();
+	 * DbConnector.getInstancia().releaseConn(); } catch (SQLException e) {
+	 * e.printStackTrace(); } } return prov; }
+	 */
+	
+	public MyResult deleteProveedor(Proveedor prov) {
+		int r = 1;
 		PreparedStatement stmt= null;
-		ResultSet keyResultSet=null;
+		ResultSet rs=null;
 		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"SELECT COUNT(*) FROM libro WHERE idProveedor=?"
+					);
+			stmt.setInt(1, prov.getIdProveedor());
+			rs = stmt.executeQuery();
+			if (rs!=null && rs.next()) {
+				// preguntamos si hay al menos un libro con ese proveedor
+				if (rs.getInt(1) > 0) {
+					MyResult res = new MyResult();
+					res.setResult(MyResult.results.Err);
+					res.setErr_message("Existe un libro actualmente con ese proveedor");
+					return res;
+				} else {
+			stmt.close();
+			
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
 							"DELETE FROM `biblioteca`.`proveedor` WHERE (`idProveedor` = ?);",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			stmt.setInt(1, prov.getIdProveedor());
-			stmt.executeUpdate();	
+			r = stmt.executeUpdate();
+			if (r == 0) {
+				return Delete(0);
+			}
+				}}
             
 		}  catch (SQLException e) {
-            e.printStackTrace();
+            return Delete(0);
 		} finally {
             try {
-                if(keyResultSet!=null)keyResultSet.close();
-                if(stmt!=null)stmt.close();
+                if(rs!=null) {rs.close();}
+                if(stmt!=null) {stmt.close();}
                 DbConnector.getInstancia().releaseConn();
             } catch (SQLException e) {
-            	e.printStackTrace();
+            	ConnectCloseError();
             }
 		}
-		return prov;
+		// si llego hasta aca esta todo OK
+		MyResult res = new MyResult();
+		res.setResult(MyResult.results.OK);
+		res.setErr_message("Proveedor eliminado correctamente");
+		return Delete(1);
 	}
-	
-	
 		
 	
 
