@@ -16,6 +16,9 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
+<link href = "css/messages.css" rel="stylesheet">
+
+
 </head>
 <body>
            
@@ -44,11 +47,11 @@
         	   MyResult res = (MyResult)request.getAttribute("result");
         	   if(res.getResult().equals(MyResult.results.OK)){
         		   %>
-                   <p style="color:green"><%=res.getErr_message()%></p>
+                   <div class="success"><%=res.getErr_message()%></div>
                   <%
         	   } else {
         	      %>
-                   <p style="color:red"><%=res.getErr_message()%></p>
+                   <div class="error"><%=res.getErr_message()%></div>
                    <%}
                    }
                  %>
