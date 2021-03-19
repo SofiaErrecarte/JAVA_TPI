@@ -14,16 +14,16 @@ import entities.Libro;
 import logic.LibroController;
 
 /**
- * Servlet implementation class listarEjemplaresServlet
+ * Servlet implementation class agregarEjemplarServlet
  */
-@WebServlet("/listarEjemplaresServlet")
-public class listarEjemplaresServlet extends HttpServlet {
+@WebServlet("/agregarEjemplarServlet")
+public class agregarEjemplarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public listarEjemplaresServlet() {
+    public agregarEjemplarServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,23 +33,27 @@ public class listarEjemplaresServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		LibroController ctrlLibro = new LibroController();
 		int  ID  =  Integer.parseInt (request.getParameter("id"));
 		Libro lib = new Libro();
 		lib.setIdLibro(ID);
-		Libro l = ctrlLibro.getByIdLibro(lib);
-		LinkedList<Ejemplar> ejemplares = ctrlLibro.getEjByIdLibro(l);
-		request.setAttribute("listaEjemplares", ejemplares);
-		request.setAttribute("libro", l);
-		request.getRequestDispatcher("listaEjemplares.jsp").forward(request, response);
-	}
-
+		Ejemplar ej = ctrlLibro.addEjemplar(lib);
+		request.setAttribute("nuevoEjemplar", ej);
+		request.getRequestDispatcher("listarEjemplaresServlet").forward(request, response);
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	 */}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
-}
+		//doGet(request, response);	
+		LibroController ctrlLibro = new LibroController();
+		int  ID  =  Integer.parseInt (request.getParameter("id"));
+		Libro lib = new Libro();
+		lib.setIdLibro(ID);
+		Ejemplar ej = ctrlLibro.addEjemplar(lib);
+		request.setAttribute("nuevoEjemplar", ej);
+		request.getRequestDispatcher("listarEjemplaresServlet").forward(request, response);
+	
+}}

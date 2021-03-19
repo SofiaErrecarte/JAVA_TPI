@@ -41,9 +41,6 @@ public class LibroController {
 		return dl.getEjByIdLibro(lib);
 	}
 	
-	public Ejemplar newEjemplar(Ejemplar ej) {
-		return dl.addEjemplar(ej);
-	}
 	
 	public Ejemplar deleteEjemplar(Ejemplar ej) {
 		return dl.deleteEjemplar(ej);		
@@ -58,6 +55,10 @@ public class LibroController {
 
 	public Libro getByIsbnLibro(Libro lib) {
 		return dl.getByISBN(lib);
+	}
+	
+	public Ejemplar addEjemplar(Libro l) {
+		return dl.addEjemplar(l);
 	}
 	
 	/*public Ejemplar getByIdEjemplar(Ejemplar ej) {

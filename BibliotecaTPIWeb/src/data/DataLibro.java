@@ -333,24 +333,25 @@ public class DataLibro {
 		
 	}
 	
-	public Ejemplar addEjemplar(Ejemplar ej) {
+	public Ejemplar addEjemplar(Libro l) {
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
+		Ejemplar ej = new Ejemplar();
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
 							"INSERT INTO `biblioteca`.`ejemplar` ( `idLibro`,`disponible` ) VALUES(?, ?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
-			stmt.setLong(1, ej.getIdLibro());
-			stmt.setBoolean(2,  ej.isDisponible());
+			stmt.setLong(1, l.getIdLibro());
+			stmt.setBoolean(2,  true);
 
             stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();
-            if(keyResultSet!=null && keyResultSet.next()){
+			if(keyResultSet!=null && keyResultSet.next()){
                 ej.setIdEjemplar(keyResultSet.getInt(1));
-            }
+			}
 
 		}  catch (SQLException e) {
             e.printStackTrace();
@@ -363,7 +364,6 @@ public class DataLibro {
             	e.printStackTrace();
             }
 		}
-		
 		return ej;
     }
 

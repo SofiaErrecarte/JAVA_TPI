@@ -2,6 +2,7 @@
 <%@page import="entities.Proveedor"%>
 <%@page import="entities.PoliticaPrestamo"%>
 <%@page import="entities.Ejemplar"%>
+<%@page import="entities.Libro"%>
 <%@page import="entities.Persona"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -12,6 +13,7 @@
 <title>Ejemplares</title>
 <% 
 LinkedList<Ejemplar> ej = (LinkedList<Ejemplar>)request.getAttribute("listaEjemplares");
+Libro lib = (Libro)request.getAttribute("libro");
 Persona user = (Persona)session.getAttribute("usuario");
 %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -44,6 +46,7 @@ Persona user = (Persona)session.getAttribute("usuario");
                     </div>
                 </div>
             </div>
+            
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <table class="table" cellspacing="0">
@@ -71,24 +74,22 @@ Persona user = (Persona)session.getAttribute("usuario");
                 </div>
             </div>
        <table>
-                            <td>
-
-                             <form action="agregarEjemplarServlet" method="post">
-                             <button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Agregar Ejemplar</button>
-							 </form> 
+      <tr>
+      							 <td>
+                           			<a class="addbutton"
+									href="agregarEjemplarServlet?id=<%=lib.getIdLibro()%>">
+										Agregar Ejemplar </a>
+                        
 							</td>
-							 	<!--  <form action="borrarLibro.jsp" method="post">
-							 	 <button class="btn btn-lg btn-primary">Borrar Libro</button>
-							 	</form>
-							 	<form  action="modificarLibro.jsp" method="post">
-							 	 <button class="btn btn-lg btn-primary">Modificar Libro</button>
-							    </form>-->
+                          
 							 <td>
+							 <a class="addbutton" href= "history.back()">
+							 Volver
+							 </a>
 							    <!--   <button type="button" class="cancelbtn">Cancel</button> -->
-							  <input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
-
+							
 							  </td>
-
+</tr>
                             </table>
 
         </section>
