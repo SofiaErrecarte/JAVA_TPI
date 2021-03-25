@@ -43,13 +43,12 @@
 <section>
 <fieldset>
 
-
-
 <div class="form-group">
   <label class="col-md-4 control-label" for="fechaalta">Fecha Alta: </label>  
   <div class="col-md-4">
   <input type="text" name="fecha" id="fecha" readonly="readonly" placeholder="Fecha Alta" class="form-control input-md" />
 <img src="calendario.png" id="selector" />
+
 <script type="text/javascript">
 window.onload = function() {
   Calendar.setup({

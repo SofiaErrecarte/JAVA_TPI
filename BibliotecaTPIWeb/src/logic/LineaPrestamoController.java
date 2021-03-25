@@ -21,4 +21,6 @@ public LineaPrestamo editLineaprestamo (LineaPrestamo lp) {
 public LineaPrestamo deleteLineaPrestamo (LineaPrestamo lp) {
 	return dlp.deleteLineaPrestamo(lp);
 }
+
+
 }

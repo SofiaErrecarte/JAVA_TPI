@@ -16,10 +16,10 @@ public class DataLineaPrestamo {
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"INSERT INTO `biblioteca`.`linea_prestamo` ( `idLineaPrestamo`, `fechaDevolucion`, `devuelto`, `idPrestamo`, `idEjemplar`) VALUES(?,?,?,?,?)",
+							"INSERT INTO `biblioteca`.`linea_prestamo` (`fechaDevolucion`, `devuelto`, `idPrestamo`, `idEjemplar`) VALUES(?,?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							); //, `fechaEdicion`
-			stmt.setTimestamp(1, new java.sql.Timestamp(lp.getFechaDevolucion().getTime()));
+			stmt.setDate(1, lp.getFechaDevolucion());
 			stmt.setBoolean(2, lp.isDevuelto());
 			stmt.setLong(3, lp.getIdPrestamo());
 			stmt.setLong(4, lp.getIdEjemplar());
@@ -42,8 +42,8 @@ public class DataLineaPrestamo {
             	e.printStackTrace();
             }
 		}
-		
 		return lp;
+		
 	}
 	
 	public LineaPrestamo editLineaPrestamo(LineaPrestamo lp) {

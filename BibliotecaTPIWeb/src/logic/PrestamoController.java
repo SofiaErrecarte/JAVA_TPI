@@ -24,7 +24,9 @@ public Prestamo deletePrestamo(Prestamo p ) {
 	return dp.deletePrestamo(p);
 }
 
-
+public LinkedList<LineaPrestamo> getLPByPrestamo(Prestamo p ){
+	return dp.getLPByPrestamo(p);
+			}
 
 
 }

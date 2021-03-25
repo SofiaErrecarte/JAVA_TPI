@@ -3,6 +3,8 @@
 <%@page import="entities.PoliticaPrestamo"%>
 <%@page import="entities.Libro"%>
 <%@page import="entities.Persona"%>
+<%@page import="java.util.Calendar"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -40,12 +42,42 @@ Persona user = (Persona)session.getAttribute("usuario");
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
+                               	 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosSevlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                               	 
                                 <%} %>
                             </div>
                         </nav>
                     </div>
                 </div>
             </div>
+            <div class="container">
+            <!--  <table>
+            <tr>
+            <td>
+            	<a href="devolucion.jsp" method="post" class="btn btn-success">Devolución</a>
+            	</td>
+            	<td>
+            	<%
+        		 %>
+               	 <a href="agregarPrestamoServlet" method="post" class="btn btn-success" style= "align:left">+ Préstamo</a>
+               	 <form action="buscarPoliticaServlet" class="form">
+               			<input class="form-control" type="text" name="idpersona">
+               			<input class="btn btn" type="submit" value="Buscar"	>
+               			               
+               	</form>
+            </td>
+            </tr>
+            </table>-->
+            <div class="container buscar">
+                <a href="agregarLibro.jsp" method="post" class="btn btn-success">+ Nuevo</a>
+               	<form action="buscarLibroServlet" class="form">
+               			<input class="form-control" type="text" name="txtbuscar">
+               			<input class="btn btn" type="submit" value="Buscar"	>
+               			               
+               	</form>
+                </div>    
+               </div>
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <table class="table" cellspacing="0">

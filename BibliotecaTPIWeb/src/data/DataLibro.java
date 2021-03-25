@@ -231,6 +231,50 @@ public class DataLibro {
 		return lib;
 	}
 	
+
+	public LinkedList<Libro> getByDesc(String nombuscar){
+		Statement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Libro> libros = new LinkedList<>();
+		
+		try {
+			stmt= DbConnector.getInstancia().getConn().createStatement();
+			rs= stmt.executeQuery("select * from libro where titulo LIKE '%" +nombuscar+ "%'"
+					);
+			//intencionalmente no se recupera la password
+			if(rs!=null) {
+				while(rs.next()) {
+					Libro l = new Libro();
+					l.setIdLibro(rs.getInt("idLibro"));
+					l.setIsbn(rs.getInt("isbn"));
+					l.setTitulo(rs.getString("titulo"));
+					l.setFechaEdicion(rs.getDate("fechaEdicion"));
+					l.setNroEdicion(rs.getInt("nroEdicion"));
+					l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+					l.setGenero(rs.getString("genero"));
+					l.setIdProveedor(rs.getInt("idProveedor"));
+					libros.add(l);
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return libros;
+	}
+
+	
 	//EJEMPLAR
 	
 	public LinkedList<Ejemplar> getAllEjemplares(){
@@ -460,7 +504,10 @@ public class DataLibro {
 		return l;
 	}
 
-
+	
+	
+	
+	
 	/*public Ejemplar getByIdEjemplar(Ejemplar ej) {
 		Ejemplar ejemp = null;
 		DataLibro dl = new DataLibro();

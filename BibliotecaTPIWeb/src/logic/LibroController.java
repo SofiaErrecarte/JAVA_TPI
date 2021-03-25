@@ -61,6 +61,9 @@ public class LibroController {
 		return dl.addEjemplar(l);
 	}
 	
+	public LinkedList<Libro> getByDesc(String nombuscar){
+		return dl.getByDesc(nombuscar);
+	}
 	/*public Ejemplar getByIdEjemplar(Ejemplar ej) {
 		return de.getByIdEjemplar(ej);
 	}*/

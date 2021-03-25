@@ -2,6 +2,7 @@ package data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.LinkedList;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -10,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import entities.Ejemplar;
 import entities.Libro;
 import entities.LineaPrestamo;
 import entities.Prestamo;
@@ -58,11 +60,11 @@ public class DataPrestamo {
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"INSERT INTO `biblioteca`.`prestamo` ( `idPrestamo`, `fechaHoraPrestamo`, `fechaADevolver`, `idPrestamo`) VALUES(?,?,?,?)",
+							"INSERT INTO `biblioteca`.`prestamo` (`fechaHoraPrestamo`, `fechaADevolver`, `idPersona`) VALUES(?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							); //, `fechaEdicion`
-			stmt.setTimestamp(1, new java.sql.Timestamp(p.getFechaPrestamo().getTime()));
-			stmt.setTimestamp(2, new java.sql.Timestamp(p.getFechaADevoler().getTime()));
+			stmt.setDate(1, (java.sql.Date) p.getFechaPrestamo());
+			stmt.setDate(2, (java.sql.Date) p.getFechaADevoler());
 			stmt.setLong(3,p.getIdPersona());
 			
 			stmt.executeUpdate();
@@ -144,4 +146,43 @@ public class DataPrestamo {
 		}
 		return p;
 	}
+
+	public LinkedList<LineaPrestamo> getLPByPrestamo(Prestamo p ) {
+		LineaPrestamo lp =null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<LineaPrestamo> lps = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from linea_prestamo where idPrestamo=?"
+					);
+			stmt.setLong(1, p.getIdPrestamo());
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+				lp = new LineaPrestamo();
+				lp.setIdLineaPrestamo(rs.getInt("idLineaPrestamo"));
+				lp.setFechaDevolucion(rs.getDate("fechaDevolucion"));
+				lp.setDevuelto(rs.getBoolean("devuelto"));
+				lp.setIdPrestamo(rs.getInt("idPrestamo"));
+				lp.setIdEjemplar(rs.getInt("idEjemplar"));
+				lps.add(lp);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return lps;
+	}
+	
+
+
 }
