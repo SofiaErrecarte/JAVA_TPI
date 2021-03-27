@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entities.MyResult;
 import entities.Ejemplar;
 import entities.Libro;
 import logic.LibroController;
@@ -39,12 +40,13 @@ public class borrarLibroServlet extends HttpServlet {
 		Libro lib = new Libro(); 
 		lib.setIdLibro(ID);
 		Libro l = ctrlLibro.getByIdLibro(lib);
+		MyResult res = ctrlLibro.deleteLibro(l);
 		LinkedList<Ejemplar> ej = new LinkedList<>();
-		ej= ctrlLibro.getEjByIdLibro(lib);
+		ej= ctrlLibro.getEjByIdLibro(l);
 		for(Ejemplar e : ej) {
 			ctrlLibro.deleteEjemplar(e);
 		}
-		ctrlLibro.deleteLibro(l);
+		request.setAttribute("result", res);
 		request.setAttribute("listaLibros",ctrlLibro.getAllLibros());
 		request.getRequestDispatcher ("listaLibros.jsp").forward(request, response);
 		
@@ -54,23 +56,22 @@ public class borrarLibroServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		LibroController ctrlLibro = new LibroController();
-		//LinkedList<Libro> libros2 = ctrlLibro.getAllLibros();
-		
-		Libro lib = new Libro();
-		lib.setIdLibro(Integer.parseInt(request.getParameter("idlibro")));
-		LinkedList<Ejemplar> ej = new LinkedList<>();
-		ej= ctrlLibro.getEjByIdLibro(lib);
-		for(Ejemplar e : ej) {
-			ctrlLibro.deleteEjemplar(e);
-		}
-		ctrlLibro.deleteLibro(lib);
-		//request.setAttribute("listaLibros2", libros2);
-		
-		
-		
-		request.getRequestDispatcher("listarLibroServlet").forward(request, response);
-		//doGet(request, response);
+		/*
+		 * // TODO Auto-generated method stub LibroController ctrlLibro = new
+		 * LibroController(); //LinkedList<Libro> libros2 = ctrlLibro.getAllLibros();
+		 * 
+		 * Libro lib = new Libro();
+		 * lib.setIdLibro(Integer.parseInt(request.getParameter("idlibro")));
+		 * LinkedList<Ejemplar> ej = new LinkedList<>(); ej=
+		 * ctrlLibro.getEjByIdLibro(lib); for(Ejemplar e : ej) {
+		 * ctrlLibro.deleteEjemplar(e); } ctrlLibro.deleteLibro(lib);
+		 * //request.setAttribute("listaLibros2", libros2);
+		 * 
+		 * 
+		 * 
+		 * request.getRequestDispatcher("listarLibroServlet").forward(request,
+		 * response);
+		 */
+		doGet(request, response);
 	}
 }

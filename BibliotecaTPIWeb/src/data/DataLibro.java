@@ -8,8 +8,11 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 
 import entities.*;
+import java.sql.Statement;
+import entities.MyResult;
 
-public class DataLibro {
+
+public class DataLibro extends DataMethods{
 	
 	public LinkedList<Libro> getAll(){
 		Statement stmt=null;
@@ -205,31 +208,56 @@ public class DataLibro {
 		return lib;
 	}
 
-	public Libro deleteLibro(Libro lib) {
+	public MyResult deleteLibro(Libro lib) {
+		int r = 1;
 		PreparedStatement stmt= null;
-		ResultSet keyResultSet=null;
+		ResultSet rs=null;
 		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"SELECT COUNT(*) FROM ejemplar WHERE idLibro=? and disponible=0"
+					);
+			stmt.setInt(1, lib.getIdLibro());
+			rs = stmt.executeQuery();
+			if (rs!=null && rs.next()) {
+				// preguntamos si hay al menos un libro con ese proveedor
+				if (rs.getInt(1) > 0) {
+					MyResult res = new MyResult();
+					res.setResult(MyResult.results.Err);
+					res.setErr_message("Existe al menos un préstamo de un ejemplar de este libro.");
+					return res;
+				} else {
+			stmt.close();
+		
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
 							"DELETE FROM `biblioteca`.`libro` WHERE (`idLibro` = ?);",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			stmt.setInt(1, lib.getIdLibro());
-			stmt.executeUpdate();	
+			r = stmt.executeUpdate();
+			if (r == 0) {
+				return Delete(0);
+			}
+				}}
             
 		}  catch (SQLException e) {
-            e.printStackTrace();
+			return Delete(0);
 		} finally {
             try {
-                if(keyResultSet!=null)keyResultSet.close();
-                if(stmt!=null)stmt.close();
+                if(rs!=null) {rs.close();}
+                if(stmt!=null) {stmt.close();}
                 DbConnector.getInstancia().releaseConn();
             } catch (SQLException e) {
-            	e.printStackTrace();
+            	ConnectCloseError();
             }
 		}
-		return lib;
+		// si llego hasta aca esta todo OK
+		MyResult res = new MyResult();
+		res.setResult(MyResult.results.OK);
+		res.setErr_message("Libro eliminado correctamente");
+		return res;
 	}
+	
 	
 
 	public LinkedList<Libro> getByDesc(String nombuscar){

@@ -228,7 +228,7 @@ public class MenuLibro {
 			l = ctrlLibro.getByIdLibro(l);
 		}
 		ej.setIdLibro(l.getIdLibro());
-		ctrlLibro.newEjemplar(ej);
+		
 		System.out.println("Ejemplar agregado con exito!");
 		return ej;
 	}

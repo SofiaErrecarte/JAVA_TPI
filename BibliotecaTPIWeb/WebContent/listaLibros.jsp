@@ -1,8 +1,5 @@
 <%@page import="java.util.LinkedList"%>
-<%@page import="entities.Proveedor"%>
-<%@page import="entities.PoliticaPrestamo"%>
-<%@page import="entities.Libro"%>
-<%@page import="entities.Persona"%>
+<%@page import="entities.*"%>
 <%@page import="java.util.Calendar"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -21,6 +18,7 @@ Persona user = (Persona)session.getAttribute("usuario");
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
+<link href = "css/messages.css" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
@@ -51,6 +49,18 @@ Persona user = (Persona)session.getAttribute("usuario");
                     </div>
                 </div>
             </div>
+            <% if (request.getAttribute("result")!=null) {
+        	   MyResult res = (MyResult)request.getAttribute("result");
+        	   if(res.getResult().equals(MyResult.results.OK)){
+        		   %>
+                   <div class="success"><%=res.getErr_message()%></div>
+                  <%
+        	   } else {
+        	      %>
+                   <div class="error"><%=res.getErr_message()%></div>
+                   <%}
+                   }
+                 %>
             <div class="container">
             <!--  <table>
             <tr>
@@ -78,6 +88,8 @@ Persona user = (Persona)session.getAttribute("usuario");
                	</form>
                 </div>    
                </div>
+               
+               
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <table class="table" cellspacing="0">

@@ -48,19 +48,7 @@ public class borrarProveedorServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*
-		 * ProveedorController ctrlProv = new ProveedorController(); Proveedor prov =
-		 * new Proveedor();
-		 * 
-		 * prov.setIdProveedor(Integer.parseInt(request.getParameter("idProveedor")));
-		 * MyResult res = ctrlProv.deleteProveedor(prov); if
-		 * (res.getResult().equals(entities.MyResult.results.Err)) {
-		 * request.setAttribute("result", res);
-		 * request.getRequestDispatcher("listarProveedorServlet").forward(request,
-		 * response); }
-		 * request.getRequestDispatcher("listarProveedorServlet").forward(request,
-		 * response);
-		 */
+		
 		doGet(request, response);
 	}
 

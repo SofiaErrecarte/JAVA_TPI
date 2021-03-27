@@ -33,7 +33,7 @@ public class LibroController {
 		return dl.editLibro(lib);
 	}
 
-	public Libro deleteLibro(Libro lib) {
+	public MyResult deleteLibro(Libro lib) {
 		return dl.deleteLibro(lib);
 	}
 	

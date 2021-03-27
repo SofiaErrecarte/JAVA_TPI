@@ -109,6 +109,7 @@ public class agregarPrestamoSevlet extends HttpServlet {
 				lp.setDevuelto(devuelto);
 				lp.setIdPrestamo(prest.getIdPrestamo());
 				lp.setIdEjemplar(idEjemplar);	
+				e.setDisponible(false);
 				LineaPrestamo lineanueva = ctrlLP.addLineaPrestamo(lp);
 				request.setAttribute("lpnueva", lineanueva);
 				request.setAttribute("prestamonuevo", prest);
@@ -141,7 +142,8 @@ public class agregarPrestamoSevlet extends HttpServlet {
 				int idPrestamo1 = Integer.parseInt(request.getParameter("id")); 
 				lp.setDevuelto(devuelto1);
 				lp.setIdPrestamo(idPrestamo1);
-				lp.setIdEjemplar(idEjemplar1);	
+				lp.setIdEjemplar(idEjemplar1);
+				e.setDisponible(false);
 			}
 		}
 		ctrlLP.addLineaPrestamo(lp1);
@@ -174,6 +176,7 @@ public class agregarPrestamoSevlet extends HttpServlet {
 			lp.setDevuelto(devuelto2);
 			lp.setIdPrestamo(idPrestamo2);
 			lp.setIdEjemplar(idEjemplar2);	
+			e.setDisponible(false);
 		}
 	}
 	ctrlLP.addLineaPrestamo(lp2);
@@ -205,6 +208,7 @@ public class agregarPrestamoSevlet extends HttpServlet {
 			lp.setDevuelto(devuelto3);
 			lp.setIdPrestamo(idPrestamo3);
 			lp.setIdEjemplar(idEjemplar3);	
+			e.setDisponible(false);
 		}
 	}
 	ctrlLP.addLineaPrestamo(lp3);
