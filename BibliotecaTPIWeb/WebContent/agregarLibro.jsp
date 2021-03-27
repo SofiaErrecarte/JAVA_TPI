@@ -94,7 +94,7 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
 <!-- Text input-->
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="prov">Genero: </label>  
+  <label class="col-md-4 control-label" for="prov">Proveedor: </label>  
   <div class="col-md-4">
    <% if( proveedores != null) {%>
                             <select name="idProveedor" class="form-control">

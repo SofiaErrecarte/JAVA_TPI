@@ -83,9 +83,8 @@ Persona user = (Persona)session.getAttribute("usuario");
 							</td>
                           
 							 <td>
-							 <a class="addbutton" href= "history.back()">
-							 Volver
-							 </a>
+							 <a class="addbutton" onclick="history.back()">Volver</a>
+							 
 							    <!--   <button type="button" class="cancelbtn">Cancel</button> -->
 							
 							  </td>

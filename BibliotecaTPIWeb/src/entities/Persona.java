@@ -77,4 +77,10 @@ public class Persona {
 	}
 	
 	
+	public String getDNINombreApellido() {
+		String patron = "%s - %s - %s";
+		String cadena = String.format(patron, dni, nombre, apellido);
+		return cadena;
+	}
+	
 }
