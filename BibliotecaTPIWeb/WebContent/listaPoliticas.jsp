@@ -1,5 +1,6 @@
 <%@page import="java.util.LinkedList"%>
 <%@page import="entities.PoliticaPrestamo"%>
+<%@page import="entities.MyResult"%>  
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -16,6 +17,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
+<link href = "css/messages.css" rel="stylesheet">
 </head>
 <body>
 <%@ include file="navInicio.jsp"%>
@@ -42,6 +44,19 @@
             </div>
              </div>
                 </div>
+                            
+<% if (request.getAttribute("result")!=null) {
+        	   MyResult res = (MyResult)request.getAttribute("result");
+        	   if(res.getResult().equals(MyResult.results.OK)){
+        		   %>
+                   <div class="success"><%=res.getErr_message()%></div>
+                  <%
+        	   } else {
+        	      %>
+                   <div class="error"><%=res.getErr_message()%></div>
+                   <%}
+                   }
+                 %>
                 <div class="container buscar">
                 <a href="agregarPolitica.jsp" method="post" class="btn btn-success">+ Nuevo</a>
                	<form action="buscarPoliticaServlet" class="form">
@@ -77,9 +92,21 @@
                     		<% } %>
                     		</tbody>	
                                 </table>
+                                
+                                
                             </div>
                             
                         </div>
+                        
+                        <td>
+                           
+                             <form action="agregarPolitica.jsp" method="post">
+                             <button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Agregar Politica</button>
+							 </form> 
+							</td>
+							 <td>
+							    <a type="button" class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto; color: white" href="listarLibroServlet" >Inicio</a>
+							  </td>
                    
             </section>
        

@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     
 <%@page import="entities.PoliticaPrestamo"%> 
+<%@page import="entities.MyResult"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 <title>Agragar Politica de Prestamo</title>
 <% PoliticaPrestamo politica = (PoliticaPrestamo)session.getAttribute("nuevaPolitica"); %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
+<link href = "css/messages.css" rel="stylesheet">
 <link href = "css/listado.css" rel="stylesheet">
 <style type="text/css">@import url("css/calendar-blue.css");</style>
 
@@ -32,13 +33,7 @@
                     </div>
                 </div>
             </div>
-            
-
-<%if (politica!= null){%>
-	<h4> Politica agregada con éxito</h4>
-	<String> mensaje="<script type="text/javascript">alert('Esto se debe de mostrar en el msgbox');</script>";
-	out.println(mensaje);
-<%} else {%>
+ 
 <form class="form-horizontal" action="agregarPoliticaServlet" method="post">
 <section>
 <fieldset>
@@ -89,15 +84,9 @@ window.onload = function() {
 </td>
 </table>
 
-
-<%if ((request.getAttribute("error"))!=null) { %>
-		<p style="color:red"> <%=request.getAttribute("error")%> </p>		
-	<% } %>
-	
  
   </section>
 </form>
-<% }%>
   </section>
   
 

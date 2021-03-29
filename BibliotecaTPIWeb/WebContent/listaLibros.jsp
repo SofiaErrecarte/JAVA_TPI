@@ -62,23 +62,6 @@ Persona user = (Persona)session.getAttribute("usuario");
                    }
                  %>
             <div class="container">
-            <!--  <table>
-            <tr>
-            <td>
-            	<a href="devolucion.jsp" method="post" class="btn btn-success">Devolución</a>
-            	</td>
-            	<td>
-            	<%
-        		 %>
-               	 <a href="agregarPrestamoServlet" method="post" class="btn btn-success" style= "align:left">+ Préstamo</a>
-               	 <form action="buscarPoliticaServlet" class="form">
-               			<input class="form-control" type="text" name="idpersona">
-               			<input class="btn btn" type="submit" value="Buscar"	>
-               			               
-               	</form>
-            </td>
-            </tr>
-            </table>-->
             <div class="container buscar">
                 <a href="agregarLibro.jsp" method="post" class="btn btn-success">+ Nuevo</a>
                	<form action="buscarLibroServlet" class="form">
@@ -141,40 +124,20 @@ Persona user = (Persona)session.getAttribute("usuario");
                             <td>
                            
                              <form action="agregarLibro.jsp" method="post">
-                             <button class="addbutton">Agregar Libro</button>
+                             <button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Agregar Libro</button>
 							 </form> 
 							</td>
-							 	<!--  <form action="borrarLibro.jsp" method="post">
-							 	 <button class="btn btn-lg btn-primary">Borrar Libro</button>
-							 	</form>
-							 	<form  action="modificarLibro.jsp" method="post">
-							 	 <button class="btn btn-lg btn-primary">Modificar Libro</button>
-							    </form>-->
-							 <td>
-							    <!--   <button type="button" class="cancelbtn">Cancel</button> -->
-							  <!-- <input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto"> -->
+							 <%-- <td>
 								<form action="index.jsp" method="post">
                              <button type="button" = onclick="history.back()" class= "addbutton" name="Volver" value="Volver">>Volver</button>
                              <%user = null; %>
 							 </form> 
-							  </td>
+							  </td> --%>
 							 
                             </table>
                             
         </section>
-         
- 						
- 	<!--  <form action="agregarPolitica.jsp" method="post">
-    <button type="submit">Agregar Politica de Prestamo</button>
- 	</form> 
- 	
- 	<form action="editarPolitica.jsp" method="post">
-    <button type="submit">Editar Politica de Prestamo</button>
- 	</form> 
- 	
- 	<form action="borrarPolitica.jsp" method="post">
-    <button type="submit">Borrar Politica de Prestamo</button>
-	 -->
+     
 
          <!-- Footer -->
   <footer class="py-5 bg-dark">

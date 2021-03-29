@@ -1,9 +1,8 @@
 <%@page import="java.util.LinkedList"%>
-<%@page import="entities.Proveedor"%>
-<%@page import="entities.PoliticaPrestamo"%>
 <%@page import="entities.Ejemplar"%>
 <%@page import="entities.Libro"%>
 <%@page import="entities.Persona"%>
+<%@page import="entities.MyResult"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -21,6 +20,7 @@ Persona user = (Persona)session.getAttribute("usuario");
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
+<link href = "css/messages.css" rel="stylesheet">
 </head>
 <body>
 <%@ include file="navInicio.jsp"%>
@@ -46,6 +46,18 @@ Persona user = (Persona)session.getAttribute("usuario");
                     </div>
                 </div>
             </div>
+            <% if (request.getAttribute("result")!=null) {
+        	   MyResult res = (MyResult)request.getAttribute("result");
+        	   if(res.getResult().equals(MyResult.results.OK)){
+        		   %>
+                   <div class="success"><%=res.getErr_message()%></div>
+                  <%
+        	   } else {
+        	      %>
+                   <div class="error"><%=res.getErr_message()%></div>
+                   <%}
+                   }
+                 %>
             
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -61,7 +73,9 @@ Persona user = (Persona)session.getAttribute("usuario");
                     			<tr>
                     				<td><%=e.getIdEjemplar()%></td>
                     				<td><%=e.isDisponible()%></td>
-
+									<td><a class="deletebutton"
+									href="borrarEjemplarServlet?id=<%=e.getIdEjemplar()%>">
+										Eliminar</a></td> 
 
                     				 </tr>
                     		<% } %>
@@ -83,28 +97,14 @@ Persona user = (Persona)session.getAttribute("usuario");
 							</td>
                           
 							 <td>
-							 <a class="addbutton" onclick="history.back()">Volver</a>
+							 <a class="addbutton" href="listarLibroServlet">Volver</a>
 							 
-							    <!--   <button type="button" class="cancelbtn">Cancel</button> -->
 							
 							  </td>
 </tr>
                             </table>
 
         </section>
-
-
- 	<!--  <form action="agregarPolitica.jsp" method="post">
-    <button type="submit">Agregar Politica de Prestamo</button>
- 	</form> 
- 	
- 	<form action="editarPolitica.jsp" method="post">
-    <button type="submit">Editar Politica de Prestamo</button>
- 	</form> 
- 	
- 	<form action="borrarPolitica.jsp" method="post">
-    <button type="submit">Borrar Politica de Prestamo</button>
-	 -->
 
          <!-- Footer -->
   <footer class="py-5 bg-dark">

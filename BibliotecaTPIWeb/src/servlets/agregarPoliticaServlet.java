@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
+import entities.MyResult;
 import entities.PoliticaPrestamo;
 import logic.PoliticaPrestamoController;
 
@@ -42,8 +43,6 @@ public class agregarPoliticaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
 				SimpleDateFormat formato = new SimpleDateFormat("yyyy-mm-dd");
 				PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController();
 				PoliticaPrestamo pp = new PoliticaPrestamo();
@@ -55,23 +54,23 @@ public class agregarPoliticaServlet extends HttpServlet {
 					java.sql.Date date = new java.sql.Date(utilStartDate.getTime());
 					pp.setFechaAlta(date);
 				} catch (java.text.ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
-				/*try {
-					pp.setFechaAlta((java.sql.Date) formato.parse(request.getParameter("fecha")));
-				} catch (ParseException | java.text.ParseException e) {
-					e.printStackTrace();
-				} */
 				
 				
 				pp.setCantMaximaSocio(numSocio);
 				pp.setCantMaximaNoSocio(numNoSocio);
 				
-				ctrlPP.newPolitica(pp);
-				request.setAttribute("nuevaPolitica", pp);
-				request.getRequestDispatcher("listarPoliticaServlet").forward(request, response);
+				MyResult res = ctrlPP.newPolitica(pp);
+				if (res.getResult().equals(MyResult.results.Err)) {
+					request.setAttribute("result", res);
+					request.getRequestDispatcher("agregarPolitica.jsp").forward(request, response); 
+				}else {
+					request.setAttribute("result", res);
+					request.setAttribute("nuevaPolitica", pp);
+					request.getRequestDispatcher("listarPoliticaServlet").forward(request, response);
+				}
+				
 				
 	}
 

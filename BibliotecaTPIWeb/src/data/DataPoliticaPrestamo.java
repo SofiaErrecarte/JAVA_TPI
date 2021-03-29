@@ -6,7 +6,7 @@ import entities.*;
 
 import java.sql.*;
 
-public class DataPoliticaPrestamo {
+public class DataPoliticaPrestamo extends DataMethods{
 
 	public LinkedList<PoliticaPrestamo> getAll(){
 		Statement stmt=null;
@@ -46,7 +46,8 @@ public class DataPoliticaPrestamo {
 		return politicas;
 	}
 	
-	public PoliticaPrestamo add(PoliticaPrestamo pp) {
+	public MyResult add(PoliticaPrestamo pp) {
+		int resultado = -1;
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 		try {
@@ -68,18 +69,20 @@ public class DataPoliticaPrestamo {
 
 			
 		}  catch (SQLException e) {
-            e.printStackTrace();
+			return Add(resultado);
 		} finally {
             try {
                 if(keyResultSet!=null)keyResultSet.close();
                 if(stmt!=null)stmt.close();
                 DbConnector.getInstancia().releaseConn();
             } catch (SQLException e) {
-            	e.printStackTrace();
+            	ConnectCloseError();
             }
 		}
-		
-		return pp;
+		// si llegó hasta acá está bien
+				MyResult res = new MyResult();
+				res.setResult(MyResult.results.OK);
+				return Add(1);
     }
 
 	public PoliticaPrestamo getById(PoliticaPrestamo poliprest) {
@@ -149,7 +152,8 @@ public class DataPoliticaPrestamo {
 		return pp;
 	}
 	
-	public PoliticaPrestamo deletePolitica(PoliticaPrestamo pp) {
+	public MyResult deletePolitica(PoliticaPrestamo pp) {
+		int r = 1;
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 		try {
@@ -159,24 +163,31 @@ public class DataPoliticaPrestamo {
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			stmt.setLong(1, pp.getIdPoliticaPrestamo());
-			stmt.executeUpdate();	
+			r = stmt.executeUpdate();	
 			keyResultSet=stmt.getGeneratedKeys();
 			 if(keyResultSet!=null && keyResultSet.next()){
 	               pp.setIdPoliticaPrestamo(keyResultSet.getInt(1));
 	            }
+			 if (r == 0) {
+					return Delete(0);
+				}
             
 		}  catch (SQLException e) {
-            e.printStackTrace();
+			return Delete(0);
 		} finally {
             try {
                 if(keyResultSet!=null)keyResultSet.close();
                 if(stmt!=null)stmt.close();
                 DbConnector.getInstancia().releaseConn();
             } catch (SQLException e) {
-            	e.printStackTrace();
+            	ConnectCloseError();
             }
 		}
-		return pp;
+		// si llego hasta aca esta todo OK
+		MyResult res = new MyResult();
+		res.setResult(MyResult.results.OK);
+		res.setErr_message("Política eliminada correctamente");
+		return Delete(1);
 		
 	}
 	

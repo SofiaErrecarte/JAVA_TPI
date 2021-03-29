@@ -42,14 +42,14 @@ public class LibroController {
 	}
 	
 	
-	public Ejemplar deleteEjemplar(Ejemplar ej) {
+	public MyResult deleteEjemplar(Ejemplar ej) {
 		return dl.deleteEjemplar(ej);		
 	}
 	
 	public LinkedList<Ejemplar> getAllEjemplares(){
 		return dl.getAllEjemplares();
 	}
-	public Ejemplar deleteEjemplarPorIdLibro (Ejemplar ej, Libro lib) {
+	public MyResult deleteEjemplarPorIdLibro (Ejemplar ej, Libro lib) {
 		return dl.deleteEjemplar(ej);		
 	}
 
@@ -64,9 +64,11 @@ public class LibroController {
 	public LinkedList<Libro> getByDesc(String nombuscar){
 		return dl.getByDesc(nombuscar);
 	}
-	/*public Ejemplar getByIdEjemplar(Ejemplar ej) {
-		return de.getByIdEjemplar(ej);
-	}*/
+	
+
+	public Ejemplar getByIdEjemplar(Ejemplar ej) {
+		return dl.getByIdEjemplar(ej);
+	}
 	
 	
 }

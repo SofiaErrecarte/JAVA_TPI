@@ -3,7 +3,7 @@ package logic;
 import java.util.LinkedList;
 
 import data.DataPoliticaPrestamo;
-
+import entities.MyResult;
 import entities.PoliticaPrestamo;
 
 public class PoliticaPrestamoController {
@@ -14,7 +14,7 @@ public class PoliticaPrestamoController {
 	public LinkedList<PoliticaPrestamo> ppGetAll(){
 		return dpp.getAll();
 	}
-	public PoliticaPrestamo newPolitica(PoliticaPrestamo pp) {
+	public MyResult newPolitica(PoliticaPrestamo pp) {
 		return dpp.add(pp);
 	}
 	
@@ -24,7 +24,7 @@ public class PoliticaPrestamoController {
 	public PoliticaPrestamo editPolitica (PoliticaPrestamo pp) {
 		return dpp.editPolitica(pp);
 	}
-	public PoliticaPrestamo deletePoliticaPrestamo (PoliticaPrestamo pp) {
+	public MyResult deletePoliticaPrestamo (PoliticaPrestamo pp) {
 		return dpp.deletePolitica(pp);
 	}
 	

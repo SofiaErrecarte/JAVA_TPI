@@ -104,9 +104,7 @@
 							 </form> 
 							</td>
 							 <td>
-							    <!--   <button type="button" class="cancelbtn">Cancel</button> -->
-							  <input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
-							
+							    <a type="button" class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto; color: white" href="listarLibroServlet" >Inicio</a>
 							  </td>
 							 
                             </table>

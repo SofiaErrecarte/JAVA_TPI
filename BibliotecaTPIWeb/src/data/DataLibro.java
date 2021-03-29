@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 
 import entities.*;
 import java.sql.Statement;
-import entities.MyResult;
 
 
 public class DataLibro extends DataMethods{
@@ -442,31 +441,55 @@ public class DataLibro extends DataMethods{
 		return ej;
     }
 
-	public Ejemplar deleteEjemplar(Ejemplar ej) {
+	public MyResult deleteEjemplar(Ejemplar ej) {
+		int r = 1;
 		PreparedStatement stmt= null;
-		ResultSet keyResultSet=null;
+		ResultSet rs=null;
 		try {
+			//verifico que disponible=false, lo que significaría que está prestado
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"SELECT COUNT(*) FROM ejemplar WHERE idEjemplar=? and disponible=0"
+					);
+			stmt.setInt(1, ej.getIdEjemplar());
+			rs = stmt.executeQuery();
+			if (rs!=null && rs.next()) {
+				// preguntamos si el ejemplar está no disponible, es decir, prestado
+				if (rs.getInt(1) > 0) {
+					MyResult res = new MyResult();
+					res.setResult(MyResult.results.Err);
+					res.setErr_message("El ejemplar está asignado a un préstamo no devuelto.");
+					return res;
+				} else {
+			stmt.close();
+			
+			
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
 							"DELETE FROM `biblioteca`.`ejemplar` WHERE (`idEjemplar` = ?);",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
-			stmt.setLong(1, ej.getIdEjemplar());
-			stmt.executeUpdate();	
+			stmt.setInt(1, ej.getIdEjemplar());
+			r = stmt.executeUpdate();
+			if (r == 0) {
+				return Delete(0);
+			} }}
 			
             
 		}  catch (SQLException e) {
-            e.printStackTrace();
+			return Delete(0);
 		} finally {
             try {
-                if(keyResultSet!=null)keyResultSet.close();
+                if(rs!=null)rs.close();
                 if(stmt!=null)stmt.close();
                 DbConnector.getInstancia().releaseConn();
             } catch (SQLException e) {
-            	e.printStackTrace();
+            	ConnectCloseError();
             }
 		}
-		return ej;
+		MyResult res = new MyResult();
+		res.setResult(MyResult.results.OK);
+		res.setErr_message("Ejemplar eliminado correctamente");
+		return Delete(1);
 		
 	}
 	
@@ -535,30 +558,28 @@ public class DataLibro extends DataMethods{
 		return l;
 	}
 
+
 	
 	
 	
 	
-	/*public Ejemplar getByIdEjemplar(Ejemplar ej) {
+	public Ejemplar getByIdEjemplar(Ejemplar ej) {
 		Ejemplar ejemp = null;
-		DataLibro dl = new DataLibro();
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"select idEjemplar,idLibro,idLineaPrestamo from ejemplar where idEjemplar=?"
+					"select * from ejemplar where idEjemplar=?"
 					);
 			stmt.setLong(1, ej.getIdEjemplar());
 			rs=stmt.executeQuery();
-			if(rs!=null) {
-				while(rs.next()) {
+			if(rs!=null && rs.next()) {
 				ejemp = new Ejemplar();
-				dl.setLibro(ejemp);
 				ejemp.setIdEjemplar(rs.getInt("idEjemplar"));
-				ejemp.getLib().setIdLibro(rs.getInt("idLibro"));
-				ejemp.setIdLineaPrestamo(rs.getInt("idLineaPrestamo"));
+				ejemp.setIdLibro(rs.getInt("idLibro"));
+				ejemp.setDisponible(rs.getBoolean("disponible"));
 				
-			}}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -572,8 +593,8 @@ public class DataLibro extends DataMethods{
 		}
 		
 		return ejemp;
-	}*/
-	
+	}
+
 	
 		
 	
