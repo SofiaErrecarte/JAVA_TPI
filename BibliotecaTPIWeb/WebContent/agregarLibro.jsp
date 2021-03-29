@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import="entities.Libro"%>  
+<%@page import="entities.Libro"%> 
+<%@page import="entities.MyResult"%>  
 <%@page import="java.util.LinkedList"%>
 <%@page import="entities.Proveedor"%>  
 <%@page import="logic.ProveedorController"%>   
@@ -18,6 +19,7 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
+<link href = "css/messages.css" rel="stylesheet">
 </head>
 <body>
 <section id="tabs" class="project-tab">
@@ -38,11 +40,21 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
                 </div>
             </div>
 
- <%if (lib!= null){%>
-	<h4> Libro agregado con éxito</h4>
-	<String> mensaje="<script type="text/javascript">alert('Esto se debe de mostrar en el msgbox');</script>";
-	out.println(mensaje);
-<%} else {%>
+<%if ((request.getAttribute("error"))!=null) { %>
+		<div class="error"> <%=request.getAttribute("error")%> </div>		
+	<% } %>
+	<% if (request.getAttribute("result")!=null) {
+        	   MyResult res = (MyResult)request.getAttribute("result");
+        	   if(res.getResult().equals(MyResult.results.OK)){
+        		   %>
+                   <div class="success"><%=res.getErr_message()%></div>
+                  <%
+        	   } else {
+        	      %>
+                   <div class="error"><%=res.getErr_message()%></div>
+                   <%}
+                   }
+                 %> 
 <form class="form-horizontal" action="agregarLibroServlet" method="post">
 <section>
 <fieldset>
@@ -123,12 +135,10 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
 </table>
                             
         </section>
-<%if ((request.getAttribute("error"))!=null) { %>
-		<p style="color:red"> <%=request.getAttribute("error")%> </p>		
-	<% } %>
+
 
 </form>
-<% }%>
+
   </section>
   
   

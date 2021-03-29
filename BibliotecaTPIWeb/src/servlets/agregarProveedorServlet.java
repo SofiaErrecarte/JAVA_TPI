@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import entities.MyResult;
 import entities.Proveedor;
 import logic.ProveedorController;
 
@@ -49,7 +49,7 @@ public class agregarProveedorServlet extends HttpServlet {
 		p.setCUIT(CUIT);
 		
 		p=ctrlProv.getByCUIT(p);
-		
+		//verificamos que el CUIT no esté cargado
 		if(p==null) {
 			Proveedor prov = new Proveedor();
 			prov.setRazonSocial(razonSocial);
@@ -58,10 +58,15 @@ public class agregarProveedorServlet extends HttpServlet {
 			prov.setDireccion(direccion);
 			prov.setCUIT(CUIT);
 			
-			ctrlProv.createProveedor(prov);
-			
+			MyResult res = ctrlProv.createProveedor(prov);
+			if (res.getResult().equals(MyResult.results.Err)) {
+				request.setAttribute("result", res);
+				request.getRequestDispatcher("agregarProveedor.jsp").forward(request, response); 
+		}else {
+			request.setAttribute("result", res);
 			request.setAttribute("nuevoProveedor", prov);
 			request.getRequestDispatcher("listarProveedorServlet").forward(request, response);
+		}
 		}else {
 			request.setAttribute("error", "El proveedor ingresado ya existe.");
 			request.getRequestDispatcher("agregarProveedor.jsp").forward(request, response); }

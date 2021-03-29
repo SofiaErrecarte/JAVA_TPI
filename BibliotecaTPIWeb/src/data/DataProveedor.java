@@ -50,7 +50,8 @@ public class DataProveedor extends DataMethods{
 		return proveedores;
 	}
 
-	public Proveedor add(Proveedor prov) {
+	public MyResult add(Proveedor prov) {
+		int resultado = -1;
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 		try {
@@ -71,18 +72,20 @@ public class DataProveedor extends DataMethods{
                 prov.setIdProveedor(keyResultSet.getInt(1));
             }
 		}  catch (SQLException e) {
-            e.printStackTrace();
+			return Add(resultado);
 		} finally {
             try {
                 if(keyResultSet!=null)keyResultSet.close();
                 if(stmt!=null)stmt.close();
                 DbConnector.getInstancia().releaseConn();
             } catch (SQLException e) {
-            	e.printStackTrace();
+            	ConnectCloseError();
             }
 		}
-		
-		return prov;
+		// si llegó hasta acá está bien
+		MyResult res = new MyResult();
+		res.setResult(MyResult.results.OK);
+		return Add(1);
 	}
 
 	public Proveedor getByCUIT(Proveedor prov) {
@@ -181,19 +184,6 @@ public class DataProveedor extends DataMethods{
 		return prov;
 	}
 
-	/*
-	 * public Proveedor deleteProveedor(Proveedor prov) { PreparedStatement stmt=
-	 * null; ResultSet keyResultSet=null; try {
-	 * stmt=DbConnector.getInstancia().getConn(). prepareStatement(
-	 * "DELETE FROM `biblioteca`.`proveedor` WHERE (`idProveedor` = ?);",
-	 * PreparedStatement.RETURN_GENERATED_KEYS ); stmt.setInt(1,
-	 * prov.getIdProveedor()); stmt.executeUpdate();
-	 * 
-	 * } catch (SQLException e) { e.printStackTrace(); } finally { try {
-	 * if(keyResultSet!=null)keyResultSet.close(); if(stmt!=null)stmt.close();
-	 * DbConnector.getInstancia().releaseConn(); } catch (SQLException e) {
-	 * e.printStackTrace(); } } return prov; }
-	 */
 	
 	public MyResult deleteProveedor(Proveedor prov) {
 		int r = 1;

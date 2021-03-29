@@ -103,12 +103,6 @@
                              <button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Agregar Proveedor</button>
 							 </form> 
 							</td>
-							 	<!--  <form action="borrarLibro.jsp" method="post">
-							 	 <button class="btn btn-lg btn-primary">Borrar Libro</button>
-							 	</form>
-							 	<form  action="modificarLibro.jsp" method="post">
-							 	 <button class="btn btn-lg btn-primary">Modificar Libro</button>
-							    </form>-->
 							 <td>
 							    <!--   <button type="button" class="cancelbtn">Cancel</button> -->
 							  <input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
@@ -117,17 +111,7 @@
 							 
                             </table>
                             </section>
- 	<!--  <form action="agregarPolitica.jsp" method="post">
-    <button type="submit">Agregar Politica de Prestamo</button>
- 	</form> 
- 	
- 	<form action="editarPolitica.jsp" method="post">
-    <button type="submit">Editar Politica de Prestamo</button>
- 	</form> 
- 	
- 	<form action="borrarPolitica.jsp" method="post">
-    <button type="submit">Borrar Politica de Prestamo</button>
-	 -->
+
 
          <!-- Footer -->
   <footer class="py-5 bg-dark">

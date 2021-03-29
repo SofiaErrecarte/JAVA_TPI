@@ -25,7 +25,7 @@ public class LibroController {
 		return dl.getById(lib);
 	}
 	
-	public Libro createLibro(Libro lib) {
+	public MyResult createLibro(Libro lib) {
 		return dl.add(lib);
 	}
 

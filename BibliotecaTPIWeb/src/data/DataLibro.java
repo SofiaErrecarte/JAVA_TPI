@@ -100,7 +100,8 @@ public class DataLibro extends DataMethods{
 	}
 	
 	
-	public Libro add(Libro lib) {
+	public MyResult add(Libro lib) {
+		int resultado = -1;
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 		try {
@@ -124,18 +125,20 @@ public class DataLibro extends DataMethods{
             }
 			
 		}  catch (SQLException e) {
-            e.printStackTrace();
+			return Add(resultado);
 		} finally {
             try {
                 if(keyResultSet!=null)keyResultSet.close();
                 if(stmt!=null)stmt.close();
                 DbConnector.getInstancia().releaseConn();
             } catch (SQLException e) {
-            	e.printStackTrace();
+            	ConnectCloseError();
             }
 		}
-		
-		return lib;
+		// si llegó hasta acá está bien
+		MyResult res = new MyResult();
+		res.setResult(MyResult.results.OK);
+		return Add(1);
 	}
 	
 	public Libro getById(Libro lib) {

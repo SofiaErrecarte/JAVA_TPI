@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Libro;
+import entities.MyResult;
 import logic.LibroController;
 
 /**
@@ -19,41 +20,27 @@ import logic.LibroController;
 @WebServlet("/agregarLibroServlet")
 public class agregarLibroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+     
     public agregarLibroServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		LibroController ctrlLibro = new LibroController();
 		Libro l = new Libro();
 		
 		String titulo = request.getParameter("titulo");
 		int isbn = Integer.parseInt(request.getParameter("isbn"));
-		//int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
 		int nroedicion = Integer.parseInt(request.getParameter("nroedicion"));
 		int cantdias = Integer.parseInt(request.getParameter("cantdiasprestamo"));
 		String genero = request.getParameter("genero");
 		l.setIsbn(isbn);
 		
 		l=ctrlLibro.getByIsbnLibro(l);
-		
+		//verificamos que el ISBN no esté cargado
 		if(l==null) {
 			Libro lib = new Libro();
 			lib.setTitulo(titulo);
@@ -63,11 +50,15 @@ public class agregarLibroServlet extends HttpServlet {
 			lib.setGenero(genero);
 			lib.setCantDiasMaxPrestamo(cantdias);
 			
-			ctrlLibro.createLibro(lib);
-			
+			MyResult res = ctrlLibro.createLibro(lib);
+			if (res.getResult().equals(MyResult.results.Err)) {
+				request.setAttribute("result", res);
+				request.getRequestDispatcher("agregarLibro.jsp").forward(request, response); 
+		}else {
+			request.setAttribute("result", res);
 			request.setAttribute("nuevoLibro", lib);
 			request.getRequestDispatcher("listarLibroServlet").forward(request, response);
-			//request.setAttribute("exito", "El libro fue ingresado con éxito!");
+		}
 		}else {
 			request.setAttribute("error", "El libro ingresado ya existe.");
 			request.getRequestDispatcher("agregarLibro.jsp").forward(request, response); }

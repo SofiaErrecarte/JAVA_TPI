@@ -97,10 +97,11 @@ public class Init extends HttpServlet {
 	    	
 	    	
 	    	//doGet(request, response);
-	    	LibroController ctrlLibro = new LibroController();
-			LinkedList<Libro> libros = ctrlLibro.getAllLibros();
-			request.setAttribute("listaLibros", libros);
-			request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
+		/*
+		 * LibroController ctrlLibro = new LibroController(); LinkedList<Libro> libros =
+		 * ctrlLibro.getAllLibros(); request.setAttribute("listaLibros", libros);
+		 * request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
+		 */
 	}
 
 }

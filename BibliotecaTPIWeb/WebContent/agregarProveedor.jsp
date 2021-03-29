@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="entities.Proveedor"%>   
+    <%@page import="entities.Proveedor"%>
+    <%@page import="entities.MyResult"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
+<link href = "css/messages.css" rel="stylesheet">
 
 <!------ Include the above in your HEAD tag ---------->
 </head>
@@ -32,13 +34,23 @@
                     </div>
                 </div>
             </div>
-  
+ <%if ((request.getAttribute("error"))!=null) { %>
+		<div class="error"> <%=request.getAttribute("error")%> </div>		
+	<% } %>
+	<% if (request.getAttribute("result")!=null) {
+        	   MyResult res = (MyResult)request.getAttribute("result");
+        	   if(res.getResult().equals(MyResult.results.OK)){
+        		   %>
+                   <div class="success"><%=res.getErr_message()%></div>
+                  <%
+        	   } else {
+        	      %>
+                   <div class="error"><%=res.getErr_message()%></div>
+                   <%}
+                   }
+                 %> 
                 
-<%if (prov!= null){%>
-	<h4> Proveedor agregado con éxito</h4>
-	<String> mensaje="<script type="text/javascript">alert('Esto se debe de mostrar en el msgbox');</script>";
-	out.println(mensaje);
-<%} else {%>
+
 <form class="form-horizontal" action="agregarProveedorServlet" method="post">
 <section>
 <fieldset>
@@ -67,19 +79,6 @@
   </div>
 </div>
 
-<!-- Select Basic 
-<div class="form-group">
-  <label class="col-md-4 control-label" for="selectEstadoCivil">Estado Civil: </label>
-  <div class="col-md-4">
-    <select id="selectEstadoCivil" name="selectEstadoCivil" class="form-control">
-      <option value="s">Soltero</option>
-      <option value="c">Casado</option>
-      <option value="d">Divorciado</option>
-      <option value="v">Viudo</option>
-    </select>
-  </div>
-</div>-->
-
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="mail">E - Mail: </label>  
@@ -106,13 +105,9 @@
 </td>
 </table>
 
-<%if ((request.getAttribute("error"))!=null) { %>
-		<p style="color:red"> <%=request.getAttribute("error")%> </p>		
-	<% } %>
-	
   </section>
 </form>
-<% }%>
+
   </section>
  <footer class="py-5 bg-dark">
     <div class="container">

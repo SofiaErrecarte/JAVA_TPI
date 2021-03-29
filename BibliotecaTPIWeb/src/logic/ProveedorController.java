@@ -23,7 +23,7 @@ public class ProveedorController {
 		return dpr.getByCUIT(prov);
 	}
 	
-	public Proveedor createProveedor(Proveedor prov) {
+	public MyResult createProveedor(Proveedor prov) {
 		return dpr.add(prov);
 	}
 
