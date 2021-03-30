@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entities.MyResult;
 import entities.PoliticaPrestamo;
 import logic.PoliticaPrestamoController;
 
@@ -58,20 +59,15 @@ public class editarPoliticaServlet extends HttpServlet {
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy-mm-dd");
 		PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController();
 		PoliticaPrestamo pp = new PoliticaPrestamo();
-		/*try {
-			pp.setFechaAlta((Date)formato.parse(request.getParameter("fechaalta")));
-		} catch (java.text.ParseException e) {
-			e.printStackTrace();
-		}*/
 		
 		pp.setIdPoliticaPrestamo(Integer.parseInt(request.getParameter("id")));
-		pp.setCantMaximaNoSocio(Integer.parseInt(request.getParameter("librosSocio")));
-		pp.setCantMaximaSocio(Integer.parseInt(request.getParameter("librosNoSocio")));
+		pp.setCantMaximaNoSocio(Integer.parseInt(request.getParameter("librosNoSocio")));
+		pp.setCantMaximaSocio(Integer.parseInt(request.getParameter("librosSocio")));
 		
-		ctrlPP.editPolitica(pp);
+		MyResult res = ctrlPP.editPolitica(pp);
+		request.setAttribute("result", res);
 		request.getRequestDispatcher("listarPoliticaServlet").forward(request, response);
 		
-		//doGet(request, response);
 	}
 
 }

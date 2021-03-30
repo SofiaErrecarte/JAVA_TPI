@@ -62,9 +62,7 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
 <div class="form-group">
   <label class="col-md-4 control-label" for="razonSocial">ISBN:</label>  
   <div class="col-md-4">
-   <%-- <input type="text"  name="isbn" value=<%=lib.getIsbn()%> class="form-control input-md" hidden="true"> --%>
-   <input type="text" name="isbn" value=<%=lib.getIsbn()%> hidden="true">
-    <input type="text"  name="isbnLibro" value=<%=lib.getIsbn()%> class="form-control input-md" disabled>
+    <input type="text"  name="isbn" value=<%=lib.getIsbn()%> class="form-control input-md">
      </div>
 </div>
 

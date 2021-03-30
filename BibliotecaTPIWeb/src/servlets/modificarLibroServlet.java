@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.LinkedList;
 
 import entities.Libro;
+import entities.MyResult;
 import logic.LibroController;
 
 
@@ -80,10 +81,11 @@ public class modificarLibroServlet extends HttpServlet {
 		lib.setCantDiasMaxPrestamo(cantdias);
 		lib.setIdProveedor(idProveedor);
 		
-		ctrlLibro.editLibro(lib);
-		
+		MyResult res = ctrlLibro.editLibro(lib);
+		request.setAttribute("result", res);
+		request.setAttribute("listaLibros",ctrlLibro.getAllLibros());
 		request.getRequestDispatcher("listarLibroServlet").forward(request, response);
-		//doGet(request, response);
+		
 	}
 
 }

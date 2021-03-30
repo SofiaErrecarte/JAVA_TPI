@@ -153,10 +153,27 @@ public class DataProveedor extends DataMethods{
 		return pr;
 	}
 
-	public Proveedor editProveedor(Proveedor prov) {
+	public MyResult editProveedor(Proveedor prov) {
+		int resultado = -1;
 		PreparedStatement stmt= null;
-		ResultSet keyResultSet=null;
+		ResultSet rs=null;
 		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"SELECT COUNT(*) FROM proveedor WHERE cuit=? and idProveedor!=?"
+					);
+			stmt.setString(1, prov.getCUIT());
+			stmt.setInt(2, prov.getIdProveedor());
+			rs = stmt.executeQuery();
+			if (rs!=null && rs.next()) {
+				// preguntamos si hay al menos un proveedor con ese CUIT
+				if (rs.getInt(1) > 0) {
+					MyResult res = new MyResult();
+					res.setResult(MyResult.results.Err);
+					res.setErr_message("Existe un proveedor actualmente con ese CUIT");
+					return res;
+				} else {
+			stmt.close();
+			
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
 							"UPDATE `biblioteca`.`proveedor` SET `cuit` = ?, `razonSocial` = ?, `telefono` = ?, `email` = ?, `direccion` = ? WHERE (`idProveedor` = ?);",
@@ -170,18 +187,22 @@ public class DataProveedor extends DataMethods{
 			stmt.setLong(6, prov.getIdProveedor());
 			stmt.executeUpdate();
 			
-		}  catch (SQLException e) {
-            e.printStackTrace();
+		} }} catch (SQLException e) {
+			return Update(resultado);
 		} finally {
             try {
-                if(keyResultSet!=null)keyResultSet.close();
+                if(rs!=null)rs.close();
                 if(stmt!=null)stmt.close();
                 DbConnector.getInstancia().releaseConn();
             } catch (SQLException e) {
-            	e.printStackTrace();
+            	ConnectCloseError();
             }
 		}
-		return prov;
+		// si llego aca esta todo OK
+		MyResult res = new MyResult();
+		res.setResult(MyResult.results.OK);
+		res.setErr_message("Proveedor actualizado correctamente");
+		return Update(1);
 	}
 
 	

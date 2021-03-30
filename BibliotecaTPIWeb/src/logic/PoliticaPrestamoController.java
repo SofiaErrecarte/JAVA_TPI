@@ -21,7 +21,7 @@ public class PoliticaPrestamoController {
 	public PoliticaPrestamo getByIdPolitica (PoliticaPrestamo pp) {
 		return dpp.getById(pp);
 	}
-	public PoliticaPrestamo editPolitica (PoliticaPrestamo pp) {
+	public MyResult editPolitica (PoliticaPrestamo pp) {
 		return dpp.editPolitica(pp);
 	}
 	public MyResult deletePoliticaPrestamo (PoliticaPrestamo pp) {

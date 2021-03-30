@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Proveedor;
+import entities.MyResult;
 import logic.ProveedorController;
 
 /**
@@ -63,9 +64,9 @@ public class modificarProveedorServlet extends HttpServlet {
 		prov.setMail(mail);
 		prov.setTelefono(telefono);
 		prov.setDireccion(direccion);
-		
-		ctrlProv.editProveedor(prov);
-		
+		MyResult res = ctrlProv.editProveedor(prov);
+		request.setAttribute("result", res);
+		request.setAttribute("listaProveedores",ctrlProv.getAllProveedores());
 		request.getRequestDispatcher("listarProveedorServlet").forward(request, response);
 		
 	}

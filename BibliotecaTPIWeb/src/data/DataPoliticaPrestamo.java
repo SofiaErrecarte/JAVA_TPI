@@ -117,7 +117,8 @@ public class DataPoliticaPrestamo extends DataMethods{
 		return pp;
 	}
 
-	public PoliticaPrestamo editPolitica(PoliticaPrestamo pp) {
+	public MyResult editPolitica(PoliticaPrestamo pp) {
+		int resultado = -1;
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 		try {
@@ -131,25 +132,23 @@ public class DataPoliticaPrestamo extends DataMethods{
 			stmt.setInt(3,pp.getIdPoliticaPrestamo());
 			stmt.executeUpdate();
 			
-			keyResultSet=stmt.getGeneratedKeys();
-            if(keyResultSet!=null && keyResultSet.next()){
-                pp.setIdPoliticaPrestamo(keyResultSet.getInt(1));
-            }
-
 			
 		}  catch (SQLException e) {
-            e.printStackTrace();
+			e.printStackTrace();
 		} finally {
             try {
                 if(keyResultSet!=null)keyResultSet.close();
                 if(stmt!=null)stmt.close();
                 DbConnector.getInstancia().releaseConn();
             } catch (SQLException e) {
-            	e.printStackTrace();
+            	ConnectCloseError();
             }
 		}
-		
-		return pp;
+		// si llego aca esta todo OK
+		MyResult res = new MyResult();
+		res.setResult(MyResult.results.OK);
+		res.setErr_message("Política actualizada correctamente");
+		return Update(1);
 	}
 	
 	public MyResult deletePolitica(PoliticaPrestamo pp) {

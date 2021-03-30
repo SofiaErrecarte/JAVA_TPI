@@ -27,7 +27,7 @@ public class ProveedorController {
 		return dpr.add(prov);
 	}
 
-	public Proveedor editProveedor(Proveedor prov) {
+	public MyResult editProveedor(Proveedor prov) {
 		return dpr.editProveedor(prov);
 	}
 

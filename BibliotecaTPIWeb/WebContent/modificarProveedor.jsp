@@ -46,11 +46,8 @@ Proveedor prov=(Proveedor)request.getAttribute("proveedorAEditar"); %>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="cuit">CUIT:</label>  
-  <div class="col-md-4">
-     <!-- Este me guarda el atributo cuit -->	
-    <input type="text" name="cuit" value=<%=prov.getCUIT()%> hidden="true">	  
-     <!--  Este me lo muestra deshabilitado para q se vea el numero -->  
-   <input type="text" name="cuitProv" value=<%=prov.getCUIT()%> class="form-control input-md" disabled hidden="true" >
+  <div class="col-md-4"> 
+   <input type="text" name="cuit" value=<%=prov.getCUIT()%> class="form-control input-md" >
  
   </div>
 </div>

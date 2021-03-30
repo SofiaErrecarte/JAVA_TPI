@@ -175,10 +175,27 @@ public class DataLibro extends DataMethods{
 		return l;
 	}
 
-	public Libro editLibro(Libro lib) {
+	public MyResult editLibro(Libro lib) {
+		int resultado = -1;
 		PreparedStatement stmt= null;
-		ResultSet keyResultSet=null;
+		ResultSet rs=null;
 		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"SELECT COUNT(*) FROM libro WHERE isbn=? and idLibro!=?"
+					);
+			stmt.setInt(1, lib.getIsbn());
+			stmt.setInt(2, lib.getIdLibro());
+			rs = stmt.executeQuery();
+			if (rs!=null && rs.next()) {
+				// preguntamos si hay al menos un librocon ese isbn
+				if (rs.getInt(1) > 0) {
+					MyResult res = new MyResult();
+					res.setResult(MyResult.results.Err);
+					res.setErr_message("Existe un libro actualmente con ese ISBN");
+					return res;
+				} else {
+			stmt.close();
+			
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
 							"UPDATE `biblioteca`.`libro` SET `titulo` = ?, `isbn` = ?, `nroEdicion` = ?, `cantDiasMaxPrestamo` = ?, `genero` = ?, `idProveedor` = ? WHERE (`idLibro` = ?);",
@@ -189,25 +206,28 @@ public class DataLibro extends DataMethods{
 			stmt.setLong(3, lib.getNroEdicion());
 			stmt.setLong(4, lib.getCantDiasMaxPrestamo());
 			stmt.setString(5, lib.getGenero());	
-			//stmt.setTimestamp(6, new java.sql.Timestamp(lib.getFechaEdicion().getTime()));
-			//stmt.setTimestamp(6, null);
 			stmt.setInt(6, lib.getIdProveedor());
 			
 			stmt.setInt(7,  lib.getIdLibro());
 			stmt.executeUpdate();
 			
-		}  catch (SQLException e) {
-            e.printStackTrace();
+		}}}  catch (SQLException e) {
+
+			return Update(resultado);
 		} finally {
             try {
-                if(keyResultSet!=null)keyResultSet.close();
+                if(rs!=null)rs.close();
                 if(stmt!=null)stmt.close();
                 DbConnector.getInstancia().releaseConn();
             } catch (SQLException e) {
-            	e.printStackTrace();
+            	ConnectCloseError();
             }
 		}
-		return lib;
+		// si llego aca esta todo OK
+		MyResult res = new MyResult();
+		res.setResult(MyResult.results.OK);
+		res.setErr_message("Libro actualizado correctamente");
+		return Update(1);
 	}
 
 	public MyResult deleteLibro(Libro lib) {

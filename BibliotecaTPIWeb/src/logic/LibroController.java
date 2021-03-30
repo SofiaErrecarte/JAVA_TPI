@@ -29,7 +29,7 @@ public class LibroController {
 		return dl.add(lib);
 	}
 
-	public Libro editLibro(Libro lib) {
+	public MyResult editLibro(Libro lib) {
 		return dl.editLibro(lib);
 	}
 
