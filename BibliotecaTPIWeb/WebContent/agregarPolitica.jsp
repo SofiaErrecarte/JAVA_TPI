@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Agragar Politica de Prestamo</title>
+<title>Agregar Politica de Prestamo</title>
 <% PoliticaPrestamo politica = (PoliticaPrestamo)session.getAttribute("nuevaPolitica"); %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href = "css/messages.css" rel="stylesheet">

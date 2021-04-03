@@ -28,5 +28,11 @@ public LinkedList<LineaPrestamo> getLPByPrestamo(Prestamo p ){
 	return dp.getLPByPrestamo(p);
 			}
 
+public Prestamo getByIdPrestamo(Prestamo p) {
+	return dp.getById(p);
+}
 
+	/*
+	 * public int getCantLP(Prestamo p) { return dp.getCantLP(p); }
+	 */
 }

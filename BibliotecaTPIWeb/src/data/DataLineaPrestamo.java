@@ -105,5 +105,39 @@ public class DataLineaPrestamo {
 		return lp;
 	}
 	
-	
+	public LinkedList<LineaPrestamo> getLineasByIdPrest(Prestamo p) {
+		LineaPrestamo lp =null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<LineaPrestamo> lineasP = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select idLineaPrestamo,fechaDevolucion,devuelto, idPrestamo, idEjemplar from linea_prestamo where idPrestamo=?"
+					);
+			stmt.setLong(1, p.getIdPrestamo());
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+				lp = new LineaPrestamo();
+				lp.setIdEjemplar(rs.getInt("idEjemplar"));
+				lp.setIdLineaPrestamo(rs.getInt("idLineaPrestamo"));
+				lp.setFechaDevolucion(rs.getDate("fechaDevolucion"));
+				lp.setDevuelto(rs.getBoolean("devuelto"));
+				lp.setIdPrestamo(rs.getInt("idPrestamo"));
+				lineasP.add(lp);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return lineasP;
+	}
 }

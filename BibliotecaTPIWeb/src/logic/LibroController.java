@@ -49,6 +49,7 @@ public class LibroController {
 	public LinkedList<Ejemplar> getAllEjemplares(){
 		return dl.getAllEjemplares();
 	}
+	
 	public MyResult deleteEjemplarPorIdLibro (Ejemplar ej, Libro lib) {
 		return dl.deleteEjemplar(ej);		
 	}

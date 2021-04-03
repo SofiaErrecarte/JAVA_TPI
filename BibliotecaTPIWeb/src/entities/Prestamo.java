@@ -2,13 +2,14 @@ package entities;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 
 public class Prestamo {
 	private int idPrestamo;
 	private Date fechaPrestamo;
-	private int diasPrestamo;
+	//private int diasPrestamo;
 	private Date fechaADevoler;
-	private ArrayList<LineaPrestamo> lineasPrestamo;
+	private LinkedList<LineaPrestamo> lineasPrestamo = new LinkedList<LineaPrestamo>();
 	private int idPersona;
 	
 	public int getIdPersona() {
@@ -17,10 +18,10 @@ public class Prestamo {
 	public void setIdPersona(int idPersona) {
 		this.idPersona = idPersona;
 	}
-	public ArrayList<LineaPrestamo> getLineasPrestamo() {
+	public LinkedList<LineaPrestamo> getLineasPrestamo() {
 		return lineasPrestamo;
 	}
-	public void setLineasPrestamo(ArrayList<LineaPrestamo> lineasPrestamo) {
+	public void setLineasPrestamo(LinkedList<LineaPrestamo> lineasPrestamo) {
 		this.lineasPrestamo = lineasPrestamo;
 	}
 	public int getIdPrestamo() {
@@ -35,17 +36,14 @@ public class Prestamo {
 	public void setFechaPrestamo(Date fechaPrestamo) {
 		this.fechaPrestamo = fechaPrestamo;
 	}
-	public int getDiasPrestamo() {
-		return diasPrestamo;
-	}
-	public void setDiasPrestamo(int diasPrestamo) {
-		this.diasPrestamo = diasPrestamo;
-	}
 	public Date getFechaADevoler() {
 		return fechaADevoler;
 	}
 	public void setFechaADevoler(Date fechaADevoler) {
 		this.fechaADevoler = fechaADevoler;
 	}
-
+	
+	public void addLp(LineaPrestamo lp) {
+		lineasPrestamo.add(lp);
+	}
 }

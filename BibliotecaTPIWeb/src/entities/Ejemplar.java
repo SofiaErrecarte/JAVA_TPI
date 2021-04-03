@@ -4,8 +4,16 @@ public class Ejemplar {
 	private int idEjemplar;
 	private int idLibro;
 	private boolean disponible;  
+	private String titulo;
 	
-	
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
 	public boolean isDisponible() {
 		return disponible;
@@ -35,8 +43,7 @@ public class Ejemplar {
 	
 	
 	
-	@Override
-	public String toString() {
-		return "Ejemplar [Id Ejemplar=" + idEjemplar + ", Id Libro=" + idLibro  + ", estado="+ disponible +"]";
+	public String toString(Ejemplar e) {
+		return "Id Ejemplar=" + e.idEjemplar + ", Libro=" + e.titulo ;
 	}
 }

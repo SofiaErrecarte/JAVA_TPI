@@ -41,7 +41,7 @@ Persona user = (Persona)session.getAttribute("usuario");
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
                                	 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
-                                href="listarPrestamosSevlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
                                	 
                                 <%} %>
                             </div>

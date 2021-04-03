@@ -334,14 +334,16 @@ public class DataLibro extends DataMethods{
 		
 		try {
 			stmt= DbConnector.getInstancia().getConn().createStatement();
-			rs= stmt.executeQuery("select idEjemplar, idLibro, disponible from ejemplar");
-			//intencionalmente no se recupera la password
+			rs= stmt.executeQuery("SELECT ejemplar.idEjemplar, ejemplar.disponible, ejemplar.idLibro, libro.titulo\r\n" + 
+					"FROM ejemplar inner join libro  on libro.idLibro=ejemplar.idLibro;");
+			
 			if(rs!=null) {
 				while(rs.next()) {
 					Ejemplar ej = new Ejemplar();
 					ej.setIdEjemplar(rs.getInt("idEjemplar"));
 					ej.setIdLibro(rs.getInt("idLibro"));
 					ej.setDisponible(rs.getBoolean("disponible"));
+					ej.setTitulo(rs.getString("titulo"));
 					ejemplares.add(ej);
 				}
 			}

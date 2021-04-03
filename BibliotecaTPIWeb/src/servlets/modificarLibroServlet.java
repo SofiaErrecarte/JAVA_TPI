@@ -33,18 +33,6 @@ public class modificarLibroServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*
-		 * LibroController ctrlLibro = new LibroController(); Libro lib=new Libro();
-		 * lib.setIdLibro(Integer.parseInt(request.getParameter("id")));
-		 * lib=ctrlLibro.getByIdLibro(lib); //lo piso con el objeto
-		 * request.setAttribute("libroAEditar", lib);
-		 * request.getRequestDispatcher("modificarLibro.jsp").forward(request,
-		 * response);
-		 */
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-//		LibroController ctrlLibro = new LibroController();
-		//request.setAttribute("listaLibros", ctrlLibro.getAllLibros());
-		//request.getRequestDispatcher("modificarLibro.jsp").forward(request, response);
 		LibroController ctrlLibro =  new  LibroController  ();
 		int  ID  =  Integer.parseInt (request.getParameter("id"));
 		Libro lib = new Libro();
@@ -56,9 +44,6 @@ public class modificarLibroServlet extends HttpServlet {
 		
 	}
 
-	/*
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LibroController ctrlLibro = new LibroController();
 		Libro lib=new Libro();

@@ -31,4 +31,8 @@ public class PoliticaPrestamoController {
 	public LinkedList<PoliticaPrestamo> ppGetByBusqueda(int nombuscar){
 		return dpp.getbybusqueda(nombuscar);
 	}
+	
+	public PoliticaPrestamo getLast() {
+		return dpp.getLast();
+	}
 }

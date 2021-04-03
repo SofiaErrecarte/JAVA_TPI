@@ -82,19 +82,6 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
   </div>
 </div>
 
-<!-- Select Basic 
-<div class="form-group">
-  <label class="col-md-4 control-label" for="selectEstadoCivil">Estado Civil: </label>
-  <div class="col-md-4">
-    <select id="selectEstadoCivil" name="selectEstadoCivil" class="form-control">
-      <option value="s">Soltero</option>
-      <option value="c">Casado</option>
-      <option value="d">Divorciado</option>
-      <option value="v">Viudo</option>
-    </select>
-  </div>
-</div>-->
-
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="cantdiasprestamo">Cant días prestamo: </label>  
@@ -113,7 +100,7 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
                                 <%  for(int i = 0; i < proveedores.size(); i++) {
                                     Proveedor p = (Proveedor)proveedores.get(i);
                                 %>
-                                <option value="<%= p.getIdProveedor() %>"><%= p.getRazonSocial()%></option>
+                                <option value="<%= p.getIdProveedor() %>"><%=p.getCUIT()%> - <%= p.getRazonSocial()%></option>
                                 <% } %>
                             </select>
                             <% }else{ %> <td> No hay proveedores cargados. <a class="agreggatebutton"
@@ -130,7 +117,7 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
 <button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Agregar Libro</button>
 </td>
 <td>
-<input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
+<input type="button" onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
 </td>
 </table>
                             

@@ -25,12 +25,12 @@ public class DataPrestamo {
 		
 		try {
 			stmt= DbConnector.getInstancia().getConn().createStatement();
-			rs= stmt.executeQuery("select * from prestamo");
+			rs= stmt.executeQuery("select * from prestamo order by fechaPrestamo desc");
 			if(rs!=null) {
 				while(rs.next()) {
 					Prestamo p = new Prestamo();
 					p.setIdPrestamo(rs.getInt("idPrestamo"));
-					p.setFechaPrestamo(rs.getDate("fechaHoraPrestamo"));
+					p.setFechaPrestamo(rs.getDate("fechaPrestamo"));
 					p.setFechaADevoler(rs.getDate("FechaADevolver"));
 					p.setIdPersona(rs.getInt("idPersona"));
 					prestamos.add(p);
@@ -60,7 +60,7 @@ public class DataPrestamo {
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"INSERT INTO `biblioteca`.`prestamo` (`fechaHoraPrestamo`, `fechaADevolver`, `idPersona`) VALUES(?,?,?)",
+							"INSERT INTO `biblioteca`.`prestamo` (`fechaPrestamo`, `fechaADevolver`, `idPersona`) VALUES(?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							); //, `fechaEdicion`
 			stmt.setDate(1, (java.sql.Date) p.getFechaPrestamo());
@@ -95,7 +95,7 @@ public class DataPrestamo {
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"UPDATE `biblioteca`.`prestamo` SET `fechaHoraPrestamo` = ?, `fechaADevolver` = ?, `idPersona` = ? WHERE (`idLineaPrestamo` = ?);",
+							"UPDATE `biblioteca`.`prestamo` SET `fechaPrestamo` = ?, `fechaADevolver` = ?, `idPersona` = ? WHERE (`idLineaPrestamo` = ?);",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			stmt.setTimestamp(1, new java.sql.Timestamp(p.getFechaPrestamo().getTime()));
@@ -183,6 +183,49 @@ public class DataPrestamo {
 		return lps;
 	}
 	
-
+	/*
+	 * public int getCantLP(Prestamo p) {
+	 * 
+	 * int cant = 0; PreparedStatement stmt=null; ResultSet rs=null; try {
+	 * stmt=DbConnector.getInstancia().getConn().prepareStatement(
+	 * "select count(*) 'cantidad' from linea_prestamo where idPrestamo=?" );
+	 * stmt.setLong(1, p.getIdPrestamo()); rs=stmt.executeQuery(); if(rs!=null) {
+	 * cant = rs.getInt("cantidad"); } } catch (SQLException e) {
+	 * e.printStackTrace(); }finally { try { if(rs!=null) {rs.close();}
+	 * if(stmt!=null) {stmt.close();} DbConnector.getInstancia().releaseConn(); }
+	 * catch (SQLException e) { e.printStackTrace(); } }
+	 * 
+	 * return cant; }
+	 */
+	public Prestamo getById(Prestamo pr) {
+		Prestamo p = null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from prestamo where idPrestamo=?");
+			stmt.setInt(1, pr.getIdPrestamo());
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()) {
+				p = new Prestamo();
+				p.setIdPrestamo(rs.getInt("idPrestamo"));
+				p.setFechaPrestamo(rs.getDate("fechaPrestamo"));
+				p.setFechaADevoler(rs.getDate("fechaADevolver"));
+				p.setIdPersona(rs.getInt("idPersona"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return p;
+	}
 
 }

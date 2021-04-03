@@ -15,7 +15,7 @@ public class DataPoliticaPrestamo extends DataMethods{
 		
 		try {
 			stmt= DbConnector.getInstancia().getConn().createStatement();
-			rs= stmt.executeQuery("select idPolitica,fechaAlta,cantMaximaSocio,cantMaximaNoSocio from politica_prestamo");
+			rs= stmt.executeQuery("select idPolitica,fechaAlta,cantMaximaSocio,cantMaximaNoSocio from politica_prestamo order by fechaAlta desc");
 			//intencionalmente no se recupera la password
 			if(rs!=null) {
 				while(rs.next()) {
@@ -45,6 +45,39 @@ public class DataPoliticaPrestamo extends DataMethods{
 		
 		return politicas;
 	}
+	
+	public PoliticaPrestamo getLast() {
+		Statement stmt=null;
+		ResultSet rs=null;
+		PoliticaPrestamo pp = new PoliticaPrestamo();
+		
+		try {
+			stmt= DbConnector.getInstancia().getConn().createStatement();
+			rs= stmt.executeQuery("SELECT * FROM politica_prestamo where fechaAlta = (select max(fechaAlta) from politica_prestamo);");
+			if(rs!=null  && rs.next()) {
+					pp.setIdPoliticaPrestamo(rs.getInt("idPolitica"));
+					pp.setFechaAlta(rs.getDate("fechaAlta"));
+					pp.setCantMaximaSocio(rs.getInt("cantMaximaSocio"));
+					pp.setCantMaximaNoSocio(rs.getInt("cantMaximaNoSocio"));
+					}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return pp;
+	}
+	
 	
 	public MyResult add(PoliticaPrestamo pp) {
 		int resultado = -1;

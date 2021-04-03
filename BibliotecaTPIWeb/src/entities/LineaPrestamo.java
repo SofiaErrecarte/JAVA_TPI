@@ -38,4 +38,7 @@ public class LineaPrestamo {
 	public void setFechaDevolucion(Date fechaDevolucion) {
 		this.fechaDevolucion = fechaDevolucion;
 	}
+	
+	
+	
 }

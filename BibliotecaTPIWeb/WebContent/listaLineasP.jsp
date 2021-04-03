@@ -1,29 +1,26 @@
-<%@page import="java.util.LinkedList"%>
-<%@page import="entities.Proveedor"%>
-<%@page import="entities.PoliticaPrestamo"%>
-<%@page import="entities.Prestamo"%>
-<%@page import="entities.Persona"%>
-<%@page import="java.util.Calendar"%>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.LinkedList"%>
+<%@page import="entities.LineaPrestamo"%>
+<%@page import="entities.Prestamo"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Prestamos</title>
-<% 
-LinkedList<Prestamo> prestamos = (LinkedList<Prestamo>)request.getAttribute("listaPrestamos");
-Persona user = (Persona)session.getAttribute("usuario");
+<title>Lineas Prestamo</title>
+<%
+LinkedList<LineaPrestamo> lpr = (LinkedList<LineaPrestamo>)request.getAttribute("listaLineas");
+Prestamo p = (Prestamo)request.getAttribute("prestamo");
+int cant = (Integer)request.getAttribute("cantidad");
+int limiteNS = (Integer)request.getAttribute("limiteNS");
 %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
+<link href = "css/messages.css" rel="stylesheet">
+</head>
 <body>
 <%@ include file="navInicio.jsp"%>
 	<section id="tabs" class="project-tab">
@@ -34,7 +31,7 @@ Persona user = (Persona)session.getAttribute("usuario");
                 <div class="row">
                     <div class="col-md-12">
                         <nav>
-                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                              <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab"
                                 	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="false">Libros</a>
                                 	
@@ -50,58 +47,72 @@ Persona user = (Persona)session.getAttribute("usuario");
                     </div>
                 </div>
             </div>
-            <a href="agregarPrestamo.jsp" method="post" class="btn btn-success">+ Nuevo</a>
-            <div class="container buscar">
-              
+   <div class="form-group">
+  <label class="col-md-4 control-label" for="idEjemplar">Id Prestamo: <%=p.getIdPrestamo()%> </label>  
+  </div>
+  
+  <%if (cant>=limiteNS) { %>
+		<div class="error">No puede agregar más libros a este préstamo. Límite de política alcanzado.</div>		
+	<% } %>
+  
+  <div class="form-group">
+  <label class="col-md-4 control-label" for="idEjemplar">Cantidad de líneas: <%=cant%> </label>  
+  </div>
+  
+  <div class="form-group">
+  <label class="col-md-4 control-label" for="idEjemplar">Límite de libros por préstamo NS: <%=limiteNS%> </label>  
+  </div>
             
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <table class="table" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID Prestamo</th>
-		                    		    	<th>Fecha Prestamo</th>
-		                        			<th>Fecha Devolucion </th>
-		                        			<th>ID Persona</th>
+                                            <th>ID Linea</th>
+		                    		    	<th>ID Ejemplar</th>
+		                    		    	<th>Fecha Devolución</th>
+		                    		    	<th>Devuelto</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <% for (Prestamo p : prestamos) { %>
+                                        <% for (LineaPrestamo lp : lpr) { %>
                     			<tr>
-                    				<td><%=p.getIdPrestamo()%></td>
-                    				<td><%=p.getFechaPrestamo()%></td>
-                    				<td><%=p.getFechaADevoler()%></td>
-                    				<td><%=p.getIdPersona()%></td>
-                    				<td> <a class="editbutton"
-									href="modificarPrestamoServlet?id=<%=p.getIdPrestamo()%>">
-										Editar </a></td>
-									<td> <a class="ejemplaresbutton"
-									href="listarLineasPrestamoServlet?id=<%=p.getIdPrestamo()%>">
-										Detalle </a></td>
-                    				
+                    				<td><%=lp.getIdLineaPrestamo()%></td>
+                    				<td><%=lp.getIdEjemplar()%></td>
+                    				<td><%=lp.getFechaDevolucion()%></td>
+                    				<td><%=lp.isDevuelto()%></td>
+									<td><a class="editbutton"
+									href="editarLineaPServlet?id=<%=lp.getIdLineaPrestamo()%>">
+										Editar</a></td> 
+
                     				 </tr>
                     		<% } %>
                                     </tbody>
                                 </table>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
             </div>
        <table>
-                            <td>
-                           
-                             <form action="agregarPrestamo.jsp" method="post">
-                             <button class="addbutton">Agregar Prestamo</button>
-							 </form> 
-							</td>
+      <tr>
+      <%if(cant<limiteNS){ %>
+      							 <td>
+                           			<a class="addbutton"
+									href="agregarLineaPrestamoServlet?id=<%=p.getIdPrestamo()%>">
+										Agregar Linea </a>
+                        
+							</td> <%} %>
+                          
 							 <td>
-							    <a type="button" class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto; color: white" href="listarLibroServlet" >Inicio</a>
-							  </td>
+							 <a class="addbutton" href="listarPrestamosServlet">Volver</a>
 							 
+							
+							  </td>
+</tr>
                             </table>
-                            
+
         </section>
 
          <!-- Footer -->
