@@ -21,19 +21,19 @@ public class DataLibro extends DataMethods{
 		
 		try {
 			stmt= DbConnector.getInstancia().getConn().createStatement();
-			rs= stmt.executeQuery("select * from libro");
+			rs= stmt.executeQuery("SELECT idLibro, titulo, isbn, nroEdicion, "
+					+ "cantDiasMaxPrestamo, genero, cuit, razonSocial FROM libro inner join proveedor on proveedor.idProveedor=libro.idProveedor;");
 			if(rs!=null) {
 				while(rs.next()) {
 					Libro lib=new Libro();
 					lib.setIdLibro(rs.getInt("idLibro"));
 					lib.setTitulo(rs.getString("titulo"));
 					lib.setIsbn(rs.getInt("isbn"));
-					lib.setFechaEdicion(rs.getDate("fechaEdicion"));
 					lib.setNroEdicion( rs.getInt("nroEdicion"));
 					lib.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
 					lib.setGenero(rs.getString("genero"));
-					lib.setIdProveedor(rs.getInt("idProveedor"));
-					
+					lib.setRazonSocialProv(rs.getString("razonSocial"));
+					lib.setCUIT(rs.getString("cuit"));
 					libros.add(lib);
 				}
 			}

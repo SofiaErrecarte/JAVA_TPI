@@ -14,24 +14,14 @@ import entities.MyResult;
 import logic.LibroController;
 
 
-/**
- * Servlet implementation class modificarLibroServlet
- */
 @WebServlet("/modificarLibroServlet")
 public class modificarLibroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+     
     public modificarLibroServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LibroController ctrlLibro =  new  LibroController  ();
 		int  ID  =  Integer.parseInt (request.getParameter("id"));
@@ -53,7 +43,6 @@ public class modificarLibroServlet extends HttpServlet {
 		int nroedicion = Integer.parseInt(request.getParameter("nroedicion"));
 		int cantdias = Integer.parseInt(request.getParameter("cantdiasprestamo"));
 		String genero = request.getParameter("genero");
-		//int id = Integer.parseInt(request.getParameter("id"));
 		int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
 		
 		

@@ -81,11 +81,9 @@ Persona user = (Persona)session.getAttribute("usuario");
                                             <th>ID</th>
 		                    		    	<th>titulo</th>
 		                        			<th>ISBN</th>
-		                        			<th>Fecha Edicion</th>
 		                        			<th>Numero de edicion</th>
-		                        			<th>Cant. dias</th>
 		                        			<th>Genero</th>
-		                        			<th>Id Proveedor</th>
+		                        			<th>Proveedor</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -94,11 +92,11 @@ Persona user = (Persona)session.getAttribute("usuario");
                     				<td><%=lib.getIdLibro()%></td>
                     				<td><%=lib.getTitulo()%></td>
                     				<td><%=lib.getIsbn()%></td>
-                    				<td><%=lib.getFechaEdicion()%></td>
+                    				<%-- <td><%=lib.getFechaEdicion()%></td> --%>
                     				<td><%=lib.getNroEdicion()%></td>
-                    				<td><%=lib.getCantDiasMaxPrestamo()%></td>
+                    				<%-- <td><%=lib.getCantDiasMaxPrestamo()%></td> --%>
                     				<td><%=lib.getGenero()%></td>
-                    				<td><%=lib.getIdProveedor()%></td>
+                    				<td><%=lib.getCUIT()%> - <%=lib.getRazonSocialProv()%></td>
                     				<%if (user.isAdmin()) {%>
                     				<td> <a class="editbutton"
 									href="modificarLibroServlet?id=<%=lib.getIdLibro()%>">

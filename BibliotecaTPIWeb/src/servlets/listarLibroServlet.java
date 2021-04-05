@@ -16,35 +16,20 @@ import logic.LibroController;
 import logic.PoliticaPrestamoController;
 import logic.ProveedorController;
 
-/**
- * Servlet implementation class libroServlet
- */
 @WebServlet("/listarLibroServlet")
 public class listarLibroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public listarLibroServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		LibroController ctrlLibro = new LibroController();
 		LinkedList<Libro> libros = ctrlLibro.getAllLibros();
 		request.setAttribute("listaLibros", libros);
 		request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		LibroController ctrlLibro = new LibroController();
@@ -52,7 +37,6 @@ public class listarLibroServlet extends HttpServlet {
 		request.setAttribute("listaLibros", libros);
 		request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
 		
-		//doGet(request, response);
 	}
 
 }

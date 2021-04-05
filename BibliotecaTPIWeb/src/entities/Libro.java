@@ -12,7 +12,21 @@ private int cantDiasMaxPrestamo;
 private String genero;
 private int idProveedor;
 private ArrayList<Ejemplar> ejemplaresL;
+private String razonSocialProv;
+private String CUIT;
 
+public String getCUIT() {
+	return CUIT;
+}
+public void setCUIT(String cUIT) {
+	CUIT = cUIT;
+}
+public String getRazonSocialProv() {
+	return razonSocialProv;
+}
+public void setRazonSocialProv(String razonSocialProv) {
+	this.razonSocialProv = razonSocialProv;
+}
 public ArrayList<Ejemplar> getEjemplaresL() {
 	return ejemplaresL;
 }
