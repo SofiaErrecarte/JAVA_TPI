@@ -50,6 +50,14 @@ public class LibroController {
 		return dl.getAllEjemplares();
 	}
 	
+	public LinkedList<Ejemplar> getAllEjemplaresDisponibles(){
+		return dl.getAllEjemplaresDisponibles();
+	}
+	
+	public void setDisponible(Ejemplar ej, boolean disponible) {
+		dl.setDisponible(ej, disponible);
+	}
+	
 	public MyResult deleteEjemplarPorIdLibro (Ejemplar ej, Libro lib) {
 		return dl.deleteEjemplar(ej);		
 	}

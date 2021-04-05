@@ -23,7 +23,7 @@
 <% LineaPrestamo lineaP = (LineaPrestamo)session.getAttribute("nuevaLineaPrestamo"); 
 Prestamo p = (Prestamo)request.getAttribute("prestamo");
 LibroController ctrlL = new LibroController();
-LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplares();
+LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 %>
 
 <section id="tabs" class="project-tab">
@@ -69,16 +69,15 @@ window.onload = function() {
 				                                <option value="<%=e.getIdEjemplar()%>"><%=e.getIdEjemplar()%> - <%=e.getTitulo() %></option>
 				                                <% } %>
 				                            </select>
-				                            <% }else{ %> <td> No hay ejemplares cargados.  <%} %>
+				                            <% }else{ %> <td> No hay ejemplares disponibles.  <%} %>
 				                        
 				  </div>
 </div>
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="devuelto">Devuelto (1 o 0): </label>  
-  <div class="col-md-4">
-  <input id="devuelto" name="devuelto" type="text" class="form-control input-md">
-  </div>
+  <label class="col-md-4 control-label" for="devuelto">Devuelto: </label>  
+ <label class="radio-inline"><input type="radio" name="devuelto" value="1">Sí</label>
+<label class="radio-inline"><input type="radio" name="devuelto" value="0" checked>No</label>
 </div>
 
 

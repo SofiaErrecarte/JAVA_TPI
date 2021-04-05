@@ -59,9 +59,6 @@ public class DataLineaPrestamo {
 			stmt.setBoolean(2, lp.isDevuelto());
 			stmt.setLong(3, lp.getIdPrestamo());
 			stmt.setLong(4, lp.getIdEjemplar());
-			//stmt.setTimestamp(6, new java.sql.Timestamp(lib.getFechaEdicion().getTime()));
-			//stmt.setTimestamp(6, null);
-			
 			stmt.setInt(5, lp.getIdLineaPrestamo());
 			stmt.executeUpdate();
 			
@@ -139,5 +136,38 @@ public class DataLineaPrestamo {
 		}
 		
 		return lineasP;
+	}
+	
+	public LineaPrestamo getById(LineaPrestamo lpr) {
+		LineaPrestamo lp =null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from linea_prestamo where idLineaPrestamo=?"
+					);
+			stmt.setLong(1, lpr.getIdLineaPrestamo());
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				lp.setIdEjemplar(rs.getInt("idEjemplar"));
+				lp.setIdLineaPrestamo(rs.getInt("idLineaPrestamo"));
+				lp.setFechaDevolucion(rs.getDate("fechaDevolucion"));
+				lp.setDevuelto(rs.getBoolean("devuelto"));
+				lp.setIdPrestamo(rs.getInt("idPrestamo"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return lp;
 	}
 }

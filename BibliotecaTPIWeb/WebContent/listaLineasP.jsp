@@ -52,7 +52,7 @@ int limiteNS = (Integer)request.getAttribute("limiteNS");
   </div>
   
   <%if (cant>=limiteNS) { %>
-		<div class="error">No puede agregar más libros a este préstamo. Límite de política alcanzado.</div>		
+		<div class="warning">No puede agregar más libros a este préstamo. Límite de política alcanzado.</div>		
 	<% } %>
   
   <div class="form-group">
@@ -82,7 +82,7 @@ int limiteNS = (Integer)request.getAttribute("limiteNS");
                     				<td><%=lp.getFechaDevolucion()%></td>
                     				<td><%=lp.isDevuelto()%></td>
 									<td><a class="editbutton"
-									href="editarLineaPServlet?id=<%=lp.getIdLineaPrestamo()%>">
+									href="modificarLineaPServlet?id=<%=lp.getIdLineaPrestamo()%>">
 										Editar</a></td> 
 
                     				 </tr>

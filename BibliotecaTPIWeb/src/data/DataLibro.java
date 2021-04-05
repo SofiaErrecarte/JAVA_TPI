@@ -364,6 +364,44 @@ public class DataLibro extends DataMethods{
 		
 		return ejemplares;
 	}
+	
+	public LinkedList<Ejemplar> getAllEjemplaresDisponibles(){
+		Statement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Ejemplar> ejemplares= new LinkedList<>();
+		
+		try {
+			stmt= DbConnector.getInstancia().getConn().createStatement();
+			rs= stmt.executeQuery("SELECT ejemplar.idEjemplar, ejemplar.disponible, ejemplar.idLibro, libro.titulo\r\n" + 
+					"FROM ejemplar inner join libro  on libro.idLibro=ejemplar.idLibro where ejemplar.disponible=true;");
+			
+			if(rs!=null) {
+				while(rs.next()) {
+					Ejemplar ej = new Ejemplar();
+					ej.setIdEjemplar(rs.getInt("idEjemplar"));
+					ej.setIdLibro(rs.getInt("idLibro"));
+					ej.setDisponible(rs.getBoolean("disponible"));
+					ej.setTitulo(rs.getString("titulo"));
+					ejemplares.add(ej);
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return ejemplares;
+	}
 
 	public LinkedList<Ejemplar> getEjByIdLibro(Libro lib) {
 		Ejemplar ej =null;
@@ -461,6 +499,40 @@ public class DataLibro extends DataMethods{
             }
 		}
 		return ej;
+    }
+	
+	//modifico el estado a no disponible del ejemeplar
+	public void setDisponible(Ejemplar ej, boolean disponible) {
+		PreparedStatement stmt= null;
+		ResultSet keyResultSet=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().
+					prepareStatement(
+							"UPDATE `biblioteca`.`ejemplar` SET `disponible` = ? WHERE (`idEjemplar` = ?);",
+							PreparedStatement.RETURN_GENERATED_KEYS
+							);
+			stmt.setBoolean(1,  disponible);
+			stmt.setLong(2, ej.getIdEjemplar());
+			
+
+            stmt.executeUpdate();
+			
+			keyResultSet=stmt.getGeneratedKeys();
+			if(keyResultSet!=null && keyResultSet.next()){
+                ej.setIdEjemplar(keyResultSet.getInt(1));
+			}
+
+		}  catch (SQLException e) {
+            e.printStackTrace();
+		} finally {
+            try {
+                if(keyResultSet!=null)keyResultSet.close();
+                if(stmt!=null)stmt.close();
+                DbConnector.getInstancia().releaseConn();
+            } catch (SQLException e) {
+            	e.printStackTrace();
+            }
+		}
     }
 
 	public MyResult deleteEjemplar(Ejemplar ej) {
