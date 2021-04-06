@@ -32,6 +32,10 @@ public Prestamo getByIdPrestamo(Prestamo p) {
 	return dp.getById(p);
 }
 
+public void setEstado(Prestamo p, String e) {
+	 dp.setEstado(p, e);
+	}
+
 
 	/*
 	 * public int getCantLP(Prestamo p) { return dp.getCantLP(p); }

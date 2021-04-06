@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.LinkedList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -70,6 +71,20 @@ public class agregarLineaPrestamoServlet extends HttpServlet {
 		ej.setDisponible(devuelto);
 		ctrlL.setDisponible(ej, devuelto);
 		
+		//verifico estado prestamo
+		LinkedList<LineaPrestamo> lineasP = ctrlP.getLPByPrestamo(p);
+		int cantTot = lineasP.size();
+		int cantDev = 0;
+		for(LineaPrestamo lp : lineasP) {
+			if(lp.isDevuelto()) {
+				cantDev++;
+			}
+		}
+				
+		if(cantDev==cantTot) {
+			String e = "devuelto";
+			ctrlP.setEstado(p, e);
+		}
 		
 		p.addLp(lpr); //la añado a la coleccion de lp del prestamo
 		ctrlLP.addLineaPrestamo(lpr);

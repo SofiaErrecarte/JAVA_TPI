@@ -7,7 +7,9 @@ import java.util.LinkedList;
 public class Prestamo {
 	private int idPrestamo;
 	private Date fechaPrestamo;
-	//private int diasPrestamo;
+	private String estado;
+	
+
 	private Date fechaADevoler;
 	private LinkedList<LineaPrestamo> lineasPrestamo = new LinkedList<LineaPrestamo>();
 	private int idPersona;
@@ -18,6 +20,14 @@ public class Prestamo {
 	public void setIdPersona(int idPersona) {
 		this.idPersona = idPersona;
 	}
+	
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
 	public LinkedList<LineaPrestamo> getLineasPrestamo() {
 		return lineasPrestamo;
 	}

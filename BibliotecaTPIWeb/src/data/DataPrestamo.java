@@ -33,6 +33,7 @@ public class DataPrestamo {
 					p.setFechaPrestamo(rs.getDate("fechaPrestamo"));
 					p.setFechaADevoler(rs.getDate("FechaADevolver"));
 					p.setIdPersona(rs.getInt("idPersona"));
+					p.setEstado(rs.getString("estado"));
 					prestamos.add(p);
 				}
 			}
@@ -60,12 +61,13 @@ public class DataPrestamo {
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"INSERT INTO `biblioteca`.`prestamo` (`fechaPrestamo`, `fechaADevolver`, `idPersona`) VALUES(?,?,?)",
+							"INSERT INTO `biblioteca`.`prestamo` (`fechaPrestamo`, `fechaADevolver`, `idPersona`, `estado`) VALUES(?, ?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							); //, `fechaEdicion`
 			stmt.setDate(1, (java.sql.Date) p.getFechaPrestamo());
 			stmt.setDate(2, (java.sql.Date) p.getFechaADevoler());
 			stmt.setLong(3,p.getIdPersona());
+			stmt.setString(4, "Abierto");
 			
 			stmt.executeUpdate();
 			
@@ -119,6 +121,32 @@ public class DataPrestamo {
             }
 		}
 		return p;
+	}
+	
+	public void setEstado(Prestamo p, String estado) {
+		PreparedStatement stmt= null;
+		ResultSet keyResultSet=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().
+					prepareStatement(
+							"UPDATE `biblioteca`.`prestamo` SET `estado` = ? WHERE (`idLineaPrestamo` = ?);",
+							PreparedStatement.RETURN_GENERATED_KEYS
+							);
+			stmt.setString(1, estado);			
+			stmt.setInt(2, p.getIdPrestamo());
+			stmt.executeUpdate();
+			
+		}  catch (SQLException e) {
+            e.printStackTrace();
+		} finally {
+            try {
+                if(keyResultSet!=null)keyResultSet.close();
+                if(stmt!=null)stmt.close();
+                DbConnector.getInstancia().releaseConn();
+            } catch (SQLException e) {
+            	e.printStackTrace();
+            }
+		}
 	}
 	
 	public Prestamo deletePrestamo (Prestamo p) {
@@ -212,6 +240,7 @@ public class DataPrestamo {
 				p.setFechaPrestamo(rs.getDate("fechaPrestamo"));
 				p.setFechaADevoler(rs.getDate("fechaADevolver"));
 				p.setIdPersona(rs.getInt("idPersona"));
+				p.setEstado(rs.getString("estado"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
