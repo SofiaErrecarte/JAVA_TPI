@@ -102,7 +102,7 @@ int limiteNS = (Integer)request.getAttribute("limiteNS");
                     </div>
                 </div>
             </div>
-      <!--  <table>
+      <table>
       <tr>
       <%if(cant<limiteNS){ %>
       							 <td>
@@ -118,7 +118,7 @@ int limiteNS = (Integer)request.getAttribute("limiteNS");
 							
 							  </td>
 </tr>
-                            </table>--> 
+                            </table>
 
         </section>
 

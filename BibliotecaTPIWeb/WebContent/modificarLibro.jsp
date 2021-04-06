@@ -106,10 +106,11 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
   <div class="col-md-4">
    <% if( proveedores != null) {%>
                             <select name="idProveedor" value=<%=lib.getIdProveedor()%> class="form-control input-md">
+                                <option selected="true" value="<%= lib.getIdProveedor() %>"><%= lib.getIdProveedor()%></option>
                                 <%  for(int i = 0; i < proveedores.size(); i++) {
                                     Proveedor p = (Proveedor)proveedores.get(i);
                                 %>
-                                <option value="<%= p.getIdProveedor() %>"><%= p.getRazonSocial()%></option>
+                                <option value="<%= p.getIdProveedor() %>"><%=p.getCUIT()%> - <%= p.getRazonSocial()%></option>
                                 <% } %>
                             </select>
                             <% }else{ %> <td> No hay proveedores cargados. <a class="agreggatebutton"

@@ -55,7 +55,7 @@ public class DataLineaPrestamo {
 							"UPDATE `biblioteca`.`linea_prestamo` SET `fechadevolucion` = ?, `devuelto` = ?, `idPrestamo` = ?, `idEjemplar` = ? WHERE (`idLineaPrestamo` = ?);",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
-			stmt.setTimestamp(6, new java.sql.Timestamp(lp.getFechaDevolucion().getTime()));
+			stmt.setDate(1, lp.getFechaDevolucion());
 			stmt.setBoolean(2, lp.isDevuelto());
 			stmt.setLong(3, lp.getIdPrestamo());
 			stmt.setLong(4, lp.getIdEjemplar());
@@ -139,7 +139,7 @@ public class DataLineaPrestamo {
 	}
 	
 	public LineaPrestamo getById(LineaPrestamo lpr) {
-		LineaPrestamo lp =null;
+		LineaPrestamo lp = null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		try {
@@ -148,7 +148,8 @@ public class DataLineaPrestamo {
 					);
 			stmt.setLong(1, lpr.getIdLineaPrestamo());
 			rs=stmt.executeQuery();
-			if(rs!=null) {
+			if(rs!=null && rs.next()) {
+				lp = new LineaPrestamo();
 				lp.setIdEjemplar(rs.getInt("idEjemplar"));
 				lp.setIdLineaPrestamo(rs.getInt("idLineaPrestamo"));
 				lp.setFechaDevolucion(rs.getDate("fechaDevolucion"));

@@ -47,7 +47,7 @@
   <!-- Este me guarda el atributo id -->	
     <input type="text" name="id" value=<%=pp.getIdPoliticaPrestamo()%> hidden="true">	  
      <!--  Este me lo muestra deshabilitado para q se vea el numero -->  
-   <input type="text" name="idPP" value=<%=pp.getIdPoliticaPrestamo()%> class="form-control input-md" disabled hidden="true" >
+   <input type="text" name="idPP" value=<%=pp.getIdPoliticaPrestamo()%> class="form-control input-md" disabled >
   </div>
 </div> 
  
@@ -55,7 +55,7 @@
   <label class="col-md-4 control-label" for="fechaalta">Fecha Alta: </label>  
   <div class="col-md-4">
  <!--  Este me lo muestra deshabilitado para q se vea el numero -->  
-   <input type="text" name="idPP" value=<%=pp.getFechaAlta()%> class="form-control input-md" disabled hidden="true" >
+   <input type="text" name="idPP" value=<%=pp.getFechaAlta()%> class="form-control input-md" disabled  >
   </div>
 </div>
 
