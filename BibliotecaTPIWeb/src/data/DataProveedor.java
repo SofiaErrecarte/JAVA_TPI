@@ -8,7 +8,6 @@ import java.util.LinkedList;
 
 import java.sql.Statement;
 import entities.*;
-import entities.MyResult;
 
 public class DataProveedor extends DataMethods{
 	
@@ -256,6 +255,46 @@ public class DataProveedor extends DataMethods{
 		return Delete(1);
 	}
 		
+	public LinkedList<Proveedor> getByDesc(String nombuscar){
+		Statement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Proveedor> proveedores = new LinkedList<>();
+		
+		try {
+			stmt= DbConnector.getInstancia().getConn().createStatement();
+			rs= stmt.executeQuery("select * from proveedor where cuit LIKE '%" +nombuscar+ "%'"
+					);
+			//intencionalmente no se recupera la password
+			if(rs!=null) {
+				while(rs.next()) {
+					Proveedor prov = new Proveedor();
+					prov.setCUIT(rs.getString("cuit"));
+					prov.setRazonSocial(rs.getString("razonSocial"));
+					prov.setDireccion(rs.getString("direccion"));
+					prov.setMail(rs.getString("email"));
+					prov.setTelefono(rs.getString("telefono"));
+					prov.setIdProveedor(rs.getInt("idProveedor"));
+					proveedores.add(prov);
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return proveedores;
+	}
+
 	
 
 }

@@ -334,7 +334,7 @@ public class DataLibro extends DataMethods{
 		
 		try {
 			stmt= DbConnector.getInstancia().getConn().createStatement();
-			rs= stmt.executeQuery("SELECT ejemplar.idEjemplar, ejemplar.disponible, ejemplar.idLibro, libro.titulo\r\n" + 
+			rs= stmt.executeQuery("SELECT ejemplar.idEjemplar, ejemplar.disponible, ejemplar.idLibro, libro.titulo, libro.titulo\r\n" + 
 					"FROM ejemplar inner join libro  on libro.idLibro=ejemplar.idLibro;");
 			
 			if(rs!=null) {
@@ -372,14 +372,15 @@ public class DataLibro extends DataMethods{
 		
 		try {
 			stmt= DbConnector.getInstancia().getConn().createStatement();
-			rs= stmt.executeQuery("SELECT ejemplar.idEjemplar, ejemplar.disponible, ejemplar.idLibro, libro.titulo\r\n" + 
-					"FROM ejemplar inner join libro  on libro.idLibro=ejemplar.idLibro where ejemplar.disponible=true;");
+			rs= stmt.executeQuery("SELECT idEjemplar, disponible, libro.idLibro, titulo \r\n"
+					+ "FROM ejemplar inner join libro on libro.idLibro=ejemplar.idLibro \r\n"
+					+ "where ejemplar.disponible=true;");
 			
 			if(rs!=null) {
 				while(rs.next()) {
 					Ejemplar ej = new Ejemplar();
 					ej.setIdEjemplar(rs.getInt("idEjemplar"));
-					ej.setIdLibro(rs.getInt("idLibro"));
+					ej.setIdLibro(rs.getInt("libro.idLibro"));
 					ej.setDisponible(rs.getBoolean("disponible"));
 					ej.setTitulo(rs.getString("titulo"));
 					ejemplares.add(ej);

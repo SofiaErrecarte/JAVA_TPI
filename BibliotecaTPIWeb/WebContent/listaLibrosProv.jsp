@@ -10,20 +10,26 @@
 <% 
    LinkedList<LibroProv> list = (LinkedList<LibroProv>)request.getAttribute("listaLibrosProv");
 %>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href = "css/listado.css" rel="stylesheet">
+<link href = "css/botones.css" rel="stylesheet">
+<link href = "css/messages.css" rel="stylesheet">
 </head>
 <body>
-<div class="container">
+<div class="container"  style = "font-family:arial; size=3">
 		<div class="row">
         	<h4>Libros por Proveedor</h4>
             	<div class="col-12 col-sm-12 col-lg-12">
                 	<div class="table-responsive">
-                    	<table class="table">
+                    	<table class="table"  class="text-center">
                     		<thead>
                     			<tr>
-                    				<th>ID Libro</th>
-                    		    	<th>Titulo</th>
-                        			<th>ISBN</th>
-                        			<th>género</th>
+                    				<th class="text-center">ID Libro</th>
+                    		    	<th class="text-center">Titulo</th>
+                        			<th class="text-center">ISBN</th>
+                        			<th class="text-center">género</th>
                         			<th>Id Proveedor</th>
                         			<th>CUIT</th>
                         			<th>Razon Social</th>
@@ -32,30 +38,25 @@
                     		<tbody>
                     		<% for (LibroProv libP : list) { %>
                     			<tr>
-                    				<td><%=libP.getIdLibro()%></td>
-                    				<td><%=libP.getTitulo()%></td>
-                    				<td><%=libP.getIsbn()%></td>
-                    				<td><%=libP.getGenero()%></td>
-                    				<td><%=libP.getIdProveedor()%></td>
-                    				<td><%=libP.getCUIT()%></td>
-                    				<td><%=libP.getRazonSocial()%></td>
+                    				<td class="text-center"><%=libP.getIdLibro()%></td>
+                    				<td class="text-center"><%=libP.getTitulo()%></td>
+                    				<td class="text-center"><%=libP.getIsbn()%></td>
+                    				<td class="text-center"><%=libP.getGenero()%></td>
+                    				<td class="text-center"><%=libP.getIdProveedor()%></td>
+                    				<td class="text-center"><%=libP.getCUIT()%></td>
+                    				<td class="text-center"><%=libP.getRazonSocial()%></td>
                     				<td>
                     				    
                     				</td>
                     			</tr>
                     		<% } %>
                     		</tbody>	
-	 
-	</div> <!-- /container --> 
-	 <div class="container" style="background-color:#f1f1f1">
-    <!--   <button type="button" class="cancelbtn">Cancel</button> -->
-    <input type="button" onclick="history.back()" name="Volver" value="Volver">
+
+  </table>
+  <input type="button" onclick="history.back()" class="addbutton" name="Volver" value="Volver">
   </div>
-   <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+  </div>
+  </div>
+ </div>
 </body>
 </html>

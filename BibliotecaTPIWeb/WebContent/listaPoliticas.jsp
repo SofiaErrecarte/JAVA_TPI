@@ -21,7 +21,7 @@
 </head>
 <body>
 <%@ include file="navInicio.jsp"%>
-	<section id="tabs" class="project-tab" style = "font-family:arial" size=3>
+	<section id="tabs" class="project-tab" style = "font-family:arial; size=3">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -36,6 +36,9 @@
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="true">Politicas Prestamo</a>
+                          		<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                               	 
                             </div>
                         </nav>
                     </div>
@@ -60,7 +63,7 @@
                 <div class="container buscar">
                 <a href="agregarPolitica.jsp" method="post" class="btn btn-success">+ Nuevo</a>
                	<form action="buscarPoliticaServlet" class="form">
-               			<input class="form-control" type="text" name="txtbuscar">
+               			<input class="form-control" placeholder="ID Politica"type="text" name="txtbuscar">
                			<input class="btn btn" type="submit" value="Buscar"	>
                			               
                	</form>
@@ -98,15 +101,10 @@
                             
                         </div>
                         
-                        <td>
-                           
-                             <form action="agregarPolitica.jsp" method="post">
-                             <button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Agregar Politica</button>
-							 </form> 
-							</td>
-							 <td>
-							    <a type="button" class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto; color: white" href="listarLibroServlet" >Inicio</a>
-							  </td>
+                       
+							 
+							    <!--  <a type="button" class="editbutton">Inicio</a>
+							  -->
                    
             </section>
        

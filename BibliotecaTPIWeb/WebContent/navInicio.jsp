@@ -11,7 +11,6 @@
 
 	<% Persona per = (Persona)session.getAttribute("usuario");
   				if (per != null) { %>
-
 	<header role="banner">
 		<nav class="navbar navbar-expand-lg  bg-dark">
 			<div class="container-fluid">
@@ -26,11 +25,11 @@
 
 				<div class="collapse navbar-collapse" id="navbarsExample05">
 					<ul class="navbar-nav pl-md-5 ml-auto">
-						<li class="nav-item"><a class="nav-link" href="index.jsp">Inicio</a>
+						<li class="nav-item"><a class="nav-link" href="index.jsp" style = "font-family:arial; size=4">Inicio</a>
 						</li>
 						<li class="nav-item"><a class="nav-link"
-							href="perfilUsuario.jsp">Mi Perfil</a></li>
-						<li class="nav-item"><a class="nav-link" href="index.jsp">Cerrar
+							href="perfilUsuario.jsp" style = "font-family:arial; size=4">Mi Perfil </a></li>
+						<li class="nav-item"><a class="nav-link"style = "font-family:arial; size=4" href="index.jsp">Cerrar
 								Sesión</a></li>
 					</ul>
 

@@ -23,8 +23,9 @@
 <body>
            
 <%@ include file="navInicio.jsp"%>
-	<section id="tabs" class="project-tab">
-            <div class="container">
+	<section id="tabs" class="project-tab" style = "font-family:arial; size=3">
+            
+         <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                      <div class="container">
@@ -38,11 +39,15 @@
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="true">Politicas Prestamo</a>
+                            	<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                               	 
                             </div>
                         </nav>
                     </div>
                 </div>
             </div>
+            
             <% if (request.getAttribute("result")!=null) {
         	   MyResult res = (MyResult)request.getAttribute("result");
         	   if(res.getResult().equals(MyResult.results.OK)){
@@ -55,36 +60,43 @@
                    <%}
                    }
                  %>
+                 <div class="container buscar">
+                <a href="agregarProveedor.jsp" method="post" class="btn btn-success">+ Nuevo</a>
+               	<form action="buscarProveedorServlet" class="form">
+               			<input class="form-control" placeholder="CUIT proveedor" type="text" name="txtbuscar">
+               			<input class="btn btn" type="submit" value="Buscar"	>
+               	</form>
+                </div>
+                
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                <table class="table" cellspacing="0">
+                                <table class="table" class="text-center" >
                                     <thead>
                                         <tr>
                                             <th>Id Proveedor</th>
-                    				<th>CUIT</th>
-                    		    	<th>Razón Social</th>
-                        			<th>Teléfono</th>
-                        			<th>E-Mail</th>
-                        			<th>Dirección</th>
+                    				<th  class="text-center">CUIT</th>
+                    		    	<th  class="text-center">Razón Social</th>
+                        			<th  class="text-center">Teléfono</th>
+                        			<th  class="text-center">E-Mail</th>
+                        			<th  class="text-center">Dirección</th>
+                        			<th  class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                     		<% for (Proveedor prov : list) { %>
                     			<tr>
-                    				<td><%=prov.getIdProveedor()%></td>
-                    				<td><%=prov.getCUIT()%></td>
-                    				<td><%=prov.getRazonSocial() %></td>
-                    				<td><%=prov.getTelefono()%></td>
-                    				<td><%=prov.getMail()%></td>
-                    				<td><%=prov.getDireccion()%></td>
-                    				<td>
-                    				  <td> <a class="editbutton"
-									href="modificarProveedorServlet?id=<%=prov.getIdProveedor()%>">
-										Editar </a></td>
-										<td><a class="deletebutton"
-									href="borrarProveedorServlet?id=<%=prov.getIdProveedor()%>">
-										Eliminar</a></td>
-                    				 
+                    				<td  class="text-center"><%=prov.getIdProveedor()%></td>
+                    				<td  class="text-center"><%=prov.getCUIT()%></td>
+                    				<td  class="text-center"><%=prov.getRazonSocial() %></td>
+                    				<td  class="text-center"><%=prov.getTelefono()%></td>
+                    				<td  class="text-center"><%=prov.getMail()%></td>
+                    				<td class="text-center"><%=prov.getDireccion()%></td>
+                    				<td class="text-center">
+                    				  <a class="editbutton"	href="modificarProveedorServlet?id=<%=prov.getIdProveedor()%>">
+										Editar </a>
+										<a class="deletebutton"	href="borrarProveedorServlet?id=<%=prov.getIdProveedor()%>">
+										Eliminar</a>
+                    				 </td>    
                     			</tr>
                     		<% } %>
                     		</tbody>
@@ -96,7 +108,7 @@
                 </div>
             </div>
         
- 	 <table>
+ 	 <!--  <table>
                             <td>
                            
                              <form action="agregarProveedor.jsp" method="post">
@@ -107,16 +119,11 @@
 							    <a type="button" class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto; color: white" href="listarLibroServlet" >Inicio</a>
 							  </td>
 							 
-                            </table>
-                            </section>
+                            </table>-->
+    </section>
 
 
          <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+<%@ include file = "footer.jsp" %>
 </body>
 </html>

@@ -17,7 +17,7 @@
 <!------ Include the above in your HEAD tag ---------->
 </head>
 <body>
-<section id="tabs" class="project-tab">
+<section id="tabs" class="project-tab" style = "font-family:arial; size=3">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -29,6 +29,9 @@
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
+                           <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                               	 
                             </div>
                         </nav>
                     </div>
@@ -98,10 +101,10 @@
 </fieldset>
 <table>
 <td>
-<button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Agregar Proveedor</button>
+<button class="addbutton">Agregar Proveedor</button>
 </td>
 <td>
-<input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
+<input type="button" = onclick="history.back()" class="addbutton" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
 </td>
 </table>
 
@@ -109,11 +112,6 @@
 </form>
 
   </section>
- <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+ <%@ include file = "footer.jsp" %>
 </body>
 </html>

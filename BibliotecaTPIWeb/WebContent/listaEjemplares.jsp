@@ -24,7 +24,7 @@ Persona user = (Persona)session.getAttribute("usuario");
 </head>
 <body>
 <%@ include file="navInicio.jsp"%>
-	<section id="tabs" class="project-tab">
+	<section id="tabs" class="project-tab"  style = "font-family:arial; size=3">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -40,6 +40,9 @@ Persona user = (Persona)session.getAttribute("usuario");
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
+                               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                               	 
                                 <%} %>
                             </div>
                         </nav>
@@ -58,22 +61,30 @@ Persona user = (Persona)session.getAttribute("usuario");
                    <%}
                    }
                  %>
-            
+            <div class="container buscar">
+                <a href="agregarEjemplarServlet?id=<%=lib.getIdLibro()%>" method="post" class="btn btn-success">+ Nuevo Ejemplar</a>
+               	
+                </div>
+               
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                <table class="table" cellspacing="0">
+                                <table class="table" class="text-center">
                                     <thead>
                                         <tr>
-                                            <th>ID </th>
-		                    		    	<th>Disponible</th>
+                                        	<th class="text-center">Titulo Libro </th>
+                                            <th class="text-center">ID Ejemplar </th>
+		                    		    	<th class="text-center">Disponible</th>
+		                    		    	<th class="text-center"> Acción </th>
+                                       
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <% for (Ejemplar e : ej) { %>
                     			<tr>
-                    				<td><%=e.getIdEjemplar()%></td>
-                    				<td><%=e.isDisponible()%></td>
-									<td><a class="deletebutton"
+                    				<td class="text-center"><%=e.getTitulo()%></td>
+                    				<td class="text-center"><%=e.getIdEjemplar()%></td>
+                    				<td class="text-center"><%=e.isDisponible()%></td>
+									<td class="text-center"><a class="deletebutton"
 									href="borrarEjemplarServlet?id=<%=e.getIdEjemplar()%>">
 										Eliminar</a></td> 
 
@@ -87,11 +98,11 @@ Persona user = (Persona)session.getAttribute("usuario");
                     </div>
                 </div>
             </div>
-       <table>
+      <!--  <table>
       <tr>
       							 <td>
                            			<a class="addbutton"
-									href="agregarEjemplarServlet?id=<%=lib.getIdLibro()%>">
+									href="agregarEjemplarServlet?id=<%//=lib.getIdLibro()%>">
 										Agregar Ejemplar </a>
                         
 							</td>
@@ -102,16 +113,11 @@ Persona user = (Persona)session.getAttribute("usuario");
 							
 							  </td>
 </tr>
-                            </table>
+                            </table>--> 
 
         </section>
 
          <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+<%@ include file = "footer.jsp" %>
 </body>
 </html>

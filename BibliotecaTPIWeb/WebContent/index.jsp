@@ -28,8 +28,8 @@
 	<% } %>
     <!-- Login Form -->
     <form action="init" method="post">
-      <input type="text" id="login" class="fadeIn second" placeholder="email" name="email" required>
-      <input type="password" id="password" class="fadeIn third" placeholder="password" name="password" required>
+      <input type="text" id="login" class="fadeIn second" placeholder="Usuario" name="email" required>
+      <input type="password" id="password" class="fadeIn third" placeholder="Password" name="password" required>
       <input type="submit" class="fadeIn fourth" value="Log In">
     </form>
 

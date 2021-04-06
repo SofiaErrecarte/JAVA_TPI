@@ -39,5 +39,8 @@ public class ProveedorController {
 		return dpr.getById(prov);
 	}
 	
+	public LinkedList<Proveedor> getByDesc(String nombuscar){
+		return dpr.getByDesc(nombuscar);
+	}
 	
 }

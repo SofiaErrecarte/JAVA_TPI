@@ -8,13 +8,16 @@
 <meta charset="ISO-8859-1">
 <title>Editar Politica de Prestamo</title>
 <% PoliticaPrestamo pp=(PoliticaPrestamo)request.getAttribute("politicaAEditar"); %>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
+<link href = "css/botones.css" rel="stylesheet">
+<link href = "css/messages.css" rel="stylesheet">
 </head>
 <body>
-<section id="tabs" class="project-tab">
+<%@ include file="navInicio.jsp"%>
+<section id="tabs" class="project-tab"  style = "font-family:arial; size=3">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -26,6 +29,9 @@
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                               	 
                             </div>
                         </nav>
                     </div>
@@ -85,12 +91,7 @@
 	</section>
 	</form>
 	</section>
- <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+<%@ include file = "footer.jsp" %>
  
 </body>
 </html>

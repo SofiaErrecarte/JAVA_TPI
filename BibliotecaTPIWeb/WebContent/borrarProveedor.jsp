@@ -7,29 +7,29 @@
 <meta charset="ISO-8859-1">
 <title>Borrar Proveedor</title>
 </head>
-<body>
-<form action="borrarProveedorServlet" method="post">
+<body style = "font-family:arial; size=3">
+<form action="borrarProveedorServlet" method="post" style = "font-family:arial; size=3">
 
   	<div class="container">
   	
     <label for="id"><b>Ingrese el ID del proveedor que desea borrar:</b></label>
-    <input type="number"  name="id">
+    <input type="number" name="id">
 
 	
-    <button type="submit">Borrar proveedor</button>
+    <button type="submit" clas="addbutton">Borrar proveedor</button>
     
   </div>
 
 	
-  <div class="container" style="background-color:#f1f1f1">
+  <div class="container">
     <!--   <button type="button" class="cancelbtn">Cancel</button> -->
-    <input type="button" onclick="history.back()" name="Cancelar" value="Cancelar">
+    <input type="button" onclick="history.back()" class="addbutton" name="Cancelar" value="Cancelar">
   </div>
   
   
 </form>
-	<form  action="listarProveedorServlet" method="post">
-	<button type="submit">Ver Proveedores</button>
+	<form  action="listarProveedorServlet" method="post" style = "font-family:arial; size=3">
+	<button type="submit" class="addbutton">Ver Proveedores</button>
     </form>
 	
 

@@ -27,7 +27,8 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
      //ArrayList < Opcion > opciones = cc . getOpcionesByIdCaracteristica (c . getIdCaracteristica ());
      
  %>
- <section id="tabs" class="project-tab">
+ <%@ include file="navInicio.jsp"%>
+ <section id="tabs" class="project-tab" style = "font-family:arial; size=3">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -39,6 +40,9 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link " id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                               	 
                             </div>
                         </nav>
                     </div>
@@ -119,10 +123,10 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
 
 <table>
 <td>
-<button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Modificar</button>
+<button class="addbutton">Modificar</button>
 </td>
 <td>
-<input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Cancelar" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
+<input type="button" = onclick="history.back()" class="addbutton" name="Volver" value="Cancelar" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
 </td>
 </table>
 <%if ((request.getAttribute("error"))!=null) { %>
@@ -131,11 +135,6 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
 	</section>
 	</form>
 	</section>
- <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+<%@ include file = "footer.jsp" %>
 </body>
 </html>

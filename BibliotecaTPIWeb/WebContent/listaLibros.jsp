@@ -19,12 +19,11 @@ Persona user = (Persona)session.getAttribute("usuario");
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
 <body>
 <%@ include file="navInicio.jsp"%>
-	<section id="tabs" class="project-tab">
+	<section id="tabs" class="project-tab" style = "font-family:arial;size=3">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -65,47 +64,48 @@ Persona user = (Persona)session.getAttribute("usuario");
             <div class="container buscar">
                 <a href="agregarLibro.jsp" method="post" class="btn btn-success">+ Nuevo</a>
                	<form action="buscarLibroServlet" class="form">
-               			<input class="form-control" type="text" name="txtbuscar">
+               			<input class="form-control" placeholder="Titulo del Libro" type="text" name="txtbuscar">
                			<input class="btn btn" type="submit" value="Buscar"	>
                			               
                	</form>
+               	
                 </div>    
                </div>
                
                
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                <table class="table" cellspacing="0">
+                                <table class="table" class="text-center">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-		                    		    	<th>titulo</th>
-		                        			<th>ISBN</th>
-		                        			<th>Numero de edicion</th>
-		                        			<th>Genero</th>
-		                        			<th>Proveedor</th>
+                                            <th class="text-center">ID</th>
+		                    		    	<th class="text-center">titulo</th>
+		                        			<th class="text-center">ISBN</th>
+		                        			<th class="text-center">Numero de edicion</th>
+		                        			<th class="text-center">Genero</th>
+		                        			<th class="text-center">Proveedor</th>
+		                        			<th class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <% for (Libro lib : ll) { %>
                     			<tr>
-                    				<td><%=lib.getIdLibro()%></td>
-                    				<td><%=lib.getTitulo()%></td>
-                    				<td><%=lib.getIsbn()%></td>
+                    				<td class="text-center"><%=lib.getIdLibro()%></td>
+                    				<td class="text-center"><%=lib.getTitulo()%></td>
+                    				<td class="text-center"><%=lib.getIsbn()%></td>
                     				<%-- <td><%=lib.getFechaEdicion()%></td> --%>
-                    				<td><%=lib.getNroEdicion()%></td>
+                    				<td class="text-center"><%=lib.getNroEdicion()%></td>
                     				<%-- <td><%=lib.getCantDiasMaxPrestamo()%></td> --%>
-                    				<td><%=lib.getGenero()%></td>
-                    				<td><%=lib.getCUIT()%> - <%=lib.getRazonSocialProv()%></td>
+                    				<td class="text-center"><%=lib.getGenero()%></td>
+                    				<td class="text-center"><%=lib.getCUIT()%> - <%=lib.getRazonSocialProv()%></td>
                     				<%if (user.isAdmin()) {%>
-                    				<td> <a class="editbutton"
+                    				<td class="text-center">
+                    				<a class="editbutton"
 									href="modificarLibroServlet?id=<%=lib.getIdLibro()%>">
-										Editar </a></td>
-										<td><a class="deletebutton"
-									href="borrarLibroServlet?id=<%=lib.getIdLibro()%>">
-										Eliminar</a></td> 
-									<td> <a class="ejemplaresbutton"
-									href="listarEjemplaresServlet?id=<%=lib.getIdLibro()%>">
+										Editar </a>
+									<a class="deletebutton"	href="borrarLibroServlet?id=<%=lib.getIdLibro()%>">
+										Eliminar</a> 
+									<a class="ejemplaresbutton" href="listarEjemplaresServlet?id=<%=lib.getIdLibro()%>">
 										Ejemplares </a></td>
 										<%} %>
                     				 </tr>
@@ -118,31 +118,14 @@ Persona user = (Persona)session.getAttribute("usuario");
                     </div>
                 </div>
             </div>
-       <table>
-                            <td>
-                           
-                             <form action="agregarLibro.jsp" method="post">
-                             <button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Agregar Libro</button>
-							 </form> 
-							</td>
-							 <%-- <td>
-								<form action="index.jsp" method="post">
-                             <button type="button" = onclick="history.back()" class= "addbutton" name="Volver" value="Volver">>Volver</button>
-                             <%user = null; %>
-							 </form> 
-							  </td> --%>
-							 
-                            </table>
-                            
+        <!-- <a type="button" class="editbutton">Inicio</a>
+		-->					           
+		<a href="listarLibrosProvServlet" method="post" class="addbutton">Lista Libros por Proveedor</a>
         </section>
      
 
          <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+<%@ include file = "footer.jsp" %>
+
 </body>
 </html>

@@ -18,8 +18,7 @@ LinkedList<Persona> personas = ctrlPer.getAllPersonas(); %>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<style type="text/css">@import url("css/calendar-blue.css");</style>
+<link href = "css/messages.css" rel="stylesheet">
 </head>
 <body>
 <%@ include file="navInicio.jsp"%>
@@ -65,10 +64,10 @@ LinkedList<Persona> personas = ctrlPer.getAllPersonas(); %>
                       
 </fieldset>						
 <td>
-<button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Agregar Prestamo</button>
+<button class="addbutton">Agregar Prestamo</button>
 </td>
 <td>
-<input type="button" onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
+<input type="button" onclick="history.back()" class="addbutton" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
 </td>
 </section>		
 					 </form>
@@ -79,12 +78,5 @@ LinkedList<Persona> personas = ctrlPer.getAllPersonas(); %>
 							  
 </section>
 <%@ include file = "footer.jsp" %>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="js/calendar.js" /></script>
-<script type="text/javascript" src="js/calendar-es.js" /></script>
-<script type="text/javascript" src="js/calendar-setup.js" /></script>
-<script type="text/javascript" src="js/calendar-setup_stripped.js" /></script>
-<script type="text/javascript" src="js/calendar_stripped.js" /></script>
 </body>
 </html>

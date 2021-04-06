@@ -33,17 +33,17 @@ public class listarLibrosProvServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		LibroController ctrlLibro = new LibroController();
+		LinkedList<LibroProv> librosProv = ctrlLibro.getAllLibrosProv();
+		request.setAttribute("listaLibrosProv", librosProv);
+		request.getRequestDispatcher("listaLibrosProv.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LibroController ctrlLibro = new LibroController();
-		LinkedList<LibroProv> librosProv = ctrlLibro.getAllLibrosProv();
-		request.setAttribute("listaLibrosProv", librosProv);
-		request.getRequestDispatcher("listaLibrosProv.jsp").forward(request, response);
+		
 	}
 
 }

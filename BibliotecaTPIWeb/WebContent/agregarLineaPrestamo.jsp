@@ -13,11 +13,12 @@
 <meta charset="ISO-8859-1">
 <title>Agregar Linea Prestamo</title>
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link href = "css/messages.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
-<style type="text/css">@import url("css/calendar-blue.css");</style>
-
+<link href = "css/botones.css" rel="stylesheet">
+<link href = "css/messages.css" rel="stylesheet">
 </head>
 <body>
 <% LineaPrestamo lineaP = (LineaPrestamo)session.getAttribute("nuevaLineaPrestamo"); 
@@ -26,7 +27,7 @@ LibroController ctrlL = new LibroController();
 LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 %>
 
-<section id="tabs" class="project-tab">
+<section id="tabs" class="project-tab" style = "font-family:arial; size=3">
  
 <form class="form-horizontal" action="agregarLineaPrestamoServlet" method="post">
 <section>
@@ -40,19 +41,9 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 <div class="form-group">
   <label class="col-md-4 control-label" for="fechaDevolucion">Fecha Devolución: </label>  
   <div class="col-md-4">
-  <input type="text" name="fecha" id="fecha" readonly="readonly" placeholder="Fecha Alta" class="form-control input-md" />
-<img src="calendario.png" id="selector" />
+  <input class="form-control" type="date" id="fecha" name="fecha" value="2020-07-22" min="2000-01-01" max="2025-12-31" style="display=block">	
 
-<script type="text/javascript">
-window.onload = function() {
-  Calendar.setup({
-    inputField: "fecha",
-    ifFormat:   "%Y-%m-%d",
-    button:     "selector"
-  });
-}
-</script>
-  
+ 
   </div>
 </div>
 
@@ -84,10 +75,10 @@ window.onload = function() {
 </fieldset>
 <table>
 <td>
-<button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Agregar Linea Prestamo</button>
+<button class="addbutton">Agregar Linea Prestamo</button>
 </td>
 <td>
-<input type="button" onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
+<input type="button" onclick="history.back()" class="addbutton" name="Volver" value="Volver">
 </td>
 </table>
 
@@ -98,17 +89,7 @@ window.onload = function() {
   
 
 
- <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-  
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="js/calendar.js" /></script>
-<script type="text/javascript" src="js/calendar-es.js" /></script>
-<script type="text/javascript" src="js/calendar-setup.js" /></script>
+<%@ include file = "footer.jsp" %>
+
 </body>
 </html>

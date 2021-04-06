@@ -9,14 +9,16 @@
 <meta charset="ISO-8859-1">
 <title>Agregar Politica de Prestamo</title>
 <% PoliticaPrestamo politica = (PoliticaPrestamo)session.getAttribute("nuevaPolitica"); %>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link href = "css/messages.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
-<style type="text/css">@import url("css/calendar-blue.css");</style>
+<link href = "css/botones.css" rel="stylesheet">
+<link href = "css/messages.css" rel="stylesheet">
 
 </head>
 <body>
-<section id="tabs" class="project-tab">
+<section id="tabs" class="project-tab" style = "font-family:arial; size=3">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -28,6 +30,9 @@
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                               	 
                             </div>
                         </nav>
                     </div>
@@ -41,19 +46,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="fechaalta">Fecha Alta: </label>  
   <div class="col-md-4">
-  <input type="text" name="fecha" id="fecha" readonly="readonly" placeholder="Fecha Alta" class="form-control input-md" />
-<img src="calendario.png" id="selector" />
-
-<script type="text/javascript">
-window.onload = function() {
-  Calendar.setup({
-    inputField: "fecha",
-    ifFormat:   "%Y-%m-%d",
-    button:     "selector"
-  });
-}
-</script>
-  
+ <input class="form-control" type="date" id="fecha" name="fecha" value="2020-07-22" min="2000-01-01" max="2025-12-31" style="display=block">	     
   </div>
 </div>
 
@@ -77,10 +70,10 @@ window.onload = function() {
 </fieldset>
 <table>
 <td>
-<button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Agregar Politica</button>
+<button class="addbutton">Agregar Politica</button>
 </td>
 <td>
-<input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
+<input type="button" = onclick="history.back()" class="addbutton" name="Volver" value="Volver">
 </td>
 </table>
 
@@ -90,18 +83,6 @@ window.onload = function() {
   </section>
   
 
-
- <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-  
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="js/calendar.js" /></script>
-<script type="text/javascript" src="js/calendar-es.js" /></script>
-<script type="text/javascript" src="js/calendar-setup.js" /></script>
+<%@ include file = "footer.jsp" %>
 </body>
 </html>

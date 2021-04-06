@@ -6,28 +6,29 @@
 <meta charset="ISO-8859-1">
 <title>Borrar Politica de prestamo </title>
 </head>
-<body>
-<form action="borrarPoliticaServlet" method="post">
+<body style = "font-family:arial; size=3">
+<form action="borrarPoliticaServlet" method="post"  style = "font-family:arial; size=3">
 
   	<div class="container">
   	
     <label for="id"><b>Ingrese el ID de la politica de prestamo que desea borrar:</b></label>
     <input type="number"  name="idPolitica">
 
-    <button type="submit">Borrar Politica</button>
+    <button type="submit" class="deletebutton">Borrar Politica</button>
     
   </div>
 
 	
-  <div class="container" style="background-color:#f1f1f1">
+  <div class="container">
     <!--   <button type="button" class="cancelbtn">Cancel</button> -->
-    <input type="button" onclick="history.back()" name="Cancelar" value="Cancelar">
+    <input type="button" onclick="history.back()" class="addbutton" name="Cancelar" value="Cancelar">
   </div>
   
   
 </form>
-	<form  action="listarPoliticaServlet" method="post">
-	<button type="submit">Ver Politcas</button>
+	<form  action="listarPoliticaServlet" method="post" style = "font-family:arial; size=3">
+	<button type="submit" class="addbutton">Ver Politcas</button>
     </form>
+<%@ include file = "footer.jsp" %>
 </body>
 </html>

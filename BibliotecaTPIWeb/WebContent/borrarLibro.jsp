@@ -12,7 +12,7 @@
 </head>
 <body>
 
-	<form action="borrarLibroServlet" method="post">
+	<form action="borrarLibroServlet" method="post" style = "font-family:arial; size=3">
 
   	<div class="container">
   	
@@ -20,22 +20,22 @@
     <input type="number"  name="idlibro">
 
 	
-    <button type="submit">Borrar libro</button>
+    <button type="submit" class="deletebutton">Borrar libro</button>
     
   </div>
 
 	
-  <div class="container" style="background-color:#f1f1f1">
+  <div class="container">
     <!--   <button type="button" class="cancelbtn">Cancel</button> -->
-    <input type="button" onclick="history.back()" name="Cancelar" value="Cancelar">
+    <input type="button" onclick="history.back()" class="addbutton" name="Cancelar" value="Cancelar">
   </div>
   
   
 </form>
-	<form  action="listarLibroServlet" method="post">
-	<button type="submit">Ver Libros</button>
+	<form  action="listarLibroServlet" method="post" style = "font-family:arial; size=3">
+	<button type="submit" class="addbutton">Ver Libros</button>
     </form>
 	
-
+<%@ include file = "footer.jsp" %>
 </body>
 </html>

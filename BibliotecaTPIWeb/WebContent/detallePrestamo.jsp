@@ -13,10 +13,10 @@ LinkedList<Libro> libros = ctrlL.getAllLibros();%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Detalle de Prestamo</title>
 </head>
 <body>
-<table class="table" class="text-center" id="tablaprueba">
+<table class="table" class="text-center" id="tablaprueba" style = "font-family:arial; size=3">
                                     <thead>
 					        <tr>
 					          <th class="text-center">ID Libro</th>
@@ -98,6 +98,6 @@ LinkedList<Libro> libros = ctrlL.getAllLibros();%>
 					        </tr>
 					      
 					    </table>
-					
+	<%@ include file = "footer.jsp" %>				
 </body>
 </html>

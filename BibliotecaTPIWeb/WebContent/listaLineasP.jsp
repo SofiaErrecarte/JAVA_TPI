@@ -23,7 +23,7 @@ int limiteNS = (Integer)request.getAttribute("limiteNS");
 </head>
 <body>
 <%@ include file="navInicio.jsp"%>
-	<section id="tabs" class="project-tab">
+	<section id="tabs" class="project-tab" style = "font-family:arial; size=3">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -62,26 +62,33 @@ int limiteNS = (Integer)request.getAttribute("limiteNS");
   <div class="form-group">
   <label class="col-md-4 control-label" for="idEjemplar">Límite de libros por préstamo NS: <%=limiteNS%> </label>  
   </div>
-            
+  <%if(cant<limiteNS){ %>
+   <div class="container buscar">
+                <a 		href="agregarLineaPrestamoServlet?id=<%=p.getIdPrestamo()%>" method="post" class="btn btn-success">+ Nueva Linea</a>
+                </div>            
+							<%} %>         
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                <table class="table" cellspacing="0">
+                                <table class="table" class="text-center">
+                                       
                                     <thead>
                                         <tr>
-                                            <th>ID Linea</th>
-		                    		    	<th>ID Ejemplar</th>
-		                    		    	<th>Fecha Devolución</th>
-		                    		    	<th>Devuelto</th>
+                                            <th class="text-center">ID Linea</th>
+		                    		    	<th class="text-center">ID Ejemplar</th>
+		                    		    	<th class="text-center">Fecha Devolución</th>
+		                    		    	<th class="text-center">Devuelto</th>
+		                    		    	<th class="text-center"> Acción </th>
+                                       
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <% for (LineaPrestamo lp : lpr) { %>
                     			<tr>
-                    				<td><%=lp.getIdLineaPrestamo()%></td>
-                    				<td><%=lp.getIdEjemplar()%></td>
-                    				<td><%=lp.getFechaDevolucion()%></td>
-                    				<td><%=lp.isDevuelto()%></td>
-									<td><a class="editbutton"
+                    				<td class="text-center"><%=lp.getIdLineaPrestamo()%></td>
+                    				<td class="text-center"><%=lp.getIdEjemplar()%></td>
+                    				<td class="text-center"><%=lp.getFechaDevolucion()%></td>
+                    				<td class="text-center"><%=lp.isDevuelto()%></td>
+									<td class="text-center"><a class="editbutton"
 									href="modificarLineaPServlet?id=<%=lp.getIdLineaPrestamo()%>">
 										Editar</a></td> 
 
@@ -95,7 +102,7 @@ int limiteNS = (Integer)request.getAttribute("limiteNS");
                     </div>
                 </div>
             </div>
-       <table>
+      <!--  <table>
       <tr>
       <%if(cant<limiteNS){ %>
       							 <td>
@@ -111,16 +118,12 @@ int limiteNS = (Integer)request.getAttribute("limiteNS");
 							
 							  </td>
 </tr>
-                            </table>
+                            </table>--> 
 
         </section>
 
          <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+<%@ include file = "footer.jsp" %>
+
 </body>
 </html>
