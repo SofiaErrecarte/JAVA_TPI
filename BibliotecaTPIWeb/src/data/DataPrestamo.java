@@ -129,7 +129,7 @@ public class DataPrestamo {
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"UPDATE `biblioteca`.`prestamo` SET `estado` = ? WHERE (`idLineaPrestamo` = ?);",
+							"UPDATE `biblioteca`.`prestamo` SET `estado` = ? WHERE (`idPrestamo` = ?);",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			stmt.setString(1, estado);			

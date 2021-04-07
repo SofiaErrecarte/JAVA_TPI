@@ -82,9 +82,9 @@ public class modificarLineaPServlet extends HttpServlet {
 		}
 		
 		if(cantDev==cantTot) {
-			String e = "devuelto";
+			String e = "Devuelto";
 			ctrlPre.setEstado(p, e);
-		}
+		}else {ctrlPre.setEstado(p, "Abierto");}
 		
 		ctrlLP.editLineaprestamo(lpr);
 		request.getRequestDispatcher("listarPrestamosServlet").forward(request, response);
