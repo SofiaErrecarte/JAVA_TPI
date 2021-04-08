@@ -46,7 +46,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="fechaalta">Fecha Alta: </label>  
   <div class="col-md-4">
- <input class="form-control" type="date" id="fecha" name="fecha" value="2020-07-22" min="2000-01-01" max="2025-12-31" style="display=block">	     
+ <input class="form-control" type="date" id="fecha" name="fecha"  style="display=block">	     
   </div>
 </div>
 

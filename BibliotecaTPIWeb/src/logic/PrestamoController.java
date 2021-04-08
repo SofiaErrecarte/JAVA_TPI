@@ -36,7 +36,13 @@ public void setEstado(Prestamo p, String e) {
 	 dp.setEstado(p, e);
 	}
 
+public void cerrarPrestamo(Prestamo p) {
+	dp.cerrarPrestamo(p);
+}
 
+public void actualizarLP (Prestamo p) {
+	dp.actualizarLP(p);
+}
 	/*
 	 * public int getCantLP(Prestamo p) { return dp.getCantLP(p); }
 	 */

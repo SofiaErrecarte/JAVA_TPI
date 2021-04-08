@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.LinkedList;
 
 import javax.servlet.ServletException;
@@ -43,20 +44,23 @@ public class agregarLineaPrestamoServlet extends HttpServlet {
 		PrestamoController ctrlP = new PrestamoController();
 		LibroController ctrlL = new LibroController();
 		LineaPrestamo lpr = new LineaPrestamo();
-		SimpleDateFormat formato = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 		int  ID  =  Integer.parseInt (request.getParameter("id"));
 		Prestamo pr = new Prestamo();
 		pr.setIdPrestamo(ID);
 		Prestamo p = ctrlP.getByIdPrestamo(pr); //obtengo el prestamo al que le agrego las lp
 		
 		
+		Calendar fech = Calendar.getInstance();
 		java.util.Date utilStartDate;
 		try {
 			utilStartDate = formato.parse(request.getParameter("fecha"));
+			fech.setTime(utilStartDate);
 			java.sql.Date date = new java.sql.Date(utilStartDate.getTime());
 			lpr.setFechaDevolucion(date);
-		} catch (java.text.ParseException e1) {
-			lpr.setFechaDevolucion(null);
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		boolean devuelto = Boolean.parseBoolean(request.getParameter("devuelto"));
 		int idEj = Integer.parseInt(request.getParameter("idEjemplar"));

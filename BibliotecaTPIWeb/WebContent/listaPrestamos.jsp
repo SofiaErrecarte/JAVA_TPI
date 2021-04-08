@@ -81,6 +81,8 @@ Persona user = (Persona)session.getAttribute("usuario");
 										Editar </a>
 									<a class="ejemplaresbutton" href="listarLineasPrestamoServlet?id=<%=p.getIdPrestamo()%>">
 										Detalle </a>
+									<a class="devueltobutton" href="devolverPrestamoServlet?id=<%=p.getIdPrestamo()%>">
+										Devuelto </a>
 									</td>
                     			 </tr>
                     		<% } %>

@@ -51,13 +51,13 @@ LinkedList<Persona> personas = ctrlPer.getAllPersonas(); %>
                	
                	<div class="tab-content" id="nav-tabContent">
                	<label class="col-md-4 control-label" for="fechaPrestamo">Ingrese la Fecha de Préstamo</label>  
-               	<input class="form-control" type="date" id="fechaPrestamo" name="fechaPrestamo" value="2020-07-22" min="2000-01-01" max="2025-12-31" style="display=block">	     
+               	<input class="form-control" type="date" id="fechaPrestamo" name="fechaPrestamo" style="display=block">	     
                	</div>
                  
                 
                 <div class="tab-content" id="nav-tabContent">
                	<label class="col-md-4 control-label" for="fechaDevolucion">Ingrese la Fecha de Devolución</label>  
-               	<input class="form-control" type="date" id="fechaDevolucion" name="fechaDevolucion" value="2020-07-22" min="2000-01-01" max="2025-12-31" style="display=block">	     
+               	<input class="form-control" type="date" id="fechaDevolucion" name="fechaDevolucion" style="display=block">	     
                    
                 </div>  
                 

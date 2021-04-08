@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,19 +44,27 @@ public class agregarPoliticaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-				SimpleDateFormat formato = new SimpleDateFormat("yyyy-mm-dd");
+				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 				PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController();
 				PoliticaPrestamo pp = new PoliticaPrestamo();
 				int numSocio = Integer.parseInt(request.getParameter("numsocio"));
 				int numNoSocio = Integer.parseInt(request.getParameter("numnosocio"));
+				
+				Calendar fech = Calendar.getInstance();
 				java.util.Date utilStartDate;
 				try {
 					utilStartDate = formato.parse(request.getParameter("fecha"));
+					fech.setTime(utilStartDate);
 					java.sql.Date date = new java.sql.Date(utilStartDate.getTime());
 					pp.setFechaAlta(date);
-				} catch (java.text.ParseException e1) {
-					e1.printStackTrace();
+				} catch (java.text.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+				//fech = formato.parse(request.getParameter("fecha"));
+				//java.sql.Date date = new java.sql.Date(fech.getDate());
+				//String fecha = request.getParameter("fecha");
+				
 				
 				
 				pp.setCantMaximaSocio(numSocio);

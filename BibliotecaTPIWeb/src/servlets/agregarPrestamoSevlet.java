@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -35,25 +36,31 @@ public class agregarPrestamoSevlet extends HttpServlet {
 		PrestamoController ctrlP= new PrestamoController();
 		Prestamo p = new Prestamo();
 		LibroController ctrlLib = new LibroController(); 
-		SimpleDateFormat formato = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 	
 		//CREO EL PRESTAMO
-		java.util.Date utilStartDate1;
+		Calendar fech = Calendar.getInstance();
+		java.util.Date utilStartDate;
 		try {
-			utilStartDate1 = formato.parse(request.getParameter("fechaPrestamo"));
-			java.sql.Date date = new java.sql.Date(utilStartDate1.getTime());
-			p.setFechaPrestamo(date);
-		} catch (java.text.ParseException e1) {
-			e1.printStackTrace();
-		}	
+			utilStartDate = formato.parse(request.getParameter("fechaDevolucion"));
+			fech.setTime(utilStartDate);
+			java.sql.Date date = new java.sql.Date(utilStartDate.getTime());
+			p.setFechaADevoler(date);
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		Calendar fech2 = Calendar.getInstance();
 		java.util.Date utilStartDate2;
 		try {
-			utilStartDate2 = formato.parse(request.getParameter("fechaDevolucion"));
+			utilStartDate2 = formato.parse(request.getParameter("fechaPrestamo"));
+			fech2.setTime(utilStartDate2);
 			java.sql.Date date = new java.sql.Date(utilStartDate2.getTime());
-			p.setFechaADevoler(date);
-		} catch (java.text.ParseException e1) {
-			e1.printStackTrace();
+			p.setFechaPrestamo(date);
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		int idPers = Integer.parseInt(request.getParameter("idPersona"));

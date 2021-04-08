@@ -257,4 +257,63 @@ public class DataPrestamo {
 		return p;
 	}
 
+	public void cerrarPrestamo(Prestamo p) {
+		PreparedStatement stmt= null;
+		ResultSet keyResultSet=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().
+					prepareStatement(
+							"UPDATE `biblioteca`.`prestamo` SET estado=? WHERE (`idPrestamo` = ?);",
+							PreparedStatement.RETURN_GENERATED_KEYS
+							);
+			stmt.setString(1, "Cerrado");
+			stmt.setInt(2, p.getIdPrestamo());
+			stmt.executeUpdate();	
+            
+		}  catch (SQLException e) {
+            e.printStackTrace();
+		} finally {
+            try {
+                if(keyResultSet!=null)keyResultSet.close();
+                if(stmt!=null)stmt.close();
+                DbConnector.getInstancia().releaseConn();
+            } catch (SQLException e) {
+            	e.printStackTrace();
+            }
+		}
+		
+	}
+	
+	public void actualizarLP(Prestamo p) {
+		PreparedStatement stmt= null;
+		ResultSet keyResultSet=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().
+					prepareStatement(
+							"UPDATE linea_prestamo lp \r\n"
+							+ "INNER JOIN prestamo p ON \r\n"
+							+ "lp.idPrestamo = p.idPrestamo \r\n"
+							+ "SET devuelto=1 WHERE (lp.idPrestamo = 91);",
+							PreparedStatement.RETURN_GENERATED_KEYS
+							);
+			
+			stmt.setInt(1, p.getIdPrestamo());
+			stmt.executeUpdate();	
+            
+		}  catch (SQLException e) {
+            e.printStackTrace();
+		} finally {
+            try {
+                if(keyResultSet!=null)keyResultSet.close();
+                if(stmt!=null)stmt.close();
+                DbConnector.getInstancia().releaseConn();
+            } catch (SQLException e) {
+            	e.printStackTrace();
+            }
+		}
+		
+	}
+	
+
+
 }
