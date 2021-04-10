@@ -20,7 +20,12 @@ Persona user = (Persona)session.getAttribute("usuario");
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
 
-
+<style>
+html, body{
+ height: 100%;
+ font-family: Arial, Helvetica, sans-serif;
+}
+</style>
 <body>
 <%@ include file="navInicio.jsp"%>
 	<section id="tabs" class="project-tab" style = "font-family:arial;size=3">

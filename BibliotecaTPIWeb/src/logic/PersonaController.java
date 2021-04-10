@@ -3,6 +3,7 @@ package logic;
 import java.util.LinkedList;
 
 import data.DataPersona;
+import entities.MyResult;
 import entities.Persona;
 import entities.Proveedor;
 
@@ -22,5 +23,12 @@ public class PersonaController {
 	
 	public LinkedList<Persona> getAllPersonas(){
 		return dp.getAll();
+	}
+	
+	public Persona getByDNI ( Persona p) {
+		return dp.getByDNI(p);
+	}
+	public MyResult createPersona(Persona p) {
+		return dp.add(p);
 	}
 }

@@ -6,12 +6,14 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 
 import entities.Libro;
+import entities.MyResult;
 import entities.Persona;
+import entities.Proveedor;
 
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-
-public class DataPersona {
+import entities.*;
+public class DataPersona extends DataMethods{
 
 	public Persona getById(Persona p) {
 		Persona per = null;
@@ -119,5 +121,82 @@ public class DataPersona {
 		return personas;
 	}
 	
+	public Persona getByDNI(Persona p) {
+		Persona per = null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from persona where dni=?");
+			stmt.setString(1, p.getDni());
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()) {
+				per = new Persona();
+				per.setIdPersona(rs.getInt("idPersona"));
+				per.setEmail(rs.getString("email"));
+				per.setContraseña(rs.getString("contraseña")); //VER cómo hacemos esto
+				per.setAdmin(rs.getBoolean("admin")); 
+				per.setApellido(rs.getString("apellido"));
+				per.setNombre(rs.getString("nombre"));
+				per.setDireccion(rs.getString("direccion"));
+				per.setDni(rs.getString("dni"));
+				per.setTelefono(rs.getString("telefono"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return per;
+	}
+
+	public MyResult add(Persona p) {
+		int resultado = -1;
+		PreparedStatement stmt= null;
+		ResultSet keyResultSet=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().
+					prepareStatement(
+							"INSERT INTO `biblioteca`.`persona` (`apellido`, `nombre`, `telefono`, `email`, `direccion`, `dni`, `admin`, `contraseña`) values(?,?,?,?,?,?,?,?)",
+							PreparedStatement.RETURN_GENERATED_KEYS
+							);
+			stmt.setString(1, p.getApellido());
+			stmt.setString(2, p.getNombre());
+			stmt.setString(3, p.getTelefono());
+			stmt.setString(4, p.getEmail());
+			stmt.setString(5, p.getDireccion());
+			stmt.setString(5, p.getDni());
+			stmt.setBoolean(5, p.isAdmin());
+			stmt.setString(5, p.getContraseña());
+			stmt.executeUpdate();
+			
+			keyResultSet=stmt.getGeneratedKeys();
+            if(keyResultSet!=null && keyResultSet.next()){
+                p.setIdPersona(keyResultSet.getInt(1));
+            }
+		}  catch (SQLException e) {
+			return Add(resultado);
+		} finally {
+            try {
+                if(keyResultSet!=null)keyResultSet.close();
+                if(stmt!=null)stmt.close();
+                DbConnector.getInstancia().releaseConn();
+            } catch (SQLException e) {
+            	ConnectCloseError();
+            }
+		}
+		// si llegó hasta acá está bien
+		MyResult res = new MyResult();
+		res.setResult(MyResult.results.OK);
+		return Add(1);
+	}
+
 
 }

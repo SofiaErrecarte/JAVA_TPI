@@ -46,18 +46,33 @@ Persona user = (Persona)session.getAttribute("usuario");
                         </nav>
                     </div>
                 </div>
+                 </div>
             </div>
+            </div>
+            
+            <div class="row">
               <div class="container buscar">
                 <a href="agregarPrestamo.jsp" method="post" class="btn btn-success">+ Nuevo</a>
                	<form action="buscarPrestamoServlet" class="form">
                			<input class="form-control" placeholder="ID Prestamo"type="text" name="txtbuscar">
                			<input class="btn btn" type="submit" value="Buscar"	>
+               			
                	</form>
+               	
+              
+			  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+			    <option selected>Filtrar por..</option>
+			    <option value="1">Prestamos no Devueltos</option>
+			    <option value="2">Prestamos Devue</option>
+			    <option value="3">Three</option>
+			  </select>
+			></a> 
                 </div>
-            
+             </div>
+			
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                <table class="table" cellspacing="0">
+                                <table class="table" class="table-center">
                                     <thead>
                                         <tr>
                                             <th class="text-center">ID Prestamo</th>
@@ -91,9 +106,9 @@ Persona user = (Persona)session.getAttribute("usuario");
                             </div>
                             
                         </div>
-                    </div>
+                   
                 </div>
-            </div>
+          
       <!--   <table>
                             <td>
                            

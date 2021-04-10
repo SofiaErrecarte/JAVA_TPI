@@ -6,13 +6,19 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style>
+html, body{
+ font-family: Arial, Helvetica, sans-serif;
+}
+
+</style>
 </head>
 <body>
 
 	<% Persona per = (Persona)session.getAttribute("usuario");
   				if (per != null) { %>
 	<header role="banner">
-		<nav class="navbar navbar-expand-lg  bg-dark">
+		<nav class="navbar navbar-expand-lg bg-dark">
 			<div class="container-fluid">
 				<a class="navbar-brand " href="index.jsp">Biblioteca Nacional </a>
 
@@ -43,7 +49,7 @@
 
 
 	<header role="banner">
-		<nav class="navbar navbar-expand-lg  bg-dark">
+		<nav class="navbar navbar-expand-lg bg-dark fixed-top">
 			<div class="container-fluid">
 				<a class="navbar-brand " href="index.jsp">Biblioteca Nacional</a>
 
@@ -56,9 +62,11 @@
 
 				<div class="collapse navbar-collapse" id="navbarsExample05">
 					<ul class="navbar-nav pl-md-5 ml-auto">
-						<li class="nav-item"><a class="nav-link" href="login.jsp">Iniciar
+						<li class="nav-item"><a class="nav-link" href="contactar.jsp">@Contacto</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="index.jsp">Iniciar
 								Sesión</a></li>
-						<li class="nav-item"><a class="nav-link" href="signin.jsp">Registrarse</a>
+						<li class="nav-item"><a class="nav-link" href="agregarUsuario.jsp">Registrarse</a>
 						</li>
 					</ul>
 

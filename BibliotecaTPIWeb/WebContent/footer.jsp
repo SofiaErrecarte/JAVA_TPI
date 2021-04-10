@@ -7,8 +7,25 @@
 <meta charset="ISO-8859-1">
 <title></title>
 
+<style>
+html, body{
+ height: 100%;
+ font-family: Arial, Helvetica, sans-serif;
+}
+.footer{
+ position: relative;
+ bottom: 0;
+ width: 100%;
+ height: 20px;
+}
 
-<link href = "css/footer.css" rel="stylesheet">
+.page-footer2 .footer-copyright {
+  height: 50px;
+  line-height: 50px;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #4E555B
+}
+</style>
 </head>
 <body>
 
@@ -16,7 +33,6 @@
     <div class="footer-copyright">
         <div class="container">
             Todos los derechos reservados © 2021 Copyright Text
-           
         </div>
     </div>
 </div>

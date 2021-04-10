@@ -61,7 +61,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="cuit">CUIT: </label>  
   <div class="col-md-4">
-  <input id="cuit" name="cuit" type="text" placeholder="CUIT" class="form-control input-md" required="">
+  <input id="cuit" name="cuit" type="text" placeholder="CUIT" class="form-control input-md" required>
   </div>
 </div>
 
@@ -69,7 +69,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="razonSocial">Razón Social </label>  
   <div class="col-md-4">
-  <input id="razonSocial" name="razonSocial" type="text" placeholder="Razon Social" class="form-control input-md" required="">
+  <input id="razonSocial" name="razonSocial" type="text" placeholder="Razon Social" class="form-control input-md" required>
   </div>
 </div>
 
@@ -78,7 +78,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="telefono">Telefono: </label>  
   <div class="col-md-4">
-  <input id="telefono" name="telefono" type="text" placeholder="Telefono" class="form-control input-md" required="">
+  <input id="telefono" name="telefono" type="text" placeholder="Telefono" class="form-control input-md" required>
   </div>
 </div>
 
@@ -86,7 +86,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="mail">E - Mail: </label>  
   <div class="col-md-4">
-  <input id="mail" name="mail" type="text" placeholder="E - Mail" class="form-control input-md" required="">
+  <input id="mail" name="mail" type="text" placeholder="E - Mail" class="form-control input-md" required>
   </div>
 </div>
 
@@ -94,19 +94,14 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="direccion">Direccion: </label>  
   <div class="col-md-4">
-  <input id="direccion" name="direccion" type="text" placeholder="Direccion" class="form-control input-md" required="">
+  <input id="direccion" name="direccion" type="text" placeholder="Direccion" class="form-control input-md" required>
   </div>
 </div>
 
 </fieldset>
-<table>
-<td>
-<button class="addbutton">Agregar Proveedor</button>
-</td>
-<td>
-<input type="button" = onclick="history.back()" class="addbutton" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
-</td>
-</table>
+
+<button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2">Agregar Proveedor</button>
+
 
   </section>
 </form>
