@@ -74,40 +74,40 @@ html,body{
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="apellido">Apellido </label>  
-  <input name="apellido" type="text" placeholder="Apellido" class="form-control input-md" required>
+  <input id="apellido" name="apellido" type="text" placeholder="Apellido" class="form-control input-md" required>
 </div>
 <!-- Text input-->
 <div class="form-group">
   <label  for="nombre">Nombre </label>  
-  <input name="nombre" type="text" placeholder="Nombre" class="form-control input-md" required>
+  <input id="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control input-md" required>
 
 </div>
 
 <div class="form-group">
   <label>DNI </label>  
-  <input  name="dni" type="text" placeholder="DNI" class="form-control input-md" required>
+  <input  id="dni" name="dni" type="text" placeholder="DNI" class="form-control input-md" required>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
   <label  for="telefono">Telefono </label>  
-  <input name="telefono" type="text" placeholder="Telefono" class="form-control input-md" required>
+  <input id="telefono" name="telefono" type="text" placeholder="Telefono" class="form-control input-md" required>
   </div>
   
 <div class="form-group">
   <label  for="direccion">Direccion </label>  
-  <input  name="direccion" type="text" placeholder="Direccion" class="form-control input-md" required>
+  <input id="direccion" name="direccion" type="text" placeholder="Direccion" class="form-control input-md" required>
 
 </div>
 <!-- Text input-->
 <div class="form-group">
   <label for="mail">Usuario </label>  
-  <input  name="mail" type="text" placeholder="Usuario" class="form-control input-md" required>
+  <input  id="mail" name="mail" type="text" placeholder="Usuario" class="form-control input-md" required>
 </div>
 
  <div class="form-group">
   <label  for="pass">Contraseña </label>  
-  <input name="pass" type="text" placeholder="Contraseña" class="form-control input-md" required/>
+  <input  id="pass" name="pass" type="text" placeholder="Contraseña" class="form-control input-md" required/>
 </div>
  <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"  onclick="return confirm('Se agregará un nuevo usuario. Desea confirmar?')">Crear Cuenta</button>
  

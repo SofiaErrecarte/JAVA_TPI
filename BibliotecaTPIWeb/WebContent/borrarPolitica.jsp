@@ -5,6 +5,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Borrar Politica de prestamo </title>
+<style>
+html, body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
 </head>
 <body style = "font-family:arial; size=3">
 <form action="borrarPoliticaServlet" method="post"  style = "font-family:arial; size=3">

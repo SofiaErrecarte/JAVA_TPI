@@ -6,6 +6,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Borrar Proveedor</title>
+<style>
+html, body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
 </head>
 <body style = "font-family:arial; size=3">
 <form action="borrarProveedorServlet" method="post" style = "font-family:arial; size=3">

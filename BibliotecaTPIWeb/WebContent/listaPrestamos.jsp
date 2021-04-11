@@ -22,6 +22,13 @@ Persona user = (Persona)session.getAttribute("usuario");
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<style>
+html, body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
 <body>
 <%@ include file="navInicio.jsp"%>
 	<section id="tabs" class="project-tab" style = "font-family:arial; size=3">
@@ -41,7 +48,7 @@ Persona user = (Persona)session.getAttribute("usuario");
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
                                	 <a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="true">Prestamo</a>
-                               
+                               <br>
                             </div>
                         </nav>
                     </div>
@@ -50,26 +57,35 @@ Persona user = (Persona)session.getAttribute("usuario");
             </div>
             </div>
             
-            <div class="row">
-              <div class="container buscar">
-                <a href="agregarPrestamo.jsp" method="post" class="btn btn-success">+ Nuevo</a>
-               	<form action="buscarPrestamoServlet" class="form">
-               			<input class="form-control" placeholder="ID Prestamo"type="text" name="txtbuscar">
-               			<input class="btn btn" type="submit" value="Buscar"	>
-               			
-               	</form>
-               	
-              
-			  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-			    <option selected>Filtrar por..</option>
-			    <option value="1">Prestamos no Devueltos</option>
-			    <option value="2">Prestamos Devue</option>
-			    <option value="3">Three</option>
-			  </select>
-			></a> 
-                </div>
-             </div>
-			
+            <br>
+              <div class="container w3-container">
+              <div class="row">
+              <table class="table" class="text-center">
+              <tr>
+               <td class="text-center">
+              <div class="form-group">
+             	<div class="input-group">
+             <select class="custom-select form-control" id="inlineFormCustomSelectPref" name="opcion" >
+			   				<option selected>Ordenar por..</option>
+			   				<option value="idmenor"> Menor a Mayor ID</option>
+			   				<option value="idmayor">Mayor a menor ID</option>
+			   				<option value="fechamenor">Menor a Mayor Fecha Prestamo</option>
+			   				<option value="fechamayor">Mayor a Menor Fecha Prestamo</option>
+			  			</select>
+			      <span class="input-group-btn">
+			        <a href="selectPrestamoServlet" class="btn btn-outline-secondary" type="submit">Aplicar Filtro</a>
+			      </span></div>
+			  </td> 		 
+			  <td>			<div class="input-group">
+			      <input type="text" class="form-control" placeholder="ID Prestamo"type="text" name="txtbuscar">
+			      <span class="input-group-btn">
+			        <a href="buscarPrestamoServlet" class="btn btn-outline-secondary" type="submit">Buscar</a>
+			      </span></div>
+			      </td>
+			  </tr>
+			  </table>
+			  </div>
+               	</div>
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <table class="table" class="table-center">
@@ -121,7 +137,7 @@ Persona user = (Persona)session.getAttribute("usuario");
 							  </td>
 							 
                             </table>-->
-                            
+                            <a href="agregarPrestamo.jsp" method="post" class="w3-button w3-xlarge w3-circle w3-teal" style="float: right;">+</a>
         </section>
 
          <!-- Footer -->

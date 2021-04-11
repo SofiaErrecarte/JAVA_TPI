@@ -157,10 +157,9 @@ public class DataPersona extends DataMethods{
 		return per;
 	}
 
-	public MyResult add(Persona p) {
-		int resultado = -1;
+	public void add(Persona p) {
 		PreparedStatement stmt= null;
-		ResultSet keyResultSet=null;
+		ResultSet rs=null;
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
@@ -172,31 +171,26 @@ public class DataPersona extends DataMethods{
 			stmt.setString(3, p.getTelefono());
 			stmt.setString(4, p.getEmail());
 			stmt.setString(5, p.getDireccion());
-			stmt.setString(5, p.getDni());
-			stmt.setBoolean(5, p.isAdmin());
-			stmt.setString(5, p.getContraseña());
+			stmt.setString(6, p.getDni());
+			stmt.setBoolean(7, p.isAdmin());
+			stmt.setString(8, p.getContraseña());
 			stmt.executeUpdate();
 			
-			keyResultSet=stmt.getGeneratedKeys();
-            if(keyResultSet!=null && keyResultSet.next()){
-                p.setIdPersona(keyResultSet.getInt(1));
+			rs=stmt.getGeneratedKeys();
+            if(rs!=null && rs.next()){
+                p.setIdPersona(rs.getInt(1));
             }
-		}  catch (SQLException e) {
-			return Add(resultado);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
 		} finally {
-            try {
-                if(keyResultSet!=null)keyResultSet.close();
-                if(stmt!=null)stmt.close();
-                DbConnector.getInstancia().releaseConn();
-            } catch (SQLException e) {
-            	ConnectCloseError();
-            }
-		}
-		// si llegó hasta acá está bien
-		MyResult res = new MyResult();
-		res.setResult(MyResult.results.OK);
-		return Add(1);
-	}
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		}}}
 
-
-}

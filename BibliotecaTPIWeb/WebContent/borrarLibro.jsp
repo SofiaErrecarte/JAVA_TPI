@@ -9,6 +9,11 @@
 <title>Borrar libro</title>
 <!--   LinkedList<Libro> ll = (LinkedList<Libro>)request.getAttribute("listaLibros2");
 -->
+<style>
+html, body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
 </head>
 <body>
 

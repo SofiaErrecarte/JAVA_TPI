@@ -17,7 +17,11 @@
 <link href = "css/messages.css" rel="stylesheet">
 <link href = "css/listado.css" rel="stylesheet">
 <style type="text/css">@import url("css/calendar-blue.css");</style>
-
+<style>
+html, body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
 </head>
 <body>
 <% LineaPrestamo lineaP = (LineaPrestamo)request.getAttribute("lineaPrestamoAEditar"); 

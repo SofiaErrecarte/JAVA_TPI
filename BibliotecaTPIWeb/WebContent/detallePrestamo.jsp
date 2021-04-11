@@ -14,6 +14,11 @@ LinkedList<Libro> libros = ctrlL.getAllLibros();%>
 <head>
 <meta charset="ISO-8859-1">
 <title>Detalle de Prestamo</title>
+<style>
+html, body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
 </head>
 <body>
 <table class="table" class="text-center" id="tablaprueba" style = "font-family:arial; size=3">

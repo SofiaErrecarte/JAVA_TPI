@@ -13,7 +13,11 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
-
+<style>
+html, body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
 <!------ Include the above in your HEAD tag ---------->
 </head>
 <body>

@@ -28,7 +28,7 @@ public class PersonaController {
 	public Persona getByDNI ( Persona p) {
 		return dp.getByDNI(p);
 	}
-	public MyResult createPersona(Persona p) {
-		return dp.add(p);
+	public void createPersona(Persona p) {
+		dp.add(p);
 	}
 }

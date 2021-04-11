@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entities.MyResult;
 import entities.Persona;
-import entities.Proveedor;
 import logic.PersonaController;
-import logic.ProveedorController;
 
 /**
  * Servlet implementation class agregarUsuarioServlet
@@ -51,12 +49,11 @@ public class agregarUsuarioServlet extends HttpServlet {
 		String direccion = request.getParameter("direccion");
 		String dni = request.getParameter("dni");
 		String contraseña = request.getParameter("pass");
-		p.setAdmin(false);
-		p.setDni(dni);
-		Persona pe = new Persona();
-		pe=ctrlPer.getByDNI(p);
+		//p.setAdmin(false);
+		//p.setDni(dni);
+		//p=ctrlPer.getByDNI(p);
 		//verificamos que la persona no este cargada
-		if(pe==null) {
+		//if(p==null) {
 			Persona per = new Persona();
 			per.setApellido(apellido);
 			per.setContraseña(contraseña);
@@ -66,22 +63,10 @@ public class agregarUsuarioServlet extends HttpServlet {
 			per.setNombre(nombre);
 			per.setTelefono(telefono);
 			per.setAdmin(false);
+			ctrlPer.createPersona(per);
+			//ACA DEBERÍA IR AL INDEX Y PONER AHI QUE SE CREO CON EXITO POR EJEMPLO 
+			request.getRequestDispatcher("index.jsp").forward(request, response); 
 			
-			MyResult res = ctrlPer.createPersona(p);
-			if (res.getResult().equals(MyResult.results.Err)) {
-				request.setAttribute("result", res);
-				request.getRequestDispatcher("agregarUsuario.jsp").forward(request, response); 
-		}else {
-			request.setAttribute("result", res);
-			request.setAttribute("nuevoUsuario", p);
-			request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
-		}
-		}else {
-			request.setAttribute("error", "El usuario ingresado ya existe.");
-			request.getRequestDispatcher("agregarUsuario.jsp").forward(request, response); }
-			
-		}
-	
-	
-
+		//}
+	}
 }

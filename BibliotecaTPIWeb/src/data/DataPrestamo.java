@@ -314,6 +314,40 @@ public class DataPrestamo {
 		
 	}
 	
-
+	
+	public LinkedList<Prestamo> getByIDMinimo() {
+		Prestamo p =null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Prestamo> prestamos = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from prestamo order by fechaPrestamo asc"
+					);
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+				p = new Prestamo();
+				p.setIdPrestamo(rs.getInt("idPrestamo"));
+				p.setFechaPrestamo(rs.getDate("fechaPrestamo"));
+				p.setFechaADevoler(rs.getDate("fechaADevolver"));
+				p.setIdPersona(rs.getInt("idPersona"));
+				p.setEstado(rs.getString("estado"));
+				prestamos.add(p);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return prestamos;
+	}
 
 }

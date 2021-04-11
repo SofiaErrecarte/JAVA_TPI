@@ -16,8 +16,11 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href = "css/messages.css" rel="stylesheet">
 <link href = "css/listado.css" rel="stylesheet">
-<style type="text/css">@import url("css/calendar-blue.css");</style>
-
+<style>
+html, body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
 </head>
 <body>
 <% LineaPrestamo lineaP = (LineaPrestamo)session.getAttribute("nuevaLineaPrestamo"); 

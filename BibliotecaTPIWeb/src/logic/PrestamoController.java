@@ -36,6 +36,10 @@ public void setEstado(Prestamo p, String e) {
 	 dp.setEstado(p, e);
 	}
 
+public LinkedList<Prestamo> getByIDMinimo() {
+	return dp.getByIDMinimo();
+}
+
 public void cerrarPrestamo(Prestamo p) {
 	dp.cerrarPrestamo(p);
 }

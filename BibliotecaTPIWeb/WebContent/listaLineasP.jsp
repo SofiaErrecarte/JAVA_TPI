@@ -20,6 +20,11 @@ int limiteNS = (Integer)request.getAttribute("limiteNS");
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
+<style>
+html, body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
 </head>
 <body>
 <%@ include file="navInicio.jsp"%>
