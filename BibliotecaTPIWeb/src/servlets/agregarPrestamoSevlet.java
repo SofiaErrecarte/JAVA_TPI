@@ -47,8 +47,7 @@ public class agregarPrestamoSevlet extends HttpServlet {
 			java.sql.Date date = new java.sql.Date(utilStartDate.getTime());
 			p.setFechaADevoler(date);
 		} catch (java.text.ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			p.setFechaADevoler(null);
 		}
 		
 		Calendar fech2 = Calendar.getInstance();
@@ -59,13 +58,12 @@ public class agregarPrestamoSevlet extends HttpServlet {
 			java.sql.Date date = new java.sql.Date(utilStartDate2.getTime());
 			p.setFechaPrestamo(date);
 		} catch (java.text.ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		int idPers = Integer.parseInt(request.getParameter("idPersona"));
 		p.setIdPersona(idPers);		
-		
+		p.setEstado("Abierto");
 		//creo el prestamo
 		ctrlP.addPrestamo(p);
 		request.setAttribute("nuevoPrestamo", p);

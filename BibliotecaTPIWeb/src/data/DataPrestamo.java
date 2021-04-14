@@ -293,7 +293,7 @@ public class DataPrestamo {
 							"UPDATE linea_prestamo lp \r\n"
 							+ "INNER JOIN prestamo p ON \r\n"
 							+ "lp.idPrestamo = p.idPrestamo \r\n"
-							+ "SET devuelto=1 WHERE (lp.idPrestamo = 91);",
+							+ "SET devuelto=1, fechaDevolucion= curdate() WHERE (lp.idPrestamo = ?);",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			
@@ -349,5 +349,7 @@ public class DataPrestamo {
 		
 		return prestamos;
 	}
+
+	
 
 }

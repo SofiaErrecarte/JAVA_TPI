@@ -50,4 +50,6 @@ public void actualizarLP (Prestamo p) {
 	/*
 	 * public int getCantLP(Prestamo p) { return dp.getCantLP(p); }
 	 */
+
+
 }

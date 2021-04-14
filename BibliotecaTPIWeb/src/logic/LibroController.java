@@ -78,6 +78,15 @@ public class LibroController {
 	public Ejemplar getByIdEjemplar(Ejemplar ej) {
 		return dl.getByIdEjemplar(ej);
 	}
+
+	public void setAllDisponibles(Prestamo p) {
+		dl.setAllDisponibles(p);		
+	}
+
+	public LinkedList<Ejemplar> getEjemplaresPrestamo(Prestamo p) {
+	
+		return dl.getEjemplaresPrestamo(p);
+	}
 	
 	
 }

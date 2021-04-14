@@ -53,7 +53,7 @@ html, body{
                 </div>
             </div>
    <div class="form-group">
-  <label class="col-md-4 control-label" for="idEjemplar">Id Prestamo: <%=p.getIdPrestamo()%> </label>  
+  <label class="col-md-4 control-label" for="idEjemplar">Id Prestamo: <%=p.getIdPrestamo()%> - Estado= <%=p.getEstado()%> </label>  
   </div>
   
   <%if (cant>=limiteNS) { %>
@@ -67,11 +67,13 @@ html, body{
   <div class="form-group">
   <label class="col-md-4 control-label" for="idEjemplar">Límite de libros por préstamo NS: <%=limiteNS%> </label>  
   </div>
-  <%if(cant<limiteNS){ %>
+  <%if(cant<limiteNS){ 
+  if(p.getEstado().equals("Abierto")){%>
+  
    <div class="container buscar">
                 <a 		href="agregarLineaPrestamoServlet?id=<%=p.getIdPrestamo()%>" method="post" class="btn btn-success">+ Nueva Linea</a>
                 </div>            
-							<%} %>         
+							<%} }%>         
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <table class="table" class="text-center">
@@ -80,8 +82,8 @@ html, body{
                                         <tr>
                                             <th class="text-center">ID Linea</th>
 		                    		    	<th class="text-center">ID Ejemplar</th>
-		                    		    	<th class="text-center">Fecha Devolución</th>
-		                    		    	<th class="text-center">Devuelto</th>
+		                    		    	<th class="text-center">Fecha Devolución
+		                    		    	<th class="text-center">Devuelto</th> 
 		                    		    	<th class="text-center"> Acción </th>
                                        
                                         </tr>
@@ -91,8 +93,8 @@ html, body{
                     			<tr>
                     				<td class="text-center"><%=lp.getIdLineaPrestamo()%></td>
                     				<td class="text-center"><%=lp.getIdEjemplar()%></td>
-                    				<td class="text-center"><%=lp.getFechaDevolucion()%></td>
-                    				<td class="text-center"><%=lp.isDevuelto()%></td>
+                    				 <td class="text-center"><%=lp.getFechaDevolucion()%></td>
+                    				<td class="text-center"><%=lp.isDevuelto()%></td> 
 									<td class="text-center"><a class="editbutton"
 									href="modificarLineaPServlet?id=<%=lp.getIdLineaPrestamo()%>">
 										Editar</a></td> 
@@ -109,7 +111,7 @@ html, body{
             </div>
       <table>
       <tr>
-      <%if(cant<limiteNS){ %>
+      <%if(cant<limiteNS && p.getEstado().equals("Abierto")){ %>
       							 <td>
                            			<a class="addbutton"
 									href="agregarLineaPrestamoServlet?id=<%=p.getIdPrestamo()%>">
