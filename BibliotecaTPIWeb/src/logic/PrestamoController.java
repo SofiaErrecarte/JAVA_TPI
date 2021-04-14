@@ -13,11 +13,11 @@ public PrestamoController() {
 public LinkedList<Prestamo> getAllPrestamos(){
 	return dp.getAll();
 }
-public Prestamo addPrestamo(Prestamo p ) {
+public MyResult addPrestamo(Prestamo p ) {
 	return dp.add(p);
 	
 }
-public Prestamo editPrestamo(Prestamo p ) {
+public MyResult editPrestamo(Prestamo p ) {
 	return dp.editPrestamo(p);
 }
 public Prestamo deletePrestamo(Prestamo p ) {

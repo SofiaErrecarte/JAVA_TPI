@@ -4,7 +4,7 @@
 <%@page import="entities.Prestamo"%>
 <%@page import="entities.Persona"%>
 <%@page import="java.util.Calendar"%>
-
+<%@page import="entities.MyResult"%>  
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -56,7 +56,18 @@ html, body{
                  </div>
             </div>
             </div>
-            
+                        <% if (request.getAttribute("result")!=null) {
+        	   MyResult res = (MyResult)request.getAttribute("result");
+        	   if(res.getResult().equals(MyResult.results.OK)){
+        		   %>
+                   <div class="success"><%=res.getErr_message()%></div>
+                  <%
+        	   } else {
+        	      %>
+                   <div class="error"><%=res.getErr_message()%></div>
+                   <%}
+                   }
+                 %>
             <br>
               <div class="container w3-container">
               <div class="row">

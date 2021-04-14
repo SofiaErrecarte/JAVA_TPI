@@ -110,6 +110,11 @@ html, body{
 							 
 							    <!--  <a type="button" class="editbutton">Inicio</a>
 							  -->
+							  <td>
+							 <a class="addbutton" href="listarPoliticaServlet">Volver</a>
+							 
+							
+							  </td>
                    
             </section>
        

@@ -115,7 +115,6 @@ public class DataLibro extends DataMethods{
 			stmt.setLong(4, lib.getCantDiasMaxPrestamo());
 			stmt.setString(5, lib.getGenero());	
 			stmt.setInt(6, lib.getIdProveedor());
-			//stmt.setTimestamp(7, new java.sql.Timestamp(lib.getFechaEdicion().getTime()));
 			stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();

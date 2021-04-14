@@ -14,9 +14,10 @@ import java.sql.SQLException;
 import entities.Ejemplar;
 import entities.Libro;
 import entities.LineaPrestamo;
+import entities.MyResult;
 import entities.Prestamo;
 
-public class DataPrestamo {
+public class DataPrestamo extends DataMethods{
 	public LinkedList<Prestamo> getAll(){
 		Statement stmt=null;
 		ResultSet rs=null;
@@ -55,7 +56,8 @@ public class DataPrestamo {
 		return prestamos;
 	}
 	
-	public Prestamo add(Prestamo p ) {
+	public MyResult add(Prestamo p ) {
+		int resultado = -1;
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 		try {
@@ -63,7 +65,7 @@ public class DataPrestamo {
 					prepareStatement(
 							"INSERT INTO `biblioteca`.`prestamo` (`fechaPrestamo`, `fechaADevolver`, `idPersona`, `estado`) VALUES(?, ?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
-							); //, `fechaEdicion`
+							);
 			stmt.setDate(1, (java.sql.Date) p.getFechaPrestamo());
 			stmt.setDate(2, (java.sql.Date) p.getFechaADevoler());
 			stmt.setLong(3,p.getIdPersona());
@@ -77,50 +79,55 @@ public class DataPrestamo {
             }
 			
 		}  catch (SQLException e) {
-            e.printStackTrace();
+            return Add(resultado);
 		} finally {
             try {
                 if(keyResultSet!=null)keyResultSet.close();
                 if(stmt!=null)stmt.close();
                 DbConnector.getInstancia().releaseConn();
             } catch (SQLException e) {
-            	e.printStackTrace();
+            	ConnectCloseError();
             }
 		}
-		
-		return p;
+		// si llegó hasta acá está bien
+		MyResult res = new MyResult();
+		res.setResult(MyResult.results.OK);
+		return Add(1);
 	}
 	
-	public Prestamo editPrestamo(Prestamo p) {
+	public MyResult editPrestamo(Prestamo p) {
+		int resultado = -1;
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"UPDATE `biblioteca`.`prestamo` SET `fechaPrestamo` = ?, `fechaADevolver` = ?, `idPersona` = ? WHERE (`idLineaPrestamo` = ?);",
+							"UPDATE `biblioteca`.`prestamo` SET `fechaPrestamo` = ?, `fechaADevolver` = ?, `idPersona` = ? WHERE (`idPrestamo` = ?);",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			stmt.setTimestamp(1, new java.sql.Timestamp(p.getFechaPrestamo().getTime()));
 			stmt.setTimestamp(2, new java.sql.Timestamp(p.getFechaADevoler().getTime()));
 			stmt.setLong(3, p.getIdPersona());
-			//stmt.setTimestamp(6, new java.sql.Timestamp(lib.getFechaEdicion().getTime()));
-			//stmt.setTimestamp(6, null);
-			
 			stmt.setInt(4, p.getIdPrestamo());
 			stmt.executeUpdate();
 			
 		}  catch (SQLException e) {
-            e.printStackTrace();
+			return Update(resultado);
+        	
 		} finally {
             try {
                 if(keyResultSet!=null)keyResultSet.close();
                 if(stmt!=null)stmt.close();
                 DbConnector.getInstancia().releaseConn();
             } catch (SQLException e) {
-            	e.printStackTrace();
+            	ConnectCloseError();
             }
 		}
-		return p;
+		// si llego aca esta todo OK
+		MyResult res = new MyResult();
+		res.setResult(MyResult.results.OK);
+		res.setErr_message("Prestamo actualizado correctamente");
+		return Update(1);
 	}
 	
 	public void setEstado(Prestamo p, String estado) {

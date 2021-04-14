@@ -126,8 +126,10 @@ html, body{
 <button class="addbutton">Agregar Libro</button>
 </td>
 <td>
-<input type="button" onclick="history.back()" class="addbutton">
-</td>
+							 <a class="addbutton" href="listarLibroServlet">Volver</a>
+							 
+							
+							  </td>
 </table>
                             
         </section>
