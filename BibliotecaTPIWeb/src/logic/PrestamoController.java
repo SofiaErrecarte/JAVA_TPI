@@ -13,11 +13,11 @@ public PrestamoController() {
 public LinkedList<Prestamo> getAllPrestamos(){
 	return dp.getAll();
 }
-public Prestamo addPrestamo(Prestamo p ) {
+public MyResult addPrestamo(Prestamo p ) {
 	return dp.add(p);
 	
 }
-public Prestamo editPrestamo(Prestamo p ) {
+public MyResult editPrestamo(Prestamo p ) {
 	return dp.editPrestamo(p);
 }
 public Prestamo deletePrestamo(Prestamo p ) {
@@ -39,7 +39,15 @@ public void setEstado(Prestamo p, String e) {
 public LinkedList<Prestamo> getByIDMinimo() {
 	return dp.getByIDMinimo();
 }
-
+public LinkedList<Prestamo> getByIDMayor() {
+	return dp.getByIDMayor();
+}
+public LinkedList<Prestamo> getByFechaMinimo() {
+	return dp.getByFechaMinimo();
+}
+public LinkedList<Prestamo> getByFechaMayor() {
+	return dp.getByFechaMayor();
+}
 public void cerrarPrestamo(Prestamo p) {
 	dp.cerrarPrestamo(p);
 }
@@ -50,4 +58,6 @@ public void actualizarLP (Prestamo p) {
 	/*
 	 * public int getCantLP(Prestamo p) { return dp.getCantLP(p); }
 	 */
+
+
 }

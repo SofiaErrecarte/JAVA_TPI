@@ -11,8 +11,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Nuevo Prestamo</title>
-<%PersonaController ctrlPer = new PersonaController();
+<title>Modificar Prestamo</title>
+<%
+Prestamo p = (Prestamo)request.getAttribute("prestamoAEditar");
+PersonaController ctrlPer = new PersonaController();
 LinkedList<Persona> personas = ctrlPer.getAllPersonas(); %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -46,19 +48,29 @@ html, body{
                    <%}
                    }
                  %> 
-<form class="form-horizontal" action="agregarPrestamoServlet" method="post">
-<section>              
+<form class="form-horizontal" action="modificarPrestamoServlet" method="post">
+<section>     
+<div class="form-group">
+  <label class="col-md-4 control-label" for="id">ID Prestamo: </label>  
+  <div class="col-md-4">
+      <%-- <input type="text" name="id" value=<%=lib.getIdLibro()%> class="form-control input-md" hidden="true"> --%>
+      <!-- Este me guarda el atributo id -->
+       <input type="text" name="id" value=<%=p.getIdPrestamo()%> hidden="true">
+       <!--  Este me lo muestra deshabilitado para q se vea el numero -->
+	 <input type="text" name="idPrestamo" value=<%=p.getIdPrestamo()%> class="form-control input-md" disabled>
+  </div>
+</div>         
 <fieldset>  
                             	
                	<div class="tab-content" id="nav-tabContent"> 
 				<label for="txtidpersona">Ingrese el Cliente</label>  
 				  <div>
 				   <% if( personas != null) {%>
-				                            <select name="idPersona" class="form-control">
+				                            <select name="idPersona" value=<%=p.getIdPersona() %>class="form-control">
 				                                <%  for(int i = 0; i < personas.size(); i++) {
-				                                   Persona p = (Persona)personas.get(i);
+				                                   Persona pers = (Persona)personas.get(i);
 				                                %>
-				                                <option value="<%= p.getIdPersona() %>"><%= p.getDni()%> - <%=p.getNombre()%> <%=p.getApellido() %></option>
+				                                <option value="<%= pers.getIdPersona() %>"><%= pers.getDni()%> - <%=pers.getNombre()%> <%=pers.getApellido() %></option>
 				                                <% } %>
 				                            </select>
 				                            <% }else{ %> <td> No hay personas cargadas. <a class="agreggatebutton"
@@ -72,20 +84,23 @@ html, body{
                	
                	<div class="tab-content" id="nav-tabContent">
                	<label class="col-md-4 control-label" for="fechaPrestamo">Ingrese la Fecha de Préstamo</label>  
-               	<input class="form-control" type="date" id="fechaPrestamo" name="fechaPrestamo" style="display=block" required>	     
+               	<input class="form-control" type="date" id="fechaPrestamo" value=<%=p.getFechaPrestamo()%> name="fechaPrestamo" style="display=block" required>	     
                	</div>
                  
                 
                 <div class="tab-content" id="nav-tabContent">
                	<label class="col-md-4 control-label" for="fechaDevolucion">Ingrese la Fecha de Devolución Estimada</label>  
-               	<input class="form-control" type="date" id="fechaDevolucion" name="fechaDevolucion" style="display=block">	     
+               	<input class="form-control" type="date" id="fechaDevolucion" value=<%=p.getFechaADevoler() %> name="fechaDevolucion" style="display=block">	     
                    
-                </div>  
+                </div>
+                
+                
+                  
                 
                       
 </fieldset>						
 <td>
-<button class="addbutton">Agregar Prestamo</button>
+<button class="addbutton">Modificar Prestamo</button>
 </td>
 <td>
 							 <a class="addbutton" href="listarPrestamosServlet">Volver</a>

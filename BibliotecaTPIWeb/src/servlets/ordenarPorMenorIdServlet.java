@@ -9,22 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entities.Ejemplar;
+import entities.Libro;
 import entities.Prestamo;
 import logic.LibroController;
 import logic.PrestamoController;
 
 /**
- * Servlet implementation class devolverPrestamoServlet
+ * Servlet implementation class ordenarPorMenorIdServlet
  */
-@WebServlet("/devolverPrestamoServlet")
-public class devolverPrestamoServlet extends HttpServlet {
+@WebServlet("/ordenarPorMenorIdServlet")
+public class ordenarPorMenorIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public devolverPrestamoServlet() {
+    public ordenarPorMenorIdServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,16 +34,7 @@ public class devolverPrestamoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrestamoController ctrlP= new PrestamoController();
-		LibroController ctrlL = new LibroController();
-		Prestamo p = new Prestamo();
-		int  ID  =  Integer.parseInt (request.getParameter("id"));
-		p.setIdPrestamo(ID);
-		ctrlP.cerrarPrestamo(p);
-		ctrlP.actualizarLP(p);
-		ctrlL.setAllDisponibles(p);
-		p.setEstado("Cerrado");
-		request.getRequestDispatcher("listarPrestamosServlet").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -51,7 +42,10 @@ public class devolverPrestamoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		PrestamoController ctrlPres = new PrestamoController();
+		LinkedList<Prestamo> prestamos = ctrlPres.getByIDMinimo();
+		request.setAttribute("listaprestamos", prestamos);
+		request.getRequestDispatcher("listaPrestamos.jsp").forward(request, response);
 	}
 
 }

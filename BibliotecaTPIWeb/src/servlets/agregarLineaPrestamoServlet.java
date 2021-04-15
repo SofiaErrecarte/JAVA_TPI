@@ -16,6 +16,7 @@ import entities.LineaPrestamo;
 import entities.PoliticaPrestamo;
 import entities.Prestamo;
 import logic.LibroController;
+import entities.MyResult;
 import logic.LineaPrestamoController;
 import logic.PoliticaPrestamoController;
 import logic.PrestamoController;
@@ -51,18 +52,15 @@ public class agregarLineaPrestamoServlet extends HttpServlet {
 		Prestamo p = ctrlP.getByIdPrestamo(pr); //obtengo el prestamo al que le agrego las lp
 		
 		
-		Calendar fech = Calendar.getInstance();
-		java.util.Date utilStartDate;
-		try {
-			utilStartDate = formato.parse(request.getParameter("fecha"));
-			fech.setTime(utilStartDate);
-			java.sql.Date date = new java.sql.Date(utilStartDate.getTime());
-			lpr.setFechaDevolucion(date);
-		} catch (java.text.ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		boolean devuelto = Boolean.parseBoolean(request.getParameter("devuelto"));
+		/*
+		 * Calendar fech = Calendar.getInstance(); java.util.Date utilStartDate; try {
+		 * utilStartDate = formato.parse(request.getParameter("fecha"));
+		 * fech.setTime(utilStartDate); java.sql.Date date = new
+		 * java.sql.Date(utilStartDate.getTime()); lpr.setFechaDevolucion(date); } catch
+		 * (java.text.ParseException e) { lpr.setFechaDevolucion(null); }
+		 */
+		
+		boolean devuelto = false;
 		int idEj = Integer.parseInt(request.getParameter("idEjemplar"));
 		lpr.setIdEjemplar(idEj);
 		lpr.setIdPrestamo(ID);
@@ -76,25 +74,28 @@ public class agregarLineaPrestamoServlet extends HttpServlet {
 		ctrlL.setDisponible(ej, devuelto);
 		
 		
-		p.addLp(lpr); //la añado a la coleccion de lp del prestamo
-		ctrlLP.addLineaPrestamo(lpr);
-		//verifico estado prestamo
-				LinkedList<LineaPrestamo> lineasP = ctrlP.getLPByPrestamo(p);
-				int cantTot = lineasP.size();
-				int cantDev = 0;
-				for(LineaPrestamo lp : lineasP) {
-					if(lp.isDevuelto()) {
-						cantDev++;
-					}
-				}
-						
-				if(cantDev==cantTot) {
-					String e = "Devuelto";
-					ctrlP.setEstado(p, e);
-				}else {ctrlP.setEstado(p, "Abierto");}
+		
+		MyResult res = ctrlLP.addLineaPrestamo(lpr);
+		if (res.getResult().equals(MyResult.results.Err)) {
+			request.setAttribute("result", res);
+			request.getRequestDispatcher("agregarLineaPrestamo.jsp").forward(request, response);
+			
+		} else {
+			p.addLp(lpr); //la añado a la coleccion de lp del prestamo
+			request.setAttribute("result", res);
+			request.setAttribute("nuevaLineaPrestamo", lpr);
+			request.getRequestDispatcher("listarLineasPrestamoServlet").forward(request, response);
+		}
+		/*
+		 * //verifico estado prestamo LinkedList<LineaPrestamo> lineasP =
+		 * ctrlP.getLPByPrestamo(p); int cantTot = lineasP.size(); int cantDev = 0;
+		 * for(LineaPrestamo lp : lineasP) { if(lp.isDevuelto()) { cantDev++; } }
+		 * 
+		 * if(cantDev==cantTot) { String e = "Devuelto"; ctrlP.setEstado(p, e); }else
+		 * {ctrlP.setEstado(p, "Abierto");}
+		 */
 				
-		request.setAttribute("nuevaLineaPrestamo", lpr);
-		request.getRequestDispatcher("listarLineasPrestamoServlet").forward(request, response);
+		
 		
 	}
 

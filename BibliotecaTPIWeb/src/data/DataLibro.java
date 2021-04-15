@@ -115,7 +115,6 @@ public class DataLibro extends DataMethods{
 			stmt.setLong(4, lib.getCantDiasMaxPrestamo());
 			stmt.setString(5, lib.getGenero());	
 			stmt.setInt(6, lib.getIdProveedor());
-			//stmt.setTimestamp(7, new java.sql.Timestamp(lib.getFechaEdicion().getTime()));
 			stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();
@@ -364,7 +363,42 @@ public class DataLibro extends DataMethods{
 		
 		return ejemplares;
 	}
-	
+	public LinkedList<Ejemplar> getEjemplaresPrestamo(Prestamo p) {
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Ejemplar> ejemplares= new LinkedList<>();
+		try {
+			stmt= DbConnector.getInstancia().getConn().prepareStatement("select T0.idEjemplar, T0.idLibro, T0.disponible from ejemplar T0 inner join linea_prestamo T1 on T0.idEjemplar=T1.idEjemplar"
+					+ " inner join prestamo T2 on T1.idPrestamo=T2.idPrestamo where T2.idPrestamo=?");
+			
+			stmt.setLong(1, p.getIdPrestamo());
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+					Ejemplar ej = new Ejemplar();
+					ej.setIdEjemplar(rs.getInt("T0.idEjemplar"));
+					ej.setIdLibro(rs.getInt("T0.idLibro"));
+					ej.setDisponible(rs.getBoolean("T0.disponible"));
+					ejemplares.add(ej);
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return ejemplares;
+	}
 	public LinkedList<Ejemplar> getAllEjemplaresDisponibles(){
 		Statement stmt=null;
 		ResultSet rs=null;
@@ -535,6 +569,14 @@ public class DataLibro extends DataMethods{
             }
 		}
     }
+	
+	public void setAllDisponibles(Prestamo p) {
+		LinkedList<Ejemplar> ejemplares = getEjemplaresPrestamo(p);
+		for (Ejemplar ej : ejemplares) {
+			setDisponible(ej, true);
+		}
+		
+	}
 
 	public MyResult deleteEjemplar(Ejemplar ej) {
 		int r = 1;
@@ -689,6 +731,13 @@ public class DataLibro extends DataMethods{
 		
 		return ejemp;
 	}
+
+
+	
+	
+
+
+	
 
 	
 		

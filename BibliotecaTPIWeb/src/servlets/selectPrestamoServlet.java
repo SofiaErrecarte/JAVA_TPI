@@ -15,16 +15,16 @@ import logic.LibroController;
 import logic.PrestamoController;
 
 /**
- * Servlet implementation class ordenarPorMenorIdServlet
+ * Servlet implementation class selectPrestamoServlet
  */
-@WebServlet("/ordenarPorMenorIdServlet")
-public class ordenarPorMenorIdServlet extends HttpServlet {
+@WebServlet("/selectPrestamoServlet")
+public class selectPrestamoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ordenarPorMenorIdServlet() {
+    public selectPrestamoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,8 +44,21 @@ public class ordenarPorMenorIdServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrestamoController ctrlPres = new PrestamoController();
 		LinkedList<Prestamo> prestamos = ctrlPres.getByIDMinimo();
-		request.setAttribute("listaprestamos", prestamos);
+		String op = request.getParameter("opcion");
+		if (op=="idmenor") {
+		prestamos= ctrlPres.getByIDMinimo();
+		}
+		else if (op=="idmayor") {
+			prestamos=ctrlPres.getByIDMayor();
+		}
+		else if (op=="fechamenor") {
+			prestamos=ctrlPres.getByFechaMinimo();
+		}
+		else if (op=="fechamayor") {
+			prestamos=ctrlPres.getByFechaMayor();
+		}
+		request.setAttribute("listaPrestamos", prestamos);
 		request.getRequestDispatcher("listaPrestamos.jsp").forward(request, response);
-	}
+		}
 
 }

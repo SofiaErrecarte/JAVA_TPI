@@ -30,7 +30,22 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 %>
 
 <section id="tabs" class="project-tab">
-
+<div class="tab-content" id="nav-tabContent">
+<%if ((request.getAttribute("error"))!=null) { %>
+		<div class="error"> <%=request.getAttribute("error")%> </div>		
+	<% } %>
+	<% if (request.getAttribute("result")!=null) {
+        	   MyResult res = (MyResult)request.getAttribute("result");
+        	   if(res.getResult().equals(MyResult.results.OK)){
+        		   %>
+                   <div class="success"><%=res.getErr_message()%></div>
+                  <%
+        	   } else {
+        	      %>
+                   <div class="error"><%=res.getErr_message()%></div>
+                   <%}
+                   }
+                 %> 
 <form class="form-horizontal" action="agregarLineaPrestamoServlet" method="post">
 <section>
 <fieldset>
@@ -40,14 +55,14 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 <label class="col-md-4 control-label" for="id">Id Prestamo: <%=p.getIdPrestamo()%> </label>  
 </div>
 
-<div class="form-group">
+<!-- <div class="form-group">
   <label class="col-md-4 control-label" for="fechaDevolucion">Fecha Devolución: </label>  
   <div class="col-md-4">
   <input class="form-control" type="date" id="fecha" name="fecha" style="display=block">	
 
 
   </div>
-</div>
+</div> -->
 
 <!-- Text input-->
 <div class="form-group">
@@ -67,11 +82,11 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 				  </div>
 </div>
 
-<div class="form-group">
+<!-- <div class="form-group">
   <label class="col-md-4 control-label" for="devuelto">Devuelto (1 o 0): </label>  
   <div class="col-md-4">
   <input id="devuelto" name="devuelto" type="text" class="form-control input-md">
-  </div>
+  </div> -->
    <!-- <div>
    		<select name="devuelto" class="form-control">
 			<option value="0">NO</option>
@@ -97,6 +112,7 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 
   </section>
 </form>
+</div>
   </section>
 
 

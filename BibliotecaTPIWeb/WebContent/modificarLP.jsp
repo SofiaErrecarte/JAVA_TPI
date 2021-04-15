@@ -47,7 +47,7 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 </div> 
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="fechaDevolucion">Fecha Devolución: </label>  
+  <label class="col-md-4 control-label" for="fechaDevolucion">Fecha Devolución: (YYYY-MM-DD) </label>  
   <div class="col-md-4">
   <input type="text" name="fecha" id="fecha" value=<%=lineaP.getFechaDevolucion() %>  placeholder="Fecha Alta" class="form-control input-md" />
 <img src="calendario.png" id="selector" />
@@ -84,7 +84,13 @@ window.onload = function() {
 				  </div>
 </div>
 
+<!-- Este me guarda el atributo id -->
+<input type="text" name="devuelto" value=<%=lineaP.isDevuelto()%> hidden="true">
 <div class="form-group">
+<label class="col-md-4 control-label" for="devuelto">Devuelto: <%=lineaP.isDevuelto()%> </label>  
+</div>
+
+<%-- <div class="form-group">
   <label class="col-md-4 control-label" for="devuelto">Devuelto: </label>  
 <%if(lineaP.isDevuelto()){%>
  <label class="radio-inline"><input type="radio" name="devuelto" value="1" checked>Sí</label>
@@ -94,7 +100,7 @@ window.onload = function() {
 <label class="radio-inline"><input type="radio" name="devuelto" value="0" checked>No</label>
 <%} %>
 </div>
-
+ --%>
 
 </fieldset>
 <table>

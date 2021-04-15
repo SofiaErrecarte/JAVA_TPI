@@ -4,7 +4,7 @@
 <%@page import="entities.Prestamo"%>
 <%@page import="entities.Persona"%>
 <%@page import="java.util.Calendar"%>
-
+<%@page import="entities.MyResult"%>  
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -56,14 +56,26 @@ html, body{
                  </div>
             </div>
             </div>
-            
+                        <% if (request.getAttribute("result")!=null) {
+        	   MyResult res = (MyResult)request.getAttribute("result");
+        	   if(res.getResult().equals(MyResult.results.OK)){
+        		   %>
+                   <div class="success"><%=res.getErr_message()%></div>
+                  <%
+        	   } else {
+        	      %>
+                   <div class="error"><%=res.getErr_message()%></div>
+                   <%}
+                   }
+                 %>
             <br>
-              <div class="container w3-container">
+             <div class="container w3-container">
               <div class="row">
               <table class="table" class="text-center">
               <tr>
                <td class="text-center">
-              <div class="form-group">
+              <!--  div class="form-group"-->
+              <form action="selectPrestamoServlet" method="post">
              	<div class="input-group">
              <select class="custom-select form-control" id="inlineFormCustomSelectPref" name="opcion" >
 			   				<option selected>Ordenar por..</option>
@@ -71,21 +83,27 @@ html, body{
 			   				<option value="idmayor">Mayor a menor ID</option>
 			   				<option value="fechamenor">Menor a Mayor Fecha Prestamo</option>
 			   				<option value="fechamayor">Mayor a Menor Fecha Prestamo</option>
+			   				
 			  			</select>
 			      <span class="input-group-btn">
-			        <a href="selectPrestamoServlet" class="btn btn-outline-secondary" type="submit">Aplicar Filtro</a>
+			        <input class="btn btn-outline-secondary" type="submit" name="AplicarFiltro" value= "Aplicar Filtro"> 
 			      </span></div>
+			      </form>
 			  </td> 		 
-			  <td>			<div class="input-group">
+			  <td>		
+			  <form action="buscarPrestamoServlet" method="post">
+			  	<div class="input-group">
 			      <input type="text" class="form-control" placeholder="ID Prestamo"type="text" name="txtbuscar">
 			      <span class="input-group-btn">
-			        <a href="buscarPrestamoServlet" class="btn btn-outline-secondary" type="submit">Buscar</a>
+			        <input class="btn btn-outline-secondary" type="submit" value="Buscar">
 			      </span></div>
+			      </form>
 			      </td>
 			  </tr>
 			  </table>
 			  </div>
                	</div>
+
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <table class="table" class="table-center">

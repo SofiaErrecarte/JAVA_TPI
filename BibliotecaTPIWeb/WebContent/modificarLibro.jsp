@@ -131,8 +131,10 @@ html, body{
 <button class="addbutton">Modificar</button>
 </td>
 <td>
-<input type="button" = onclick="history.back()" class="addbutton" name="Volver" value="Cancelar" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
-</td>
+							 <a class="addbutton" href="listarLibroServlet">Volver</a>
+							 
+							
+							  </td>
 </table>
 <%if ((request.getAttribute("error"))!=null) { %>
 		<p style="color:red"> <%=request.getAttribute("error")%> </p>		

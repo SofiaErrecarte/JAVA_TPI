@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import entities.Ejemplar;
 import entities.Libro;
 import entities.LineaPrestamo;
+import entities.MyResult;
 import entities.Prestamo;
 import logic.LibroController;
 import logic.LineaPrestamoController;
@@ -34,8 +35,7 @@ public class agregarPrestamoSevlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		PrestamoController ctrlP= new PrestamoController();
-		Prestamo p = new Prestamo();
-		LibroController ctrlLib = new LibroController(); 
+		Prestamo p = new Prestamo(); 
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 	
 		//CREO EL PRESTAMO
@@ -47,8 +47,7 @@ public class agregarPrestamoSevlet extends HttpServlet {
 			java.sql.Date date = new java.sql.Date(utilStartDate.getTime());
 			p.setFechaADevoler(date);
 		} catch (java.text.ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			p.setFechaADevoler(null);
 		}
 		
 		Calendar fech2 = Calendar.getInstance();
@@ -59,20 +58,34 @@ public class agregarPrestamoSevlet extends HttpServlet {
 			java.sql.Date date = new java.sql.Date(utilStartDate2.getTime());
 			p.setFechaPrestamo(date);
 		} catch (java.text.ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			p.setFechaPrestamo(null);
 		}
 		
-		int idPers = Integer.parseInt(request.getParameter("idPersona"));
-		p.setIdPersona(idPers);		
-		
-		//creo el prestamo
-		ctrlP.addPrestamo(p);
-		request.setAttribute("nuevoPrestamo", p);
-		request.getRequestDispatcher("listarPrestamosServlet").forward(request, response);
-		
-		
-	
+		//VERIFICAMOS FECHAS
+		if(p.getFechaADevoler()!=null && p.getFechaPrestamo()!=null) {
+		if(p.getFechaPrestamo().after(p.getFechaADevoler())) {
+			request.setAttribute("error", "La fecha a devolver no puede ser menor que la fecha de creación.");
+			request.getRequestDispatcher("agregarPrestamo.jsp").forward(request, response); 
+		}else {
+			int idPers = Integer.parseInt(request.getParameter("idPersona"));
+			p.setIdPersona(idPers);		
+			p.setEstado("Abierto");
+			//creo el prestamo
+			MyResult res = ctrlP.addPrestamo(p);
+			if (res.getResult().equals(MyResult.results.Err)) {
+				request.setAttribute("result", res);
+				request.getRequestDispatcher("agregarPrestamo.jsp").forward(request, response); 
+			}else {
+				request.setAttribute("result", res);
+				request.setAttribute("nuevoPrestamo", p);
+				request.getRequestDispatcher("listarPrestamosServlet").forward(request, response);
+			}
+			
+		}
+	}else {
+		request.setAttribute("error", "Los atributos de fechas no pueden ser nulos.");
+		request.getRequestDispatcher("agregarPrestamo.jsp").forward(request, response); 
+	}
 	}
 	
 }

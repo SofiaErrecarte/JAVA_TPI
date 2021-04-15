@@ -11,11 +11,11 @@ public LineaPrestamoController() {
 	dlp = new DataLineaPrestamo();
 }
 
-public LineaPrestamo addLineaPrestamo (LineaPrestamo lp) {
+public MyResult addLineaPrestamo (LineaPrestamo lp) {
 	return dlp.add(lp);
 	
 }
-public LineaPrestamo editLineaprestamo (LineaPrestamo lp) {
+public MyResult editLineaprestamo (LineaPrestamo lp) {
 	return dlp.editLineaPrestamo(lp);
 }
 public LineaPrestamo deleteLineaPrestamo (LineaPrestamo lp) {

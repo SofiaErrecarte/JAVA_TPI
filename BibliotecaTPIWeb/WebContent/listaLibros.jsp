@@ -125,7 +125,7 @@ html, body{
             </div>
         <!-- <a type="button" class="editbutton">Inicio</a>
 		-->					           
-		<a href="listarLibrosProvServlet" method="post" class="addbutton">Lista Libros por Proveedor</a>
+		<!-- <a href="listarLibrosProvServlet" method="post" class="addbutton">Lista Libros por Proveedor</a> -->
         </section>
      
 
