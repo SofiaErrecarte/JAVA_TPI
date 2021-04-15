@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import entities.Ejemplar;
 import entities.LineaPrestamo;
 import entities.Prestamo;
+import entities.MyResult;
 import logic.LibroController;
 import logic.LineaPrestamoController;
 import logic.PrestamoController;
@@ -81,8 +82,15 @@ public class modificarLineaPServlet extends HttpServlet {
 		 * {ctrlPre.setEstado(p, "Abierto");}
 		 */
 		
-		ctrlLP.editLineaprestamo(lpr);
-		request.getRequestDispatcher("listarPrestamosServlet").forward(request, response);
+		MyResult res = ctrlLP.editLineaprestamo(lpr);
+		if (res.getResult().equals(MyResult.results.Err)) {
+			request.setAttribute("result", res);
+			request.setAttribute ("lineaPrestamoAEditar",lpr);
+			request.getRequestDispatcher("modificarLP.jsp").forward(request, response);
+		} else {
+			request.setAttribute("result", res);
+			request.getRequestDispatcher("listarPrestamosServlet").forward(request, response);
+		}
 	}
 
 }

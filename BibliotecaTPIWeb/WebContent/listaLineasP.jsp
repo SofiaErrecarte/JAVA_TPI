@@ -3,6 +3,7 @@
 <%@page import="java.util.LinkedList"%>
 <%@page import="entities.LineaPrestamo"%>
 <%@page import="entities.Prestamo"%>
+<%@page import="entities.MyResult"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,6 +53,18 @@ html, body{
                     </div>
                 </div>
             </div>
+            <% if (request.getAttribute("result")!=null) {
+        	   MyResult res = (MyResult)request.getAttribute("result");
+        	   if(res.getResult().equals(MyResult.results.OK)){
+        		   %>
+                   <div class="success"><%=res.getErr_message()%></div>
+                  <%
+        	   } else {
+        	      %>
+                   <div class="error"><%=res.getErr_message()%></div>
+                   <%}
+                   }
+                 %>
    <div class="form-group">
   <label class="col-md-4 control-label" for="idEjemplar">Id Prestamo: <%=p.getIdPrestamo()%> - Estado= <%=p.getEstado()%> </label>  
   </div>

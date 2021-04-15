@@ -8,9 +8,10 @@ import java.text.SimpleDateFormat;
 
 import entities.*;
 
-public class DataLineaPrestamo {
+public class DataLineaPrestamo extends DataMethods{
 
-	public LineaPrestamo add(LineaPrestamo lp) {
+	public MyResult add(LineaPrestamo lp) {
+		int resultado = -1;
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 		try {
@@ -32,21 +33,24 @@ public class DataLineaPrestamo {
             }
 			
 		}  catch (SQLException e) {
-            e.printStackTrace();
+			return Add(resultado);
 		} finally {
             try {
                 if(keyResultSet!=null)keyResultSet.close();
                 if(stmt!=null)stmt.close();
                 DbConnector.getInstancia().releaseConn();
             } catch (SQLException e) {
-            	e.printStackTrace();
+            	ConnectCloseError();
             }
 		}
-		return lp;
-		
+		// si llegó hasta acá está bien
+		MyResult res = new MyResult();
+		res.setResult(MyResult.results.OK);
+		return Add(1);
 	}
 	
-	public LineaPrestamo editLineaPrestamo(LineaPrestamo lp) {
+	public MyResult editLineaPrestamo(LineaPrestamo lp) {
+		int resultado = -1;
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 		try {
@@ -63,17 +67,21 @@ public class DataLineaPrestamo {
 			stmt.executeUpdate();
 			
 		}  catch (SQLException e) {
-            e.printStackTrace();
+			return Update(resultado);
 		} finally {
             try {
                 if(keyResultSet!=null)keyResultSet.close();
                 if(stmt!=null)stmt.close();
                 DbConnector.getInstancia().releaseConn();
             } catch (SQLException e) {
-            	e.printStackTrace();
+            	ConnectCloseError();
             }
 		}
-		return lp;
+		// si llego aca esta todo OK
+		MyResult res = new MyResult();
+		res.setResult(MyResult.results.OK);
+		res.setErr_message("Prestamo actualizado correctamente");
+		return Update(1);
 	}
 	
 	public LineaPrestamo deleteLineaPrestamo (LineaPrestamo lp) {

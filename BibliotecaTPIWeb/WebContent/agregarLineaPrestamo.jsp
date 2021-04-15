@@ -30,7 +30,22 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 %>
 
 <section id="tabs" class="project-tab">
-
+<div class="tab-content" id="nav-tabContent">
+<%if ((request.getAttribute("error"))!=null) { %>
+		<div class="error"> <%=request.getAttribute("error")%> </div>		
+	<% } %>
+	<% if (request.getAttribute("result")!=null) {
+        	   MyResult res = (MyResult)request.getAttribute("result");
+        	   if(res.getResult().equals(MyResult.results.OK)){
+        		   %>
+                   <div class="success"><%=res.getErr_message()%></div>
+                  <%
+        	   } else {
+        	      %>
+                   <div class="error"><%=res.getErr_message()%></div>
+                   <%}
+                   }
+                 %> 
 <form class="form-horizontal" action="agregarLineaPrestamoServlet" method="post">
 <section>
 <fieldset>
@@ -97,6 +112,7 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 
   </section>
 </form>
+</div>
   </section>
 
 

@@ -16,6 +16,7 @@ import entities.LineaPrestamo;
 import entities.PoliticaPrestamo;
 import entities.Prestamo;
 import logic.LibroController;
+import entities.MyResult;
 import logic.LineaPrestamoController;
 import logic.PoliticaPrestamoController;
 import logic.PrestamoController;
@@ -73,8 +74,18 @@ public class agregarLineaPrestamoServlet extends HttpServlet {
 		ctrlL.setDisponible(ej, devuelto);
 		
 		
-		p.addLp(lpr); //la añado a la coleccion de lp del prestamo
-		ctrlLP.addLineaPrestamo(lpr);
+		
+		MyResult res = ctrlLP.addLineaPrestamo(lpr);
+		if (res.getResult().equals(MyResult.results.Err)) {
+			request.setAttribute("result", res);
+			request.getRequestDispatcher("agregarLineaPrestamo.jsp").forward(request, response);
+			
+		} else {
+			p.addLp(lpr); //la añado a la coleccion de lp del prestamo
+			request.setAttribute("result", res);
+			request.setAttribute("nuevaLineaPrestamo", lpr);
+			request.getRequestDispatcher("listarLineasPrestamoServlet").forward(request, response);
+		}
 		/*
 		 * //verifico estado prestamo LinkedList<LineaPrestamo> lineasP =
 		 * ctrlP.getLPByPrestamo(p); int cantTot = lineasP.size(); int cantDev = 0;
@@ -84,8 +95,7 @@ public class agregarLineaPrestamoServlet extends HttpServlet {
 		 * {ctrlP.setEstado(p, "Abierto");}
 		 */
 				
-		request.setAttribute("nuevaLineaPrestamo", lpr);
-		request.getRequestDispatcher("listarLineasPrestamoServlet").forward(request, response);
+		
 		
 	}
 
