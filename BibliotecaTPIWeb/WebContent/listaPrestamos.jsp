@@ -80,7 +80,7 @@ html, body{
              <select class="custom-select form-control" id="inlineFormCustomSelectPref" name="opcion" >
 			   				<option selected>Ordenar por..</option>
 			   				<option value="idmenor"> Menor a Mayor ID</option>
-			   				<option value="idmayor">Mayor a menor ID</option>
+			   				<option value="idmayor">Mayor a Menor ID</option>
 			   				<option value="fechamenor">Menor a Mayor Fecha Prestamo</option>
 			   				<option value="fechamayor">Mayor a Menor Fecha Prestamo</option>
 			   				

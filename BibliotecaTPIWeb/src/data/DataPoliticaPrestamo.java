@@ -263,4 +263,141 @@ public class DataPoliticaPrestamo extends DataMethods{
 		
 		return politicas;
 	}
+	
+	public LinkedList<PoliticaPrestamo> getByFechaMinima() {
+		PoliticaPrestamo pp=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<PoliticaPrestamo> politicas = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from politica_prestamo order by fechaAlta"
+					);
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+				pp = new PoliticaPrestamo();
+				pp.setCantMaximaSocio(rs.getInt("cantMaximaSocio"));
+				pp.setCantMaximaNoSocio(rs.getInt("cantMaximaNoSocio"));
+				pp.setFechaAlta(rs.getDate("fechaAlta"));
+				pp.setIdPoliticaPrestamo(rs.getInt("idPolitica"));
+				politicas.add(pp);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return politicas;
+	}
+
+	
+	public LinkedList<PoliticaPrestamo> getByFechaMaxima() {
+		PoliticaPrestamo pp=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<PoliticaPrestamo> politicas = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from politica_prestamo order by fechaAlta desc"
+					);
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+				pp = new PoliticaPrestamo();
+				pp.setCantMaximaSocio(rs.getInt("cantMaximaSocio"));
+				pp.setCantMaximaNoSocio(rs.getInt("cantMaximaNoSocio"));
+				pp.setFechaAlta(rs.getDate("fechaAlta"));
+				pp.setIdPoliticaPrestamo(rs.getInt("idPolitica"));
+				politicas.add(pp);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return politicas;
+	}
+	
+	public LinkedList<PoliticaPrestamo> getByIdMinimo() {
+		PoliticaPrestamo pp=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<PoliticaPrestamo> politicas = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from politica_prestamo order by idPolitica"
+					);
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+				pp = new PoliticaPrestamo();
+				pp.setCantMaximaSocio(rs.getInt("cantMaximaSocio"));
+				pp.setCantMaximaNoSocio(rs.getInt("cantMaximaNoSocio"));
+				pp.setFechaAlta(rs.getDate("fechaAlta"));
+				pp.setIdPoliticaPrestamo(rs.getInt("idPolitica"));
+				politicas.add(pp);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return politicas;
+	}
+	
+	public LinkedList<PoliticaPrestamo> getByIdMaxima() {
+		PoliticaPrestamo pp=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<PoliticaPrestamo> politicas = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from politica_prestamo order by idPolitica desc"
+					);
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+				pp = new PoliticaPrestamo();
+				pp.setCantMaximaSocio(rs.getInt("cantMaximaSocio"));
+				pp.setCantMaximaNoSocio(rs.getInt("cantMaximaNoSocio"));
+				pp.setFechaAlta(rs.getDate("fechaAlta"));
+				pp.setIdPoliticaPrestamo(rs.getInt("idPolitica"));
+				politicas.add(pp);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return politicas;
+	}
 }

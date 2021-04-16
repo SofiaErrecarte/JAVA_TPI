@@ -9,22 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entities.Libro;
-import entities.Prestamo;
-import logic.LibroController;
-import logic.PrestamoController;
+import entities.PoliticaPrestamo;
+import entities.Proveedor;
+import logic.PoliticaPrestamoController;
+import logic.ProveedorController;
 
 /**
- * Servlet implementation class selectPrestamoServlet
+ * Servlet implementation class selectProveedorServlet
  */
-@WebServlet("/selectPrestamoServlet")
-public class selectPrestamoServlet extends HttpServlet {
+@WebServlet("/selectProveedorServlet")
+public class selectProveedorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public selectPrestamoServlet() {
+    public selectProveedorServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,23 +42,18 @@ public class selectPrestamoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrestamoController ctrlPres = new PrestamoController();
-		LinkedList<Prestamo> prestamos = ctrlPres.getByIDMinimo();
+		ProveedorController ctrlProv = new ProveedorController();
+		LinkedList<Proveedor> proveedores = ctrlProv.getByIDMinimo();
 		String op = request.getParameter("opcion");
 		if (op.equalsIgnoreCase("idmenor")) {
-		prestamos= ctrlPres.getByIDMinimo();
+			proveedores= ctrlProv.getByIDMinimo();
 		}
 		else if (op.equalsIgnoreCase("idmayor")) {
-			prestamos=ctrlPres.getByIDMayor();
+			proveedores=ctrlProv.getByIDMayor();
 		}
-		else if (op.equalsIgnoreCase("fechamenor")) {
-			prestamos=ctrlPres.getByFechaMinimo();
-		}
-		else if (op.equalsIgnoreCase("fechamayor")) {
-			prestamos=ctrlPres.getByFechaMayor();
-		}
-		request.setAttribute("listaPrestamos", prestamos);
-		request.getRequestDispatcher("listaPrestamos.jsp").forward(request, response);
-		}
+		request.setAttribute("listaProveedores", proveedores);
+		request.getRequestDispatcher("listaProveedores.jsp").forward(request, response);
+		
+	}
 
 }

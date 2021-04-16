@@ -22,6 +22,8 @@ LinkedList<Persona> personas = ctrlPer.getAllPersonas(); %>
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <style>
 html, body{
   font-family: Arial, Helvetica, sans-serif;
@@ -31,7 +33,26 @@ html, body{
 <body>
 <%@ include file="navInicio.jsp"%>
 <section id="tabs" class="project-tab" style = "font-family:arial" size=3>
-            
+      <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link " id="nav-home-tab" data-toggle="tab"
+                                	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="true">Libros</a>
+                                <a class="nav-item nav-link " id="nav-profile-tab" data-toggle="tab" 
+                                	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
+                            	<a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                               	 
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>      
+            <br>
 <div class="tab-content" id="nav-tabContent">
 <%if ((request.getAttribute("error"))!=null) { %>
 		<div class="error"> <%=request.getAttribute("error")%> </div>		
@@ -48,6 +69,7 @@ html, body{
                    <%}
                    }
                  %> 
+                 
 <form class="form-horizontal" action="modificarPrestamoServlet" method="post">
 <section>     
 <div class="form-group">
@@ -99,14 +121,14 @@ html, body{
                 
                       
 </fieldset>						
+<table>
+<tr>
 <td>
-<button class="addbutton">Modificar Prestamo</button>
+<button class="btn btn-outline-primary" onclick="return confirm('Se modificará el prestamo. Desea confirmar?')">Modificar Prestamo</button>
+<a class="btn btn-outline-secondary" href="listarPrestamosServlet">Volver</a>
 </td>
-<td>
-							 <a class="addbutton" href="listarPrestamosServlet">Volver</a>
-							 
-							
-							  </td>
+</tr>
+</table>
 </section>		
 					 </form>
 					 </div>

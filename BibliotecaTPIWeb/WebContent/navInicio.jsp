@@ -10,7 +10,10 @@
 html, body{
  font-family: Arial, Helvetica, sans-serif;
 }
-
+.style {
+background-color: #85929E ;
+ color: white;
+}
 </style>
 </head>
 <body>
@@ -18,7 +21,7 @@ html, body{
 	<% Persona per = (Persona)session.getAttribute("usuario");
   				if (per != null) { %>
 	<header role="banner">
-		<nav class="navbar navbar-expand-lg bg-dark">
+		<nav class="navbar navbar-expand-lg bg-secondary bg-gradient">
 			<div class="container-fluid">
 				<a class="navbar-brand " href="index.jsp">Biblioteca Nacional </a>
 
@@ -49,9 +52,10 @@ html, body{
 
 
 	<header role="banner">
-		<nav class="navbar navbar-expand-lg bg-dark fixed-top">
+		<nav class="navbar navbar-expand-lg bg-secondary bg-gradient fixed-top">
 			<div class="container-fluid">
-				<a class="navbar-brand " href="index.jsp">Biblioteca Nacional</a>
+				<a class="navbar-brand " href="index.jsp">
+				Biblioteca Nacional</a>
 
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarsExample05" aria-controls="navbarsExample05"

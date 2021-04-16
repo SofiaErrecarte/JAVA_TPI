@@ -9,22 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entities.Libro;
+import entities.PoliticaPrestamo;
 import entities.Prestamo;
-import logic.LibroController;
+import logic.PoliticaPrestamoController;
 import logic.PrestamoController;
 
 /**
- * Servlet implementation class selectPrestamoServlet
+ * Servlet implementation class selectPoliticaServlet
  */
-@WebServlet("/selectPrestamoServlet")
-public class selectPrestamoServlet extends HttpServlet {
+@WebServlet("/selectPoliticaServlet")
+public class selectPoliticaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public selectPrestamoServlet() {
+    public selectPoliticaServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,23 +42,24 @@ public class selectPrestamoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrestamoController ctrlPres = new PrestamoController();
-		LinkedList<Prestamo> prestamos = ctrlPres.getByIDMinimo();
+		PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController();
+		LinkedList<PoliticaPrestamo> politicas = ctrlPP.getByIDMinimo();
 		String op = request.getParameter("opcion");
 		if (op.equalsIgnoreCase("idmenor")) {
-		prestamos= ctrlPres.getByIDMinimo();
+			politicas= ctrlPP.getByIDMinimo();
 		}
 		else if (op.equalsIgnoreCase("idmayor")) {
-			prestamos=ctrlPres.getByIDMayor();
+			politicas=ctrlPP.getByIDMayor();
 		}
 		else if (op.equalsIgnoreCase("fechamenor")) {
-			prestamos=ctrlPres.getByFechaMinimo();
+			politicas=ctrlPP.getByFechaMinimo();
 		}
 		else if (op.equalsIgnoreCase("fechamayor")) {
-			prestamos=ctrlPres.getByFechaMayor();
+			politicas=ctrlPP.getByFechaMayor();
 		}
-		request.setAttribute("listaPrestamos", prestamos);
-		request.getRequestDispatcher("listaPrestamos.jsp").forward(request, response);
-		}
+		request.setAttribute("listapoliticas", politicas);
+		request.getRequestDispatcher("listaPoliticas.jsp").forward(request, response);
+		
+	}
 
 }

@@ -20,6 +20,8 @@ LinkedList<Persona> personas = ctrlPer.getAllPersonas(); %>
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <style>
 html, body{
   font-family: Arial, Helvetica, sans-serif;
@@ -28,10 +30,28 @@ html, body{
 </head>
 <body>
 <%@ include file="navInicio.jsp"%>
-<section id="tabs" class="project-tab" style = "font-family:arial" size=3>
-            
-<div class="tab-content" id="nav-tabContent">
-<%if ((request.getAttribute("error"))!=null) { %>
+<section id="tabs" class="project-tab" style = "font-family:arial" size=3>  
+        <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
+                                	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="true">Libros</a>
+                                <a class="nav-item nav-link " id="nav-profile-tab" data-toggle="tab" 
+                                	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
+                            	<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                               	 
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <br>
+	<%if ((request.getAttribute("error"))!=null) { %>
 		<div class="error"> <%=request.getAttribute("error")%> </div>		
 	<% } %>
 	<% if (request.getAttribute("result")!=null) {
@@ -50,9 +70,9 @@ html, body{
 <section>              
 <fieldset>  
                             	
-               	<div class="tab-content" id="nav-tabContent"> 
-				<label for="txtidpersona">Ingrese el Cliente</label>  
-				  <div>
+               	<div class="form-group">
+  			<label class="col-md-4 control-label" for="idEjemplar">Ingrese el Cliente: </label>  
+ 			<div class="col-md-4">
 				   <% if( personas != null) {%>
 				                            <select name="idPersona" class="form-control">
 				                                <%  for(int i = 0; i < personas.size(); i++) {
@@ -69,32 +89,33 @@ html, body{
 														Añadir un nuevo cliente</a></td>
 				  </div>
 				</div>
-               	
-               	<div class="tab-content" id="nav-tabContent">
+               	<div class="form-group">
                	<label class="col-md-4 control-label" for="fechaPrestamo">Ingrese la Fecha de Préstamo</label>  
+               	<div class="col-md-4">
                	<input class="form-control" type="date" id="fechaPrestamo" name="fechaPrestamo" style="display=block" required>	     
+               	</div>
                	</div>
                  
                 
-                <div class="tab-content" id="nav-tabContent">
+                 	<div class="form-group">
                	<label class="col-md-4 control-label" for="fechaDevolucion">Ingrese la Fecha de Devolución Estimada</label>  
+               	<div class="col-md-4">
                	<input class="form-control" type="date" id="fechaDevolucion" name="fechaDevolucion" style="display=block">	     
-                   
-                </div>  
+                 </div>
+               	</div> 
                 
                       
 </fieldset>						
+<table>
+<tr>
 <td>
-<button class="addbutton">Agregar Prestamo</button>
+<button class="btn btn-outline-primary" onclick="return confirm('Se agregará un nuevo prestamo. Desea confirmar?')">Agregar Prestamo</button>
+<a class="btn btn-outline-secondary" href="listarLibroServlet">Volver</a>
 </td>
-<td>
-							 <a class="addbutton" href="listarPrestamosServlet">Volver</a>
-							 
-							
-							  </td>
+</tr>
+</table>
 </section>		
 					 </form>
-					 </div>
  				
 
 							  

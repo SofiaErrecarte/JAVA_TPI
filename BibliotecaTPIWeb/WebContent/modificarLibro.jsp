@@ -14,10 +14,14 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
 <head>
 <meta charset="ISO-8859-1">
 <title>Modificar libro</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
+<link href = "css/botones.css" rel="stylesheet">
+<link href = "css/messages.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <style>
 html, body{
   font-family: Arial, Helvetica, sans-serif;
@@ -52,6 +56,9 @@ html, body{
                     </div>
                 </div>
             </div>
+            
+            <br>
+            
 <form class="form-horizontal" action="modificarLibroServlet" method="post">
 <section>
 <fieldset>
@@ -125,16 +132,14 @@ html, body{
 										Añadir un nuevo proveedor</a></td>
     </div>
 </div> 
-
+</fieldset>
 <table>
+<tr>
 <td>
-<button class="addbutton">Modificar</button>
+<button class="btn btn-outline-primary" onclick="return confirm('Se modificará el libro. Desea confirmar?')">Modificar Libro</button>
+<a class="btn btn-outline-secondary" href="listarLibroServlet">Volver</a>
 </td>
-<td>
-							 <a class="addbutton" href="listarLibroServlet">Volver</a>
-							 
-							
-							  </td>
+</tr>
 </table>
 <%if ((request.getAttribute("error"))!=null) { %>
 		<p style="color:red"> <%=request.getAttribute("error")%> </p>		

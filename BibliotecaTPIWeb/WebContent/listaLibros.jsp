@@ -19,6 +19,8 @@ Persona user = (Persona)session.getAttribute("usuario");
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 
 <style>
 html, body{
@@ -65,17 +67,44 @@ html, body{
                    <%}
                    }
                  %>
-            <div class="container">
-            <div class="container buscar">
-                <a href="agregarLibro.jsp" method="post" class="btn btn-success">+ Nuevo</a>
-               	<form action="buscarLibroServlet" class="form">
-               			<input class="form-control" placeholder="Titulo del Libro" type="text" name="txtbuscar">
-               			<input class="btn btn" type="submit" value="Buscar"	>
-               			               
-               	</form>
-               	
-                </div>    
-               </div>
+                 <br>
+                 
+              <div class="container w3-container">
+              <div class="row">
+              <table class="table" class="text-center">
+              <tr>
+               <td class="text-center">
+              <!--  div class="form-group"-->
+              <form action="selectLibroServlet" method="post">
+             	<div class="input-group">
+             <select class="custom-select form-control" id="inlineFormCustomSelectPref" name="opcion" >
+			   				<option selected>Ordenar por..</option>
+			   				<option value="tituloA"> Titulo A-Z </option>
+			   				<option value="tituloZ">Titulo Z-A</option>
+			   				<option value="idmenor">ID Menor a Mayor</option>
+			   				<option value="idmayor">ID Mayor a Menor</option>
+			   				<option value="proveedores">Proveedores A-Z</option>
+			   				
+			  			</select>
+			      <span class="input-group-btn">
+			        <input class="btn btn-outline-secondary" type="submit" name="AplicarFiltro" value= "Aplicar Filtro"> 
+			      </span></div>
+			      </form>
+			  </td> 		 
+			  <td>		
+			  <form action="buscarLibroServlet" method="post">
+			  	<div class="input-group">
+			      <input type="text" class="form-control" placeholder="Titulo del Libro"type="text" name="txtbuscar">
+			      <span class="input-group-btn">
+			        <input class="btn btn-outline-secondary" type="submit" value="Buscar">
+			      </span></div>
+			      </form>
+			      </td>
+			  </tr>
+			  </table>
+			  </div>
+               	</div>    
+         
                
                
                         <div class="tab-content" id="nav-tabContent">
@@ -126,6 +155,8 @@ html, body{
         <!-- <a type="button" class="editbutton">Inicio</a>
 		-->					           
 		<!-- <a href="listarLibrosProvServlet" method="post" class="addbutton">Lista Libros por Proveedor</a> -->
+                                   <a href="agregarLibro.jsp" method="post" class="w3-button w3-xlarge w3-circle w3-teal" style="float: right;">+</a>
+       
         </section>
      
 

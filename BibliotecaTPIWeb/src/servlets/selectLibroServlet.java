@@ -1,23 +1,30 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.LinkedList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entities.Libro;
+import entities.Prestamo;
+import logic.LibroController;
+import logic.PrestamoController;
+
 /**
- * Servlet implementation class filtrarPrestamoServlet
+ * Servlet implementation class selectLibroServlet
  */
-@WebServlet("/filtrarPrestamoServlet")
-public class filtrarPrestamoServlet extends HttpServlet {
+@WebServlet("/selectLibroServlet")
+public class selectLibroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public filtrarPrestamoServlet() {
+    public selectLibroServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,7 +42,28 @@ public class filtrarPrestamoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+		LibroController ctrlLib = new LibroController();
+		LinkedList<Libro> libros = ctrlLib.getByIDMinimo();
+		String op = request.getParameter("opcion");
+		if (op.equalsIgnoreCase("idmenor")) {
+		libros= ctrlLib.getByIDMinimo();
+		}
+		else if (op.equalsIgnoreCase("idmayor")) {
+			libros=ctrlLib.getByIDMayor();
+		}
+		else if (op.equalsIgnoreCase("tituloA")) {
+			libros=ctrlLib.getByTituloA();
+		}
+		else if (op.equalsIgnoreCase("tituloZ")) {
+			libros=ctrlLib.getByTituloZ();
+		}
+		else if (op.equalsIgnoreCase("proveedores")) {
+			libros=ctrlLib.getByProveedores();}
+		
+		request.setAttribute("listaLibros", libros);
+		request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
+		}
+
+	
 
 }

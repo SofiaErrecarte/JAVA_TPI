@@ -731,6 +731,186 @@ public class DataLibro extends DataMethods{
 		
 		return ejemp;
 	}
+	
+	public LinkedList<Libro> getByTituloA() {
+		Libro l =null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Libro> libros = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from libro order by titulo"
+					);
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+				l = new Libro();
+				l.setIdLibro(rs.getInt("idLibro"));
+				l.setTitulo(rs.getString("titulo"));
+				l.setIsbn(rs.getInt("isbn"));
+				l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+				l.setGenero(rs.getString("genero"));
+				l.setIdProveedor(rs.getInt("idProveedor"));
+				libros.add(l);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return libros;
+	}
+	
+	public LinkedList<Libro> getByTituloZ() {
+		Libro l =null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Libro> libros = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from libro order by titulo desc"
+					);
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+				l = new Libro();
+				l.setIdLibro(rs.getInt("idLibro"));
+				l.setTitulo(rs.getString("titulo"));
+				l.setIsbn(rs.getInt("isbn"));
+				l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+				l.setGenero(rs.getString("genero"));
+				l.setIdProveedor(rs.getInt("idProveedor"));
+				libros.add(l);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return libros;
+	}
+	
+	public LinkedList<Libro> getByIdMinimo() {
+		Libro l =null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Libro> libros = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from libro order by idLibro"
+					);
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+				l = new Libro();
+				l.setIdLibro(rs.getInt("idLibro"));
+				l.setTitulo(rs.getString("titulo"));
+				l.setIsbn(rs.getInt("isbn"));
+				l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+				l.setGenero(rs.getString("genero"));
+				l.setIdProveedor(rs.getInt("idProveedor"));
+				libros.add(l);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return libros;
+	}
+	
+	public LinkedList<Libro> getByIDMaximo() {
+		Libro l =null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Libro> libros = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from libro order by idLibro desc"
+					);
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+				l = new Libro();
+				l.setIdLibro(rs.getInt("idLibro"));
+				l.setTitulo(rs.getString("titulo"));
+				l.setIsbn(rs.getInt("isbn"));
+				l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+				l.setGenero(rs.getString("genero"));
+				l.setIdProveedor(rs.getInt("idProveedor"));
+				libros.add(l);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return libros;
+	}
+	
+	public LinkedList<Libro> getByProveedores() {
+		Libro l =null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Libro> libros = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from libro order by idProveedor"
+					);
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+				l = new Libro();
+				l.setIdLibro(rs.getInt("idLibro"));
+				l.setTitulo(rs.getString("titulo"));
+				l.setIsbn(rs.getInt("isbn"));
+				l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+				l.setGenero(rs.getString("genero"));
+				l.setIdProveedor(rs.getInt("idProveedor"));
+				libros.add(l);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return libros;
+	}
 
 
 	

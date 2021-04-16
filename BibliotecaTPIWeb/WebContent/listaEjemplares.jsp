@@ -21,6 +21,8 @@ Persona user = (Persona)session.getAttribute("usuario");
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <style>
 html, body{
   font-family: Arial, Helvetica, sans-serif;
@@ -66,12 +68,9 @@ html, body{
                    <%}
                    }
                  %>
-            <div class="container buscar">
-                <a href="agregarEjemplarServlet?id=<%=lib.getIdLibro()%>" method="post" class="btn btn-success">+ Nuevo Ejemplar</a>
-               	
-                </div>
-               
-                        <div class="tab-content" id="nav-tabContent">
+                   <br>
+
+               <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <table class="table" class="text-center">
                                     <thead>
@@ -119,7 +118,7 @@ html, body{
 							  </td>
 </tr>
                             </table>--> 
-
+							  <a href="agregarEjemplarServlet" method="post" class="w3-button w3-xlarge w3-circle w3-teal" style="float: right;">+</a>
         </section>
 
          <!-- Footer -->

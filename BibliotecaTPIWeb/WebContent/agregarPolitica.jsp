@@ -15,6 +15,8 @@
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <style>
 html, body{
   font-family: Arial, Helvetica, sans-serif;
@@ -22,6 +24,7 @@ html, body{
 </style>
 </head>
 <body>
+<%@ include file="navInicio.jsp"%>
 <section id="tabs" class="project-tab" style = "font-family:arial; size=3">
             <div class="container">
                 <div class="row">
@@ -42,7 +45,7 @@ html, body{
                     </div>
                 </div>
             </div>
- 
+ <br>
 <form class="form-horizontal" action="agregarPoliticaServlet" method="post">
 <section>
 <fieldset>
@@ -73,12 +76,12 @@ html, body{
 
 </fieldset>
 <table>
+<tr>
 <td>
-<button class="addbutton">Agregar Politica</button>
+<button class="btn btn-outline-primary" onclick="return confirm('Se agregará una nueva política. Desea confirmar?')">Agregar Politica</button>
+<a class="btn btn-outline-secondary" href="listarLibroServlet">Volver</a>
 </td>
-<td>
-<input type="button" = onclick="history.back()" class="addbutton" name="Volver" value="Volver">
-</td>
+</tr>
 </table>
 
  

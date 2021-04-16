@@ -12,10 +12,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Agregar Linea Prestamo</title>
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link href = "css/messages.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
+<link href = "css/botones.css" rel="stylesheet">
+<link href = "css/messages.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <style>
 html, body{
   font-family: Arial, Helvetica, sans-serif;
@@ -23,13 +27,35 @@ html, body{
 </style>
 </head>
 <body>
+<%@ include file="navInicio.jsp"%>
+<section id="tabs" class="project-tab" style = "font-family:arial; size=3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link " id="nav-home-tab" data-toggle="tab"
+                                	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="true">Libros</a>
+                                <a class="nav-item nav-link " id="nav-profile-tab" data-toggle="tab" 
+                                	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
+                            	<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet active" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                               	 
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
 <% LineaPrestamo lineaP = (LineaPrestamo)session.getAttribute("nuevaLineaPrestamo"); 
 Prestamo p = (Prestamo)request.getAttribute("prestamo");
 LibroController ctrlL = new LibroController();
 LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 %>
 
-<section id="tabs" class="project-tab">
+
 <div class="tab-content" id="nav-tabContent">
 <%if ((request.getAttribute("error"))!=null) { %>
 		<div class="error"> <%=request.getAttribute("error")%> </div>		
@@ -46,9 +72,12 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
                    <%}
                    }
                  %> 
+                 
+                 <br>
 <form class="form-horizontal" action="agregarLineaPrestamoServlet" method="post">
 <section>
 <fieldset>
+
 <!-- Este me guarda el atributo id -->
 <input type="text" name="id" value=<%=p.getIdPrestamo()%> hidden="true">
 <div class="form-group">
@@ -67,17 +96,16 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="idEjemplar">Id Ejemplar: </label>  
-
-  <div>
-				   <% if( ejemplares != null) {%>
-				                            <select name="idEjemplar" class="form-control">
-				                                <%  for(int i = 0; i < ejemplares.size(); i++) {
-				                                   Ejemplar e = (Ejemplar)ejemplares.get(i);
-				                                %>
-				                                <option value="<%=e.getIdEjemplar()%>"><%=e.getIdEjemplar()%> - <%=e.getTitulo() %></option>
-				                                <% } %>
-				                            </select>
-				                            <% }else{ %> <td> No hay ejemplares cargados.  <%} %>
+ <div class="col-md-4">
+  <% if( ejemplares != null) {%>
+				           <select name="idEjemplar" class="form-control">
+				                <%  for(int i = 0; i < ejemplares.size(); i++) {
+				                    Ejemplar e = (Ejemplar)ejemplares.get(i);
+				                    %>
+				           <option value="<%=e.getIdEjemplar()%>"><%=e.getIdEjemplar()%> - <%=e.getTitulo() %></option>
+				               <% } %>
+				           </select>
+		  <% }else{ %> No hay ejemplares cargados.  <%} %>
 
 				  </div>
 </div>
@@ -101,33 +129,20 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 
 </fieldset>
 <table>
+<tr>
 <td>
-<button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Agregar Linea Prestamo</button>
+<button class="btn btn-outline-primary" onclick="return confirm('Se agregará una nueva linea de prestamo. Desea confirmar?')">Agregar Linea Prestamo</button>
+<a class="btn btn-outline-secondary" href="listarPrestamosServlet">Volver</a>
 </td>
-<td>
-<input type="button" onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
-</td>
+</tr>
 </table>
-
-
   </section>
 </form>
 </div>
   </section>
 
 
-
- <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="js/calendar.js" /></script>
-<script type="text/javascript" src="js/calendar-es.js" /></script>
-<script type="text/javascript" src="js/calendar-setup.js" /></script>
+	
+ <%@ include file = "footer.jsp" %>
 </body>
 </html>

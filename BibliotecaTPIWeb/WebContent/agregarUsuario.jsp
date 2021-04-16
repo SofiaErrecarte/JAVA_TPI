@@ -12,6 +12,7 @@
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link href="css/newUser.css" rel="stylesheet">
 	
 <title>Nuevo Usuario</title>

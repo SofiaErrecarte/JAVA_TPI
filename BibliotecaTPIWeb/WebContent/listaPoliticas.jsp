@@ -18,6 +18,8 @@
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <style>
 html, body{
   font-family: Arial, Helvetica, sans-serif;
@@ -65,14 +67,43 @@ html, body{
                    <%}
                    }
                  %>
-                <div class="container buscar">
-                <a href="agregarPolitica.jsp" method="post" class="btn btn-success">+ Nuevo</a>
-               	<form action="buscarPoliticaServlet" class="form">
-               			<input class="form-control" placeholder="ID Politica"type="text" name="txtbuscar">
-               			<input class="btn btn" type="submit" value="Buscar"	>
-               			               
-               	</form>
-                </div>
+                 <br>
+                 
+                 <div class="container w3-container">
+              <div class="row">
+              <table class="table" class="text-center">
+              <tr>
+               <td class="text-center">
+              <!--  div class="form-group"-->
+              <form action="selectPoliticaServlet" method="post">
+             	<div class="input-group">
+             <select class="custom-select form-control" id="inlineFormCustomSelectPref" name="opcion" >
+			   				<option selected>Ordenar por..</option>
+			   				<option value="idmenor"> Menor a Mayor ID</option>
+			   				<option value="idmayor">Mayor a Menor ID</option>
+			   				<option value="fechamenor">Menor a Mayor Fecha Alta</option>
+			   				<option value="fechamayor">Mayor a Menor Fecha Alta</option>
+			   				
+			  			</select>
+			      <span class="input-group-btn">
+			        <input class="btn btn-outline-secondary" type="submit" name="AplicarFiltro" value= "Aplicar Filtro"> 
+			      </span></div>
+			      </form>
+			  </td> 		 
+			  <td>		
+			  <form action="buscarPoliticaServlet" method="post">
+			  	<div class="input-group">
+			      <input type="text" class="form-control" placeholder="Politica"type="text" name="txtbuscar">
+			      <span class="input-group-btn">
+			        <input class="btn btn-outline-secondary" type="submit" value="Buscar">
+			      </span></div>
+			      </form>
+			      </td>
+			  </tr>
+			  </table>
+			  </div>
+               	</div>
+
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <table class="table" class="text-center">
@@ -108,13 +139,8 @@ html, body{
                         
                        
 							 
-							    <!--  <a type="button" class="editbutton">Inicio</a>
-							  -->
-							  <td>
-							 <a class="addbutton" href="listarPoliticaServlet">Volver</a>
-							 
-							
-							  </td>
+ <a href="agregarPolitica.jsp" method="post" class="w3-button w3-xlarge w3-circle w3-teal" style="float: right;">+</a>
+						
                    
             </section>
        

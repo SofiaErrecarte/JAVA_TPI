@@ -294,7 +294,78 @@ public class DataProveedor extends DataMethods{
 		
 		return proveedores;
 	}
-
+	
+	public LinkedList<Proveedor> getByIdMinimo() {
+		Proveedor prov=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Proveedor> proveedores = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from proveedor order by idProveedor"
+					);
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+					prov = new Proveedor();
+					prov.setCUIT(rs.getString("cuit"));
+					prov.setRazonSocial(rs.getString("razonSocial"));
+					prov.setTelefono(rs.getString("telefono"));
+					prov.setMail(rs.getString("email"));
+					prov.setDireccion(rs.getString("direccion"));
+					prov.setIdProveedor(rs.getInt("idProveedor"));
+					proveedores.add(prov);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return proveedores;
+	}
+	
+	public LinkedList<Proveedor> getByIdMaximo() {
+		Proveedor prov=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Proveedor> proveedores = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from proveedor order by idProveedor desc"
+					);
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+					prov = new Proveedor();
+					prov.setCUIT(rs.getString("cuit"));
+					prov.setRazonSocial(rs.getString("razonSocial"));
+					prov.setTelefono(rs.getString("telefono"));
+					prov.setMail(rs.getString("email"));
+					prov.setDireccion(rs.getString("direccion"));
+					prov.setIdProveedor(rs.getInt("idProveedor"));
+					proveedores.add(prov);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return proveedores;
+	}
 	
 
 }

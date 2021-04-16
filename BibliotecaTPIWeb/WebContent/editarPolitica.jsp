@@ -14,6 +14,8 @@
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <style>
 html, body{
   font-family: Arial, Helvetica, sans-serif;
@@ -42,6 +44,7 @@ html, body{
                     </div>
                 </div>
             </div>
+            <br>
 <form class="form-horizontal" action="editarPoliticaServlet" method="post">
 <section>
 <fieldset>
@@ -83,12 +86,13 @@ html, body{
 
 </fieldset>
     <table>
+<table>
+<tr>
 <td>
-<button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Modificar</button>
+<button class="btn btn-outline-primary">Agregar Libro</button>
+<a class="btn btn-outline-secondary" href="listarLibroServlet">Volver</a>
 </td>
-<td>
-<input type="button" = onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Cancelar" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
-</td>
+</tr>
 </table>
 <%if ((request.getAttribute("error"))!=null) { %>
 		<p style="color:red"> <%=request.getAttribute("error")%> </p>		

@@ -21,6 +21,8 @@ LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <style>
 html, body{
   font-family: Arial, Helvetica, sans-serif;
@@ -28,6 +30,7 @@ html, body{
 </style>
 </head>
 <body>
+<%@ include file="navInicio.jsp"%>
 <section id="tabs" class="project-tab" style = "font-family:arial; size=3">
             <div class="container">
                 <div class="row">
@@ -64,9 +67,11 @@ html, body{
                    <%}
                    }
                  %> 
+                 <br>
 <form class="form-horizontal" action="agregarLibroServlet" method="post">
 <section>
 <fieldset>
+
 <div class="form-group">
   <label class="col-md-4 control-label" for="titulo">Título: </label>  
   <div class="col-md-4">
@@ -122,14 +127,12 @@ html, body{
 </div>
 </fieldset>
 <table>
+<tr>
 <td>
-<button class="addbutton">Agregar Libro</button>
+<button class="btn btn-outline-primary" onclick="return confirm('Se agregará un nuevo libro. Desea confirmar?')">Agregar Libro</button>
+<a class="btn btn-outline-secondary" href="listarLibroServlet">Volver</a>
 </td>
-<td>
-							 <a class="addbutton" href="listarLibroServlet">Volver</a>
-							 
-							
-							  </td>
+</tr>
 </table>
                             
         </section>

@@ -42,5 +42,10 @@ public class ProveedorController {
 	public LinkedList<Proveedor> getByDesc(String nombuscar){
 		return dpr.getByDesc(nombuscar);
 	}
-	
+	public LinkedList<Proveedor> getByIDMinimo() {
+		return dpr.getByIdMinimo();
+	}
+	public LinkedList<Proveedor> getByIDMayor() {
+		return dpr.getByIdMaximo();
+	}
 }

@@ -12,10 +12,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Modificar Linea Prestamo</title>
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link href = "css/messages.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href = "css/listado.css" rel="stylesheet">
+<link href = "css/botones.css" rel="stylesheet">
+<link href = "css/messages.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <style type="text/css">@import url("css/calendar-blue.css");</style>
 <style>
 html, body{
@@ -28,12 +32,33 @@ html, body{
 LibroController ctrlL = new LibroController();
 LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 %>
-
-<section id="tabs" class="project-tab">
- 
+<%@ include file="navInicio.jsp"%>
+<section id="tabs" class="project-tab" style = "font-family:arial; size=3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link " id="nav-home-tab" data-toggle="tab"
+                                	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="true">Libros</a>
+                                <a class="nav-item nav-link " id="nav-profile-tab" data-toggle="tab" 
+                                	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
+                            	<a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                               	 
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <br>
+            
 <form class="form-horizontal" action="modificarLineaPServlet" method="post">
 <section>
 <fieldset>
+
 <!-- Este me guarda el atributo id -->
 <input type="text" name="idPrestamo" value=<%=lineaP.getIdPrestamo()%> hidden="true">
 <div class="form-group">
@@ -46,25 +71,12 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 <label class="col-md-4 control-label" for="id">Id Línea Préstamo: <%=lineaP.getIdLineaPrestamo()%> </label>  
 </div> 
 
-<div class="form-group">
-  <label class="col-md-4 control-label" for="fechaDevolucion">Fecha Devolución: (YYYY-MM-DD) </label>  
-  <div class="col-md-4">
-  <input type="text" name="fecha" id="fecha" value=<%=lineaP.getFechaDevolucion() %>  placeholder="Fecha Alta" class="form-control input-md" />
-<img src="calendario.png" id="selector" />
-
-<script type="text/javascript">
-window.onload = function() {
-  Calendar.setup({
-    inputField: "fecha",
-    ifFormat:   "%Y-%m-%d",
-    button:     "selector"
-  });
-}
-</script>
-  
-  </div>
-</div>
-
+	<div class="form-group">
+    <label class="col-md-4 control-label" for="fecha">Ingrese la Fecha de Devolución:</label>  
+    <div class="col-md-4">
+     <input class="form-control" type="date" id="fecha" value=<%=lineaP.getFechaDevolucion() %> name="fecha" placeholder="Fecha Alta" style="display=block" required>	     
+     </div>
+     </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="idEjemplar">Id Ejemplar: </label>  
@@ -104,12 +116,12 @@ window.onload = function() {
 
 </fieldset>
 <table>
+<tr>
 <td>
-<button class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt; width:250px;margin:0 auto">Modificar</button>
+<button class="btn btn-outline-primary" onclick="return confirm('Se modificará la linea de prestamo. Desea confirmar?')">Modificar Linea Prestamo</button>
+<a class="btn btn-outline-secondary" onclick="history.back()">Volver</a>
 </td>
-<td>
-<input type="button" onclick="history.back()" class="btn btn-lg btn-primary" name="Volver" value="Volver" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto">
-</td>
+</tr>
 </table>
 
  
@@ -118,18 +130,7 @@ window.onload = function() {
   </section>
   
 
+ <%@ include file = "footer.jsp" %>
 
- <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-  
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="js/calendar.js" /></script>
-<script type="text/javascript" src="js/calendar-es.js" /></script>
-<script type="text/javascript" src="js/calendar-setup.js" /></script>
 </body>
 </html>

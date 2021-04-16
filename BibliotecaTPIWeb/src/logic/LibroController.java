@@ -88,5 +88,19 @@ public class LibroController {
 		return dl.getEjemplaresPrestamo(p);
 	}
 	
-	
+	public LinkedList<Libro> getByIDMinimo() {
+		return dl.getByIdMinimo();
+	}
+	public LinkedList<Libro> getByIDMayor() {
+		return dl.getByIDMaximo();
+	}
+	public LinkedList<Libro> getByTituloA() {
+		return dl.getByTituloA();
+	}
+	public LinkedList<Libro> getByTituloZ() {
+		return dl.getByTituloZ();
+	}
+	public LinkedList<Libro> getByProveedores() {
+		return dl.getByProveedores();
+	}
 }

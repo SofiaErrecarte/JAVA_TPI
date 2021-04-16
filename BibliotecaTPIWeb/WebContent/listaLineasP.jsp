@@ -21,6 +21,8 @@ int limiteNS = (Integer)request.getAttribute("limiteNS");
 <link href = "css/listado.css" rel="stylesheet">
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <style>
 html, body{
   font-family: Arial, Helvetica, sans-serif;
@@ -65,26 +67,19 @@ html, body{
                    <%}
                    }
                  %>
-   <div class="form-group">
-  <label class="col-md-4 control-label" for="idEjemplar">Id Prestamo: <%=p.getIdPrestamo()%> - Estado= <%=p.getEstado()%> </label>  
-  </div>
+                             <br>
+                 
   
   <%if (cant>=limiteNS) { %>
 		<div class="warning">No puede agregar más libros a este préstamo. Límite de política alcanzado.</div>		
 	<% } %>
   
-  <div class="form-group">
-  <label class="col-md-4 control-label" for="idEjemplar">Cantidad de líneas: <%=cant%> </label>  
-  </div>
   
-  <div class="form-group">
-  <label class="col-md-4 control-label" for="idEjemplar">Límite de libros por préstamo NS: <%=limiteNS%> </label>  
-  </div>
+  
   <%if(cant<limiteNS){ 
   if(p.getEstado().equals("Abierto")){%>
   
    <div class="container buscar">
-                <a 		href="agregarLineaPrestamoServlet?id=<%=p.getIdPrestamo()%>" method="post" class="btn btn-success">+ Nueva Linea</a>
                 </div>            
 							<%} }%>         
                         <div class="tab-content" id="nav-tabContent">
@@ -126,17 +121,11 @@ html, body{
       <tr>
       <%if(cant<limiteNS && p.getEstado().equals("Abierto")){ %>
       							 <td>
-                           			<a class="addbutton"
-									href="agregarLineaPrestamoServlet?id=<%=p.getIdPrestamo()%>">
-										Agregar Linea </a>
-                        
+                         
+				 <a href="agregarLineaPrestamoServlet?id=<%=p.getIdPrestamo()%>" method="post" class="w3-button w3-xlarge w3-circle w3-teal" style="float: right;">+</a>
+        
 							</td> <%} %>
-                          
-							 <td>
-							 <a class="addbutton" href="listarPrestamosServlet">Volver</a>
-							 
-							
-							  </td>
+  			
 </tr>
                             </table>
 

@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import data.DataPoliticaPrestamo;
 import entities.MyResult;
 import entities.PoliticaPrestamo;
+import entities.Prestamo;
 
 public class PoliticaPrestamoController {
 	private DataPoliticaPrestamo dpp;
@@ -35,4 +36,17 @@ public class PoliticaPrestamoController {
 	public PoliticaPrestamo getLast() {
 		return dpp.getLast();
 	}
+	
+	public LinkedList<PoliticaPrestamo> getByIDMinimo() {
+		return dpp.getByIdMinimo();
+	}
+	public LinkedList<PoliticaPrestamo> getByIDMayor() {
+		return dpp.getByIdMaxima();
+	}
+	public LinkedList<PoliticaPrestamo> getByFechaMinimo() {
+		return dpp.getByFechaMinima();
+	}
+	public LinkedList<PoliticaPrestamo> getByFechaMayor() {
+		return dpp.getByFechaMaxima();
+}
 }

@@ -14,6 +14,14 @@ LinkedList<Libro> libros = ctrlL.getAllLibros();%>
 <head>
 <meta charset="ISO-8859-1">
 <title>Detalle de Prestamo</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href = "css/listado.css" rel="stylesheet">
+<link href = "css/botones.css" rel="stylesheet">
+<link href = "css/messages.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <style>
 html, body{
   font-family: Arial, Helvetica, sans-serif;
@@ -21,8 +29,32 @@ html, body{
 </style>
 </head>
 <body>
-<table class="table" class="text-center" id="tablaprueba" style = "font-family:arial; size=3">
-                                    <thead>
+<%@ include file="navInicio.jsp"%>
+<section id="tabs" class="project-tab" style = "font-family:arial; size=3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link " id="nav-home-tab" data-toggle="tab"
+                                	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="true">Libros</a>
+                                <a class="nav-item nav-link " id="nav-profile-tab" data-toggle="tab" 
+                                	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
+                            	<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet active" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                               	 
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <br>
+            
+ 					<div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <table class="table" class="table-center"> <thead>
 					        <tr>
 					          <th class="text-center">ID Libro</th>
 					          <th class="text-center">ID Ejemplar</th>
@@ -103,6 +135,10 @@ html, body{
 					        </tr>
 					      
 					    </table>
+					    </div>
+                            
+                        </div>
+                  </section>
 	<%@ include file = "footer.jsp" %>				
 </body>
 </html>
