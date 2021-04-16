@@ -40,18 +40,7 @@
 
 <%@ include file="navInicio.jsp"%>
 <header class="masthead">
-<% if (request.getAttribute("result")!=null) {
-        	   MyResult res = (MyResult)request.getAttribute("result");
-        	   if(res.getResult().equals(MyResult.results.OK)){
-        		   %>
-                   <div class="success"><%=res.getErr_message()%></div>
-                  <%
-        	   } else {
-        	      %>
-                   <div class="error"><%=res.getErr_message()%></div>
-                   <%}
-                   }
-                 %> 
+
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
@@ -63,6 +52,18 @@
 	<%if ((request.getAttribute("error"))!=null) { %>
 		<div class="error"> <%=request.getAttribute("error")%> </div>		
 	<% } %>
+	<% if (request.getAttribute("result")!=null) {
+        	   MyResult res = (MyResult)request.getAttribute("result");
+        	   if(res.getResult().equals(MyResult.results.OK)){
+        		   %>
+                   <div class="success"><%=res.getErr_message()%></div>
+                  <%
+        	   } else {
+        	      %>
+                   <div class="error"><%=res.getErr_message()%></div>
+                   <%}
+                   }
+                 %> 
 	
     <!-- Login Form -->
     <form action="init" method="post">
