@@ -11,34 +11,18 @@ import entities.MyResult;
 import entities.Persona;
 import logic.PersonaController;
 
-/**
- * Servlet implementation class agregarUsuarioServlet
- */
 @WebServlet("/agregarUsuarioServlet")
 public class agregarUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public agregarUsuarioServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		PersonaController ctrlPer  = new PersonaController();
 		Persona p = new Persona();
 		
@@ -63,9 +47,14 @@ public class agregarUsuarioServlet extends HttpServlet {
 			per.setNombre(nombre);
 			per.setTelefono(telefono);
 			per.setAdmin(false);
-			ctrlPer.createPersona(per);
-			//ACA DEBERÍA IR AL INDEX Y PONER AHI QUE SE CREO CON EXITO POR EJEMPLO 
-			request.getRequestDispatcher("index.jsp").forward(request, response); 
+			MyResult res = ctrlPer.createPersona(per);
+			if (res.getResult().equals(MyResult.results.Err)) {
+				request.setAttribute("result", res);
+				request.getRequestDispatcher("agregarUsuario.jsp").forward(request, response);
+			} else {
+				request.setAttribute("result", res);
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			}
 			
 		//}
 	}

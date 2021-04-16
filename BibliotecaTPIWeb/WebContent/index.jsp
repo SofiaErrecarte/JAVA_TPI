@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%@page import="entities.MyResult"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="css/login.css" rel="stylesheet">
+<link href = "css/messages.css" rel="stylesheet">
 
 <style>
 
@@ -38,7 +40,18 @@
 
 <%@ include file="navInicio.jsp"%>
 <header class="masthead">
-
+<% if (request.getAttribute("result")!=null) {
+        	   MyResult res = (MyResult)request.getAttribute("result");
+        	   if(res.getResult().equals(MyResult.results.OK)){
+        		   %>
+                   <div class="success"><%=res.getErr_message()%></div>
+                  <%
+        	   } else {
+        	      %>
+                   <div class="error"><%=res.getErr_message()%></div>
+                   <%}
+                   }
+                 %> 
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
@@ -48,8 +61,9 @@
        <img src="images/icono.jpg" alt="User_Icon" />
     </div>
 	<%if ((request.getAttribute("error"))!=null) { %>
-		<p style="color:red"> <%=request.getAttribute("error")%> </p>		
+		<div class="error"> <%=request.getAttribute("error")%> </div>		
 	<% } %>
+	
     <!-- Login Form -->
     <form action="init" method="post">
       <input type="text" id="login" class="fadeIn second" placeholder="Usuario" name="email" required>

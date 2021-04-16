@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 
 import entities.*;
 import java.sql.Statement;
+import entities.MyResult;
 
 
 public class DataLibro extends DataMethods{
@@ -180,10 +181,9 @@ public class DataLibro extends DataMethods{
 		ResultSet rs=null;
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"SELECT COUNT(*) FROM libro WHERE isbn=? and idLibro!=?"
+					"SELECT COUNT(*) FROM libro WHERE isbn=?"
 					);
 			stmt.setInt(1, lib.getIsbn());
-			stmt.setInt(2, lib.getIdLibro());
 			rs = stmt.executeQuery();
 			if (rs!=null && rs.next()) {
 				// preguntamos si hay al menos un librocon ese isbn
@@ -211,7 +211,6 @@ public class DataLibro extends DataMethods{
 			stmt.executeUpdate();
 			
 		}}}  catch (SQLException e) {
-
 			return Update(resultado);
 		} finally {
             try {

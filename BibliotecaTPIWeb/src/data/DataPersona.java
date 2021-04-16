@@ -157,10 +157,26 @@ public class DataPersona extends DataMethods{
 		return per;
 	}
 
-	public void add(Persona p) {
+	public MyResult add(Persona p) {
+		int resultado = -1;
 		PreparedStatement stmt= null;
 		ResultSet rs=null;
 		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"SELECT COUNT(*) FROM persona WHERE dni=?"
+					);
+			stmt.setString(1, p.getDni());
+			rs = stmt.executeQuery();
+			if (rs!=null && rs.next()) {
+				// preguntamos si hay al menos una persona con ese dni
+				if (rs.getInt(1) > 0) {
+					MyResult res = new MyResult();
+					res.setResult(MyResult.results.Err);
+					res.setErr_message("Existe una persona actualmente con ese DNI");
+					return res;
+				} else {
+			stmt.close();
+			
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
 							"INSERT INTO `biblioteca`.`persona` (`apellido`, `nombre`, `telefono`, `email`, `direccion`, `dni`, `admin`, `contraseña`) values(?,?,?,?,?,?,?,?)",
@@ -180,17 +196,22 @@ public class DataPersona extends DataMethods{
             if(rs!=null && rs.next()){
                 p.setIdPersona(rs.getInt(1));
             }
-		} catch (SQLException e) {
-			e.printStackTrace();
-			
+		}}} catch (SQLException e) {
+			return Add(resultado);			
 		} finally {
 			try {
 				if(rs!=null) {rs.close();}
 				if(stmt!=null) {stmt.close();}
 				DbConnector.getInstancia().releaseConn();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				ConnectCloseError();
 			}
 		
-		}}}
+		}
+		// si llegó hasta acá está bien
+		MyResult res = new MyResult();
+		res.setResult(MyResult.results.OK);
+		return Add(1);
+	}
+}
 

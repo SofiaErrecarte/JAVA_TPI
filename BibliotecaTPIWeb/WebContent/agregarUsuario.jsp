@@ -49,7 +49,13 @@ html,body{
 
 <body>
 <%@ include file="navInicio.jsp"%>
- <%if ((request.getAttribute("error"))!=null) { %>
+ 
+                 
+<div class="fadeInDown">
+  <div class="col-md-9 col-lg-8 mx-auto ">
+            <br>
+            <br>
+            <%if ((request.getAttribute("error"))!=null) { %>
 		<div class="error"> <%=request.getAttribute("error")%> </div>		
 	<% } %>
 	<% if (request.getAttribute("result")!=null) {
@@ -64,11 +70,6 @@ html,body{
                    <%}
                    }
                  %> 
-                 
-<div class="fadeInDown">
-  <div class="col-md-9 col-lg-8 mx-auto ">
-            <br>
-            <br>
             <br>
   <h3 class="login-heading mb-4 text-center">Usuario Nuevo</h3>
 <form class="form-horizontal" action="agregarUsuarioServlet" method="post">
@@ -102,7 +103,7 @@ html,body{
 </div>
 <!-- Text input-->
 <div class="form-group">
-  <label for="mail">Usuario </label>  
+  <label for="mail">Email </label>  
   <input  id="mail" name="mail" type="text" placeholder="Usuario" class="form-control input-md" required>
 </div>
 
