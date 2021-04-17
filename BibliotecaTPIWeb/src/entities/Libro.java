@@ -1,7 +1,10 @@
 
 package entities;
+
+import java.io.InputStream;
 //import java.sql.Blob; esta por la imagen 
 import java.util.*;
+
 public class Libro {
 private String titulo;
 private  int idLibro ;
@@ -14,6 +17,9 @@ private int idProveedor;
 private ArrayList<Ejemplar> ejemplaresL;
 private String razonSocialProv;
 private String CUIT;
+private byte[] imagen;
+private InputStream imagen_carga;
+private String autor; 
 
 public String getCUIT() {
 	return CUIT;
@@ -98,5 +104,23 @@ public String toString() {
 			+ ", Cant. de días máx. de préstamo=" + cantDiasMaxPrestamo+
 			", Género=" + genero+"]";
 }
+public byte[] getImagen() {
+	return imagen;
+}
 
+public InputStream getImagen_carga() {
+	return imagen_carga;
+}
+public void setImagen(byte[] imagen) {
+	this.imagen = imagen;
+}
+public String getAutor() {
+	return autor;}
+
+public void setAutor(String autor) {
+	this.autor = autor;
+}
+public void setImagen_carga(InputStream imagen_carga) {
+	this.imagen_carga = imagen_carga;
+}
 }

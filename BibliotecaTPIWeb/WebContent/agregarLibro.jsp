@@ -68,7 +68,7 @@ html, body{
                    }
                  %> 
                  <br>
-<form class="form-horizontal" action="agregarLibroServlet" method="post">
+<form class="form-horizontal" action="agregarLibroServlet" method="post" enctype="multipart/form-data">
 <section>
 <% if( proveedores.isEmpty())  { %> 
 				   	<div class="warning"> No hay proveedores cargados.  </div>
@@ -82,6 +82,12 @@ html, body{
   </div>
 </div>
 
+<div class="form-group">
+  <label class="col-md-4 control-label" for="autor">Autor </label>  
+  <div class="col-md-4">
+  <input id="autor" name="autor" type="text" placeholder="Autor" class="form-control input-md" required="">
+  </div>
+</div>
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="isbn">ISBN: </label>  
@@ -99,13 +105,13 @@ html, body{
   </div>
 </div>
 
-<!-- Text input-->
+<!-- Text input
 <div class="form-group">
   <label class="col-md-4 control-label" for="cantdiasprestamo">Cant días prestamo: </label>  
   <div class="col-md-4">
   <input id="cantdiasprestamo" name="cantdiasprestamo" type="text" placeholder="Cantidad dias préstamo" class="form-control input-md" required="">
   </div>
-</div>
+</div>-->
 
 <!-- Text input-->
 
@@ -127,6 +133,13 @@ html, body{
                         	<td> Su proveedor no se encuentra en la lista? <a class="agreggatebutton"
 									href="agregarProveedor.jsp">
 										Añadir un nuevo proveedor</a></td><% } %>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="foto">Agregar Foto </label>  
+  <div class="col-md-4">
+  <input id="foto" name="foto" type="file" class="form-control input-md" required="">
   </div>
 </div>
 </fieldset>

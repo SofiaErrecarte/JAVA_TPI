@@ -1,7 +1,15 @@
 <%@page import="java.util.LinkedList"%>
 <%@page import="entities.*"%>
 <%@page import="java.util.Calendar"%>
-
+<%@page import="com.mysql.cj.jdbc.Blob"%>
+<%@page import="java.io.FileOutputStream"%>
+<%@page import="java.io.OutputStream"%>
+<%@page import="javax.swing.ImageIcon"%>
+<%@page import="org.omg.CORBA.portable.InputStream"%>
+<%@page import="java.awt.image.BufferedImage"%>
+<%@page import="java.io.ByteArrayInputStream"%>
+<%@page import="java.awt.image.BufferedImage"%>
+<%@page import="java.util.Base64"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -112,8 +120,10 @@ html, body{
                                 <table class="table" class="text-center">
                                     <thead>
                                         <tr>
+                                        	<th class="text-center"></th>
                                             <th class="text-center">ID</th>
-		                    		    	<th class="text-center">titulo</th>
+		                    		    	<th class="text-center">Título</th>
+		                    		    	<th class="text-center">Autor</th>
 		                        			<th class="text-center">ISBN</th>
 		                        			<th class="text-center">Numero de edicion</th>
 		                        			<th class="text-center">Genero</th>
@@ -124,8 +134,15 @@ html, body{
                                     <tbody>
                                         <% for (Libro lib : ll) { %>
                     			<tr>
+                    				<td class="text-center">
+                    				<%
+                    					String bphoto = Base64.getEncoder().encodeToString(lib.getImagen());
+                    				%>
+                    				<img src="data:image/png;base64,<%=bphoto%>" />
+                    				</td>
                     				<td class="text-center"><%=lib.getIdLibro()%></td>
                     				<td class="text-center"><%=lib.getTitulo()%></td>
+                    				<td class="text-center"><%=lib.getAutor()%></td>
                     				<td class="text-center"><%=lib.getIsbn()%></td>
                     				<%-- <td><%=lib.getFechaEdicion()%></td> --%>
                     				<td class="text-center"><%=lib.getNroEdicion()%></td>

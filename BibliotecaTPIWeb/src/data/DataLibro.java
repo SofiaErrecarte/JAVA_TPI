@@ -4,6 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+
+import com.mysql.cj.jdbc.Blob;
+
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 
@@ -18,12 +21,10 @@ public class DataLibro extends DataMethods{
 		Statement stmt=null;
 		ResultSet rs=null;
 		LinkedList<Libro> libros= new LinkedList<>();
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		
 		try {
 			stmt= DbConnector.getInstancia().getConn().createStatement();
-			rs= stmt.executeQuery("SELECT idLibro, titulo, isbn, nroEdicion, "
-					+ "cantDiasMaxPrestamo, genero, cuit, razonSocial FROM libro inner join proveedor on proveedor.idProveedor=libro.idProveedor;");
+			rs= stmt.executeQuery("SELECT * FROM libro inner join proveedor on proveedor.idProveedor=libro.idProveedor;");
 			if(rs!=null) {
 				while(rs.next()) {
 					Libro lib=new Libro();
@@ -35,6 +36,8 @@ public class DataLibro extends DataMethods{
 					lib.setGenero(rs.getString("genero"));
 					lib.setRazonSocialProv(rs.getString("razonSocial"));
 					lib.setCUIT(rs.getString("cuit"));
+					lib.setImagen(rs.getBytes("imagen"));
+					lib.setAutor(rs.getString("autor"));
 					libros.add(lib);
 				}
 			}
@@ -98,8 +101,7 @@ public class DataLibro extends DataMethods{
 		
 		return librosProv;
 	}
-	
-	
+		
 	public MyResult add(Libro lib) {
 		int resultado = -1;
 		PreparedStatement stmt= null;
@@ -107,15 +109,19 @@ public class DataLibro extends DataMethods{
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"INSERT INTO `biblioteca`.`libro` ( `titulo`, `isbn`, `nroEdicion`, `cantDiasMaxPrestamo`, `genero`, `idProveedor`) VALUES(?,?,?,?,?,?)",
+							"INSERT INTO `biblioteca`.`libro` ( `titulo`,`autor`,`isbn`, `nroEdicion`, `genero`, `idProveedor`, `imagen` ) VALUES(?,?,?,?,?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							); //, `fechaEdicion`
 			stmt.setString(1, lib.getTitulo());
-			stmt.setLong(2, lib.getIsbn());
-			stmt.setLong(3, lib.getNroEdicion());
-			stmt.setLong(4, lib.getCantDiasMaxPrestamo());
+			stmt.setString(2, lib.getAutor());
+			stmt.setLong(3, lib.getIsbn());
+			stmt.setLong(4, lib.getNroEdicion());
+			//stmt.setLong(5, lib.getCantDiasMaxPrestamo());
 			stmt.setString(5, lib.getGenero());	
 			stmt.setInt(6, lib.getIdProveedor());
+			stmt.setBlob(7, lib.getImagen_carga());
+				
+			
 			stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();
