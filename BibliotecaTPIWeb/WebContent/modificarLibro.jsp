@@ -1,6 +1,7 @@
 <%@page import="java.util.LinkedList"%>
 <%@page import="entities.Libro"%>
 <%@page import="logic.LibroController"%>
+<%@page import="entities.MyResult"%>  
 <%@page import="entities.Proveedor"%>  
 <%@page import="logic.ProveedorController"%>   
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -56,11 +57,28 @@ html, body{
                     </div>
                 </div>
             </div>
-            
+<%if ((request.getAttribute("error"))!=null) { %>
+		<div class="error"> <%=request.getAttribute("error")%> </div>		
+	<% } %>
+	<% if (request.getAttribute("result")!=null) {
+        	   MyResult res = (MyResult)request.getAttribute("result");
+        	   if(res.getResult().equals(MyResult.results.OK)){
+        		   %>
+                   <div class="success"><%=res.getErr_message()%></div>
+                  <%
+        	   } else {
+        	      %>
+                   <div class="error"><%=res.getErr_message()%></div>
+                   <%}
+                   }
+                 %> 
             <br>
             
 <form class="form-horizontal" action="modificarLibroServlet" method="post">
 <section>
+<% if( proveedores.isEmpty())  { %> 
+				   	<div class="warning"> No hay proveedores cargados.  </div>
+				   <%}%>
 <fieldset>
 
 <div class="form-group">
@@ -115,7 +133,10 @@ html, body{
  <div class="form-group">
   <label class="col-md-4 control-label" for="idProveedor">ID Proveedor:</label>  
   <div class="col-md-4">
-   <% if( proveedores != null) {%>
+    <% if( proveedores.isEmpty()){%>
+		<a class="ejemplaresbutton" href="agregarProveedor.jsp">
+	Añadir proveedor </a>
+		   <%} else {%>
                             <select name="idProveedor" value=<%=lib.getIdProveedor()%> class="form-control input-md">
                                 <option selected="true" value="<%= lib.getIdProveedor() %>"><%= lib.getIdProveedor()%></option>
                                 <%  for(int i = 0; i < proveedores.size(); i++) {
@@ -124,9 +145,7 @@ html, body{
                                 <option value="<%= p.getIdProveedor() %>"><%=p.getCUIT()%> - <%= p.getRazonSocial()%></option>
                                 <% } %>
                             </select>
-                            <% }else{ %> <td> No hay proveedores cargados. <a class="agreggatebutton"
-									href="agregarProveedor.jsp">
-										Añadir un nuevo proveedor</a></td></td> <%} %>
+                            <% } %>
                         	<td> Su proveedor no se encuentra en la lista? <a class="agreggatebutton"
 									href="agregarProveedor.jsp">
 										Añadir un nuevo proveedor</a></td>
@@ -136,14 +155,15 @@ html, body{
 <table>
 <tr>
 <td>
-<button class="btn btn-outline-primary" onclick="return confirm('Se modificará el libro. Desea confirmar?')">Modificar Libro</button>
+<%if(proveedores.isEmpty()){ %>
 <a class="btn btn-outline-secondary" href="listarLibroServlet">Volver</a>
+<%}else{ %>
+<button class="btn btn-outline-primary" onclick="return confirm('Se modificará un libro. Desea confirmar?')">Modificar Libro</button>
+<a class="btn btn-outline-secondary" href="listarLibroServlet">Volver</a> <%} %>
 </td>
 </tr>
 </table>
-<%if ((request.getAttribute("error"))!=null) { %>
-		<p style="color:red"> <%=request.getAttribute("error")%> </p>		
-	<% } %>
+
 	</section>
 	</form>
 	</section>

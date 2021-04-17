@@ -84,36 +84,31 @@ html, body{
 </div>         
 <fieldset>  
                             	
-               	<div class="tab-content" id="nav-tabContent"> 
-				<label for="txtidpersona">Ingrese el Cliente</label>  
-				  <div>
+              	<div class="form-group">
+  			<label class="col-md-4 control-label" for="idEjemplar">Ingrese el Cliente: </label>  
+ 			<div class="col-md-4">
 				   <% if( personas != null) {%>
-				                            <select name="idPersona" value=<%=p.getIdPersona() %>class="form-control">
+				                            <select name="idPersona" class="form-control">
 				                                <%  for(int i = 0; i < personas.size(); i++) {
 				                                   Persona pers = (Persona)personas.get(i);
 				                                %>
 				                                <option value="<%= pers.getIdPersona() %>"><%= pers.getDni()%> - <%=pers.getNombre()%> <%=pers.getApellido() %></option>
 				                                <% } %>
 				                            </select>
-				                            <% }else{ %> <td> No hay personas cargadas. <a class="agreggatebutton"
-													href="agregarProveedor.jsp"> <!-- ver esto -->
-														Añadir un nuevo cliente</a></td></td> <%} %>
-				                        	<td> Su cliente no se encuentra en la lista? <a class="agreggatebutton"
-													href="agregarProveedor.jsp">
-														Añadir un nuevo cliente</a></td>
+				                            <% }%>
 				  </div>
 				</div>
-               	
+               	<div class="form-group">
                	<div class="tab-content" id="nav-tabContent">
                	<label class="col-md-4 control-label" for="fechaPrestamo">Ingrese la Fecha de Préstamo</label>  
                	<input class="form-control" type="date" id="fechaPrestamo" value=<%=p.getFechaPrestamo()%> name="fechaPrestamo" style="display=block" required>	     
                	</div>
-                 
-                
+                 </div>
+                <div class="form-group">
                 <div class="tab-content" id="nav-tabContent">
                	<label class="col-md-4 control-label" for="fechaDevolucion">Ingrese la Fecha de Devolución Estimada</label>  
                	<input class="form-control" type="date" id="fechaDevolucion" value=<%=p.getFechaADevoler() %> name="fechaDevolucion" style="display=block">	     
-                   
+                </div>   
                 </div>
                 
                 

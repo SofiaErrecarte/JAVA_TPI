@@ -118,7 +118,7 @@ html, body{
 							  </td>
 </tr>
                             </table>--> 
-							  <a href="agregarEjemplarServlet" method="post" class="w3-button w3-xlarge w3-circle w3-teal" style="float: right;">+</a>
+							  <a href="agregarEjemplarServlet?id=<%=lib.getIdLibro()%>"  class="w3-button w3-xlarge w3-circle w3-teal" style="float: right;">+</a>
         </section>
 
          <!-- Footer -->

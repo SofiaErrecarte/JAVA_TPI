@@ -111,7 +111,7 @@ html, body{
 <tr>
 <td>
 <button class="btn btn-outline-primary" onclick="return confirm('Se agregará un nuevo proveedor. Desea confirmar?')">Agregar Proveedor</button>
-<a class="btn btn-outline-secondary" href="listarLibroServlet">Volver</a>
+<a class="btn btn-outline-secondary" href="listarProveedorServlet">Volver</a>
 </td>
 </tr>
 </table>

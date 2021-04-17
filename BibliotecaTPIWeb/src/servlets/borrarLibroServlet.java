@@ -40,38 +40,40 @@ public class borrarLibroServlet extends HttpServlet {
 		Libro lib = new Libro(); 
 		lib.setIdLibro(ID);
 		Libro l = ctrlLibro.getByIdLibro(lib);
-		MyResult res = ctrlLibro.deleteLibro(l);
 		LinkedList<Ejemplar> ej = new LinkedList<>();
 		ej= ctrlLibro.getEjByIdLibro(l);
-		for(Ejemplar e : ej) {
-			ctrlLibro.deleteEjemplar(e);
-		}
-		request.setAttribute("result", res);
-		request.setAttribute("listaLibros",ctrlLibro.getAllLibros());
-		request.getRequestDispatcher ("listaLibros.jsp").forward(request, response);
 		
+		//intento eliminar cada ejemplar
+		MyResult res1 = null;
+		for(Ejemplar e : ej) {
+			res1 = ctrlLibro.deleteEjemplar(e);
+		}
+		
+	
+		//si puedo eliminar ejemplares, intento eliminar libro
+		if (res1.getResult().equals(MyResult.results.OK)) {
+			MyResult res = ctrlLibro.deleteLibro(l);
+			if (res.getResult().equals(MyResult.results.Err)) {
+				request.setAttribute("result", res);
+				request.setAttribute("listaLibros",ctrlLibro.getAllLibros());
+				request.getRequestDispatcher ("listaLibros.jsp").forward(request, response);
+			} else {
+			
+			
+			request.setAttribute("result", res);
+			request.setAttribute("listaLibros",ctrlLibro.getAllLibros());
+			request.getRequestDispatcher ("listaLibros.jsp").forward(request, response);
+			}
+		} else {
+			res1.setErr_message("Existe al menos un ejemplar de este libro asignado a un préstamo.");
+			request.setAttribute("result", res1);
+			request.setAttribute("listaLibros",ctrlLibro.getAllLibros());
+			request.getRequestDispatcher ("listaLibros.jsp").forward(request, response);
+		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*
-		 * // TODO Auto-generated method stub LibroController ctrlLibro = new
-		 * LibroController(); //LinkedList<Libro> libros2 = ctrlLibro.getAllLibros();
-		 * 
-		 * Libro lib = new Libro();
-		 * lib.setIdLibro(Integer.parseInt(request.getParameter("idlibro")));
-		 * LinkedList<Ejemplar> ej = new LinkedList<>(); ej=
-		 * ctrlLibro.getEjByIdLibro(lib); for(Ejemplar e : ej) {
-		 * ctrlLibro.deleteEjemplar(e); } ctrlLibro.deleteLibro(lib);
-		 * //request.setAttribute("listaLibros2", libros2);
-		 * 
-		 * 
-		 * 
-		 * request.getRequestDispatcher("listarLibroServlet").forward(request,
-		 * response);
-		 */
+		
 		doGet(request, response);
 	}
 }

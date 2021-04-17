@@ -56,20 +56,30 @@ public class modificarLineaPServlet extends HttpServlet {
 				  } 
 		  
 		boolean devuelto = Boolean.parseBoolean(request.getParameter("devuelto"));
-		 
 		int idEj = Integer.parseInt(request.getParameter("idEjemplar"));
-		
+		int idEjAnt = Integer.parseInt(request.getParameter("ejemplarAnterior"));
 		lpr.setIdEjemplar(idEj);
 		lpr.setDevuelto(devuelto);
 		int idPrestamo = Integer.parseInt(request.getParameter("idPrestamo"));
 		lpr.setIdPrestamo(idPrestamo);
 		
-		//seteo disponibilidad del ejemplar seleccionado
-		//Ejemplar eje = new Ejemplar();
-		//eje.setIdEjemplar(idEj);
-		//Ejemplar ej = ctrlL.getByIdEjemplar(eje);
-		//ej.setDisponible(devuelto);
-		//ctrlL.setDisponible(ej, devuelto);
+		
+		//seteo disponibilidad del ejemplar seleccionado y actualizo la del anterior
+		Ejemplar eje = new Ejemplar();
+		eje.setIdEjemplar(idEj);
+		Ejemplar ej = ctrlL.getByIdEjemplar(eje);
+		ej.setDisponible(devuelto);
+		ctrlL.setDisponible(ej, devuelto);
+		
+		Ejemplar ejeAnt = new Ejemplar();
+		ejeAnt.setIdEjemplar(idEjAnt);
+		Ejemplar ejAnt = ctrlL.getByIdEjemplar(ejeAnt);
+		
+		
+		if(ej != ejAnt) {
+			ejAnt.setDisponible(true);
+			ctrlL.setDisponible(ejAnt, true);
+		}
 		
 		//verifico estado prestamo
 		/*

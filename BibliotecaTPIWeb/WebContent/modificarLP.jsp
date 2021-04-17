@@ -54,9 +54,26 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
                 </div>
             </div>
             <br>
-            
+  <%if ((request.getAttribute("error"))!=null) { %>
+		<div class="error"> <%=request.getAttribute("error")%> </div>		
+	<% } %>
+	<% if (request.getAttribute("result")!=null) {
+        	   MyResult res = (MyResult)request.getAttribute("result");
+        	   if(res.getResult().equals(MyResult.results.OK)){
+        		   %>
+                   <div class="success"><%=res.getErr_message()%></div>
+                  <%
+        	   } else {
+        	      %>
+                   <div class="error"><%=res.getErr_message()%></div>
+                   <%}
+                   }
+                 %> 
 <form class="form-horizontal" action="modificarLineaPServlet" method="post">
 <section>
+<% if( ejemplares.isEmpty())  { %> 
+				   	<div class="warning"> No hay ejemplares disponibles.  </div>
+				   <%}%>
 <fieldset>
 
 <!-- Este me guarda el atributo id -->
@@ -79,19 +96,29 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
      </div>
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="idEjemplar">Id Ejemplar: </label>  
- 
-  <div>
-				   <% if( ejemplares != null) {%>
-				                            <select name="idEjemplar" value=<%=lineaP.getIdEjemplar() %> class="form-control">
-				                                <option selected="true" value="<%=lineaP.getIdEjemplar()%>"><%=lineaP.getIdEjemplar()%></option>
-				                                <%  for(int i = 0; i < ejemplares.size(); i++) {
-				                                   Ejemplar e = (Ejemplar)ejemplares.get(i);
-				                                   %>
-				                                <option value="<%=e.getIdEjemplar()%>"><%=e.getIdEjemplar()%> - <%=e.getTitulo() %></option>
-				                                <% } %>
-				                            </select>
-				                            <% }else{ %> <td> No hay ejemplares disponibles.  <%} %>
+
+  <label class="col-md-4 control-label" for="idEjemplar">Id Ejemplar: </label>
+  <input type="text" name="ejemplarAnterior" value=<%=lineaP.getIdEjemplar()%> hidden="true"> 
+  <%if(lineaP.isDevuelto()){ %>
+		<label class="col-md-4 control-label" for="devuelto"><%=lineaP.getIdEjemplar()%> </label>
+	<%}else{ %> 
+  <div class="col-md-4">
+				   <% if( ejemplares.isEmpty())  { %> 
+				   	<a class="ejemplaresbutton" href="listarLibroServlet">
+										Añadir ejemplares </a>
+				   <%} else {%>
+                   <select name="idEjemplar" value=<%=lineaP.getIdEjemplar() %> class="form-control">
+                   <option selected="true" value="<%=lineaP.getIdEjemplar()%>"><%=lineaP.getIdEjemplar()%></option>
+                   <%  for(int i = 0; i < ejemplares.size(); i++) {
+                      Ejemplar e = (Ejemplar)ejemplares.get(i);
+                      %>
+                   <option value="<%=e.getIdEjemplar()%>"><%=e.getIdEjemplar()%> - <%=e.getTitulo() %></option>
+                   <% } %>
+               </select>
+               <% } }%>
+				   
+				   
+				 
 				                        
 				  </div>
 </div>
@@ -118,8 +145,11 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 <table>
 <tr>
 <td>
+<%if( ejemplares.isEmpty()) {%>
+	<a class="btn btn-outline-secondary" onclick="history.back()">Volver</a>
+	<%}else{ %>
 <button class="btn btn-outline-primary" onclick="return confirm('Se modificará la linea de prestamo. Desea confirmar?')">Modificar Linea Prestamo</button>
-<a class="btn btn-outline-secondary" onclick="history.back()">Volver</a>
+<a class="btn btn-outline-secondary" onclick="history.back()">Volver</a> <%} %>
 </td>
 </tr>
 </table>

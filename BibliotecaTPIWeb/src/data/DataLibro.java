@@ -234,7 +234,7 @@ public class DataLibro extends DataMethods{
 		ResultSet rs=null;
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"SELECT COUNT(*) FROM ejemplar WHERE idLibro=? and disponible=0"
+					"SELECT COUNT(*) FROM ejemplar T0 inner join linea_prestamo T1 on T0.idEjemplar=T1.idEjemplar WHERE T0.idLibro=?"
 					);
 			stmt.setInt(1, lib.getIdLibro());
 			rs = stmt.executeQuery();
@@ -243,7 +243,7 @@ public class DataLibro extends DataMethods{
 				if (rs.getInt(1) > 0) {
 					MyResult res = new MyResult();
 					res.setResult(MyResult.results.Err);
-					res.setErr_message("Existe al menos un préstamo de un ejemplar de este libro.");
+					res.setErr_message("Existe al menos un ejemplar de este libro asignado a un préstamo.");
 					return res;
 				} else {
 			stmt.close();
@@ -584,7 +584,7 @@ public class DataLibro extends DataMethods{
 		try {
 			//verifico que disponible=false, lo que significaría que está prestado
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"SELECT COUNT(*) FROM ejemplar WHERE idEjemplar=? and disponible=0"
+					"SELECT COUNT(*) FROM ejemplar T0 inner join linea_prestamo T1 on T0.idEjemplar=T1.idEjemplar where T0.idEjemplar=?"
 					);
 			stmt.setInt(1, ej.getIdEjemplar());
 			rs = stmt.executeQuery();
@@ -593,7 +593,7 @@ public class DataLibro extends DataMethods{
 				if (rs.getInt(1) > 0) {
 					MyResult res = new MyResult();
 					res.setResult(MyResult.results.Err);
-					res.setErr_message("El ejemplar está asignado a un préstamo no devuelto.");
+					res.setErr_message("El ejemplar está asignado a un préstamo.");
 					return res;
 				} else {
 			stmt.close();

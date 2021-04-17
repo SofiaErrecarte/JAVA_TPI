@@ -76,12 +76,38 @@ html, body{
   
   
   
-  <%if(cant<limiteNS){ 
-  if(p.getEstado().equals("Abierto")){%>
+   <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <table class="table" class="table-center">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID Prestamo</th>
+		                    		    	<th class="text-center">Fecha Prestamo</th>
+		                        			<th class="text-center">Fecha Devolucion </th>
+		                        			<th class="text-center">ID Persona</th>
+		                        			<th class="text-center">Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                    			<tr>
+                    				<td class="text-center"><%=p.getIdPrestamo()%></td>
+                    				<td class="text-center"><%=p.getFechaPrestamo()%></td>
+                    				<td class="text-center"><%=p.getFechaADevoler()%></td>
+                    				<td class="text-center"><%=p.getIdPersona()%></td>
+                    				<td class="text-center"><%=p.getEstado()%></td>
+                    				
+                    			 </tr>
+                    		
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
   
    <div class="container buscar">
                 </div>            
-							<%} }%>         
+						<label class="col-md-4 control-label" for="lp">Líneas de Préstamo: </label> 	       
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <table class="table" class="text-center">

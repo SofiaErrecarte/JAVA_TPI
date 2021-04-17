@@ -71,7 +71,7 @@ html, body{
 <fieldset>  
                             	
                	<div class="form-group">
-  			<label class="col-md-4 control-label" for="idEjemplar">Ingrese el Cliente: </label>  
+  			<label class="col-md-4 control-label" for="idPersona">Ingrese el Cliente: </label>  
  			<div class="col-md-4">
 				   <% if( personas != null) {%>
 				                            <select name="idPersona" class="form-control">
@@ -81,12 +81,7 @@ html, body{
 				                                <option value="<%= p.getIdPersona() %>"><%= p.getDni()%> - <%=p.getNombre()%> <%=p.getApellido() %></option>
 				                                <% } %>
 				                            </select>
-				                            <% }else{ %> <td> No hay personas cargadas. <a class="agreggatebutton"
-													href="agregarProveedor.jsp"> <!-- ver esto -->
-														Añadir un nuevo cliente</a></td></td> <%} %>
-				                        	<td> Su cliente no se encuentra en la lista? <a class="agreggatebutton"
-													href="agregarProveedor.jsp">
-														Añadir un nuevo cliente</a></td>
+				                            <% }%>
 				  </div>
 				</div>
                	<div class="form-group">
@@ -110,7 +105,7 @@ html, body{
 <tr>
 <td>
 <button class="btn btn-outline-primary" onclick="return confirm('Se agregará un nuevo prestamo. Desea confirmar?')">Agregar Prestamo</button>
-<a class="btn btn-outline-secondary" href="listarLibroServlet">Volver</a>
+<a class="btn btn-outline-secondary" href="listarPrestamosServlet">Volver</a>
 </td>
 </tr>
 </table>

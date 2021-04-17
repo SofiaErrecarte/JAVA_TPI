@@ -70,6 +70,9 @@ html, body{
                  <br>
 <form class="form-horizontal" action="agregarLibroServlet" method="post">
 <section>
+<% if( proveedores.isEmpty())  { %> 
+				   	<div class="warning"> No hay proveedores cargados.  </div>
+				   <%}%>
 <fieldset>
 
 <div class="form-group">
@@ -109,7 +112,10 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="prov">Proveedor: </label>  
   <div class="col-md-4">
-   <% if( proveedores != null) {%>
+   <% if( proveedores.isEmpty()){%>
+		<a class="ejemplaresbutton" href="agregarProveedor.jsp">
+	Añadir proveedor </a>
+		   <%} else  {%>
                             <select name="idProveedor" class="form-control">
                                 <%  for(int i = 0; i < proveedores.size(); i++) {
                                     Proveedor p = (Proveedor)proveedores.get(i);
@@ -117,20 +123,21 @@ html, body{
                                 <option value="<%= p.getIdProveedor() %>"><%=p.getCUIT()%> - <%= p.getRazonSocial()%></option>
                                 <% } %>
                             </select>
-                            <% }else{ %> <td> No hay proveedores cargados. <a class="agreggatebutton"
-									href="agregarProveedor.jsp">
-										Añadir un nuevo proveedor</a></td></td> <%} %>
+                            
                         	<td> Su proveedor no se encuentra en la lista? <a class="agreggatebutton"
 									href="agregarProveedor.jsp">
-										Añadir un nuevo proveedor</a></td>
+										Añadir un nuevo proveedor</a></td><% } %>
   </div>
 </div>
 </fieldset>
 <table>
 <tr>
 <td>
-<button class="btn btn-outline-primary" onclick="return confirm('Se agregará un nuevo libro. Desea confirmar?')">Agregar Libro</button>
+<%if(proveedores.isEmpty()){ %>
 <a class="btn btn-outline-secondary" href="listarLibroServlet">Volver</a>
+<%}else{ %>
+<button class="btn btn-outline-primary" onclick="return confirm('Se agregará un nuevo libro. Desea confirmar?')">Agregar Libro</button>
+<a class="btn btn-outline-secondary" href="listarLibroServlet">Volver</a> <%} %>
 </td>
 </tr>
 </table>

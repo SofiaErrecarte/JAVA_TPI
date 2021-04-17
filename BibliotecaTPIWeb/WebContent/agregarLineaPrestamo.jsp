@@ -76,6 +76,9 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
                  <br>
 <form class="form-horizontal" action="agregarLineaPrestamoServlet" method="post">
 <section>
+<% if( ejemplares.isEmpty())  { %> 
+				   	<div class="warning"> No hay ejemplares disponibles.  </div>
+				   <%}%>
 <fieldset>
 
 <!-- Este me guarda el atributo id -->
@@ -84,20 +87,15 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 <label class="col-md-4 control-label" for="id">Id Prestamo: <%=p.getIdPrestamo()%> </label>  
 </div>
 
-<!-- <div class="form-group">
-  <label class="col-md-4 control-label" for="fechaDevolucion">Fecha Devolución: </label>  
-  <div class="col-md-4">
-  <input class="form-control" type="date" id="fecha" name="fecha" style="display=block">	
-
-
-  </div>
-</div> -->
 
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="idEjemplar">Id Ejemplar: </label>  
  <div class="col-md-4">
-  <% if( ejemplares != null) {%>
+  <% if( ejemplares.isEmpty()) {%>
+  			<a class="ejemplaresbutton" href="listarLibroServlet">
+			Añadir ejemplares </a>
+				   <%} else {%>
 				           <select name="idEjemplar" class="form-control">
 				                <%  for(int i = 0; i < ejemplares.size(); i++) {
 				                    Ejemplar e = (Ejemplar)ejemplares.get(i);
@@ -105,7 +103,7 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 				           <option value="<%=e.getIdEjemplar()%>"><%=e.getIdEjemplar()%> - <%=e.getTitulo() %></option>
 				               <% } %>
 				           </select>
-		  <% }else{ %> No hay ejemplares cargados.  <%} %>
+		  <% }%>
 
 				  </div>
 </div>
@@ -131,8 +129,11 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 <table>
 <tr>
 <td>
+<%if( ejemplares.isEmpty()) {%>
+	<a class="btn btn-outline-secondary" onclick="history.back()">Volver</a>
+	<%}else{ %>
 <button class="btn btn-outline-primary" onclick="return confirm('Se agregará una nueva linea de prestamo. Desea confirmar?')">Agregar Linea Prestamo</button>
-<a class="btn btn-outline-secondary" href="listarPrestamosServlet">Volver</a>
+<a class="btn btn-outline-secondary" onclick="history.back()">Volver</a> <%} %>
 </td>
 </tr>
 </table>
