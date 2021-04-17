@@ -88,8 +88,8 @@ html, body{
                     				<td class="text-center"><%=e.getTitulo()%></td>
                     				<td class="text-center"><%=e.getIdEjemplar()%></td>
                     				<td class="text-center"><%=e.isDisponible()%></td>
-									<td class="text-center"><a class="deletebutton"
-									href="borrarEjemplarServlet?id=<%=e.getIdEjemplar()%>">
+									<td class="text-center"><a class="deletebutton" onclick="return confirm('Se eliminará el ejemplar. Desea confirmar?')"
+									href="borrarEjemplarServlet?id=<%=e.getIdEjemplar()%> ">
 										Eliminar</a></td> 
 
                     				 </tr>

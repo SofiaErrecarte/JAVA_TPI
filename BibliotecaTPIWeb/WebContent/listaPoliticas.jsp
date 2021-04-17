@@ -125,7 +125,7 @@ html, body{
                     				<td class="text-center"><%=pp.getCantMaximaNoSocio()%></td>
                     				<td class="text-center">
                                 <a href="editarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>" class="editbutton">Editar</a>
-                               <a href="borrarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>" class="deletebutton">Delete</a>
+                               <a href="borrarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>" class="deletebutton"onclick="return confirm('Se eliminará la política. Desea confirmar?')">Delete</a>
                             		</td>                    			                    				
                     			</tr>
                     		<% } %>

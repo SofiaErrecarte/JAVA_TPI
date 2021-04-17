@@ -132,6 +132,7 @@ html, body{
 										Detalle </a>
 									<a class="devueltobutton" href="devolverPrestamoServlet?id=<%=p.getIdPrestamo()%>">
 										Devuelto </a>
+									<a class="devueltobutton" href="darDeBajaPrestamoServlet?id=<%=p.getIdPrestamo()%>"></a>
 									</td>
                     			 </tr>
                     		<% } %>

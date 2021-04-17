@@ -28,6 +28,10 @@ Persona user = (Persona)session.getAttribute("usuario");
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Including Font Awesome CSS from CDN to show icons -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 
 <style>
@@ -56,7 +60,6 @@ html, body{
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
                                	 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
-                               	 
                                 <%} %>
                             </div>
                         </nav>
@@ -128,17 +131,14 @@ html, body{
 		                        			<th class="text-center">Numero de edicion</th>
 		                        			<th class="text-center">Genero</th>
 		                        			<th class="text-center">Proveedor</th>
-		                        			<th class="text-center">Acciones</th>
+		                        			<th class="text-center">  </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <% for (Libro lib : ll) { %>
                     			<tr>
                     				<td class="text-center">
-                    				<%
-                    					String bphoto = Base64.getEncoder().encodeToString(lib.getImagen());
-                    				%>
-                    				<img src="data:image/png;base64,<%=bphoto%>" />
+                    				<img src="data:image/png;base64,<%=Base64.getEncoder().encodeToString(lib.getImagen())%>" />
                     				</td>
                     				<td class="text-center"><%=lib.getIdLibro()%></td>
                     				<td class="text-center"><%=lib.getTitulo()%></td>
@@ -151,16 +151,15 @@ html, body{
                     				<td class="text-center"><%=lib.getCUIT()%> - <%=lib.getRazonSocialProv()%></td>
                     				<%if (user.isAdmin()) {%>
                     				<td class="text-center">
-                    				<a class="editbutton"
-									href="modificarLibroServlet?id=<%=lib.getIdLibro()%>">
-										Editar </a>
-									<a class="deletebutton"	href="borrarLibroServlet?id=<%=lib.getIdLibro()%>">
-										Eliminar</a> 
-									<a class="ejemplaresbutton" href="listarEjemplaresServlet?id=<%=lib.getIdLibro()%>">
-										Ejemplares </a></td>
+                    				
+                    				<a class="editbutton" href="modificarLibroServlet?id=<%=lib.getIdLibro()%>" title="Editar"><i class="fa fa-pencil"></i></a>
+									<a href="borrarLibroServlet?id=<%=lib.getIdLibro()%>" class="deletebutton" title="Eliminar" onclick="return confirm('Se eliminará el libro. Desea confirmar?')"><i class="fa fa-trash"></i></a> 
+									<a href="listarEjemplaresServlet?id=<%=lib.getIdLibro()%>" class="ejemplaresbutton" title="Ejemplares"><i class="fa fa-list-ul"></i></a>
+									</td>
 										<%} %>
                     				 </tr>
-                    		<% } %>
+                    		<% } %>	
+                    		
                                     </tbody>
                                 </table>
                             </div>

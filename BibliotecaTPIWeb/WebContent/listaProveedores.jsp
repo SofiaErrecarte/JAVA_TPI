@@ -127,7 +127,7 @@ html, body{
                     				<td class="text-center">
                     				  <a class="editbutton"	href="modificarProveedorServlet?id=<%=prov.getIdProveedor()%>">
 										Editar </a>
-										<a class="deletebutton"	href="borrarProveedorServlet?id=<%=prov.getIdProveedor()%>">
+										<a class="deletebutton"	onclick="return confirm('Se eliminará el proveedor. Desea confirmar?')" href="borrarProveedorServlet?id=<%=prov.getIdProveedor()%>">
 										Eliminar</a>
                     				 </td>    
                     			</tr>
