@@ -40,6 +40,7 @@ public class darDeBajaPrestamoServlet extends HttpServlet {
 		ctrlP.actualizarLP(p);
 		ctrlL.setAllDisponibles(p);
 		p.setEstado("De Baja");
+		ctrlP.setEstado(p, "De Baja");
 		request.getRequestDispatcher("listarPrestamosServlet").forward(request, response);
 	}
 

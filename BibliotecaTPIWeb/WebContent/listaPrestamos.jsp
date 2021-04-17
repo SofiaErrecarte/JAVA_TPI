@@ -23,6 +23,11 @@ Persona user = (Persona)session.getAttribute("usuario");
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Including Font Awesome CSS from CDN to show icons -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 
 <style>
 html, body{
@@ -73,6 +78,7 @@ html, body{
               <div class="row">
               <table class="table" class="text-center">
               <tr>
+              
                <td class="text-center">
               <!--  div class="form-group"-->
               <form action="selectPrestamoServlet" method="post">
@@ -99,6 +105,9 @@ html, body{
 			      </span></div>
 			      </form>
 			      </td>
+			      <td>
+              <a href="agregarPrestamo.jsp" title="Agregar Prestamo" class="w3-button w3-xlarge w3-circle w3-teal" style="float: right;">+</a>
+               </td>
 			  </tr>
 			  </table>
 			  </div>
@@ -126,13 +135,10 @@ html, body{
                     				<td class="text-center"><%=p.getIdPersona()%></td>
                     				<td class="text-center"><%=p.getEstado()%></td>
                     				<td class="text-center"> 
-                    				<a class="editbutton" href="modificarPrestamoServlet?id=<%=p.getIdPrestamo()%>">
-										Editar </a>
-									<a class="ejemplaresbutton" href="listarLineasPrestamoServlet?id=<%=p.getIdPrestamo()%>">
-										Detalle </a>
-									<a class="devueltobutton" href="devolverPrestamoServlet?id=<%=p.getIdPrestamo()%>">
-										Devuelto </a>
-									<a class="devueltobutton" href="darDeBajaPrestamoServlet?id=<%=p.getIdPrestamo()%>"></a>
+                    				<a class="editbutton" href="modificarPrestamoServlet?id=<%=p.getIdPrestamo()%>"title="Editar"><i class="fa fa-pencil"></i></a>
+									<a class="ejemplaresbutton" href="listarLineasPrestamoServlet?id=<%=p.getIdPrestamo()%>"title="Detalle"><i class="fa fa-list-ul"></i></a>
+									<a class="devueltobutton" href="devolverPrestamoServlet?id=<%=p.getIdPrestamo()%>" title="Devuelto"><i class="fa fa-check"></i></a>
+									<a class="deletebutton" href="darDeBajaPrestamoServlet?id=<%=p.getIdPrestamo()%>" title="Dar de Baja"><i class="fa fa-thumbs-down"></i></a>
 									</td>
                     			 </tr>
                     		<% } %>
@@ -156,7 +162,6 @@ html, body{
 							  </td>
 							 
                             </table>-->
-                            <a href="agregarPrestamo.jsp" method="post" class="w3-button w3-xlarge w3-circle w3-teal" style="float: right;">+</a>
         </section>
 
          <!-- Footer -->

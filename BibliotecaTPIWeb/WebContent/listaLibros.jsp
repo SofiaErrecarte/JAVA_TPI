@@ -111,6 +111,9 @@ html, body{
 			      </span></div>
 			      </form>
 			      </td>
+			      <td>
+					<a href="agregarLibro.jsp" title="Agregar Libro" class="w3-button w3-xlarge w3-circle w3-teal" style="float: right;">+</a>
+			      </td>
 			  </tr>
 			  </table>
 			  </div>
@@ -137,8 +140,9 @@ html, body{
                                     <tbody>
                                         <% for (Libro lib : ll) { %>
                     			<tr>
+                    			<%String photo=Base64.getEncoder().encodeToString(lib.getImagen()); %>
                     				<td class="text-center">
-                    				<img src="data:image/png;base64,<%=Base64.getEncoder().encodeToString(lib.getImagen())%>" />
+                    				<img src="data:image/png;base64,<%=photo%>" />
                     				</td>
                     				<td class="text-center"><%=lib.getIdLibro()%></td>
                     				<td class="text-center"><%=lib.getTitulo()%></td>
@@ -171,7 +175,6 @@ html, body{
         <!-- <a type="button" class="editbutton">Inicio</a>
 		-->					           
 		<!-- <a href="listarLibrosProvServlet" method="post" class="addbutton">Lista Libros por Proveedor</a> -->
-                                   <a href="agregarLibro.jsp" method="post" class="w3-button w3-xlarge w3-circle w3-teal" style="float: right;">+</a>
        
         </section>
      

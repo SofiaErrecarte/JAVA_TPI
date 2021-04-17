@@ -19,6 +19,10 @@
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Including Font Awesome CSS from CDN to show icons -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <style>
 html, body{
@@ -99,6 +103,9 @@ html, body{
 			      </span></div>
 			      </form>
 			      </td>
+			      <td>
+			       <a href="agregarPolitica.jsp" title="Agregar Politica" method="post" class="w3-button w3-xlarge w3-circle w3-teal" style="float: right;">+</a>
+			      </td>
 			  </tr>
 			  </table>
 			  </div>
@@ -124,8 +131,8 @@ html, body{
                     				<td class="text-center"><%=pp.getCantMaximaSocio()%></td>
                     				<td class="text-center"><%=pp.getCantMaximaNoSocio()%></td>
                     				<td class="text-center">
-                                <a href="editarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>" class="editbutton">Editar</a>
-                               <a href="borrarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>" class="deletebutton"onclick="return confirm('Se eliminará la política. Desea confirmar?')">Delete</a>
+                                <a href="editarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>" class="editbutton"title="Editar"><i class="fa fa-pencil"></i></a>
+                               <a href="borrarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>" class="deletebutton" title="Eliminar" onclick="return confirm('Se eliminará la política. Desea confirmar?')"><i class="fa fa-trash"></i></a>
                             		</td>                    			                    				
                     			</tr>
                     		<% } %>
@@ -139,7 +146,6 @@ html, body{
                         
                        
 							 
- <a href="agregarPolitica.jsp" method="post" class="w3-button w3-xlarge w3-circle w3-teal" style="float: right;">+</a>
 						
                    
             </section>

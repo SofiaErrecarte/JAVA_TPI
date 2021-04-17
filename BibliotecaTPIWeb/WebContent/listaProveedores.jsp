@@ -18,6 +18,11 @@
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Including Font Awesome CSS from CDN to show icons -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 
 <style>
 html, body{
@@ -95,6 +100,9 @@ html, body{
 			      </span></div>
 			      </form>
 			      </td>
+			      <td>
+			       <a href="agregarProveedor.jsp" method="post" class="w3-button w3-xlarge w3-circle w3-teal" style="float: right;">+</a>
+			      </td>
 			  </tr>
 			  </table>
 			  </div>
@@ -125,10 +133,8 @@ html, body{
                     				<td  class="text-center"><%=prov.getMail()%></td>
                     				<td class="text-center"><%=prov.getDireccion()%></td>
                     				<td class="text-center">
-                    				  <a class="editbutton"	href="modificarProveedorServlet?id=<%=prov.getIdProveedor()%>">
-										Editar </a>
-										<a class="deletebutton"	onclick="return confirm('Se eliminará el proveedor. Desea confirmar?')" href="borrarProveedorServlet?id=<%=prov.getIdProveedor()%>">
-										Eliminar</a>
+                    				  <a class="editbutton"	href="modificarProveedorServlet?id=<%=prov.getIdProveedor()%>"title="Editar"><i class="fa fa-pencil"></i></a>
+										<a class="deletebutton"	title="Eliminar" onclick="return confirm('Se eliminará el proveedor. Desea confirmar?')" href="borrarProveedorServlet?id=<%=prov.getIdProveedor()%>"><i class="fa fa-trash"></i></a>
                     				 </td>    
                     			</tr>
                     		<% } %>
@@ -153,7 +159,6 @@ html, body{
 							  </td>
 							 
                             </table>-->
- <a href="agregarProveedor.jsp" method="post" class="w3-button w3-xlarge w3-circle w3-teal" style="float: right;">+</a>
                             
     </section>
 

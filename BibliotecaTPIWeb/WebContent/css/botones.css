@@ -12,6 +12,18 @@
    margin:5px;
  }
 
+.debajabutton{
+  background-color: #A90909;
+  border: none;
+  border-radius:10px;
+  color: white;
+  padding: 5px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+   cursor:pointer;
+   margin:5px;
+ }
  .deletebutton{
   background-color: #fa5838;
   border: none;
@@ -38,7 +50,7 @@
   margin:5px;
  }
 
- 
+
  .estadbutton{
   background-color: #555555; 
   border: none;
@@ -79,7 +91,7 @@
   cursor:pointer;
   margin:5px;
  }
-  .editbutton:hover, .deletebutton:hover, .addbutton:hover, .ejemplaresbutton:hover, .devueltobutton:hover , .ejemplaresbutton:hover {
+  .editbutton:hover, .debajabutton:hover, .deletebutton:hover, .addbutton:hover, .ejemplaresbutton:hover, .devueltobutton:hover , .ejemplaresbutton:hover {
  	 color:white;
  	 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
  }
