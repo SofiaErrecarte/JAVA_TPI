@@ -119,7 +119,6 @@ html, body{
                                         <tr>
                                             <th class="text-center">ID Linea</th>
 		                    		    	<th class="text-center">ID Ejemplar</th>
-		                    		    	<th class="text-center">Fecha Devolución
 		                    		    	<th class="text-center">Devuelto</th> 
 		                    		    	<th class="text-center"> Acción </th>
                                        
@@ -130,7 +129,6 @@ html, body{
                     			<tr>
                     				<td class="text-center"><%=lp.getIdLineaPrestamo()%></td>
                     				<td class="text-center"><%=lp.getIdEjemplar()%></td>
-                    				 <td class="text-center"><%=lp.getFechaDevolucion()%></td>
                     				<td class="text-center"><%=lp.isDevuelto()%></td> 
 									<td class="text-center"><a class="editbutton"
 									href="modificarLineaPServlet?id=<%=lp.getIdLineaPrestamo()%>" title="Editar"><i class="fa fa-pencil"></i></a>

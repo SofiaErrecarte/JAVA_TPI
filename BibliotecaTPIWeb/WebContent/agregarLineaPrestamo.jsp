@@ -108,22 +108,6 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 				  </div>
 </div>
 
-<!-- <div class="form-group">
-  <label class="col-md-4 control-label" for="devuelto">Devuelto (1 o 0): </label>  
-  <div class="col-md-4">
-  <input id="devuelto" name="devuelto" type="text" class="form-control input-md">
-  </div> -->
-   <!-- <div>
-   		<select name="devuelto" class="form-control">
-			<option value="0">NO</option>
-			<option value="1">SI</option>
-				 </select>
-	</div> -->
-	  <!-- <label class="col-md-4 control-label" for="devuelto">Devuelto: </label>  
- <label class="radio-inline"><input type="radio" name="devuelto" value="1">Sí</label>
-<label class="radio-inline"><input type="radio" name="devuelto" value="0">No</label>
-</div> -->
-
 
 </fieldset>
 <table>
@@ -133,7 +117,7 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 	<a class="btn btn-outline-secondary" onclick="history.back()">Volver</a>
 	<%}else{ %>
 <button class="btn btn-outline-primary" onclick="return confirm('Se agregará una nueva linea de prestamo. Desea confirmar?')">Agregar Linea Prestamo</button>
-<a class="btn btn-outline-secondary" href="listarLineasPrestamoServlet" >Volver</a> <%} %>
+<a class="btn btn-outline-secondary" href="listarLineasPrestamoServlet?id=<%=p.getIdPrestamo()%>" >Volver</a> <%} %>
 </td>
 </tr>
 </table>

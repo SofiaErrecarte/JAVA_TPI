@@ -45,20 +45,10 @@ public class agregarLineaPrestamoServlet extends HttpServlet {
 		PrestamoController ctrlP = new PrestamoController();
 		LibroController ctrlL = new LibroController();
 		LineaPrestamo lpr = new LineaPrestamo();
-		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 		int  ID  =  Integer.parseInt (request.getParameter("id"));
 		Prestamo pr = new Prestamo();
 		pr.setIdPrestamo(ID);
 		Prestamo p = ctrlP.getByIdPrestamo(pr); //obtengo el prestamo al que le agrego las lp
-		
-		
-		/*
-		 * Calendar fech = Calendar.getInstance(); java.util.Date utilStartDate; try {
-		 * utilStartDate = formato.parse(request.getParameter("fecha"));
-		 * fech.setTime(utilStartDate); java.sql.Date date = new
-		 * java.sql.Date(utilStartDate.getTime()); lpr.setFechaDevolucion(date); } catch
-		 * (java.text.ParseException e) { lpr.setFechaDevolucion(null); }
-		 */
 		
 		boolean devuelto = false;
 		int idEj = Integer.parseInt(request.getParameter("idEjemplar"));
@@ -66,34 +56,27 @@ public class agregarLineaPrestamoServlet extends HttpServlet {
 		lpr.setIdPrestamo(ID);
 		lpr.setDevuelto(devuelto);
 		
-		//seteo en no disponible el ejemplar seleccionado
-		Ejemplar eje = new Ejemplar();
-		eje.setIdEjemplar(idEj);
-		Ejemplar ej = ctrlL.getByIdEjemplar(eje);
-		ej.setDisponible(devuelto);
-		ctrlL.setDisponible(ej, devuelto);
+		
 		
 		
 		
 		MyResult res = ctrlLP.addLineaPrestamo(lpr);
 		if (res.getResult().equals(MyResult.results.Err)) {
 			request.setAttribute("result", res);
-			request.getRequestDispatcher("agregarLineaPrestamo.jsp").forward(request, response);
+			request.getRequestDispatcher("listarLineasPrestamoServlet").forward(request, response);
 			
 		} else {
+			//seteo en no disponible el ejemplar seleccionado
+			Ejemplar eje = new Ejemplar();
+			eje.setIdEjemplar(idEj);
+			Ejemplar ej = ctrlL.getByIdEjemplar(eje);
+			ej.setDisponible(devuelto);
+			ctrlL.setDisponible(ej, devuelto);
 			p.addLp(lpr); //la añado a la coleccion de lp del prestamo
 			request.setAttribute("result", res);
 			request.setAttribute("nuevaLineaPrestamo", lpr);
 			request.getRequestDispatcher("listarLineasPrestamoServlet").forward(request, response);
 		}
-		/*
-		 * //verifico estado prestamo LinkedList<LineaPrestamo> lineasP =
-		 * ctrlP.getLPByPrestamo(p); int cantTot = lineasP.size(); int cantDev = 0;
-		 * for(LineaPrestamo lp : lineasP) { if(lp.isDevuelto()) { cantDev++; } }
-		 * 
-		 * if(cantDev==cantTot) { String e = "Devuelto"; ctrlP.setEstado(p, e); }else
-		 * {ctrlP.setEstado(p, "Abierto");}
-		 */
 				
 		
 		

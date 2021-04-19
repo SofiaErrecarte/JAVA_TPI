@@ -72,7 +72,7 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 <form class="form-horizontal" action="modificarLineaPServlet" method="post">
 <section>
 <% if( ejemplares.isEmpty())  { %> 
-				   	<div class="warning"> No hay ejemplares disponibles.  </div>
+				   	<div class="warning"> No hay otros ejemplares disponibles distintos al asignado a la linea (<%=lineaP.getIdEjemplar() %>).  </div>
 				   <%}%>
 <fieldset>
 
@@ -87,13 +87,6 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 <div class="form-group">
 <label class="col-md-4 control-label" for="id">Id Línea Préstamo: <%=lineaP.getIdLineaPrestamo()%> </label>  
 </div> 
-
-	<div class="form-group">
-    <label class="col-md-4 control-label" for="fecha">Ingrese la Fecha de Devolución:</label>  
-    <div class="col-md-4">
-     <input class="form-control" type="date" id="fecha" value=<%=lineaP.getFechaDevolucion() %> name="fecha" placeholder="Fecha Alta" style="display=block" required>	     
-     </div>
-     </div>
 
 <div class="form-group">
 
@@ -129,18 +122,6 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 <label class="col-md-4 control-label" for="devuelto">Devuelto: <%=lineaP.isDevuelto()%> </label>  
 </div>
 
-<%-- <div class="form-group">
-  <label class="col-md-4 control-label" for="devuelto">Devuelto: </label>  
-<%if(lineaP.isDevuelto()){%>
- <label class="radio-inline"><input type="radio" name="devuelto" value="1" checked>Sí</label>
-<label class="radio-inline"><input type="radio" name="devuelto" value="0">No</label>
-<%}else{ %>
-<label class="radio-inline"><input type="radio" name="devuelto" value="1">Sí</label>
-<label class="radio-inline"><input type="radio" name="devuelto" value="0" checked>No</label>
-<%} %>
-</div>
- --%>
-
 </fieldset>
 <table>
 <tr>
@@ -149,7 +130,7 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 	<a class="btn btn-outline-secondary" onclick="history.back()">Volver</a>
 	<%}else{ %>
 <button class="btn btn-outline-primary" onclick="return confirm('Se modificará la linea de prestamo. Desea confirmar?')">Modificar Linea Prestamo</button>
-<a class="btn btn-outline-secondary" href="listarLineasPrestamoServlet" >Volver</a> <%} %>
+<a class="btn btn-outline-secondary" href="listarLineasPrestamoServlet?id=<%=lineaP.getIdPrestamo()%>" >Volver</a> <%} %>
 </td>
 </tr>
 </table>

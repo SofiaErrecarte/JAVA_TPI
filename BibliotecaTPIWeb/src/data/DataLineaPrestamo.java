@@ -17,13 +17,12 @@ public class DataLineaPrestamo extends DataMethods{
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"INSERT INTO `biblioteca`.`linea_prestamo` (`fechaDevolucion`, `devuelto`, `idPrestamo`, `idEjemplar`) VALUES(?,?,?,?)",
+							"INSERT INTO `biblioteca`.`linea_prestamo` (`devuelto`, `idPrestamo`, `idEjemplar`) VALUES(?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
-							); //, `fechaEdicion`
-			stmt.setDate(1, lp.getFechaDevolucion());
-			stmt.setBoolean(2, lp.isDevuelto());
-			stmt.setLong(3, lp.getIdPrestamo());
-			stmt.setLong(4, lp.getIdEjemplar());
+							); 
+			stmt.setBoolean(1, lp.isDevuelto());
+			stmt.setLong(2, lp.getIdPrestamo());
+			stmt.setLong(3, lp.getIdEjemplar());
 			
 			stmt.executeUpdate();
 			
@@ -56,14 +55,13 @@ public class DataLineaPrestamo extends DataMethods{
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"UPDATE `biblioteca`.`linea_prestamo` SET `fechadevolucion` = ?, `devuelto` = ?, `idPrestamo` = ?, `idEjemplar` = ? WHERE (`idLineaPrestamo` = ?);",
+							"UPDATE `biblioteca`.`linea_prestamo` SET `devuelto` = ?, `idPrestamo` = ?, `idEjemplar` = ? WHERE (`idLineaPrestamo` = ?);",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
-			stmt.setDate(1, lp.getFechaDevolucion());
-			stmt.setBoolean(2, lp.isDevuelto());
-			stmt.setLong(3, lp.getIdPrestamo());
-			stmt.setLong(4, lp.getIdEjemplar());
-			stmt.setInt(5, lp.getIdLineaPrestamo());
+			stmt.setBoolean(1, lp.isDevuelto());
+			stmt.setLong(2, lp.getIdPrestamo());
+			stmt.setLong(3, lp.getIdEjemplar());
+			stmt.setInt(4, lp.getIdLineaPrestamo());
 			stmt.executeUpdate();
 			
 		}  catch (SQLException e) {
