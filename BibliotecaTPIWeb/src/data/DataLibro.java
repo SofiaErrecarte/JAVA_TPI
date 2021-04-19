@@ -165,6 +165,7 @@ public class DataLibro extends DataMethods{
 				l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
 				l.setGenero(rs.getString("genero"));
 				l.setIdProveedor(rs.getInt("idProveedor"));
+				l.setAutor(rs.getString("autor"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -187,9 +188,10 @@ public class DataLibro extends DataMethods{
 		ResultSet rs=null;
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"SELECT COUNT(*) FROM libro WHERE isbn=?"
+					"SELECT COUNT(*) FROM libro WHERE isbn=? and idLibro!=?"
 					);
 			stmt.setInt(1, lib.getIsbn());
+			stmt.setInt(2, lib.getIdLibro());
 			rs = stmt.executeQuery();
 			if (rs!=null && rs.next()) {
 				// preguntamos si hay al menos un librocon ese isbn
@@ -203,20 +205,21 @@ public class DataLibro extends DataMethods{
 			
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"UPDATE `biblioteca`.`libro` SET `titulo` = ?, `isbn` = ?, `nroEdicion` = ?, `cantDiasMaxPrestamo` = ?, `genero` = ?, `idProveedor` = ? WHERE (`idLibro` = ?);",
+							"UPDATE `biblioteca`.`libro` SET `titulo` = ?, `isbn` = ?, `nroEdicion` = ?, `genero` = ?, `idProveedor` = ?, `autor` = ? WHERE (`idLibro` = ?);",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			stmt.setString(1, lib.getTitulo());
 			stmt.setLong(2, lib.getIsbn());
 			stmt.setLong(3, lib.getNroEdicion());
-			stmt.setLong(4, lib.getCantDiasMaxPrestamo());
-			stmt.setString(5, lib.getGenero());	
-			stmt.setInt(6, lib.getIdProveedor());
-			
+			//stmt.setLong(4, lib.getCantDiasMaxPrestamo());
+			stmt.setString(4, lib.getGenero());	
+			stmt.setInt(5, lib.getIdProveedor());
+			stmt.setString(6, lib.getAutor());
 			stmt.setInt(7,  lib.getIdLibro());
 			stmt.executeUpdate();
 			
 		}}}  catch (SQLException e) {
+			e.printStackTrace();
 			return Update(resultado);
 		} finally {
             try {

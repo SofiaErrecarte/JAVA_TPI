@@ -97,7 +97,6 @@ public class DataPersona extends DataMethods{
 					per.setNombre(rs.getString("nombre"));
 					per.setDireccion(rs.getString("direccion"));
 					per.setDni(rs.getString("dni"));
-					per.setMontoAPagar(rs.getFloat("montoAPagar"));
 					per.setTelefono(rs.getString("telefono"));
 					
 					personas.add(per);

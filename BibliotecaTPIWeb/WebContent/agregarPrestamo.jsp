@@ -73,7 +73,7 @@ html, body{
                	<div class="form-group">
   			<label class="col-md-4 control-label" for="idPersona">Ingrese el Cliente: </label>  
  			<div class="col-md-4">
-				   <% if( personas != null) {%>
+				   
 				                            <select name="idPersona" class="form-control">
 				                                <%  for(int i = 0; i < personas.size(); i++) {
 				                                   Persona p = (Persona)personas.get(i);
@@ -81,7 +81,7 @@ html, body{
 				                                <option value="<%= p.getIdPersona() %>"><%= p.getDni()%> - <%=p.getNombre()%> <%=p.getApellido() %></option>
 				                                <% } %>
 				                            </select>
-				                            <% }%>
+				                            
 				  </div>
 				</div>
                	<div class="form-group">

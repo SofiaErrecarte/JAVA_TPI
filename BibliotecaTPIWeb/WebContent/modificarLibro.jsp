@@ -106,7 +106,12 @@ html, body{
   </div>
 </div>
 
-
+<div class="form-group">
+  <label class="col-md-4 control-label" for="autor">Autor </label>  
+  <div class="col-md-4">
+  <input id="autor" name="autor" type="text" value=<%=lib.getAutor() %> placeholder="Autor" class="form-control input-md" required="">
+  </div>
+</div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="razonSocial">Nro Edición:</label>  
@@ -116,12 +121,7 @@ html, body{
 </div>
 
 
-<div class="form-group">
-  <label class="col-md-4 control-label" for="cantdiasprestamo">Cant Dias Prestamo:</label>  
-  <div class="col-md-4">
-    <input type="number" name="cantdiasprestamo" value=<%=lib.getCantDiasMaxPrestamo()%> class="form-control input-md" required>
-     </div>
-</div>
+
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="genero">Género:</label>  

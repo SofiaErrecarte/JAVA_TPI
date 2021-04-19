@@ -133,7 +133,7 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 	<a class="btn btn-outline-secondary" onclick="history.back()">Volver</a>
 	<%}else{ %>
 <button class="btn btn-outline-primary" onclick="return confirm('Se agregará una nueva linea de prestamo. Desea confirmar?')">Agregar Linea Prestamo</button>
-<a class="btn btn-outline-secondary" onclick="history.back()">Volver</a> <%} %>
+<a class="btn btn-outline-secondary" href="listarLineasPrestamoServlet" >Volver</a> <%} %>
 </td>
 </tr>
 </table>

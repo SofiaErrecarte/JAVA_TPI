@@ -63,7 +63,7 @@ public class agregarLibroServlet extends HttpServlet {
 			InputStream inputstream = Archivo.getInputStream();
 			lib.setImagen_carga(inputstream);
 			MyResult res = ctrlLibro.createLibro(lib);
-			/*if (res.getResult().equals(MyResult.results.Err)) {
+			if (res.getResult().equals(MyResult.results.Err)) {
 				request.setAttribute("result", res);
 				request.getRequestDispatcher("agregarLibro.jsp").forward(request, response); 
 		}else {
@@ -71,7 +71,7 @@ public class agregarLibroServlet extends HttpServlet {
 			request.setAttribute("nuevoLibro", lib);
 			request.getRequestDispatcher("listarLibroServlet").forward(request, response);
 		}
-		}else {/*/
+		}else {
 			request.setAttribute("error", "El libro ingresado ya existe.");
 			request.getRequestDispatcher("agregarLibro.jsp").forward(request, response); }
 		
