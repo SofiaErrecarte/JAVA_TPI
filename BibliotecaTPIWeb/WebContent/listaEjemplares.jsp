@@ -22,6 +22,11 @@ Persona user = (Persona)session.getAttribute("usuario");
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Including Font Awesome CSS from CDN to show icons -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <style>
 html, body{
@@ -42,13 +47,14 @@ html, body{
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
                                 	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="false">Libros</a>
+                                	  <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet?id=<%=user.getIdPersona() %>"  role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
                                 	 <%if (user.isAdmin()) {%>
                                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" 
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
-                               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
-                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                              
                                	 
                                 <%} %>
                             </div>
@@ -69,13 +75,21 @@ html, body{
                    }
                  %>
                    <br>
+					<div class="panel-group">
+ 
+<div class="card">
+    <div class="card-body">
+      <h3 class="card-title">Libro: <%=lib.getTitulo()%> </h3>
+      <h5 class="card-text">Autor: <%=lib.getAutor()%></h5>
+      <h6 class="card-text">Género: <%=lib.getGenero()%></h6>
+    </div>
+  </div>
 
                <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <table class="table" class="text-center">
                                     <thead>
                                         <tr>
-                                        	<th class="text-center">Titulo Libro </th>
                                             <th class="text-center">ID Ejemplar </th>
 		                    		    	<th class="text-center">Disponible</th>
 		                    		    	<th class="text-center"> Acción </th>
@@ -85,12 +99,11 @@ html, body{
                                     <tbody>
                                         <% for (Ejemplar e : ej) { %>
                     			<tr>
-                    				<td class="text-center"><%=lib.getTitulo()%></td>
                     				<td class="text-center"><%=e.getIdEjemplar()%></td>
                     				<td class="text-center"><%=e.isDisponible()%></td>
-									<td class="text-center"><a class="deletebutton" onclick="return confirm('Se eliminará el ejemplar. Desea confirmar?')"
+									<td class="text-center"><a title="Eliminar" class="deletebutton" onclick="return confirm('Se eliminará el ejemplar. Desea confirmar?')"
 									href="borrarEjemplarServlet?id=<%=e.getIdEjemplar()%> ">
-										Eliminar</a></td> 
+										<i class="fa fa-trash"></i></a></td> 
 
                     				 </tr>
                     		<% } %>

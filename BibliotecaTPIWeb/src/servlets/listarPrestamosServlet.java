@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Libro;
+import entities.Persona;
 import entities.Prestamo;
 import logic.LibroController;
+import logic.PersonaController;
 import logic.PrestamoController;
 
 
@@ -26,7 +28,14 @@ public class listarPrestamosServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		PersonaController ctrlPers = new PersonaController();
 		PrestamoController ctrlP = new PrestamoController();
+		int idPers = Integer.parseInt((request.getParameter("id")));
+		Persona pers = new Persona();
+		pers.setIdPersona(idPers);
+		Persona pnew =ctrlPers.getByIdPersona(pers);
+		LinkedList<Prestamo> prestamos_personas = ctrlP.getByPersona(pnew);
+		
 		LinkedList<Prestamo> prestamos = ctrlP.getAllPrestamos();
 		Date fechaHoy = new Date();
 		for(Prestamo p : prestamos) {
@@ -43,6 +52,7 @@ public class listarPrestamosServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("listaPrestamos", prestamos);
+		request.setAttribute("listaPrestamosPersonas", prestamos_personas);
 		request.getRequestDispatcher("listaPrestamos.jsp").forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

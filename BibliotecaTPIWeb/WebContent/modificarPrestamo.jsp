@@ -15,7 +15,8 @@
 <%
 Prestamo p = (Prestamo)request.getAttribute("prestamoAEditar");
 PersonaController ctrlPer = new PersonaController();
-LinkedList<Persona> personas = ctrlPer.getAllPersonas(); %>
+LinkedList<Persona> personas = ctrlPer.getAllPersonas(); 
+Persona user = (Persona)session.getAttribute("usuario");%>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -40,12 +41,13 @@ html, body{
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link " id="nav-home-tab" data-toggle="tab"
                                 	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="true">Libros</a>
+                                	 <a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet?id=<%=user.getIdPersona() %>" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
                                 <a class="nav-item nav-link " id="nav-profile-tab" data-toggle="tab" 
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
-                            	<a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab" 	
-                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                            	
                                	 
                             </div>
                         </nav>

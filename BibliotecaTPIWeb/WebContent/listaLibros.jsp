@@ -18,6 +18,7 @@
 <meta charset="ISO-8859-1">
 <title>Libros</title>
 <% 
+String respuesta = (String)request.getAttribute("respuesta");
 LinkedList<Libro> ll = (LinkedList<Libro>)request.getAttribute("listaLibros");
 Persona user = (Persona)session.getAttribute("usuario");
 %>
@@ -53,13 +54,14 @@ html, body{
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
                                 	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="false">Libros</a>
-                                	 <%if (user.isAdmin()) {%>
+                                	 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet?id=<%=user.getIdPersona() %>" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                                	  <%if (user.isAdmin()) {%>
                                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" 
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
-                               	 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
-                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                               	 
                                 <%} %>
                             </div>
                         </nav>
@@ -95,7 +97,6 @@ html, body{
 			   				<option value="idmenor">ID Menor a Mayor</option>
 			   				<option value="idmayor">ID Mayor a Menor</option>
 			   				<option value="proveedores">Proveedores A-Z</option>
-			   				
 			  			</select>
 			      <span class="input-group-btn">
 			        <input class="btn btn-outline-secondary" type="submit" name="AplicarFiltro" value= "Aplicar Filtro"> 
@@ -112,15 +113,14 @@ html, body{
 			      </form>
 			      </td>
 			      <td>
+			      <%if(user.isAdmin()){ %>
 					<a href="agregarLibro.jsp" title="Agregar Libro" class="w3-button w3-xlarge w3-circle w3-teal" style="float: right;">+</a>
+			      <%} %>
 			      </td>
 			  </tr>
 			  </table>
 			  </div>
                	</div>    
-         
-               
-               
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <table class="table" class="text-center">
@@ -138,6 +138,7 @@ html, body{
                                         </tr>
                                     </thead>
                                     <tbody>
+                                  
                                         <% for (Libro lib : ll) { %>
                     			<tr>
                     			<%String photo=Base64.getEncoder().encodeToString(lib.getImagen()); %>
@@ -162,7 +163,8 @@ html, body{
 									</td>
 										<%} %>
                     				 </tr>
-                    		<% } %>	
+                    			<%} %>
+                    			
                     		
                                     </tbody>
                                 </table>

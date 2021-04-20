@@ -162,9 +162,10 @@ public class DataLibro extends DataMethods{
 				l.setTitulo(rs.getString("titulo"));
 				l.setFechaEdicion(rs.getDate("fechaEdicion"));
 				l.setNroEdicion(rs.getInt("nroEdicion"));
-				l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+				//l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
 				l.setGenero(rs.getString("genero"));
 				l.setIdProveedor(rs.getInt("idProveedor"));
+				l.setImagen(rs.getBytes("imagen"));
 				l.setAutor(rs.getString("autor"));
 			}
 		} catch (SQLException e) {
@@ -307,9 +308,11 @@ public class DataLibro extends DataMethods{
 					l.setTitulo(rs.getString("titulo"));
 					l.setFechaEdicion(rs.getDate("fechaEdicion"));
 					l.setNroEdicion(rs.getInt("nroEdicion"));
-					l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+					//l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
 					l.setGenero(rs.getString("genero"));
 					l.setIdProveedor(rs.getInt("idProveedor"));
+					l.setImagen(rs.getBytes("imagen"));
+					l.setAutor(rs.getString("autor"));
 					libros.add(l);
 				}
 			}
@@ -479,7 +482,6 @@ public class DataLibro extends DataMethods{
 		
 		return ejemplares;
 	}
-	
 	
 	//me devuelve la cant de ejemplares diponibles de un libro
 	public int cantEjemLibroDisponibles(Libro lib) {
@@ -667,7 +669,6 @@ public class DataLibro extends DataMethods{
 		
 	}
 
-
 	public Libro getByISBN(Libro lib) {
 		Libro l = null;
 		PreparedStatement stmt=null;
@@ -684,9 +685,11 @@ public class DataLibro extends DataMethods{
 				l.setTitulo(rs.getString("titulo"));
 				l.setFechaEdicion(rs.getDate("fechaEdicion"));
 				l.setNroEdicion(rs.getInt("nroEdicion"));
-				l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+				//l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
 				l.setGenero(rs.getString("genero"));
 				l.setIdProveedor(rs.getInt("idProveedor"));
+				l.setImagen(rs.getBytes("imagen"));
+				l.setAutor(rs.getString("autor"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -703,11 +706,6 @@ public class DataLibro extends DataMethods{
 		return l;
 	}
 
-
-	
-	
-	
-	
 	public Ejemplar getByIdEjemplar(Ejemplar ej) {
 		Ejemplar ejemp = null;
 		PreparedStatement stmt=null;
@@ -759,6 +757,8 @@ public class DataLibro extends DataMethods{
 				l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
 				l.setGenero(rs.getString("genero"));
 				l.setIdProveedor(rs.getInt("idProveedor"));
+				l.setImagen(rs.getBytes("imagen"));
+				l.setAutor(rs.getString("autor"));
 				libros.add(l);
 			}}
 		} catch (SQLException e) {
@@ -792,9 +792,11 @@ public class DataLibro extends DataMethods{
 				l.setIdLibro(rs.getInt("idLibro"));
 				l.setTitulo(rs.getString("titulo"));
 				l.setIsbn(rs.getInt("isbn"));
-				l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+				//l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
 				l.setGenero(rs.getString("genero"));
 				l.setIdProveedor(rs.getInt("idProveedor"));
+				l.setImagen(rs.getBytes("imagen"));
+				l.setAutor(rs.getString("autor"));
 				libros.add(l);
 			}}
 		} catch (SQLException e) {
@@ -828,9 +830,11 @@ public class DataLibro extends DataMethods{
 				l.setIdLibro(rs.getInt("idLibro"));
 				l.setTitulo(rs.getString("titulo"));
 				l.setIsbn(rs.getInt("isbn"));
-				l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+				//l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
 				l.setGenero(rs.getString("genero"));
 				l.setIdProveedor(rs.getInt("idProveedor"));
+				l.setImagen(rs.getBytes("imagen"));
+				l.setAutor(rs.getString("autor"));
 				libros.add(l);
 			}}
 		} catch (SQLException e) {
@@ -864,9 +868,11 @@ public class DataLibro extends DataMethods{
 				l.setIdLibro(rs.getInt("idLibro"));
 				l.setTitulo(rs.getString("titulo"));
 				l.setIsbn(rs.getInt("isbn"));
-				l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+				//l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
 				l.setGenero(rs.getString("genero"));
 				l.setIdProveedor(rs.getInt("idProveedor"));
+				l.setImagen(rs.getBytes("imagen"));
+				l.setAutor(rs.getString("autor"));
 				libros.add(l);
 			}}
 		} catch (SQLException e) {
@@ -900,9 +906,11 @@ public class DataLibro extends DataMethods{
 				l.setIdLibro(rs.getInt("idLibro"));
 				l.setTitulo(rs.getString("titulo"));
 				l.setIsbn(rs.getInt("isbn"));
-				l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+				//l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
 				l.setGenero(rs.getString("genero"));
 				l.setIdProveedor(rs.getInt("idProveedor"));
+				l.setImagen(rs.getBytes("imagen"));
+				l.setAutor(rs.getString("autor"));
 				libros.add(l);
 			}}
 		} catch (SQLException e) {

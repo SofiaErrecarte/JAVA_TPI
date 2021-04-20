@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entities.Libro;
 import entities.PoliticaPrestamo;
 import logic.PoliticaPrestamoController;
 
@@ -61,7 +62,31 @@ public class buscarPoliticaServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController();
+		String nombuscar=(request.getParameter("txtbuscar"));
+		//LinkedList<PoliticaPrestamo> politicas=ctrlPP.ppGetByBusqueda(nombuscar);
+		if(nombuscar != null) {
+			int id= Integer.parseInt(nombuscar);
+			PoliticaPrestamo p = new PoliticaPrestamo();
+			p.setIdPoliticaPrestamo(id);
+			PoliticaPrestamo politica = new PoliticaPrestamo();
+			politica=ctrlPP.getByIdPolitica(p);
+			LinkedList<PoliticaPrestamo> politicas= new LinkedList<PoliticaPrestamo>();
+			politicas.add(politica);
+			if (politica == null) {
+				LinkedList<PoliticaPrestamo> polits = ctrlPP.ppGetAll();
+				request.setAttribute("listapoliticas", polits);
+				request.getRequestDispatcher("listaPoliticas.jsp").forward(request, response);
+			
+			}
+			request.setAttribute("listapoliticas", politicas);
+			request.getRequestDispatcher("listaPoliticas.jsp").forward(request, response);
+		}
+		else { 
+			LinkedList<PoliticaPrestamo> politicas = ctrlPP.ppGetAll();	
+			request.setAttribute("listapoliticas", politicas);
+			request.getRequestDispatcher("listaPoliticas.jsp").forward(request, response);
+		}
 
 }
 }

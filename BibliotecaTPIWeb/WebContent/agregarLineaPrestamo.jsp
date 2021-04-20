@@ -19,7 +19,7 @@
 <link href = "css/botones.css" rel="stylesheet">
 <link href = "css/messages.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+<% Persona user = (Persona)session.getAttribute("usuario");%>
 <style>
 html, body{
   font-family: Arial, Helvetica, sans-serif;
@@ -36,12 +36,13 @@ html, body{
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link " id="nav-home-tab" data-toggle="tab"
                                 	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="true">Libros</a>
+                                	 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet?id=<%=user.getIdPersona() %>"  role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
                                 <a class="nav-item nav-link " id="nav-profile-tab" data-toggle="tab" 
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
-                            	<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
-                                href="listarPrestamosServlet active" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                            	
                                	 
                             </div>
                         </nav>

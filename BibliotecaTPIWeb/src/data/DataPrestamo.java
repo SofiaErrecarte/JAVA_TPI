@@ -15,6 +15,7 @@ import entities.Ejemplar;
 import entities.Libro;
 import entities.LineaPrestamo;
 import entities.MyResult;
+import entities.Persona;
 import entities.Prestamo;
 
 public class DataPrestamo extends DataMethods{
@@ -254,6 +255,42 @@ public class DataPrestamo extends DataMethods{
 		return p;
 	}
 
+	public LinkedList<Prestamo> getByPersona(Persona per) {
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Prestamo> prestamos= new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from prestamo where idPersona=?");
+			stmt.setInt(1, per.getIdPersona());
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+					Prestamo p = new Prestamo();
+					p.setIdPrestamo(rs.getInt("idPrestamo"));
+					p.setFechaPrestamo(rs.getDate("fechaPrestamo"));
+					p.setFechaADevoler(rs.getDate("fechaADevolver"));
+					p.setFechaDevolucion(rs.getDate("fechaDevolucion"));
+					p.setIdPersona(rs.getInt("idPersona"));
+					p.setEstado(rs.getString("estado"));
+					prestamos.add(p);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return prestamos;
+	}
+	
 	public void cerrarPrestamo(Prestamo p) {
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;

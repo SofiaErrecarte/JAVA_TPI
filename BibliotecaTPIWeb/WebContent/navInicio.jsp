@@ -37,7 +37,7 @@ background-color: #85929E ;
 						<li class="nav-item"><a class="nav-link" href="index.jsp" style = "font-family:arial; size=4">Inicio</a>
 						</li>
 						<li class="nav-item"><a class="nav-link"
-							href="perfilUsuario.jsp" style = "font-family:arial; size=4">Mi Perfil </a></li>
+							href="miPerfil.jsp" style = "font-family:arial; size=4">Mi Perfil </a></li>
 						<li class="nav-item"><a class="nav-link"style = "font-family:arial; size=4" href="index.jsp" onclick="return confirm('Se cerrará sesión. Desea confirmar?'">Cerrar
 								Sesión</a></li>
 					</ul>

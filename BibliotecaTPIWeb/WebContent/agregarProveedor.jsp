@@ -7,7 +7,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Nuevo Proveedor</title>
-<% Proveedor prov = (Proveedor)session.getAttribute("nuevoProveedor"); %>
+<% Proveedor prov = (Proveedor)session.getAttribute("nuevoProveedor");
+Persona user = (Persona)session.getAttribute("usuario");%>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -33,13 +34,13 @@ html, body{
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link " id="nav-home-tab" data-toggle="tab"
                                 	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="true">Libros</a>
+                                	  <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet?id=<%=user.getIdPersona() %>"  role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
                                 <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" 
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
-                           <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
-                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
-                               	 
+                          
                             </div>
                         </nav>
                     </div>
@@ -62,6 +63,7 @@ html, body{
                  %> 
                 
 <br>
+<h3 class="login-heading mb-4 text-center">Proveedor Nuevo</h3>
 <form class="form-horizontal" action="agregarProveedorServlet" method="post">
 <section>
 <fieldset>

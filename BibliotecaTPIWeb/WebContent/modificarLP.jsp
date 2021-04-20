@@ -31,6 +31,7 @@ html, body{
 <% LineaPrestamo lineaP = (LineaPrestamo)request.getAttribute("lineaPrestamoAEditar"); 
 LibroController ctrlL = new LibroController();
 LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
+Persona user = (Persona)session.getAttribute("usuario");
 %>
 <%@ include file="navInicio.jsp"%>
 <section id="tabs" class="project-tab" style = "font-family:arial; size=3">
@@ -41,13 +42,13 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link " id="nav-home-tab" data-toggle="tab"
                                 	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="true">Libros</a>
-                                <a class="nav-item nav-link " id="nav-profile-tab" data-toggle="tab" 
+                                	 <a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet?id=<%=user.getIdPersona() %>" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                               	    <a class="nav-item nav-link " id="nav-profile-tab" data-toggle="tab" 
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
-                            	<a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab" 	
-                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
-                               	 
+                            	
                             </div>
                         </nav>
                     </div>

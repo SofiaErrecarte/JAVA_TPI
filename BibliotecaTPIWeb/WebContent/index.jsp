@@ -36,7 +36,7 @@
 
 </head>
 <body>
-
+<%request.setAttribute("respuesta", "ok"); %>
 
 <%@ include file="navInicio.jsp"%>
 <header class="masthead">

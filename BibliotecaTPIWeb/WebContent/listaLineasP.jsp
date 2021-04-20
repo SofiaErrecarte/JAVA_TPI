@@ -14,6 +14,7 @@ LinkedList<LineaPrestamo> lpr = (LinkedList<LineaPrestamo>)request.getAttribute(
 Prestamo p = (Prestamo)request.getAttribute("prestamo");
 int cant = (Integer)request.getAttribute("cantidad");
 int limiteNS = (Integer)request.getAttribute("limiteNS");
+Persona user = (Persona)session.getAttribute("usuario");
 %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -45,13 +46,13 @@ html, body{
                               <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab"
                                 	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="false">Libros</a>
-                                	
+                                	 <a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet?id=<%=user.getIdPersona() %>" role="tab" aria-controls="nav-contact" aria-selected="true">Prestamo</a>                                	
                                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" 
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
-                               	 <a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab" 	
-                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="true">Prestamo</a>
+                               	 
                                
                             </div>
                         </nav>
@@ -78,7 +79,11 @@ html, body{
 	<% } %>
   
   
-  
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title"> Préstamo</h4>
+    </div>
+  </div>
    <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <table class="table" class="table-center">
@@ -112,7 +117,11 @@ html, body{
   
    <div class="container buscar">
                 </div>            
-						<label class="col-md-4 control-label" for="lp">Líneas de Préstamo: </label> 	       
+						<div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Líneas de Préstamo</h4>
+    </div>
+  </div>	       
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <table class="table" class="text-center">

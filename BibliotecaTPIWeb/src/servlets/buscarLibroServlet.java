@@ -50,12 +50,11 @@ public class buscarLibroServlet extends HttpServlet {
 			request.setAttribute("listaLibros", libros);
 			request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
 		}
-		else { 
+		else{ 
 			LinkedList<Libro> libros = ctrlLib.getAllLibros();	
 			request.setAttribute("listaLibros", libros);
 			request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
 		}
-		
 		
 	}
 	

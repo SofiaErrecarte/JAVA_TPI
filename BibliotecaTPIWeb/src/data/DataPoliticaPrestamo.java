@@ -223,7 +223,39 @@ public class DataPoliticaPrestamo extends DataMethods{
 		
 	}
 	
-
+	public LinkedList<PoliticaPrestamo> getByDesc (String nombuscar) {
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<PoliticaPrestamo> pps = new LinkedList<>();
+		PoliticaPrestamo pp;
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from politica_prestamo where id LIKE '%\" +nombuscar+ \"%'"
+					);
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()) {
+				pp = new PoliticaPrestamo();
+				pp.setIdPoliticaPrestamo(rs.getInt("idPolitica"));
+				pp.setCantMaximaSocio(rs.getInt("cantMaximaSocio"));
+				pp.setCantMaximaNoSocio(rs.getInt("cantMaximaNoSocio"));
+				pp.setFechaAlta(rs.getDate("fechaAlta"));
+				pps.add(pp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return pps;
+	}
+	
 
 	public LinkedList<PoliticaPrestamo> getbybusqueda(int nombuscar){
 		Statement stmt=null;

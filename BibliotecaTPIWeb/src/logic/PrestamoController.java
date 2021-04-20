@@ -35,7 +35,9 @@ public Prestamo getByIdPrestamo(Prestamo p) {
 public void setEstado(Prestamo p, String e) {
 	 dp.setEstado(p, e);
 	}
-
+public LinkedList<Prestamo> getByPersona(Persona per) {
+	return dp.getByPersona(per);
+}
 public LinkedList<Prestamo> getByIDMinimo() {
 	return dp.getByIDMinimo();
 }

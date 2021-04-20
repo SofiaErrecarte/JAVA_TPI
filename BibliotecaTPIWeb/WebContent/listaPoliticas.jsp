@@ -10,7 +10,8 @@
 <meta charset="ISO-8859-1">
 <title>Politicas Prestamo</title>
 <% 
-   LinkedList<PoliticaPrestamo> politicas = (LinkedList<PoliticaPrestamo>)request.getAttribute("listapoliticas");
+LinkedList<PoliticaPrestamo> politicas = (LinkedList<PoliticaPrestamo>)request.getAttribute("listapoliticas");
+Persona user = (Persona)session.getAttribute("usuario");
 %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -43,12 +44,13 @@ html, body{
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link " id="nav-home-tab" data-toggle="tab"
                                 	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="false">Libros</a>
+                                	 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPrestamosServlet?id=<%=user.getIdPersona() %>" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
                                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" 
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="true">Politicas Prestamo</a>
-                          		<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
-                                href="listarPrestamosServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
+                          		
                                	 
                             </div>
                         </nav>
@@ -97,9 +99,9 @@ html, body{
 			  <td>		
 			  <form action="buscarPoliticaServlet" method="post">
 			  	<div class="input-group">
-			      <input type="text" class="form-control" placeholder="Politica"type="text" name="txtbuscar">
+			      <input type="text" class="form-control" placeholder="ID Politica"type="text" name="txtbuscar">
 			      <span class="input-group-btn">
-			        <input class="btn btn-outline-secondary" type="submit" value="Buscar">
+			        <input class="btn btn-outline-secondary" type="submit" value="Buscar" required>
 			      </span></div>
 			      </form>
 			      </td>
