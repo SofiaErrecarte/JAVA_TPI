@@ -43,7 +43,7 @@ public class modificarPrestamoServlet extends HttpServlet {
 		Calendar fech = Calendar.getInstance();
 		java.util.Date utilStartDate;
 		try {
-			utilStartDate = formato.parse(request.getParameter("fechaDevolucion"));
+			utilStartDate = formato.parse(request.getParameter("fechaADevolver"));
 			fech.setTime(utilStartDate);
 			java.sql.Date date = new java.sql.Date(utilStartDate.getTime());
 			p.setFechaADevoler(date);
@@ -62,13 +62,27 @@ public class modificarPrestamoServlet extends HttpServlet {
 			p.setFechaPrestamo(null);
 		}
 		
+		/*
+		 * Calendar fech3 = Calendar.getInstance(); java.util.Date utilStartDate3; try {
+		 * utilStartDate3 = formato.parse(request.getParameter("fechaDevolucion"));
+		 * fech3.setTime(utilStartDate3); java.sql.Date date = new
+		 * java.sql.Date(utilStartDate3.getTime()); p.setFechaDevolucion(date); } catch
+		 * (java.text.ParseException e) { p.setFechaDevolucion(null); }
+		 */
 		//VERIFICAMOS FECHAS
-				if(p.getFechaADevoler()!=null && p.getFechaPrestamo()!=null) {
-				if(p.getFechaPrestamo().after(p.getFechaADevoler())) {
-					request.setAttribute("error", "La fecha a devolver no puede ser menor que la fecha de creación.");
-					request.setAttribute ("prestamoAEditar",p);
-					request.getRequestDispatcher("modificarPrestamo.jsp").forward(request, response); 
+				
+		if(p.getFechaPrestamo().after(p.getFechaADevoler())) {
+			request.setAttribute("error", "La fecha a devolver no puede ser menor que la fecha de creación.");
+			request.setAttribute ("prestamoAEditar",p);
+			request.getRequestDispatcher("modificarPrestamo.jsp").forward(request, response); 
 				}else {
+					
+					//if(p.getFechaDevolucion()!=null && p.getFechaPrestamo().after(p.getFechaDevolucion())) {
+						//request.setAttribute("error", "La fecha de devolución no puede ser menor que la fecha de creación.");
+						//request.setAttribute ("prestamoAEditar",p);
+						//request.getRequestDispatcher("modificarPrestamo.jsp").forward(request, response); 
+					//}else {			
+					
 					int idPers = Integer.parseInt(request.getParameter("idPersona"));
 					p.setIdPersona(idPers);	
 					//edito el prestamo
@@ -82,12 +96,10 @@ public class modificarPrestamoServlet extends HttpServlet {
 						request.getRequestDispatcher("listarPrestamosServlet").forward(request, response);
 					}
 					
+					
 				}
-			}else {
-				request.setAttribute("error", "Los atributos de fechas no pueden ser nulos.");
-				request.setAttribute ("prestamoAEditar",p);
-				request.getRequestDispatcher("modificarPrestamo.jsp").forward(request, response); 
-			}
+				
+			
 	}
 
 }

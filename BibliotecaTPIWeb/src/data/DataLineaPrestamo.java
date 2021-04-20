@@ -115,18 +115,22 @@ public class DataLineaPrestamo extends DataMethods{
 		LinkedList<LineaPrestamo> lineasP = new LinkedList<>();
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"select idLineaPrestamo,fechaDevolucion,devuelto, idPrestamo, idEjemplar from linea_prestamo where idPrestamo=?"
+					"select T0.idLineaPrestamo, T0.fechaDevolucion, T0.devuelto, T0.idPrestamo, T0.idEjemplar, T2.titulo from linea_prestamo T0\r\n" + 
+					"inner join ejemplar T1 on T0.idEjemplar = T1.idEjemplar\r\n" + 
+					"inner join libro T2 on T1.idLibro = T2.idLibro\r\n" + 
+					"where T0.idLineaPrestamo =?"
 					);
 			stmt.setLong(1, p.getIdPrestamo());
 			rs=stmt.executeQuery();
 			if(rs!=null) {
 				while(rs.next()) {
 				lp = new LineaPrestamo();
-				lp.setIdEjemplar(rs.getInt("idEjemplar"));
-				lp.setIdLineaPrestamo(rs.getInt("idLineaPrestamo"));
-				lp.setFechaDevolucion(rs.getDate("fechaDevolucion"));
-				lp.setDevuelto(rs.getBoolean("devuelto"));
-				lp.setIdPrestamo(rs.getInt("idPrestamo"));
+				lp.setIdEjemplar(rs.getInt("T0.idEjemplar"));
+				lp.setIdLineaPrestamo(rs.getInt("T0.idLineaPrestamo"));
+				lp.setFechaDevolucion(rs.getDate("T0.fechaDevolucion"));
+				lp.setDevuelto(rs.getBoolean("T0.devuelto"));
+				lp.setIdPrestamo(rs.getInt("T0.idPrestamo"));
+				lp.setTituloEjemplar(rs.getString("T2.titulo"));
 				lineasP.add(lp);
 			}}
 		} catch (SQLException e) {

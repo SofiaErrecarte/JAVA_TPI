@@ -14,26 +14,17 @@ import entities.Prestamo;
 import logic.LibroController;
 import logic.PrestamoController;
 
-/**
- * Servlet implementation class devolverPrestamoServlet
- */
+
 @WebServlet("/devolverPrestamoServlet")
 public class devolverPrestamoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public devolverPrestamoServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		PrestamoController ctrlP= new PrestamoController();
 		LibroController ctrlL = new LibroController();
 		Prestamo p = new Prestamo();
@@ -46,11 +37,7 @@ public class devolverPrestamoServlet extends HttpServlet {
 		request.getRequestDispatcher("listarPrestamosServlet").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

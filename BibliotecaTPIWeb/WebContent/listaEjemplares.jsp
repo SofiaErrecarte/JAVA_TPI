@@ -85,7 +85,7 @@ html, body{
                                     <tbody>
                                         <% for (Ejemplar e : ej) { %>
                     			<tr>
-                    				<td class="text-center"><%=e.getTitulo()%></td>
+                    				<td class="text-center"><%=lib.getTitulo()%></td>
                     				<td class="text-center"><%=e.getIdEjemplar()%></td>
                     				<td class="text-center"><%=e.isDisponible()%></td>
 									<td class="text-center"><a class="deletebutton" onclick="return confirm('Se eliminará el ejemplar. Desea confirmar?')"

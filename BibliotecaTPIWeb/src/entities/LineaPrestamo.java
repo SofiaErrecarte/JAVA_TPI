@@ -8,6 +8,13 @@ public class LineaPrestamo {
 	private boolean devuelto; //se calcularía
 	private int idPrestamo;
 	private Date fechaDevolucion;
+	private String tituloEjemplar;
+	public String getTituloEjemplar() {
+		return tituloEjemplar;
+	}
+	public void setTituloEjemplar(String tituloEjemplar) {
+		this.tituloEjemplar = tituloEjemplar;
+	}
 	public int getIdPrestamo() {
 		return idPrestamo;
 	}

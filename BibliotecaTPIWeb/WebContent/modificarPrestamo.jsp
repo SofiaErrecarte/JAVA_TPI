@@ -106,10 +106,17 @@ html, body{
                  </div>
                 <div class="form-group">
                 <div class="tab-content" id="nav-tabContent">
-               	<label class="col-md-4 control-label" for="fechaDevolucion">Ingrese la Fecha de Devolución Estimada</label>  
-               	<input class="form-control" type="date" id="fechaDevolucion" value=<%=p.getFechaADevoler() %> name="fechaDevolucion" style="display=block">	     
+               	<label class="col-md-4 control-label" for="fechaADevolver">Ingrese la Fecha a Devolver</label>  
+               	<input class="form-control" type="date" id="fechaADevolver" value=<%=p.getFechaADevoler() %> name="fechaADevolver" style="display=block" required>	     
                 </div>   
                 </div>
+<%-- <%if(p.getEstado().equals("Cerrado")){ %>
+                 <div class="form-group">
+                <div class="tab-content" id="nav-tabContent">
+               	<label class="col-md-4 control-label" for="fechaDevolucion">Ingrese la Fecha de Devolucion</label>  
+               	<input class="form-control" type="date" id="fechaDevolucion" value=<%=p.getFechaDevolucion()%> name="fechaDevolucion" style="display=block">	     
+                </div>   
+                </div><%} %> --%>
                 
                 
                   

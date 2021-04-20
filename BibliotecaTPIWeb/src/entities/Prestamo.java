@@ -8,9 +8,10 @@ public class Prestamo {
 	private int idPrestamo;
 	private Date fechaPrestamo;
 	private String estado;
+	private Date fechaADevoler;
+	private Date fechaDevolucion;
 	
 
-	private Date fechaADevoler;
 	private LinkedList<LineaPrestamo> lineasPrestamo = new LinkedList<LineaPrestamo>();
 	private int idPersona;
 	
@@ -20,7 +21,12 @@ public class Prestamo {
 	public void setIdPersona(int idPersona) {
 		this.idPersona = idPersona;
 	}
-	
+	public Date getFechaDevolucion() {
+		return fechaDevolucion;
+	}
+	public void setFechaDevolucion(Date fechaDevolucion) {
+		this.fechaDevolucion = fechaDevolucion;
+	}
 	public String getEstado() {
 		return estado;
 	}

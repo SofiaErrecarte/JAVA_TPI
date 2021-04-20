@@ -101,7 +101,7 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 										Añadir ejemplares </a>
 				   <%} else {%>
                    <select name="idEjemplar" value=<%=lineaP.getIdEjemplar() %> class="form-control">
-                   <option selected="true" value="<%=lineaP.getIdEjemplar()%>"><%=lineaP.getIdEjemplar()%></option>
+                   <option selected="true" value="<%=lineaP.getIdEjemplar()%>"><%=lineaP.getIdEjemplar()%>%></option>
                    <%  for(int i = 0; i < ejemplares.size(); i++) {
                       Ejemplar e = (Ejemplar)ejemplares.get(i);
                       %>

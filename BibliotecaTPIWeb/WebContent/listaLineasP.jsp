@@ -86,7 +86,8 @@ html, body{
                                         <tr>
                                             <th class="text-center">ID Prestamo</th>
 		                    		    	<th class="text-center">Fecha Prestamo</th>
-		                        			<th class="text-center">Fecha Devolucion </th>
+		                        			<th class="text-center">Fecha A Devolver </th>
+		                        		    <th class="text-center">Fecha Devolucion </th>
 		                        			<th class="text-center">ID Persona</th>
 		                        			<th class="text-center">Estado</th>
                                         </tr>
@@ -97,6 +98,7 @@ html, body{
                     				<td class="text-center"><%=p.getIdPrestamo()%></td>
                     				<td class="text-center"><%=p.getFechaPrestamo()%></td>
                     				<td class="text-center"><%=p.getFechaADevoler()%></td>
+                    				<td class="text-center"><%=p.getFechaDevolucion()%></td>
                     				<td class="text-center"><%=p.getIdPersona()%></td>
                     				<td class="text-center"><%=p.getEstado()%></td>
                     				
@@ -119,9 +121,10 @@ html, body{
                                         <tr>
                                             <th class="text-center">ID Linea</th>
 		                    		    	<th class="text-center">ID Ejemplar</th>
+		                    		    	<th class="text-center">Título</th>
 		                    		    	<th class="text-center">Devuelto</th> 
 		                    		    	<th class="text-center"> Acción </th>
-                                       
+                                       		 
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -129,10 +132,15 @@ html, body{
                     			<tr>
                     				<td class="text-center"><%=lp.getIdLineaPrestamo()%></td>
                     				<td class="text-center"><%=lp.getIdEjemplar()%></td>
+                    				<td class="text-center"><%=lp.getTituloEjemplar()%></td>
                     				<td class="text-center"><%=lp.isDevuelto()%></td> 
+                    				<%if(p.getEstado().equals("Abierto")){ %>
 									<td class="text-center"><a class="editbutton"
 									href="modificarLineaPServlet?id=<%=lp.getIdLineaPrestamo()%>" title="Editar"><i class="fa fa-pencil"></i></a>
-									</td> 
+									</td> <% } else{ %>
+									<td class="text-center">Deshabilitada</td> 
+										<% } %>
+									
 
                     				 </tr>
                     		<% } %>

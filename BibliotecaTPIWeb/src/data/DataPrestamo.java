@@ -32,7 +32,8 @@ public class DataPrestamo extends DataMethods{
 					Prestamo p = new Prestamo();
 					p.setIdPrestamo(rs.getInt("idPrestamo"));
 					p.setFechaPrestamo(rs.getDate("fechaPrestamo"));
-					p.setFechaADevoler(rs.getDate("FechaADevolver"));
+					p.setFechaADevoler(rs.getDate("fechaADevolver"));
+					p.setFechaDevolucion(rs.getDate("fechaDevolucion"));
 					p.setIdPersona(rs.getInt("idPersona"));
 					p.setEstado(rs.getString("estado"));
 					prestamos.add(p);
@@ -107,6 +108,7 @@ public class DataPrestamo extends DataMethods{
 							);
 			stmt.setTimestamp(1, new java.sql.Timestamp(p.getFechaPrestamo().getTime()));
 			stmt.setTimestamp(2, new java.sql.Timestamp(p.getFechaADevoler().getTime()));
+			//stmt.setTimestamp(3, new java.sql.Timestamp(p.getFechaDevolucion().getTime()));
 			stmt.setLong(3, p.getIdPersona());
 			stmt.setInt(4, p.getIdPrestamo());
 			stmt.executeUpdate();
@@ -189,7 +191,7 @@ public class DataPrestamo extends DataMethods{
 		LinkedList<LineaPrestamo> lps = new LinkedList<>();
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"select * from linea_prestamo where idPrestamo=?"
+					"select * from linea_prestamo inner join ejemplar on ejemplar.idEjemplar=linea_prestamo.idEjemplar left join libro on ejemplar.idLibro=libro.idLibro where idPrestamo=?"
 					);
 			stmt.setLong(1, p.getIdPrestamo());
 			rs=stmt.executeQuery();
@@ -201,6 +203,7 @@ public class DataPrestamo extends DataMethods{
 				lp.setDevuelto(rs.getBoolean("devuelto"));
 				lp.setIdPrestamo(rs.getInt("idPrestamo"));
 				lp.setIdEjemplar(rs.getInt("idEjemplar"));
+				lp.setTituloEjemplar(rs.getString("titulo"));
 				lps.add(lp);
 			}}
 		} catch (SQLException e) {
@@ -218,20 +221,6 @@ public class DataPrestamo extends DataMethods{
 		return lps;
 	}
 	
-	/*
-	 * public int getCantLP(Prestamo p) {
-	 * 
-	 * int cant = 0; PreparedStatement stmt=null; ResultSet rs=null; try {
-	 * stmt=DbConnector.getInstancia().getConn().prepareStatement(
-	 * "select count(*) 'cantidad' from linea_prestamo where idPrestamo=?" );
-	 * stmt.setLong(1, p.getIdPrestamo()); rs=stmt.executeQuery(); if(rs!=null) {
-	 * cant = rs.getInt("cantidad"); } } catch (SQLException e) {
-	 * e.printStackTrace(); }finally { try { if(rs!=null) {rs.close();}
-	 * if(stmt!=null) {stmt.close();} DbConnector.getInstancia().releaseConn(); }
-	 * catch (SQLException e) { e.printStackTrace(); } }
-	 * 
-	 * return cant; }
-	 */
 	public Prestamo getById(Prestamo pr) {
 		Prestamo p = null;
 		PreparedStatement stmt=null;
@@ -246,6 +235,7 @@ public class DataPrestamo extends DataMethods{
 				p.setIdPrestamo(rs.getInt("idPrestamo"));
 				p.setFechaPrestamo(rs.getDate("fechaPrestamo"));
 				p.setFechaADevoler(rs.getDate("fechaADevolver"));
+				p.setFechaDevolucion(rs.getDate("fechaDevolucion"));
 				p.setIdPersona(rs.getInt("idPersona"));
 				p.setEstado(rs.getString("estado"));
 			}
@@ -270,7 +260,7 @@ public class DataPrestamo extends DataMethods{
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"UPDATE `biblioteca`.`prestamo` SET estado=? WHERE (`idPrestamo` = ?);",
+							"UPDATE `biblioteca`.`prestamo` SET estado=?, fechaDevolucion=curdate() WHERE (`idPrestamo` = ?);",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			stmt.setString(1, "Cerrado");
@@ -300,7 +290,7 @@ public class DataPrestamo extends DataMethods{
 							"UPDATE linea_prestamo lp \r\n"
 							+ "INNER JOIN prestamo p ON \r\n"
 							+ "lp.idPrestamo = p.idPrestamo \r\n"
-							+ "SET devuelto=1, fechaDevolucion= curdate() WHERE (lp.idPrestamo = ?);",
+							+ "SET devuelto=1, lp.fechaDevolucion= curdate() WHERE (lp.idPrestamo = ?);",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			

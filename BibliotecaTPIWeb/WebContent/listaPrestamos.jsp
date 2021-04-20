@@ -61,6 +61,9 @@ html, body{
                  </div>
             </div>
             </div>
+  <%if ((request.getAttribute("advertencia"))!=null) { %>
+		<div class="warning"> <%=request.getAttribute("advertencia")%> </div>		
+	<% } %>          
                         <% if (request.getAttribute("result")!=null) {
         	   MyResult res = (MyResult)request.getAttribute("result");
         	   if(res.getResult().equals(MyResult.results.OK)){
@@ -120,7 +123,8 @@ html, body{
                                         <tr>
                                             <th class="text-center">ID Prestamo</th>
 		                    		    	<th class="text-center">Fecha Prestamo</th>
-		                        			<th class="text-center">Fecha Devolucion </th>
+		                        			<th class="text-center">Fecha a Devolver</th>
+		                        			<th class="text-center">Fecha Devolución</th>
 		                        			<th class="text-center">ID Persona</th>
 		                        			<th class="text-center">Estado</th>
                                        		<th class="text-center"> Acciones</th>
@@ -132,13 +136,18 @@ html, body{
                     				<td class="text-center"><%=p.getIdPrestamo()%></td>
                     				<td class="text-center"><%=p.getFechaPrestamo()%></td>
                     				<td class="text-center"><%=p.getFechaADevoler()%></td>
+                    				<td class="text-center"><%=p.getFechaDevolucion()%></td>
                     				<td class="text-center"><%=p.getIdPersona()%></td>
                     				<td class="text-center"><%=p.getEstado()%></td>
                     				<td class="text-center"> 
+                    				<%if(p.getEstado().equals("Abierto") || p.getEstado().equals("Cerrado")) {%>
                     				<a class="editbutton" href="modificarPrestamoServlet?id=<%=p.getIdPrestamo()%>"title="Editar"><i class="fa fa-pencil"></i></a>
+                    				<%} %>
 									<a class="ejemplaresbutton" href="listarLineasPrestamoServlet?id=<%=p.getIdPrestamo()%>"title="Detalle"><i class="fa fa-list-ul"></i></a>
+									<%if(p.getEstado().equals("Abierto") || p.getEstado().equals("Cerrado")) {%>
 									<a class="devueltobutton" href="devolverPrestamoServlet?id=<%=p.getIdPrestamo()%>" title="Devuelto"><i class="fa fa-check"></i></a>
 									<a class="deletebutton" href="darDeBajaPrestamoServlet?id=<%=p.getIdPrestamo()%>" title="Dar de Baja"><i class="fa fa-thumbs-down"></i></a>
+										<%} %>
 									</td>
                     			 </tr>
                     		<% } %>

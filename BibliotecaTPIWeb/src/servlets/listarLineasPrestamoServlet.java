@@ -26,13 +26,11 @@ public class listarLineasPrestamoServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LineaPrestamoController ctrlLp = new LineaPrestamoController();
 		PrestamoController ctrlPre = new PrestamoController();
 		int ID = Integer.parseInt (request.getParameter("id"));
 		Prestamo pr = new Prestamo();
 		pr.setIdPrestamo(ID);
 		Prestamo p = ctrlPre.getByIdPrestamo(pr);
-		//LinkedList<LineaPrestamo> lineasP = p.getLineasPrestamo();
 		LinkedList<LineaPrestamo> lineasP = ctrlPre.getLPByPrestamo(p);
 		int cant = lineasP.size();
 		//busco ult politica pr y asigno el limite a no socio. recordar q no existe socio
