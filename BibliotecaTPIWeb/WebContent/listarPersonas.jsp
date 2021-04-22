@@ -151,7 +151,7 @@ html, body{
                     				<td class="text-center">
                     				<a class="editbutton" href="modificarPersonaServlet?id=<%=p.getIdPersona()%>" title="Editar"><i class="fa fa-pencil"></i></a>
 									<a class="deletebutton" href="darDeBajaPersonaServlet?id=<%=p.getIdPersona()%>" onclick="return confirm('Se dará de baja la persona. Desea confirmar?')"title="Dar de Baja"><i class="fa fa-thumbs-down"></i></a>
-									<a class="detallebutton" href="listarPrestamoPersonaServlet?id=<%=p.getIdPersona()%>" title="Prestamos"><i class="fa fa-thumbs-down"></i></a>
+									<a class="ejemplaresbutton" href="listarPrestamoPersonaServlet?id=<%=p.getIdPersona()%>" title="Prestamos"><i class="fa fa-list-ul"></i></a>
 									</td>
 										<%} %>
                     				 </tr>
