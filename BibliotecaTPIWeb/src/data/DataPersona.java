@@ -123,6 +123,49 @@ public class DataPersona extends DataMethods{
 		return personas;
 	}
 	
+	
+	public LinkedList<Persona> getDisponibles(){ // VER CUAL ES BIEN EL ATRIBUTO Y PROBARLO EN AGREGAR/MODIFICAR PRESTAAO
+		Statement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Persona> personas= new LinkedList<>();
+				
+		try {
+			stmt= DbConnector.getInstancia().getConn().createStatement();
+			rs= stmt.executeQuery("select * from persona where estado!='baja' ");
+			if(rs!=null) {
+				while(rs.next()) {
+					Persona per = new Persona();
+					per.setIdPersona(rs.getInt("idPersona"));
+					per.setEmail(rs.getString("email"));
+					per.setContraseña(""); //VER cómo hacemos esto
+					per.setAdmin(rs.getBoolean("admin")); 
+					per.setApellido(rs.getString("apellido"));
+					per.setNombre(rs.getString("nombre"));
+					per.setDireccion(rs.getString("direccion"));
+					per.setDni(rs.getString("dni"));
+					per.setTelefono(rs.getString("telefono"));
+					
+					personas.add(per);
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return personas;
+	}
+	
 	public Persona getByDNI(Persona p) {
 		Persona per = null;
 		PreparedStatement stmt=null;

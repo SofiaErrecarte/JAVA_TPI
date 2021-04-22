@@ -40,7 +40,13 @@ public class modificarLibroServlet extends HttpServlet {
 		lib.setIdLibro(Integer.parseInt(request.getParameter("id")));
 		String titulo = request.getParameter("titulo");
 		int isbn = Integer.parseInt(request.getParameter("isbn"));
-		int nroedicion = Integer.parseInt(request.getParameter("nroedicion"));
+		int nroedicion = 0;
+		try {
+			nroedicion = Integer.parseInt(request.getParameter("nroedicion"));
+		}catch (NumberFormatException e) {
+			nroedicion = 0;
+		}
+		
 		String genero = request.getParameter("genero");
 		int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
 		String autor = request.getParameter("autor");

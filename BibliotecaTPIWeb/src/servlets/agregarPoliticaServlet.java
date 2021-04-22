@@ -17,32 +17,18 @@ import entities.MyResult;
 import entities.PoliticaPrestamo;
 import logic.PoliticaPrestamoController;
 
-/**
- * Servlet implementation class agregarPoliticaServlet
- */
 @WebServlet("/agregarPoliticaServlet")
 public class agregarPoliticaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public agregarPoliticaServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 				PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController();
@@ -58,14 +44,8 @@ public class agregarPoliticaServlet extends HttpServlet {
 					java.sql.Date date = new java.sql.Date(utilStartDate.getTime());
 					pp.setFechaAlta(date);
 				} catch (java.text.ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				//fech = formato.parse(request.getParameter("fecha"));
-				//java.sql.Date date = new java.sql.Date(fech.getDate());
-				//String fecha = request.getParameter("fecha");
-				
-				
 				
 				pp.setCantMaximaSocio(numSocio);
 				pp.setCantMaximaNoSocio(numNoSocio);

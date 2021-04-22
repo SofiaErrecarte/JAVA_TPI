@@ -167,7 +167,8 @@ public class DataPoliticaPrestamo extends DataMethods{
 			
 			
 		}  catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			return Update(resultado);
 		} finally {
             try {
                 if(keyResultSet!=null)keyResultSet.close();

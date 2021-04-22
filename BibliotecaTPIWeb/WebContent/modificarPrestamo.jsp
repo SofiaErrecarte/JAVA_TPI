@@ -15,7 +15,7 @@
 <%
 Prestamo p = (Prestamo)request.getAttribute("prestamoAEditar");
 PersonaController ctrlPer = new PersonaController();
-LinkedList<Persona> personas = ctrlPer.getAllPersonas(); 
+LinkedList<Persona> personas = ctrlPer.getDisponibles(); 
 Persona user = (Persona)session.getAttribute("usuario");%>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -130,7 +130,7 @@ html, body{
 <tr>
 <td>
 <button class="btn btn-outline-primary" onclick="return confirm('Se modificará el prestamo. Desea confirmar?')">Modificar Prestamo</button>
-<a class="btn btn-outline-secondary" href="listarPrestamosServlet">Volver</a>
+<a class="btn btn-outline-secondary" href="listarPrestamosServlet?id=<%=user.getIdPersona() %>">Volver</a>
 </td>
 </tr>
 </table>

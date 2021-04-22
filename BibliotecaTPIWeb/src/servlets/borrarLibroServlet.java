@@ -33,8 +33,6 @@ public class borrarLibroServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		LibroController ctrlLibro =  new LibroController();
 		int  ID  =  Integer.parseInt (request.getParameter("id"));
 		Libro lib = new Libro(); 
@@ -42,6 +40,19 @@ public class borrarLibroServlet extends HttpServlet {
 		Libro l = ctrlLibro.getByIdLibro(lib);
 		LinkedList<Ejemplar> ej = new LinkedList<>();
 		ej= ctrlLibro.getEjByIdLibro(l);
+		
+		if(ej.isEmpty()) {
+			MyResult res = ctrlLibro.deleteLibro(l);
+			if (res.getResult().equals(MyResult.results.Err)) {
+				request.setAttribute("result", res);
+				request.setAttribute("listaLibros",ctrlLibro.getAllLibros());
+				request.getRequestDispatcher ("listaLibros.jsp").forward(request, response);
+			} else {
+			request.setAttribute("result", res);
+			request.setAttribute("listaLibros",ctrlLibro.getAllLibros());
+			request.getRequestDispatcher ("listaLibros.jsp").forward(request, response);
+			}
+		}else {
 		
 		//intento eliminar cada ejemplar
 		MyResult res1 = null;
@@ -58,18 +69,16 @@ public class borrarLibroServlet extends HttpServlet {
 				request.setAttribute("listaLibros",ctrlLibro.getAllLibros());
 				request.getRequestDispatcher ("listaLibros.jsp").forward(request, response);
 			} else {
-			
-			
 			request.setAttribute("result", res);
 			request.setAttribute("listaLibros",ctrlLibro.getAllLibros());
 			request.getRequestDispatcher ("listaLibros.jsp").forward(request, response);
 			}
 		} else {
-			res1.setErr_message("Existe al menos un ejemplar de este libro asignado a un préstamo.");
+			res1.setErr_message("Existe al menos un ejemplar de este libro asignado a un préstamo. Por favor, revise los ejemplares que no hayan sido borrados.");
 			request.setAttribute("result", res1);
 			request.setAttribute("listaLibros",ctrlLibro.getAllLibros());
 			request.getRequestDispatcher ("listaLibros.jsp").forward(request, response);
-		}
+		}}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

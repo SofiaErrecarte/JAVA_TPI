@@ -26,11 +26,13 @@ public class agregarProveedorServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProveedorController ctrlProv = new ProveedorController();
 		Proveedor p = new Proveedor();
-		
 		String razonSocial = request.getParameter("razonSocial");
 		String CUIT = request.getParameter("cuit");
 		String telefono = request.getParameter("telefono");
 		String mail = request.getParameter("mail");
+		if(mail.isEmpty()) {
+			mail = null;
+		}
 		String direccion = request.getParameter("direccion");
 		p.setCUIT(CUIT);
 		

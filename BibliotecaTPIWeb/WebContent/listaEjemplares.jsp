@@ -70,10 +70,15 @@ html, body{
                    <div class="success"><%=res.getErr_message()%></div>
                   <%
         	   } else {
+        		   if(res.getResult().equals(MyResult.results.Warning)){
+        			   %>
+                       <div class="warning"><%=res.getErr_message()%></div>
+                      <% 
+        		   }else{
         	      %>
                    <div class="error"><%=res.getErr_message()%></div>
                    <%}
-                   }
+                   }}
                  %>
                    <br>
 					<div class="panel-group">

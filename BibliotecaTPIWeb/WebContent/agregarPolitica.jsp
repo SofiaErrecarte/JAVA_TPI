@@ -57,7 +57,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="fechaalta">Fecha Alta: </label>  
   <div class="col-md-4">
- <input class="form-control" type="date" id="fecha" name="fecha"  style="display=block">	     
+ <input class="form-control" type="date" id="fecha" name="fecha"  style="display=block" required>	     
   </div>
 </div>
 
@@ -65,7 +65,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="numsocio">Cantidad maxima de libros Socio: </label>  
   <div class="col-md-4">
-  <input id="numsocio" name="numsocio" type="text" placeholder="Cant libros Socio" class="form-control input-md" required="">
+  <input id="numsocio" name="numsocio" type="text" placeholder="Cant libros Socio" class="form-control input-md" required>
   </div>
 </div>
 
@@ -74,7 +74,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="numnosocio">Cantidad maxima de libros No Socio: </label>  
   <div class="col-md-4">
-  <input id="numnosocio" name="numnosocio" type="text" placeholder="Cant de Libros No socio" class="form-control input-md" required="">
+  <input id="numnosocio" name="numnosocio" type="text" placeholder="Cant de Libros No socio" class="form-control input-md" required>
   </div>
 </div>
 
@@ -83,7 +83,7 @@ html, body{
 <tr>
 <td>
 <button class="btn btn-outline-primary" onclick="return confirm('Se agregará una nueva política. Desea confirmar?')">Agregar Politica</button>
-<a class="btn btn-outline-secondary" href="listarLibroServlet">Volver</a>
+<a class="btn btn-outline-secondary" href="listarPoliticaServlet">Volver</a>
 </td>
 </tr>
 </table>

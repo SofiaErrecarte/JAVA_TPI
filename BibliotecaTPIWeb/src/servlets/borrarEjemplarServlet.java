@@ -34,12 +34,16 @@ public class borrarEjemplarServlet extends HttpServlet {
 		l.setIdLibro(e.getIdLibro());
 		Libro lib= ctrlLibro.getByIdLibro(l);
 		MyResult res = ctrlLibro.deleteEjemplar(e);
+		if (res.getResult().equals(MyResult.results.Warning)) { 
+			//entro por la condición 2. (está en un préstamo CERRADO o DE BAJA) 
+			ctrlLibro.setDisponible(e, false);
+		}
 		request.setAttribute("result", res);
 		LinkedList<Ejemplar> ejemplares = ctrlLibro.getEjByIdLibro(lib);
 		request.setAttribute("listaEjemplares", ejemplares);
 		request.setAttribute("libro", lib);
 		request.getRequestDispatcher("listaEjemplares.jsp").forward(request, response);
-	
+		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

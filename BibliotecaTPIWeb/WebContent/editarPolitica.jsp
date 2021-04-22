@@ -66,7 +66,7 @@ html, body{
   <label class="col-md-4 control-label" for="fechaalta">Fecha Alta: </label>  
   <div class="col-md-4">
  <!--  Este me lo muestra deshabilitado para q se vea el numero -->  
-   <input type="text" name="idPP" value=<%=pp.getFechaAlta()%> class="form-control input-md" disabled  >
+   <input type="text" name="idPP" value=<%=pp.getFechaAlta()%> class="form-control input-md" disabled >
   </div>
 </div>
 
@@ -92,8 +92,8 @@ html, body{
 <table>
 <tr>
 <td>
-<button class="btn btn-outline-primary">Agregar Libro</button>
-<a class="btn btn-outline-secondary" href="listarLibroServlet">Volver</a>
+<button class="btn btn-outline-primary">Modificar Política</button>
+<a class="btn btn-outline-secondary" href="listarPoliticaServlet">Volver</a>
 </td>
 </tr>
 </table>

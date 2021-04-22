@@ -76,7 +76,7 @@ html, body{
                   <%
         	   } else {
         	      %>
-                   <div class="error"><%=res.getErr_message()%></div>
+                   <div class="warning"><%=res.getErr_message()%></div>
                    <%}
                    }
                  %>
@@ -159,7 +159,8 @@ html, body{
                     				<td class="text-center">
                     				
                     				<a class="editbutton" href="modificarLibroServlet?id=<%=lib.getIdLibro()%>" title="Editar"><i class="fa fa-pencil"></i></a>
-									<a href="borrarLibroServlet?id=<%=lib.getIdLibro()%>" class="deletebutton" title="Eliminar" onclick="return confirm('Se eliminará el libro. Desea confirmar?')"><i class="fa fa-trash"></i></a> 
+                    				<!-- ver como poner este mensaje pa q el user entienda algo -->
+									<a href="borrarLibroServlet?id=<%=lib.getIdLibro()%>" class="deletebutton" title="Eliminar" onclick="return confirm('Se eliminará el libro y/o aquellos ejemplares que no hayan sido asignados a préstamos. Desea confirmar?')"><i class="fa fa-trash"></i></a> 
 									<a href="listarEjemplaresServlet?id=<%=lib.getIdLibro()%>" class="ejemplaresbutton" title="Ejemplares"><i class="fa fa-list-ul"></i></a>
 									</td>
 										<%} %>

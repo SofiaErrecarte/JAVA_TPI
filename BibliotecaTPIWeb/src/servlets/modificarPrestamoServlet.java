@@ -62,13 +62,6 @@ public class modificarPrestamoServlet extends HttpServlet {
 			p.setFechaPrestamo(null);
 		}
 		
-		/*
-		 * Calendar fech3 = Calendar.getInstance(); java.util.Date utilStartDate3; try {
-		 * utilStartDate3 = formato.parse(request.getParameter("fechaDevolucion"));
-		 * fech3.setTime(utilStartDate3); java.sql.Date date = new
-		 * java.sql.Date(utilStartDate3.getTime()); p.setFechaDevolucion(date); } catch
-		 * (java.text.ParseException e) { p.setFechaDevolucion(null); }
-		 */
 		//VERIFICAMOS FECHAS
 				
 		if(p.getFechaPrestamo().after(p.getFechaADevoler())) {
@@ -76,13 +69,6 @@ public class modificarPrestamoServlet extends HttpServlet {
 			request.setAttribute ("prestamoAEditar",p);
 			request.getRequestDispatcher("modificarPrestamo.jsp").forward(request, response); 
 				}else {
-					
-					//if(p.getFechaDevolucion()!=null && p.getFechaPrestamo().after(p.getFechaDevolucion())) {
-						//request.setAttribute("error", "La fecha de devolución no puede ser menor que la fecha de creación.");
-						//request.setAttribute ("prestamoAEditar",p);
-						//request.getRequestDispatcher("modificarPrestamo.jsp").forward(request, response); 
-					//}else {			
-					
 					int idPers = Integer.parseInt(request.getParameter("idPersona"));
 					p.setIdPersona(idPers);	
 					//edito el prestamo

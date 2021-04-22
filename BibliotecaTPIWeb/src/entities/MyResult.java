@@ -8,7 +8,8 @@ public class MyResult {
 	private String err_message;
 	public enum results{
 		OK,
-		Err
+		Err,
+		Warning
 	}
 	
 	private results result;

@@ -98,28 +98,28 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="razonSocial">ISBN:</label>  
   <div class="col-md-4">
-    <input type="text"  name="isbn" value=<%=lib.getIsbn()%> class="form-control input-md">
+    <input type="text"  name="isbn" value=<%=lib.getIsbn()%> placeholder="ISBN" class="form-control input-md" required>
      </div>
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="cuit">Titulo:</label>  
   <div class="col-md-4">  
-  <input type="text" name="titulo" value=<%=lib.getTitulo()%> class="form-control input-md"  required>
+  <input type="text" name="titulo" value=<%=lib.getTitulo()%> placeholder="Título" class="form-control input-md"  required>
   </div>
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="autor">Autor </label>  
   <div class="col-md-4">
-  <input id="autor" name="autor" type="text" value=<%=lib.getAutor() %> placeholder="Autor" class="form-control input-md" required="">
+  <input id="autor" name="autor" type="text" value=<%=lib.getAutor() %> placeholder="Autor" class="form-control input-md" required>
   </div>
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="razonSocial">Nro Edición:</label>  
   <div class="col-md-4">
-    <input type="text" name="nroedicion" value=<%=lib.getNroEdicion()%> class="form-control input-md" required>
+    <input type="text" name="nroedicion" value=<%=lib.getNroEdicion()%> placeholder="Nro Edición" class="form-control input-md">
 </div>
 </div>
 
@@ -127,7 +127,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="genero">Género:</label>  
   <div class="col-md-4">
-   <input type="text" name="genero" value=<%=lib.getGenero()%>  class="form-control input-md" required>
+   <input type="text" name="genero" value=<%=lib.getGenero()%> placeholder="Género" class="form-control input-md" required>
      </div>
 </div>
 

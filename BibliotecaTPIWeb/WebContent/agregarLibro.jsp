@@ -83,21 +83,21 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="titulo">Título: </label>  
   <div class="col-md-4">
-  <input id="titulo" name="titulo" type="text" placeholder="Titulo" class="form-control input-md" required="">
+  <input id="titulo" name="titulo" type="text" placeholder="Titulo" class="form-control input-md" required>
   </div>
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="autor">Autor </label>  
   <div class="col-md-4">
-  <input id="autor" name="autor" type="text" placeholder="Autor" class="form-control input-md" required="">
+  <input id="autor" name="autor" type="text" placeholder="Autor" class="form-control input-md" required>
   </div>
 </div>
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="isbn">ISBN: </label>  
   <div class="col-md-4">
-  <input id="isbn" name="isbn" type="text" placeholder="ISBN" class="form-control input-md" required="">
+  <input id="isbn" name="isbn" type="text" placeholder="ISBN" class="form-control input-md" required>
   </div>
 </div>
 
@@ -106,19 +106,16 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="nroedicion">Numero de edicion: </label>  
   <div class="col-md-4">
-  <input id="nroedicion" name="nroedicion" type="text" placeholder="Numero Edicion" class="form-control input-md" required="">
+  <input id="nroedicion" name="nroedicion" type="text" placeholder="Numero Edicion" class="form-control input-md">
   </div>
 </div>
 
-<!-- Text input
 <div class="form-group">
-  <label class="col-md-4 control-label" for="cantdiasprestamo">Cant días prestamo: </label>  
+  <label class="col-md-4 control-label" for="genero">Género:</label>  
   <div class="col-md-4">
-  <input id="cantdiasprestamo" name="cantdiasprestamo" type="text" placeholder="Cantidad dias préstamo" class="form-control input-md" required="">
-  </div>
-</div>-->
-
-<!-- Text input-->
+   <input type="text" name="genero" class="form-control input-md" placeholder="Género" required>
+     </div>
+</div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="prov">Proveedor: </label>  
@@ -144,7 +141,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="foto">Agregar Foto </label>  
   <div class="col-md-4">
-  <input id="foto" name="foto" type="file" class="form-control input-md" required="">
+  <input id="foto" name="foto" type="file" class="form-control input-md" required>
   </div>
 </div>
 </fieldset>

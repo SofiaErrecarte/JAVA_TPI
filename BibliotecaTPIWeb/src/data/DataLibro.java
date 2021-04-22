@@ -593,18 +593,41 @@ public class DataLibro extends DataMethods{
 		PreparedStatement stmt= null;
 		ResultSet rs=null;
 		try {
-			//verifico que disponible=false, lo que significaría que está prestado
+			//CONDICIÓN 1
+			//verifico que disponible=false, lo que significaría que está prestado en un préstamo ABIERTO
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"SELECT COUNT(*) FROM ejemplar T0 inner join linea_prestamo T1 on T0.idEjemplar=T1.idEjemplar where T0.idEjemplar=?"
+					"SELECT COUNT(*) FROM ejemplar T0 \r\n" + 
+					"inner join linea_prestamo T1 on T0.idEjemplar=T1.idEjemplar \r\n" + 
+					"inner join prestamo T2 on T1.idPrestamo=T2.idPrestamo \r\n" + 
+					"where T0.idEjemplar=? \r\n" + 
+					"and T2.estado='Abierto'"
 					);
 			stmt.setInt(1, ej.getIdEjemplar());
 			rs = stmt.executeQuery();
 			if (rs!=null && rs.next()) {
-				// preguntamos si el ejemplar está no disponible, es decir, prestado
 				if (rs.getInt(1) > 0) {
 					MyResult res = new MyResult();
 					res.setResult(MyResult.results.Err);
-					res.setErr_message("El ejemplar está asignado a un préstamo.");
+					res.setErr_message("El ejemplar está asignado a un préstamo abierto.");
+					return res;
+				} else {
+			stmt.close();
+			//CONDICIÓN 2
+			//verifico que disponible=true, lo que significaría que está prestado en un préstamo CERRADO o DE BAJA
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"SELECT COUNT(*) FROM ejemplar T0 \r\n" + 
+					"inner join linea_prestamo T1 on T0.idEjemplar=T1.idEjemplar \r\n" + 
+					"inner join prestamo T2 on T1.idPrestamo=T2.idPrestamo \r\n" + 
+					"where T0.idEjemplar=? \r\n" + 
+					"and (T2.estado='Cerrado' or T2.estado='De Baja')"
+					);
+			stmt.setInt(1, ej.getIdEjemplar());
+			rs = stmt.executeQuery();
+			if (rs!=null && rs.next()) {
+				if (rs.getInt(1) > 0) {
+					MyResult res = new MyResult();
+					res.setResult(MyResult.results.Warning);
+					res.setErr_message("El ejemplar está asignado a un préstamo cerrado o dado de baja. Su estado ha cambiado a NO disponible.");
 					return res;
 				} else {
 			stmt.close();
@@ -621,7 +644,7 @@ public class DataLibro extends DataMethods{
 				return Delete(0);
 			} }}
 			
-            
+				}}
 		}  catch (SQLException e) {
 			return Delete(0);
 		} finally {

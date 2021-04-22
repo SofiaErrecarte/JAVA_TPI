@@ -65,7 +65,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="cuit">CUIT:</label>  
   <div class="col-md-4"> 
-   <input type="text" name="cuit" value=<%=prov.getCUIT()%> class="form-control input-md" >
+   <input type="text" name="cuit" value=<%=prov.getCUIT()%> placeholder="CUIT" class="form-control input-md" required>
  
   </div>
 </div>
@@ -74,28 +74,28 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="razonSocial">Razón Social:</label>  
   <div class="col-md-4">
-    <input type="text" name="razonSocial" value=<%=prov.getRazonSocial()%> class="form-control input-md" required>
+    <input type="text" name="razonSocial" value=<%=prov.getRazonSocial()%> placeholder="Razón Social" class="form-control input-md" required>
   </div>
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="telefono">Teléfono:</label>  
   <div class="col-md-4">
-    <input type="text" name="telefono" value=<%=prov.getTelefono() %> class="form-control input-md" required>
+    <input type="text" name="telefono" value=<%=prov.getTelefono() %> placeholder="Teléfono" class="form-control input-md" required>
   </div>
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="mail">E-Mail:</label>  
   <div class="col-md-4">
-    <input type="text" name="mail" value=<%=prov.getMail() %> class="form-control input-md" required>
+    <input type="text" name="mail" value=<%=prov.getMail() %> placeholder="E-Mail" class="form-control input-md">
   </div>
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="direccion">Dirección:</label>  
   <div class="col-md-4">
-    <input type="text" name="direccion" value=<%=prov.getDireccion() %> class="form-control input-md" required>
+    <input type="text" name="direccion" value=<%=prov.getDireccion() %> placeholder="Dirección" class="form-control input-md" required>
   </div>
 </div>
 </fieldset>

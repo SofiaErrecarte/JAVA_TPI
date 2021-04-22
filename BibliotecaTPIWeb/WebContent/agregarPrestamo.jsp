@@ -13,7 +13,7 @@
 <meta charset="ISO-8859-1">
 <title>Nuevo Prestamo</title>
 <%PersonaController ctrlPer = new PersonaController();
-LinkedList<Persona> personas = ctrlPer.getAllPersonas(); 
+LinkedList<Persona> personas = ctrlPer.getDisponibles(); 
 Persona user = (Persona)session.getAttribute("usuario");
 %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -110,7 +110,7 @@ html, body{
 <tr>
 <td>
 <button class="btn btn-outline-primary" onclick="return confirm('Se agregará un nuevo prestamo. Desea confirmar?')">Agregar Prestamo</button>
-<a class="btn btn-outline-secondary" href="listarPrestamosServlet">Volver</a>
+<a class="btn btn-outline-secondary" href="listarPrestamosServlet?id=<%=user.getIdPersona() %>">Volver</a>
 </td>
 </tr>
 </table>

@@ -20,19 +20,25 @@ public class modificarProveedorServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	
+		ProveedorController ctrlProv = new ProveedorController();
+		Proveedor prov = new Proveedor();
+		prov.setIdProveedor(Integer.parseInt(request.getParameter("id")));
+		Proveedor p = ctrlProv.getById(prov);
+		request.setAttribute("proveedorAEditar", p);
+		request.getRequestDispatcher("modificarProveedor.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProveedorController ctrlProv = new ProveedorController();
 		Proveedor prov = new Proveedor();
 		prov.setIdProveedor(Integer.parseInt(request.getParameter("id")));
-		
 		String razonSocial = request.getParameter("razonSocial");
 		String CUIT = request.getParameter("cuit");
 		String telefono = request.getParameter("telefono");
 		String mail = request.getParameter("mail");
+		if(mail.isEmpty()) {
+			mail = null;
+		}
 		String direccion = request.getParameter("direccion");
 		
 		

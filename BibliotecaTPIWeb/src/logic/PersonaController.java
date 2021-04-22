@@ -26,6 +26,9 @@ public class PersonaController {
 		return dp.getAll();
 	}
 	
+	public LinkedList<Persona> getDisponibles(){
+		return dp.getDisponibles();
+	} 
 	public Persona getByDNI ( Persona p) {
 		return dp.getByDNI(p);
 	}
