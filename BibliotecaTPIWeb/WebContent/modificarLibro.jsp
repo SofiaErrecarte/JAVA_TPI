@@ -52,7 +52,8 @@ html, body{
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link " id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
-                            
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPersonasServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Usuarios</a>
                                	 
                             </div>
                         </nav>
@@ -75,7 +76,7 @@ html, body{
                    }
                  %> 
             <br>
-            
+            <h3 class="login-heading mb-4 text-center">Editar Libro</h3>
 <form class="form-horizontal" action="modificarLibroServlet" method="post">
 <section>
 <% if( proveedores.isEmpty())  { %> 
@@ -121,8 +122,6 @@ html, body{
     <input type="text" name="nroedicion" value=<%=lib.getNroEdicion()%> class="form-control input-md" required>
 </div>
 </div>
-
-
 
 
 <div class="form-group">

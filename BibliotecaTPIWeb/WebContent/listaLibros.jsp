@@ -18,7 +18,6 @@
 <meta charset="ISO-8859-1">
 <title>Libros</title>
 <% 
-String respuesta = (String)request.getAttribute("respuesta");
 LinkedList<Libro> ll = (LinkedList<Libro>)request.getAttribute("listaLibros");
 Persona user = (Persona)session.getAttribute("usuario");
 %>
@@ -61,7 +60,8 @@ html, body{
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
-                               	 
+                               	 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPersonasServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Usuarios</a>
                                 <%} %>
                             </div>
                         </nav>
@@ -134,6 +134,7 @@ html, body{
 		                        			<th class="text-center">Numero de edicion</th>
 		                        			<th class="text-center">Genero</th>
 		                        			<th class="text-center">Proveedor</th>
+		                        			<th class="text-center">Acciones</th>
 		                        			<th class="text-center">  </th>
                                         </tr>
                                     </thead>

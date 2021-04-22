@@ -11,6 +11,8 @@ public class Persona {
 	private String direccion;
 	private String dni;
 	private float montoAPagar;
+	private String estado;
+	
 	public String getApellido() {
 		return apellido;
 	}
@@ -81,6 +83,12 @@ public class Persona {
 		String patron = "%s - %s - %s";
 		String cadena = String.format(patron, dni, nombre, apellido);
 		return cadena;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 	
 }

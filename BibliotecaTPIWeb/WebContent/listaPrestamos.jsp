@@ -13,6 +13,7 @@
 <meta charset="ISO-8859-1">
 <title>Prestamos</title>
 <% 
+String var = (String)request.getAttribute("Persona");
 LinkedList<Prestamo> prestamos = (LinkedList<Prestamo>)request.getAttribute("listaPrestamos");
 LinkedList<Prestamo> prestamos_personas = (LinkedList<Prestamo>)request.getAttribute("listaPrestamosPersonas");
 Persona user = (Persona)session.getAttribute("usuario");
@@ -55,6 +56,8 @@ html, body{
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPersonasServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Usuarios</a>
                                	 <%} %>
                                <br>
                             </div>
@@ -64,7 +67,7 @@ html, body{
                  </div>
             </div>
             </div>
-  <%if (user.isAdmin()){ %>
+  <%if (user.isAdmin() && var!="prestamospersona"){ %>
   <%if ((request.getAttribute("advertencia"))!=null) { %>
 		<div class="warning"> <%=request.getAttribute("advertencia")%> </div>		
 	<% } %>          
@@ -146,12 +149,12 @@ html, body{
                     				<td class="text-center"><%=p.getEstado()%></td>
                     				<td class="text-center"> 
                     				<%if(p.getEstado().equals("Abierto")) {%>
-                    				<a class="editbutton" href="modificarPrestamoServlet?id=<%=p.getIdPrestamo()%>"title="Editar"><i class="fa fa-pencil"></i></a>
+                    				<a class="editbutton" href="modificarPrestamoServlet?id=<%=p.getIdPrestamo()%>" title="Editar"><i class="fa fa-pencil"></i></a>
                     				<%} %>
-									<a class="ejemplaresbutton" href="listarLineasPrestamoServlet?id=<%=p.getIdPrestamo()%>"title="Detalle"><i class="fa fa-list-ul"></i></a>
+									<a class="ejemplaresbutton" href="listarLineasPrestamoServlet?id=<%=p.getIdPrestamo()%>" title="Detalle"><i class="fa fa-list-ul"></i></a>
 									<%if(p.getEstado().equals("Abierto")) {%>
-									<a class="devueltobutton" href="devolverPrestamoServlet?id=<%=p.getIdPrestamo()%>" title="Devuelto"><i class="fa fa-check"></i></a>
-									<a class="deletebutton" href="darDeBajaPrestamoServlet?id=<%=p.getIdPrestamo()%>" title="Dar de Baja"><i class="fa fa-thumbs-down"></i></a>
+									<a class="devueltobutton" href="devolverPrestamoServlet?id=<%=p.getIdPrestamo()%>" onclick="return confirm('Prestamo devuelto. Desea confirmar?')" title="Devuelto"><i class="fa fa-check"></i></a>
+									<a class="deletebutton" href="darDeBajaPrestamoServlet?id=<%=p.getIdPrestamo()%>" onclick="return confirm('Se dará de baja el prestamo. Desea confirmar?')" title="Dar de Baja"><i class="fa fa-thumbs-down"></i></a>
 										<%} %>
 									</td>
                     			 </tr>
@@ -179,7 +182,7 @@ html, body{
         </section>
    <%@ include file = "footer.jsp" %>
 <%}%>
- <%if (user.isAdmin()==false) {%>
+ <%if (user.isAdmin()==false || var=="prestamospersona") {%>
  
   <%if ((request.getAttribute("advertencia"))!=null) { %>
 		<div class="warning"> <%=request.getAttribute("advertencia")%> </div>		
@@ -197,7 +200,7 @@ html, body{
                    }
                  %>
             <br>
-                  <h3 class="login-heading mb-4 text-center">Mis Prestamos</h3>
+                  <h3 class="login-heading mb-4 text-center">Prestamos de <%=user.getNombre() %>   <%=user.getApellido() %>  </h3>
  
              <div class="container w3-container">
               <div class="row">

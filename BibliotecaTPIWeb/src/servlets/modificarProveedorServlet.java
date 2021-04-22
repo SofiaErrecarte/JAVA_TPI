@@ -20,14 +20,7 @@ public class modificarProveedorServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProveedorController ctrlProv = new ProveedorController();
-		int ID = Integer.parseInt(request.getParameter("id"));
-		Proveedor prov = new Proveedor();
-		prov.setIdProveedor(ID);
-		Proveedor p = ctrlProv.getById(prov);
 		
-		request.setAttribute("proveedorAEditar", p);
-		request.getRequestDispatcher("modificarProveedor.jsp").forward(request, response);
 	
 	}
 

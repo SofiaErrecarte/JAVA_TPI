@@ -488,7 +488,7 @@ public class DataPrestamo extends DataMethods{
 		return prestamos;
 	}
 
-
+	
 
 	
 

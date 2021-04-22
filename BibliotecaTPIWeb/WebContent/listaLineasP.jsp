@@ -52,7 +52,8 @@ html, body{
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
-                               	 
+                               	 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPersonasServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Usuarios</a>
                                
                             </div>
                         </nav>

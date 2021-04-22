@@ -48,7 +48,8 @@ Persona user = (Persona)session.getAttribute("usuario");
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
-                            	
+                            	<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPersonasServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Usuarios</a>
                             </div>
                         </nav>
                     </div>
@@ -70,6 +71,7 @@ Persona user = (Persona)session.getAttribute("usuario");
                    <%}
                    }
                  %> 
+                 <h3 class="login-heading mb-4 text-center">Editar Linea Prestamo</h3>
 <form class="form-horizontal" action="modificarLineaPServlet" method="post">
 <section>
 <% if( ejemplares.isEmpty())  { %> 

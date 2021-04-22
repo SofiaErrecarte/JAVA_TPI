@@ -3,6 +3,7 @@ package logic;
 import java.util.LinkedList;
 
 import data.DataPersona;
+import entities.Libro;
 import entities.MyResult;
 import entities.Persona;
 import entities.Proveedor;
@@ -30,5 +31,25 @@ public class PersonaController {
 	}
 	public MyResult createPersona(Persona p) {
 		return dp.add(p);
+	}
+	
+	public MyResult editPersona(Persona p) {
+		return dp.editPersona(p);
+	}
+	
+	public void setEstado(Persona p, String estado) {
+		dp.setEstado(p, estado);
+	}
+	public LinkedList<Persona> getByApellidoA() {
+		return dp.getByApellidoA();
+	}
+	public LinkedList<Persona> getByApellidoZ() {
+		return dp.getByApellidoZ();
+	}
+	public LinkedList<Persona> getByNombreA() {
+		return dp.getByNombreA();
+	}
+	public LinkedList<Persona> getByNombreZ(){
+		return dp.getByNombreZ();
 	}
 }

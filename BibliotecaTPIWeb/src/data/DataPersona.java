@@ -4,19 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
-
-import entities.Libro;
-import entities.MyResult;
-import entities.Persona;
-import entities.Proveedor;
-
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import entities.*;
 public class DataPersona extends DataMethods{
 
 	public Persona getById(Persona p) {
-		Persona per = null;
+		Persona per = new Persona();
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		try {
@@ -25,11 +19,15 @@ public class DataPersona extends DataMethods{
 			stmt.setInt(1, p.getIdPersona());
 			rs=stmt.executeQuery();
 			if(rs!=null && rs.next()) {
-				per = new Persona();
 				per.setIdPersona(rs.getInt("idPersona"));
 				per.setEmail(rs.getString("email"));
 				per.setContraseña(""); //VER cómo hacemos esto
 				per.setAdmin(rs.getBoolean("admin")); 
+				per.setApellido(rs.getString("apellido"));
+				per.setNombre(rs.getString("nombre"));
+				per.setDireccion(rs.getString("direccion"));
+				per.setDni(rs.getString("dni"));
+				per.setTelefono(rs.getString("telefono")); 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -47,7 +45,8 @@ public class DataPersona extends DataMethods{
 	}
 	
 	public Persona getByEmail(Persona p) {
-		Persona per = null;
+
+		Persona per = new Persona();
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		try {
@@ -57,11 +56,15 @@ public class DataPersona extends DataMethods{
 			stmt.setString(2, p.getContraseña());
 			rs=stmt.executeQuery();
 			if(rs!=null && rs.next()) {
-				per = new Persona();
 				per.setIdPersona(rs.getInt("idPersona"));
 				per.setEmail(rs.getString("email"));
-				per.setContraseña(rs.getString("contraseña")); //VER cómo hacemos esto
+				per.setContraseña(""); //VER cómo hacemos esto
 				per.setAdmin(rs.getBoolean("admin")); 
+				per.setApellido(rs.getString("apellido"));
+				per.setNombre(rs.getString("nombre"));
+				per.setDireccion(rs.getString("direccion"));
+				per.setDni(rs.getString("dni"));
+				per.setTelefono(rs.getString("telefono")); 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -156,18 +159,61 @@ public class DataPersona extends DataMethods{
 		return per;
 	}
 
+	
 	public MyResult add(Persona p) {
+		int resultado = -1;
+		PreparedStatement stmt= null;
+		ResultSet keyResultSet=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().
+					prepareStatement(
+							"INSERT INTO `biblioteca`.`persona` (`apellido`, `nombre`, `telefono`, `email`, `direccion`, `dni`, `admin`, `contraseña`) values(?,?,?,?,?,?,?,?)",
+							PreparedStatement.RETURN_GENERATED_KEYS
+							);
+						stmt.setString(1, p.getApellido());
+						stmt.setString(2, p.getNombre());
+						stmt.setString(3, p.getTelefono());
+						stmt.setString(4, p.getEmail());
+						stmt.setString(5, p.getDireccion());
+						stmt.setString(6, p.getDni());
+						stmt.setBoolean(7, p.isAdmin());
+						stmt.setString(8, p.getContraseña());
+						stmt.executeUpdate();
+			
+			keyResultSet=stmt.getGeneratedKeys();
+            if(keyResultSet!=null && keyResultSet.next()){
+                p.setIdPersona(keyResultSet.getInt(1));
+            }
+		}  catch (SQLException e) {
+			return Add(resultado);
+		} finally {
+            try {
+                if(keyResultSet!=null)keyResultSet.close();
+                if(stmt!=null)stmt.close();
+                DbConnector.getInstancia().releaseConn();
+            } catch (SQLException e) {
+            	ConnectCloseError();
+            }
+		}
+		// si llegó hasta acá está bien
+		MyResult res = new MyResult();
+		res.setResult(MyResult.results.OK);
+		return Add(1);
+	}
+
+	public MyResult editPersona(Persona per) {
 		int resultado = -1;
 		PreparedStatement stmt= null;
 		ResultSet rs=null;
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"SELECT COUNT(*) FROM persona WHERE dni=?"
+					"SELECT COUNT(*) FROM persona WHERE dni=? and idPersona!=?"
 					);
-			stmt.setString(1, p.getDni());
+			stmt.setString(1, per.getDni());
+			stmt.setInt(2, per.getIdPersona());
 			rs = stmt.executeQuery();
 			if (rs!=null && rs.next()) {
-				// preguntamos si hay al menos una persona con ese dni
+				// preguntamos si hay al menos un proveedor con ese CUIT
 				if (rs.getInt(1) > 0) {
 					MyResult res = new MyResult();
 					res.setResult(MyResult.results.Err);
@@ -178,39 +224,215 @@ public class DataPersona extends DataMethods{
 			
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"INSERT INTO `biblioteca`.`persona` (`apellido`, `nombre`, `telefono`, `email`, `direccion`, `dni`, `admin`, `contraseña`) values(?,?,?,?,?,?,?,?)",
+							"UPDATE `biblioteca`.`persona` SET `apellido` = ?, `nombre` = ?, `telefono` = ?, `email` = ?, `direccion` = ?, `dni` = ?, `admin` = ? WHERE (`idPersona` = ?);",							
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
-			stmt.setString(1, p.getApellido());
-			stmt.setString(2, p.getNombre());
-			stmt.setString(3, p.getTelefono());
-			stmt.setString(4, p.getEmail());
-			stmt.setString(5, p.getDireccion());
-			stmt.setString(6, p.getDni());
-			stmt.setBoolean(7, p.isAdmin());
-			stmt.setString(8, p.getContraseña());
+			stmt.setString(1, per.getApellido());
+			stmt.setString(2, per.getNombre());
+			stmt.setString(3, per.getTelefono());
+			stmt.setString(4, per.getEmail());
+			stmt.setString(5, per.getDireccion());
+			stmt.setString(6, per.getDni());
+			stmt.setBoolean(7, per.isAdmin());
+			stmt.setInt(8, per.getIdPersona());
 			stmt.executeUpdate();
 			
-			rs=stmt.getGeneratedKeys();
-            if(rs!=null && rs.next()){
-                p.setIdPersona(rs.getInt(1));
-            }
-		}}} catch (SQLException e) {
-			return Add(resultado);			
+		} }} catch (SQLException e) {
+			return Update(resultado);
 		} finally {
+            try {
+                if(rs!=null)rs.close();
+                if(stmt!=null)stmt.close();
+                DbConnector.getInstancia().releaseConn();
+            } catch (SQLException e) {
+            	ConnectCloseError();
+            }
+		}
+		// si llego aca esta todo OK
+		MyResult res = new MyResult();
+		res.setResult(MyResult.results.OK);
+		res.setErr_message("Persona actualizada correctamente");
+		return Update(1);
+	}
+
+	public void setEstado(Persona p, String estado) {
+		PreparedStatement stmt= null;
+		ResultSet keyResultSet=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().
+					prepareStatement(
+							"UPDATE `biblioteca`.`pesona` SET `estado` = ? WHERE (`idPersona` = ?);",
+							PreparedStatement.RETURN_GENERATED_KEYS
+							);
+			stmt.setString(1, estado);			
+			stmt.setInt(2, p.getIdPersona());
+			stmt.executeUpdate();
+			
+		}  catch (SQLException e) {
+            e.printStackTrace();
+		} finally {
+            try {
+                if(keyResultSet!=null)keyResultSet.close();
+                if(stmt!=null)stmt.close();
+                DbConnector.getInstancia().releaseConn();
+            } catch (SQLException e) {
+            	e.printStackTrace();
+            }
+		}
+	}
+	
+
+	public LinkedList<Persona> getByApellidoA() {
+		Persona per =null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Persona> personas = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from persona order by apellido"
+					);
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+					per.setIdPersona(rs.getInt("idPersona"));
+					per.setEmail(rs.getString("email"));
+					per.setContraseña(rs.getString("contraseña")); //VER cómo hacemos esto
+					per.setAdmin(rs.getBoolean("admin")); 
+					per.setApellido(rs.getString("apellido"));
+					per.setNombre(rs.getString("nombre"));
+					per.setDireccion(rs.getString("direccion"));
+					per.setDni(rs.getString("dni"));
+					per.setTelefono(rs.getString("telefono"));
+				personas.add(per);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
 			try {
 				if(rs!=null) {rs.close();}
 				if(stmt!=null) {stmt.close();}
 				DbConnector.getInstancia().releaseConn();
 			} catch (SQLException e) {
-				ConnectCloseError();
+				e.printStackTrace();
 			}
-		
 		}
-		// si llegó hasta acá está bien
-		MyResult res = new MyResult();
-		res.setResult(MyResult.results.OK);
-		return Add(1);
+		
+		return personas;
 	}
+	
+	public LinkedList<Persona> getByApellidoZ() {
+		Persona per =null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Persona> personas = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from persona order by apellido desc"
+					);
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+					per.setIdPersona(rs.getInt("idPersona"));
+					per.setEmail(rs.getString("email"));
+					per.setContraseña(rs.getString("contraseña")); //VER cómo hacemos esto
+					per.setAdmin(rs.getBoolean("admin")); 
+					per.setApellido(rs.getString("apellido"));
+					per.setNombre(rs.getString("nombre"));
+					per.setDireccion(rs.getString("direccion"));
+					per.setDni(rs.getString("dni"));
+					per.setTelefono(rs.getString("telefono"));
+				personas.add(per);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return personas;
+	}
+
+	public LinkedList<Persona> getByNombreA() {
+		Persona per =  new Persona();
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Persona> personas = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from persona order by nombre"
+					);
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+					per.setIdPersona(rs.getInt("idPersona"));
+					per.setEmail(rs.getString("email"));
+					per.setContraseña(rs.getString("contraseña")); //VER cómo hacemos esto
+					per.setAdmin(rs.getBoolean("admin")); 
+					per.setApellido(rs.getString("apellido"));
+					per.setNombre(rs.getString("nombre"));
+					per.setDireccion(rs.getString("direccion"));
+					per.setDni(rs.getString("dni"));
+					per.setTelefono(rs.getString("telefono"));
+				personas.add(per);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return personas;
+	}
+	public LinkedList<Persona> getByNombreZ() {
+		Persona per =null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Persona> personas = new LinkedList<>();
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from persona order by nombre desc"
+					);
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+					per.setIdPersona(rs.getInt("idPersona"));
+					per.setEmail(rs.getString("email"));
+					per.setContraseña(rs.getString("contraseña")); //VER cómo hacemos esto
+					per.setAdmin(rs.getBoolean("admin")); 
+					per.setApellido(rs.getString("apellido"));
+					per.setNombre(rs.getString("nombre"));
+					per.setDireccion(rs.getString("direccion"));
+					per.setDni(rs.getString("dni"));
+					per.setTelefono(rs.getString("telefono"));
+				personas.add(per);
+			}}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return personas;
+	}
+
+	
 }
 

@@ -39,7 +39,8 @@ html, body{
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
                                 <a class="nav-item nav-link " id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPoliticaServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Politicas Prestamo</a>
-                            
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                href="listarPersonasServlet" role="tab" aria-controls="nav-contact" aria-selected="false">Usuarios</a>
                                	 
                             </div>
                         </nav>
@@ -47,6 +48,7 @@ html, body{
                 </div>
             </div>
             <br>
+            <h3 class="login-heading mb-4 text-center">Editar Proveedor</h3>
 <form class="form-horizontal" action="modificarProveedorServlet" method="post">
 <section>
 <fieldset>
