@@ -139,6 +139,7 @@ html, body{
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    
                                         <% for (Prestamo p : prestamos) { %>
                     			<tr>
                     				<td class="text-center"><%=p.getIdPrestamo()%></td>

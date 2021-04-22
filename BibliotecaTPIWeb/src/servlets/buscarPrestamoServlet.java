@@ -21,25 +21,23 @@ import logic.PrestamoController;
 public class buscarPrestamoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public buscarPrestamoServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		PrestamoController ctrlP = new PrestamoController();
 		String nombuscar=(request.getParameter("txtbuscar"));
 		//LinkedList<PoliticaPrestamo> politicas=ctrlPP.ppGetByBusqueda(nombuscar);
-		if(nombuscar != null) {
-			int id= Integer.parseInt(nombuscar);
+		int id = 0;
+		try {
+			id= Integer.parseInt(nombuscar);
+		}catch(NumberFormatException e) {
+			id = 0;
+		}
+		if(id != 0) {			
 			Prestamo p = new Prestamo();
 			p.setIdPrestamo(id);
 			Prestamo prestamo = new Prestamo();
@@ -47,13 +45,15 @@ public class buscarPrestamoServlet extends HttpServlet {
 			LinkedList<Prestamo> prestamos= new LinkedList<Prestamo>();
 			prestamos.add(prestamo);
 			request.setAttribute("listaPrestamos", prestamos);
-			request.getRequestDispatcher("listaPrestamos.jsp").forward(request, response);
+			request.getRequestDispatcher("listarPrestamosServlet").forward(request, response);
+			
 		}
-		else { 
-			LinkedList<Prestamo> prestamos = ctrlP.getAllPrestamos();
-			request.setAttribute("listaPrestamos", prestamos);
-			request.getRequestDispatcher("listaPrestamos.jsp").forward(request, response);
-		}
+		
+		  else { LinkedList<Prestamo> prestamos = ctrlP.getAllPrestamos();
+		  request.setAttribute("listaPrestamos", prestamos);
+		  request.getRequestDispatcher("listarPrestamosServlet").forward(request,
+		  response); }
+		 
 		
 	
 	
