@@ -53,6 +53,12 @@ public class Init extends HttpServlet {
 	    		
 	    		LibroController ctrlLibro = new LibroController();
 	    		LinkedList<Libro> libros = ctrlLibro.getAllLibros();
+	    		LinkedList<Integer> cantidades = new LinkedList<Integer>();
+	    		for (Libro l : libros) {
+	    			int cant = ctrlLibro.cantEjDisponibles(l);
+	    			cantidades.addLast(cant);
+	    		}
+	    		request.setAttribute("cantidadesDisp", cantidades);
 	    		request.setAttribute("listaLibros", libros);
 	        	  HttpSession sesion = request.getSession();
 	        	  sesion.setAttribute("usuario", per);

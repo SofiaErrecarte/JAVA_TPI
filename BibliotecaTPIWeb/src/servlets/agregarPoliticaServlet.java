@@ -36,16 +36,16 @@ public class agregarPoliticaServlet extends HttpServlet {
 				int numSocio = Integer.parseInt(request.getParameter("numsocio"));
 				int numNoSocio = Integer.parseInt(request.getParameter("numnosocio"));
 				
-				Calendar fech = Calendar.getInstance();
+				/*Calendar fech = Calendar.getInstance();
 				java.util.Date utilStartDate;
 				try {
 					utilStartDate = formato.parse(request.getParameter("fecha"));
 					fech.setTime(utilStartDate);
 					java.sql.Date date = new java.sql.Date(utilStartDate.getTime());
-					pp.setFechaAlta(date);
+					//pp.setFechaAlta(date);
 				} catch (java.text.ParseException e) {
 					e.printStackTrace();
-				}
+				}*/
 				
 				pp.setCantMaximaSocio(numSocio);
 				pp.setCantMaximaNoSocio(numNoSocio);

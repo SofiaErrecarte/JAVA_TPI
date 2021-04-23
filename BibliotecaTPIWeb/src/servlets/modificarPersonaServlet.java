@@ -53,7 +53,7 @@ public class modificarPersonaServlet extends HttpServlet {
 		PersonaController ctrlPers = new PersonaController();
 		Persona per = new Persona();
 		per.setIdPersona(Integer.parseInt(request.getParameter("id")));
-		
+		Persona p = ctrlPers.getByIdPersona(per);
 		String apellido = request.getParameter("apellido");
 		String nombre = request.getParameter("nombre");
 		String telefono = request.getParameter("telefono");
@@ -67,7 +67,7 @@ public class modificarPersonaServlet extends HttpServlet {
 		per.setEmail(mail);
 		per.setNombre(nombre);
 		per.setTelefono(telefono);
-		per.setAdmin(false);
+		per.setAdmin(p.isAdmin());
 		MyResult res = ctrlPers.editPersona(per);
 		request.setAttribute("result", res);
 		request.setAttribute("listaPersonas",ctrlPers.getAllPersonas());

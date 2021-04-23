@@ -134,7 +134,7 @@ html, body{
                     				<td class="text-center"><%=pp.getCantMaximaSocio()%></td>
                     				<td class="text-center"><%=pp.getCantMaximaNoSocio()%></td>
                     				<td class="text-center">
-                                <a href="editarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>" class="editbutton"title="Editar"><i class="fa fa-pencil"></i></a>
+                                <a href="editarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>" class="editbutton"title="Consultar"><i class="fa fa-eye"></i></a>
                                <a href="borrarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>" class="deletebutton" title="Eliminar" onclick="return confirm('Se eliminará la política. Desea confirmar?')"><i class="fa fa-trash"></i></a>
                             		</td>                    			                    				
                     			</tr>

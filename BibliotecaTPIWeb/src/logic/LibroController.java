@@ -53,6 +53,9 @@ public class LibroController {
 	public LinkedList<Ejemplar> getAllEjemplaresDisponibles(){
 		return dl.getAllEjemplaresDisponibles();
 	}
+	public int cantEjDisponibles (Libro lib) {
+		return dl.cantEjemLibroDisponibles(lib);
+	}
 	
 	public void setDisponible(Ejemplar ej, boolean disponible) {
 		dl.setDisponible(ej, disponible);

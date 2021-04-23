@@ -18,6 +18,7 @@
 <meta charset="ISO-8859-1">
 <title>Libros</title>
 <% 
+LinkedList<Integer> cantidades = (LinkedList<Integer>)request.getAttribute("cantidadesDisp");
 LinkedList<Libro> ll = (LinkedList<Libro>)request.getAttribute("listaLibros");
 Persona user = (Persona)session.getAttribute("usuario");
 %>
@@ -134,13 +135,19 @@ html, body{
 		                        			<th class="text-center">Numero de edicion</th>
 		                        			<th class="text-center">Genero</th>
 		                        			<th class="text-center">Proveedor</th>
+		                        			<th class="text-center">Cantidad Disponible</th>
 		                        			<th class="text-center">Acciones</th>
 		                        			<th class="text-center">  </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                   
-                                        <% for (Libro lib : ll) { %>
+                                        <% int acum=0;
+                                        for (int cant : cantidades){%>
+                                        	<p><%=cant %></p>
+                                        <%}
+                                        for (Libro lib : ll) { %>
+                                       
                     			<tr>
                     			<%String photo=Base64.getEncoder().encodeToString(lib.getImagen()); %>
                     				<td class="text-center">
@@ -155,6 +162,9 @@ html, body{
                     				<%-- <td><%=lib.getCantDiasMaxPrestamo()%></td> --%>
                     				<td class="text-center"><%=lib.getGenero()%></td>
                     				<td class="text-center"><%=lib.getCUIT()%> - <%=lib.getRazonSocialProv()%></td>
+                    				 
+                    				<td class="text-center"><%=cantidades.get(3)%></td>
+                    				
                     				<%if (user.isAdmin()) {%>
                     				<td class="text-center">
                     				
@@ -163,6 +173,7 @@ html, body{
 									<a href="borrarLibroServlet?id=<%=lib.getIdLibro()%>" class="deletebutton" title="Eliminar" onclick="return confirm('Se eliminará el libro y/o aquellos ejemplares que no hayan sido asignados a préstamos. Desea confirmar?')"><i class="fa fa-trash"></i></a> 
 									<a href="listarEjemplaresServlet?id=<%=lib.getIdLibro()%>" class="ejemplaresbutton" title="Ejemplares"><i class="fa fa-list-ul"></i></a>
 									</td>
+									
 										<%} %>
                     				 </tr>
                     			<%} %>

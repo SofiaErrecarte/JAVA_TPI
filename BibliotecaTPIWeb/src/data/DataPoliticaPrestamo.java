@@ -86,13 +86,12 @@ public class DataPoliticaPrestamo extends DataMethods{
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"insert into politica_prestamo(cantMaximaSocio,cantMaximaNoSocio,fechaAlta) values(?,?,?)",
+							"insert into politica_prestamo(cantMaximaSocio,cantMaximaNoSocio,fechaAlta=now()) values(?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			
 			stmt.setInt(1, pp.getCantMaximaSocio());
 			stmt.setInt(2, pp.getCantMaximaNoSocio());
-			stmt.setDate(3, (Date) pp.getFechaAlta());
 			stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();

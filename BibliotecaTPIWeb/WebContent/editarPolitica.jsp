@@ -48,7 +48,8 @@ html, body{
                 </div>
             </div>
             <br>
-<form class="form-horizontal" action="editarPoliticaServlet" method="post">
+
+<h3 class="login-heading mb-4 text-center">Detalle Politica de Prestamo </h3>
 <section>
 <fieldset>
   
@@ -74,7 +75,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="numsocio">Cantidad maxima de libros Socio: </label>  
   <div class="col-md-4">
-  <input type="text" name="librosSocio" value=<%=pp.getCantMaximaSocio() %> placeholder="Cant libros Socio" class="form-control input-md" required>
+  <input type="text" name="librosSocio" value=<%=pp.getCantMaximaSocio() %> placeholder="Cant libros Socio" class="form-control input-md" disabled>
   </div>
 </div>
 
@@ -83,17 +84,16 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="numnosocio">Cantidad maxima de libros No Socio: </label>  
   <div class="col-md-4">
-  <input name="librosNoSocio" type="text" value=<%=pp.getCantMaximaNoSocio() %> placeholder="Cant de Libros No socio" class="form-control input-md" required>
+  <input name="librosNoSocio" type="text" value=<%=pp.getCantMaximaNoSocio() %> placeholder="Cant de Libros No socio" class="form-control input-md" disabled>
   </div>
 </div>
 
 </fieldset>
-    <table>
+<br>
 <table>
 <tr>
 <td>
-<button class="btn btn-outline-primary">Modificar Política</button>
-<a class="btn btn-outline-secondary" href="listarPoliticaServlet">Volver</a>
+<a class="btn btn-outline-secondary"  href="listarPoliticaServlet" style="text-align: center;">Volver</a>
 </td>
 </tr>
 </table>
@@ -101,9 +101,6 @@ html, body{
 		<p style="color:red"> <%=request.getAttribute("error")%> </p>		
 	<% } %>
 	</section>
-	</form>
-	</section>
-<%@ include file = "footer.jsp" %>
- 
+ </section>
 </body>
 </html>

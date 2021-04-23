@@ -104,7 +104,7 @@ html, body{
                	<div class="form-group">
                	<div class="tab-content" id="nav-tabContent">
                	<label class="col-md-4 control-label" for="fechaPrestamo">Ingrese la Fecha de Préstamo</label>  
-               	<input class="form-control" type="date" id="fechaPrestamo" value=<%=p.getFechaPrestamo()%> name="fechaPrestamo" style="display=block" required>	     
+               	<input class="form-control" type="date" id="fechaPrestamo" value=<%=p.getFechaPrestamo()%> name="fechaPrestamo" style="display=block" disabled>	     
                	</div>
                  </div>
                 <div class="form-group">
@@ -113,7 +113,7 @@ html, body{
                	<input class="form-control" type="date" id="fechaADevolver" value=<%=p.getFechaADevoler() %> name="fechaADevolver" style="display=block" required>	     
                 </div>   
                 </div>
-<%-- <%if(p.getEstado().equals("Cerrado")){ %>
+				<%-- <%if(p.getEstado().equals("Cerrado")){ %>
                  <div class="form-group">
                 <div class="tab-content" id="nav-tabContent">
                	<label class="col-md-4 control-label" for="fechaDevolucion">Ingrese la Fecha de Devolucion</label>  
@@ -125,7 +125,8 @@ html, body{
                   
                 
                       
-</fieldset>						
+</fieldset>		
+<br>				
 <table>
 <tr>
 <td>

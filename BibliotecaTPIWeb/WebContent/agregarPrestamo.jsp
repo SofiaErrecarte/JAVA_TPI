@@ -38,9 +38,9 @@ html, body{
                     <div class="col-md-12">
                         <nav>
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
+                                <a class="nav-item nav-link " id="nav-home-tab" data-toggle="tab"
                                 	 href="listarLibroServlet" role="tab" aria-controls="nav-home" aria-selected="true">Libros</a>
-                                	 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" 	
+                                	 <a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab" 	
                                 href="listarPrestamosServlet?id=<%=user.getIdPersona() %>"  role="tab" aria-controls="nav-contact" aria-selected="false">Prestamo</a>
                                 <a class="nav-item nav-link " id="nav-profile-tab" data-toggle="tab" 
                                 	href="listarProveedorServlet" role="tab" aria-controls="nav-profile" aria-selected="false">Proveedores</a>
@@ -110,7 +110,7 @@ html, body{
 <tr>
 <td>
 <button class="btn btn-outline-primary" onclick="return confirm('Se agregará un nuevo prestamo. Desea confirmar?')">Agregar Prestamo</button>
-<a class="btn btn-outline-secondary" href="listarPrestamosServlet?id=<%=user.getIdPersona() %>">Volver</a>
+<a class="btn btn-outline-secondary"  href="listarPrestamosServlet?id=<%=user.getIdPersona() %>">Volver</a>
 </td>
 </tr>
 </table>

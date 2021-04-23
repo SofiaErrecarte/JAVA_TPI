@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
+ <%@page  import= "java.util.Calendar"%> 
 <%@page import="entities.PoliticaPrestamo"%> 
 <%@page import="entities.MyResult"%>  
 <!DOCTYPE html>
@@ -57,7 +57,12 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="fechaalta">Fecha Alta: </label>  
   <div class="col-md-4">
- <input class="form-control" type="date" id="fecha" name="fecha"  style="display=block" required>	     
+  <% Calendar c = Calendar.getInstance();
+  String dia = Integer.toString(c.get(Calendar.DATE));
+  String mes = Integer.toString(c.get(Calendar.MONTH));
+  String annio = Integer.toString(c.get(Calendar.YEAR));
+  %>
+ <input class="form-control" type="date" id="fecha" name="fecha" value="<%=dia+'/'+mes+'/'+annio%>" style="display=block" disabled>	     
   </div>
 </div>
 
