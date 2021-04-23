@@ -26,7 +26,8 @@ public class buscarLibroServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LibroController ctrlLib = new LibroController();
 		String nombuscar=(request.getParameter("txtbuscar"));
-		if(nombuscar != null) {
+		String test = "";
+		if(!nombuscar.equals(test)) {
 			LinkedList<Libro> libros= new LinkedList<Libro>();
 			libros = ctrlLib.getByDesc(nombuscar);
 			if (libros.isEmpty()) {

@@ -26,7 +26,8 @@ public class buscarProveedorServlet extends HttpServlet {
 		ProveedorController ctrlProv = new ProveedorController();
 		String nombuscar = null;
 		nombuscar=(request.getParameter("txtbuscar"));
-		if(nombuscar != null) {
+		String test = "";
+		if(nombuscar.equals(test)) {
 			LinkedList<Proveedor> proveedores= new LinkedList<Proveedor>();
 			proveedores = ctrlProv.getByDesc(nombuscar);
 			if (proveedores.isEmpty()) {
