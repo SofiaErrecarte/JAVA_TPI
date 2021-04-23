@@ -38,7 +38,6 @@
 <body>
 <%request.setAttribute("respuesta", "ok"); %>
 
-<%@ include file="navInicio.jsp"%>
 <header class="masthead">
 
 <div class="wrapper fadeInDown">
@@ -68,7 +67,7 @@
     <!-- Login Form -->
     <form action="init" method="post">
       <input type="text" id="login" class="fadeIn second" placeholder="Usuario" name="email" required>
-      <input type="password" id="password" class="fadeIn third" placeholder="Password" name="password" required>
+      <input type="password" id="password" class="fadeIn third" placeholder="Contraseña" name="password" required>
       <input type="submit" class="fadeIn fourth" value="Ingresar">
     </form>
 

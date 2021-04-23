@@ -33,8 +33,23 @@ public class agregarPoliticaServlet extends HttpServlet {
 				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 				PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController();
 				PoliticaPrestamo pp = new PoliticaPrestamo();
-				int numSocio = Integer.parseInt(request.getParameter("numsocio"));
-				int numNoSocio = Integer.parseInt(request.getParameter("numnosocio"));
+				try {
+					int numSocio = Integer.parseInt(request.getParameter("numsocio"));
+					pp.setCantMaximaSocio(numSocio);
+					}
+				catch (Exception e){
+					request.setAttribute("errorString", "Ingrese un número en la cantidad por favor");
+					request.getRequestDispatcher("agregarPolitica.jsp").forward(request, response); 
+					
+				}
+				try {
+					int numNoSocio = Integer.parseInt(request.getParameter("numnosocio"));
+					pp.setCantMaximaNoSocio(numNoSocio);
+				} catch (Exception e) {
+					request.setAttribute("errorString", "Ingrese un número en la cantidad por favor");
+					request.getRequestDispatcher("agregarPolitica.jsp").forward(request, response); 
+				}
+				
 				
 				/*Calendar fech = Calendar.getInstance();
 				java.util.Date utilStartDate;
@@ -47,8 +62,8 @@ public class agregarPoliticaServlet extends HttpServlet {
 					e.printStackTrace();
 				}*/
 				
-				pp.setCantMaximaSocio(numSocio);
-				pp.setCantMaximaNoSocio(numNoSocio);
+				
+				
 				
 				MyResult res = ctrlPP.newPolitica(pp);
 				if (res.getResult().equals(MyResult.results.Err)) {

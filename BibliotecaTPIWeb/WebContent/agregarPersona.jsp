@@ -95,7 +95,7 @@ html, body{
 </div>
 <!-- Text input-->
 <div class="form-group">
-  <label for="mail">Email </label>  
+  <label for="mail">Usuario </label>  
   <input  id="mail" name="mail" type="text" placeholder="Usuario" class="form-control input-md" required>
 </div>
 

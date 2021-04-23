@@ -48,7 +48,7 @@ public class listarPrestamosServlet extends HttpServlet {
 			if(p.getEstado().equals("Abierto")) {
 				int dias = (int) ((p.getFechaADevoler().getTime() - fechaHoy.getTime())/86400000);
 				if(dias<6 && dias>=0) {
-					request.setAttribute("advertencia", "Tiene préstamos a vencer en los próximos días. (001)");
+					request.setAttribute("advertencia", "Tiene préstamos a vencer en los próximos días.");
 				}
 				if(fechaHoy.after(p.getFechaADevoler())) {
 				request.setAttribute("advertencia", "Tiene préstamos vencidos.(001)");
@@ -69,7 +69,7 @@ public class listarPrestamosServlet extends HttpServlet {
 			if(p.getEstado().equals("Abierto")) {
 				int dias = (int) ((p.getFechaADevoler().getTime() - fechaHoy.getTime())/86400000);
 				if(dias<5 && dias>=0) {
-					request.setAttribute("advertencia", "Tiene préstamos a vencer en los próximos días.(002)");
+					request.setAttribute("advertencia", "Tiene préstamos a vencer en los próximos días.");
 				}
 				if(fechaHoy.after(p.getFechaADevoler())) {
 				request.setAttribute("advertencia", "Tiene préstamos vencidos.(002)");

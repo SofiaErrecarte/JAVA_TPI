@@ -32,10 +32,7 @@ public class listarProveedorServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProveedorController ctrlProv = new ProveedorController();
-		LinkedList<Proveedor> proveedores = ctrlProv.getAllProveedores();
-		request.setAttribute("listaProveedores", proveedores);
-		request.getRequestDispatcher("listaProveedores.jsp").forward(request, response);
+		
 		
 	}
 

@@ -91,7 +91,21 @@
   cursor:pointer;
   margin:5px;
  }
-  .editbutton:hover, .debajabutton:hover, .deletebutton:hover, .addbutton:hover, .ejemplaresbutton:hover, .devueltobutton:hover , .ejemplaresbutton:hover {
+ 
+ .dealtabutton{
+  background-color: #00ce67; 
+   border: none;
+  border-radius:10px;
+  color: white;
+  padding: 5px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+   cursor:pointer;
+   margin:5px;
+ }
+ 
+  .editbutton:hover, .debajabutton:hover, .deletebutton:hover, .addbutton:hover, .ejemplaresbutton:hover, .devueltobutton:hover , .ejemplaresbutton:hover,.dealtabutton:hover {
  	 color:white;
  	 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
  }

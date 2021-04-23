@@ -1,5 +1,6 @@
 <%@page import="java.util.LinkedList"%>
 <%@page import="entities.*"%>
+<%@page import="logic.*"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="com.mysql.cj.jdbc.Blob"%>
 <%@page import="java.io.FileOutputStream"%>
@@ -21,13 +22,14 @@
 <% 
 LinkedList<Persona> personas = (LinkedList<Persona>)request.getAttribute("listaPersonas");
 Persona user = (Persona)session.getAttribute("usuario");
+PersonaController ctrlPers = new PersonaController();
 %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link href = "css/listado.css" rel="stylesheet">
-<link href = "css/botones.css" rel="stylesheet">
-<link href = "css/messages.css" rel="stylesheet">
+<link href = "css/listado.css" rel="stylesheet"/>
+<link href = "css/botones.css" type="text/css" rel="stylesheet"/>
+<link href = "css/messages.css" type="text/css" rel="stylesheet"/>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <!-- Including Font Awesome CSS from CDN to show icons -->
@@ -40,6 +42,22 @@ html, body{
  height: 100%;
  font-family: Arial, Helvetica, sans-serif;
 }
+.dealtabutton{
+  background-color: #00ce67; 
+   border: none;
+  border-radius:10px;
+  color: white;
+  padding: 5px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+   cursor:pointer;
+   margin:5px;
+ }
+ .dealtabutton:hover {
+  color:white;
+ 	 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+ }
 </style>
 </head>
 <body>
@@ -159,7 +177,13 @@ html, body{
                     				<%if (user.isAdmin()) {%>
                     				<td class="text-center">
                     				<a class="editbutton" href="modificarPersonaServlet?id=<%=p.getIdPersona()%>" title="Editar"><i class="fa fa-pencil"></i></a>
-									<a class="deletebutton" href="darDeBajaPersonaServlet?id=<%=p.getIdPersona()%>" onclick="return confirm('Se dará de baja la persona. Desea confirmar?')"title="Dar de Baja"><i class="fa fa-thumbs-down"></i></a>
+									<% 
+									if(p.isActivo()){
+									%>
+									<a class="deletebutton" href="darDeBajaPersonaServlet?id=<%=p.getIdPersona()%>" onclick="return confirm('Se dará de baja el usuario. Desea confirmar?')"title="Dar de Baja"><i class="fa fa-thumbs-down"></i></a>
+									<%}else{%>
+									<a class="dealtabutton" href="darDeAltaPersonaServlet?id=<%=p.getIdPersona()%>" onclick="return confirm('Se dará de alta el usuario. Desea confirmar?')"title="Dar de Alta"><i class="fa fa-thumbs-up"></i></a>
+									<%} %>
 									<a class="ejemplaresbutton" href="listarPrestamoPersonaServlet?id=<%=p.getIdPersona()%>" title="Prestamos"><i class="fa fa-list-ul"></i></a>
 									</td>
 										<%} %>

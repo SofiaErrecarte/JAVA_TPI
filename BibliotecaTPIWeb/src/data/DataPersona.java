@@ -86,6 +86,36 @@ public class DataPersona extends DataMethods{
 		return per;
 	}
 	
+	public boolean getEstado(Persona per) {
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		boolean activo=false;
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select estado FROM persona where idPersona=?"
+					);
+			stmt.setLong(1, per.getIdPersona());
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()) {
+				activo = rs.getBoolean("estado");
+				}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return activo;
+		
+	}
+	
+	
+	
 	public LinkedList<Persona> getAll(){
 		Statement stmt=null;
 		ResultSet rs=null;

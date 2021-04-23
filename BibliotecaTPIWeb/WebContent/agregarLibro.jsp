@@ -121,7 +121,7 @@ html, body{
   <label class="col-md-4 control-label" for="prov">Proveedor: </label>  
   <div class="col-md-4">
    <% if( proveedores.isEmpty()){%>
-		<a class="ejemplaresbutton" href="agregarProveedor.jsp">
+		<a  href="agregarProveedor.jsp" style="color: #147A9B">
 	Añadir proveedor </a>
 		   <%} else  {%>
                             <select name="idProveedor" class="form-control">
@@ -132,14 +132,14 @@ html, body{
                                 <% } %>
                             </select>
                             
-                        	<td> Su proveedor no se encuentra en la lista? <a class="agreggatebutton"
-									href="agregarProveedor.jsp">
+                        	<td> Su proveedor no se encuentra en la lista? <a 
+									href="agregarProveedor.jsp" style="color: #147A9B">
 										Añadir un nuevo proveedor</a></td><% } %>
   </div>
 </div>
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="foto">Agregar Foto </label>  
+  <label class="col-md-4 control-label" for="foto">Importar Imagen </label>  
   <div class="col-md-4">
   <input id="foto" name="foto" type="file" class="form-control input-md" required>
   </div>

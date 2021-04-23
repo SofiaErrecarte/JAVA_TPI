@@ -55,4 +55,7 @@ public class PersonaController {
 	public LinkedList<Persona> getByNombreZ(){
 		return dp.getByNombreZ();
 	}
+	public Boolean getEstado(Persona per){
+		return dp.getEstado(per);
+	}
 }

@@ -8,7 +8,9 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Agregar Politica de Prestamo</title>
+
 <% PoliticaPrestamo politica = (PoliticaPrestamo)session.getAttribute("nuevaPolitica");
+
 Persona user = (Persona)session.getAttribute("usuario");%>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -49,6 +51,9 @@ html, body{
                 </div>
             </div>
  <br>
+ <%if ((request.getAttribute("errorString"))!=null) { %>
+		<div class="warning"> <%=request.getAttribute("errorString")%> </div>		
+	<% } %>          
  <h3 class="login-heading mb-4 text-center">Politica de Prestamo Nueva</h3>
 <form class="form-horizontal" action="agregarPoliticaServlet" method="post">
 <section>
@@ -79,11 +84,15 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="numnosocio">Cantidad maxima de libros No Socio: </label>  
   <div class="col-md-4">
+  
   <input id="numnosocio" name="numnosocio" type="text" placeholder="Cant de Libros No socio" class="form-control input-md" required>
+  
+  
   </div>
 </div>
 
 </fieldset>
+<br>
 <table>
 <tr>
 <td>

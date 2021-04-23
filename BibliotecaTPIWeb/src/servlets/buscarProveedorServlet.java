@@ -24,10 +24,9 @@ public class buscarProveedorServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProveedorController ctrlProv = new ProveedorController();
-		String nombuscar = null;
-		nombuscar=(request.getParameter("txtbuscar"));
+		String nombuscar = (request.getParameter("txtbuscar"));
 		String test = "";
-		if(nombuscar.equals(test)) {
+		if(!nombuscar.equals(test)) {
 			LinkedList<Proveedor> proveedores= new LinkedList<Proveedor>();
 			proveedores = ctrlProv.getByDesc(nombuscar);
 			if (proveedores.isEmpty()) {
