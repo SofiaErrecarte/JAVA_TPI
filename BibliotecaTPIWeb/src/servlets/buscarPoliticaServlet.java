@@ -36,20 +36,30 @@ public class buscarPoliticaServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController();
 		String nombuscar=(request.getParameter("txtbuscar"));
-		//LinkedList<PoliticaPrestamo> politicas=ctrlPP.ppGetByBusqueda(nombuscar);
-		if(nombuscar != null) {
-			int id= Integer.parseInt(nombuscar);
+		int id = 0;
+		try {
+			id= Integer.parseInt(nombuscar);
+		}catch(NumberFormatException e) {
+			id = 0;
+		}
+		if(id != 0) {
 			PoliticaPrestamo p = new PoliticaPrestamo();
 			p.setIdPoliticaPrestamo(id);
 			PoliticaPrestamo politica = new PoliticaPrestamo();
 			politica=ctrlPP.getByIdPolitica(p);
 			LinkedList<PoliticaPrestamo> politicas= new LinkedList<PoliticaPrestamo>();
+			if(politica.getIdPoliticaPrestamo()==0) {
+				request.setAttribute("msjFiltro", "No se han encontrado resultados para su búsqueda.");
+				request.setAttribute("listapoliticas", politicas);
+				request.getRequestDispatcher("listaPoliticas.jsp").forward(request, response);
+			}else {
 			politicas.add(politica);
 			request.setAttribute("listapoliticas", politicas);
 			request.getRequestDispatcher("listaPoliticas.jsp").forward(request, response);
-		}
+		}}
 		else { 
 			LinkedList<PoliticaPrestamo> politicas = ctrlPP.ppGetAll();	
+			request.setAttribute("msjFiltro", "Debe ingresar un número válido.");
 			request.setAttribute("listapoliticas", politicas);
 			request.getRequestDispatcher("listaPoliticas.jsp").forward(request, response);
 		}
@@ -57,36 +67,6 @@ public class buscarPoliticaServlet extends HttpServlet {
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController();
-		String nombuscar=(request.getParameter("txtbuscar"));
-		//LinkedList<PoliticaPrestamo> politicas=ctrlPP.ppGetByBusqueda(nombuscar);
-		if(nombuscar != null) {
-			int id= Integer.parseInt(nombuscar);
-			PoliticaPrestamo p = new PoliticaPrestamo();
-			p.setIdPoliticaPrestamo(id);
-			PoliticaPrestamo politica = new PoliticaPrestamo();
-			politica=ctrlPP.getByIdPolitica(p);
-			LinkedList<PoliticaPrestamo> politicas= new LinkedList<PoliticaPrestamo>();
-			politicas.add(politica);
-			if (politica == null) {
-				LinkedList<PoliticaPrestamo> polits = ctrlPP.ppGetAll();
-				request.setAttribute("listapoliticas", polits);
-				request.getRequestDispatcher("listaPoliticas.jsp").forward(request, response);
-			
-			}
-			request.setAttribute("listapoliticas", politicas);
-			request.getRequestDispatcher("listaPoliticas.jsp").forward(request, response);
-		}
-		else { 
-			LinkedList<PoliticaPrestamo> politicas = ctrlPP.ppGetAll();	
-			request.setAttribute("listapoliticas", politicas);
-			request.getRequestDispatcher("listaPoliticas.jsp").forward(request, response);
-		}
-
-}
+		doGet(request, response);}
 }

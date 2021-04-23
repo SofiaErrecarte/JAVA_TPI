@@ -68,6 +68,12 @@ html, body{
             </div>
             </div>
   <%if (user.isAdmin() && var!="prestamospersona"){ %>
+  <%if ((request.getAttribute("errorSinPolitica"))!=null) { %>
+		<div class="error"> <%=request.getAttribute("errorSinPolitica")%> </div>		
+	<% } %> 
+	<%if ((request.getAttribute("msjFiltro"))!=null) { %>
+		<div class="warning"> <%=request.getAttribute("msjFiltro")%> </div>		
+	<% } %>
   <%if ((request.getAttribute("advertencia"))!=null) { %>
 		<div class="warning"> <%=request.getAttribute("advertencia")%> </div>		
 	<% } %>          
@@ -116,9 +122,10 @@ html, body{
 			      </span></div>
 			      </form>
 			      </td>
+			      <%if ((request.getAttribute("errorSinPolitica"))==null) { %>
 			      <td>
               <a href="agregarPrestamo.jsp" title="Agregar Prestamo" class="w3-button w3-xlarge w3-circle w3-teal" style="float: right;">+</a>
-               </td>
+               </td><%} %>
 			  </tr>
 			  </table>
 			  </div>

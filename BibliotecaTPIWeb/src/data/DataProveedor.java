@@ -120,7 +120,8 @@ public class DataProveedor extends DataMethods{
 	}
 	
 	public Proveedor getById(Proveedor prov) {
-		Proveedor pr = null;
+		Proveedor pr = new Proveedor();
+		pr.setIdProveedor(0);
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		try {

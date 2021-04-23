@@ -61,7 +61,9 @@ html, body{
             </div>
              </div>
                 </div>
-                            
+<%if ((request.getAttribute("msjFiltro"))!=null) { %>
+		<div class="warning"> <%=request.getAttribute("msjFiltro")%> </div>		
+	<% } %>                    
 <% if (request.getAttribute("result")!=null) {
         	   MyResult res = (MyResult)request.getAttribute("result");
         	   if(res.getResult().equals(MyResult.results.OK)){
@@ -127,6 +129,7 @@ html, body{
                                         </tr>
                                     </thead>
                                  <tbody>
+                              
                     		<% for (PoliticaPrestamo pp : politicas) { %>
                     			<tr>
                     				<td class="text-center"><%=pp.getIdPoliticaPrestamo()%></td>

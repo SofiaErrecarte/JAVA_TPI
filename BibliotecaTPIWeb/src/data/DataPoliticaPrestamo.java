@@ -3,6 +3,7 @@ package data;
 
 import java.util.LinkedList;
 import entities.*;
+import oracle.jrockit.jfr.tools.ConCatRepository;
 
 import java.sql.*;
 
@@ -46,14 +47,18 @@ public class DataPoliticaPrestamo extends DataMethods{
 		return politicas;
 	}
 	
-	public PoliticaPrestamo getLast() {
-		Statement stmt=null;
+	public PoliticaPrestamo getLast(Prestamo p) {
+		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		PoliticaPrestamo pp = new PoliticaPrestamo();
 		
 		try {
-			stmt= DbConnector.getInstancia().getConn().createStatement();
-			rs= stmt.executeQuery("SELECT * FROM politica_prestamo where fechaAlta = (select max(fechaAlta) from politica_prestamo);");
+			stmt= DbConnector.getInstancia().getConn().prepareStatement(
+			"SELECT * FROM politica_prestamo T0 WHERE\r\n" + 
+					"					T0.fechaAlta = (SELECT MAX(T1.fechaAlta) FROM\r\n" + 
+					"					(SELECT * FROM politica_prestamo WHERE fechaAlta <= concat(?, ' 24:00:00')) as T1)");
+			stmt.setDate(1, (Date) p.getFechaPrestamo());
+			rs=stmt.executeQuery();
 			if(rs!=null  && rs.next()) {
 					pp.setIdPoliticaPrestamo(rs.getInt("idPolitica"));
 					pp.setFechaAlta(rs.getDate("fechaAlta"));
@@ -86,7 +91,7 @@ public class DataPoliticaPrestamo extends DataMethods{
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"insert into politica_prestamo(cantMaximaSocio,cantMaximaNoSocio,fechaAlta=now()) values(?,?)",
+							"insert into politica_prestamo(cantMaximaSocio,cantMaximaNoSocio,fechaAlta) values(?,?,NOW())",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			
@@ -120,10 +125,11 @@ public class DataPoliticaPrestamo extends DataMethods{
 	public PoliticaPrestamo getById(PoliticaPrestamo poliprest) {
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
-		PoliticaPrestamo pp = null;
+		PoliticaPrestamo pp = new PoliticaPrestamo();
+		pp.setIdPoliticaPrestamo(0);
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"select idPolitica,fechaAlta,cantMaximaSocio,cantMaximaNoSocio from politica_prestamo where idPolitica=?"
+					"select * from politica_prestamo where idPolitica=?"
 					);
 			stmt.setInt(1, poliprest.getIdPoliticaPrestamo());
 			rs=stmt.executeQuery();

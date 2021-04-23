@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import entities.Libro;
 import entities.Persona;
+import entities.PoliticaPrestamo;
 import entities.Prestamo;
 import logic.LibroController;
 import logic.PersonaController;
+import logic.PoliticaPrestamoController;
 import logic.PrestamoController;
 
 
@@ -30,13 +32,17 @@ public class listarPrestamosServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		PersonaController ctrlPers = new PersonaController();
 		PrestamoController ctrlP = new PrestamoController();
+		PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController();
 		int idPers = Integer.parseInt((request.getParameter("id")));
 		Persona pers = new Persona();
 		pers.setIdPersona(idPers);
 		Persona pnew =ctrlPers.getByIdPersona(pers);
 		LinkedList<Prestamo> prestamos_personas = ctrlP.getByPersona(pnew);
-		
 		LinkedList<Prestamo> prestamos = ctrlP.getAllPrestamos();
+		LinkedList<PoliticaPrestamo> politicas = ctrlPP.ppGetAll();	
+		if(politicas.isEmpty()) {
+			request.setAttribute("errorSinPolitica", "Debe cargar primero al menos una política.");
+		}
 		Date fechaHoy = new Date();
 		for(Prestamo p : prestamos) {
 			if(p.getEstado().equals("Abierto")) {

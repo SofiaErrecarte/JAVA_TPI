@@ -147,7 +147,8 @@ public class DataLibro extends DataMethods{
 	}
 	
 	public Libro getById(Libro lib) {
-		Libro l = null;
+		Libro l = new Libro();
+		l.setIdLibro(0);
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		try {
@@ -220,7 +221,7 @@ public class DataLibro extends DataMethods{
 			stmt.executeUpdate();
 			
 		}}}  catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return Update(resultado);
 		} finally {
             try {
@@ -490,12 +491,12 @@ public class DataLibro extends DataMethods{
 		int cantDisp=0;
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"select count(idEjemplar) 'cantidad' FROM ejemplar where idLibro=? and disponible=1"
+					"select count(idEjemplar) FROM ejemplar where idLibro=? and disponible=1"
 					);
 			stmt.setLong(1, lib.getIdLibro());
 			rs=stmt.executeQuery();
-			if(rs!=null) {
-				cantDisp = rs.getInt("cantidad");
+			if(rs!=null && rs.next()) {
+				cantDisp = rs.getInt(1);
 				}
 		} catch (SQLException e) {
 			e.printStackTrace();

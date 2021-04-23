@@ -36,8 +36,9 @@ public class listarLineasPrestamoServlet extends HttpServlet {
 		//busco ult politica pr y asigno el limite a no socio. recordar q no existe socio
 		PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController();
 		PoliticaPrestamo pp = new PoliticaPrestamo();
-		pp = ctrlPP.getLast();
+		pp = ctrlPP.getLast(p);
 		int limiteNS = pp.getCantMaximaNoSocio();
+		request.setAttribute("politicaAplicada", pp);
 		request.setAttribute("limiteNS", limiteNS);
 		request.setAttribute("cantidad", cant);
 		request.setAttribute("listaLineas", lineasP);

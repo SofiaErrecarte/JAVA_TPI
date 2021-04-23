@@ -13,10 +13,6 @@ import entities.Prestamo;
 import logic.PrestamoController;
 
 
-
-/**
- * Servlet implementation class buscarPrestamoServlet
- */
 @WebServlet("/buscarPrestamoServlet")
 public class buscarPrestamoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,10 +23,8 @@ public class buscarPrestamoServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		PrestamoController ctrlP = new PrestamoController();
 		String nombuscar=(request.getParameter("txtbuscar"));
-		//LinkedList<PoliticaPrestamo> politicas=ctrlPP.ppGetByBusqueda(nombuscar);
 		int id = 0;
 		try {
 			id= Integer.parseInt(nombuscar);
@@ -43,27 +37,30 @@ public class buscarPrestamoServlet extends HttpServlet {
 			Prestamo prestamo = new Prestamo();
 			prestamo=ctrlP.getByIdPrestamo(p);
 			LinkedList<Prestamo> prestamos= new LinkedList<Prestamo>();
+			if(prestamo.getIdPrestamo()==0) {
+				request.setAttribute("msjFiltro", "No se han encontrado resultados para su búsqueda.");
+				request.setAttribute("listaPrestamos", prestamos);
+				request.getRequestDispatcher("listaPrestamos.jsp").forward(request, response);
+			} else {
 			prestamos.add(prestamo);
 			request.setAttribute("listaPrestamos", prestamos);
-			request.getRequestDispatcher("listarPrestamosServlet").forward(request, response);
+			request.getRequestDispatcher("listaPrestamos.jsp").forward(request, response);
 			
-		}
+		}}
 		
-		  else { LinkedList<Prestamo> prestamos = ctrlP.getAllPrestamos();
-		  request.setAttribute("listaPrestamos", prestamos);
-		  request.getRequestDispatcher("listarPrestamosServlet").forward(request,
-		  response); }
+		  else { 
+			  LinkedList<Prestamo> prestamos = ctrlP.getAllPrestamos();
+			  request.setAttribute("msjFiltro", "Debe ingresar un número válido.");
+			  request.setAttribute("listaPrestamos", prestamos);
+			  request.getRequestDispatcher("listaPrestamos.jsp").forward(request, response); 
+		  }
 		 
 		
 	
 	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

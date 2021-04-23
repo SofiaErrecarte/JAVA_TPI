@@ -69,6 +69,9 @@ html, body{
                     </div>
                 </div>
             </div>
+            <%if ((request.getAttribute("msjFiltro"))!=null) { %>
+		<div class="warning"> <%=request.getAttribute("msjFiltro")%> </div>		
+	<% } %>
             <% if (request.getAttribute("result")!=null) {
         	   MyResult res = (MyResult)request.getAttribute("result");
         	   if(res.getResult().equals(MyResult.results.OK)){
@@ -132,6 +135,7 @@ html, body{
 		                        			<th class="text-center">Telefono</th>
 		                        			<th class="text-center">Dirección</th>
 		                        			<th class="text-center">Email</th>
+		                        			<th class="text-center">Estado</th>
 		                        			<th class="text-center"> Acciones </th>
                                         </tr>
                                     </thead>
@@ -147,6 +151,11 @@ html, body{
                     				<td class="text-center"><%=p.getTelefono()%></td>
                     				<td class="text-center"><%=p.getDireccion()%></td>
                     				<td class="text-center"><%=p.getEmail()%></td>
+                    				<%if(p.isActivo()){ %>
+                    				<td class="text-center" bgcolor="green">Activo</td>
+                    				<%}else{ %>
+                    				<td class="text-center" bgcolor="red">Inactivo</td>
+                    				<%} %> 
                     				<%if (user.isAdmin()) {%>
                     				<td class="text-center">
                     				<a class="editbutton" href="modificarPersonaServlet?id=<%=p.getIdPersona()%>" title="Editar"><i class="fa fa-pencil"></i></a>

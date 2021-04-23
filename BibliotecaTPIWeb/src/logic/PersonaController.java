@@ -40,8 +40,8 @@ public class PersonaController {
 		return dp.editPersona(p);
 	}
 	
-	public void setEstado(Persona p, String estado) {
-		dp.setEstado(p, estado);
+	public MyResult setEstado(Persona p, boolean b) {
+		return dp.setEstado(p, b);
 	}
 	public LinkedList<Persona> getByApellidoA() {
 		return dp.getByApellidoA();

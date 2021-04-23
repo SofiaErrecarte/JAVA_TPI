@@ -223,7 +223,8 @@ public class DataPrestamo extends DataMethods{
 	}
 	
 	public Prestamo getById(Prestamo pr) {
-		Prestamo p = null;
+		Prestamo p = new Prestamo();
+		p.setIdPrestamo(0);
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		try {

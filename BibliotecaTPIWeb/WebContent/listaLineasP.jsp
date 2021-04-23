@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="entities.LineaPrestamo"%>
+<%@page import="entities.PoliticaPrestamo"%>
 <%@page import="entities.Prestamo"%>
 <%@page import="entities.MyResult"%> 
 <!DOCTYPE html>
@@ -15,6 +16,7 @@ Prestamo p = (Prestamo)request.getAttribute("prestamo");
 int cant = (Integer)request.getAttribute("cantidad");
 int limiteNS = (Integer)request.getAttribute("limiteNS");
 Persona user = (Persona)session.getAttribute("usuario");
+PoliticaPrestamo pp = (PoliticaPrestamo)request.getAttribute("politicaAplicada");
 %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -115,7 +117,13 @@ html, body{
                             </div>
                             
                         </div>
-  
+   <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"> Política aplicada: <%=pp.getIdPoliticaPrestamo() %></h5>
+      <h6>Límite de libros: <%=pp.getCantMaximaNoSocio()%></h6>
+    </div>
+  </div>
+  <br>
    <div class="container buscar">
                 </div>            
 						<div class="card">

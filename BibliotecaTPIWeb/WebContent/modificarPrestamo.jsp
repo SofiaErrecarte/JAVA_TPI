@@ -103,7 +103,7 @@ html, body{
 				</div>
                	<div class="form-group">
                	<div class="tab-content" id="nav-tabContent">
-               	<label class="col-md-4 control-label" for="fechaPrestamo">Ingrese la Fecha de Préstamo</label>  
+               	<label class="col-md-4 control-label" for="fechaPrestamo">Fecha del Préstamo</label>  
                	<input class="form-control" type="date" id="fechaPrestamo" value=<%=p.getFechaPrestamo()%> name="fechaPrestamo" style="display=block" disabled>	     
                	</div>
                  </div>

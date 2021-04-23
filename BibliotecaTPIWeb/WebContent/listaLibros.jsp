@@ -1,5 +1,6 @@
 <%@page import="java.util.LinkedList"%>
 <%@page import="entities.*"%>
+<%@page import="logic.LibroController"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="com.mysql.cj.jdbc.Blob"%>
 <%@page import="java.io.FileOutputStream"%>
@@ -21,6 +22,7 @@
 LinkedList<Integer> cantidades = (LinkedList<Integer>)request.getAttribute("cantidadesDisp");
 LinkedList<Libro> ll = (LinkedList<Libro>)request.getAttribute("listaLibros");
 Persona user = (Persona)session.getAttribute("usuario");
+LibroController ctrlL = new LibroController();
 %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -142,11 +144,7 @@ html, body{
                                     </thead>
                                     <tbody>
                                   
-                                        <% int acum=0;
-                                        for (int cant : cantidades){%>
-                                        	<p><%=cant %></p>
-                                        <%}
-                                        for (Libro lib : ll) { %>
+                                        <%for (Libro lib : ll) { %>
                                        
                     			<tr>
                     			<%String photo=Base64.getEncoder().encodeToString(lib.getImagen()); %>
@@ -162,8 +160,8 @@ html, body{
                     				<%-- <td><%=lib.getCantDiasMaxPrestamo()%></td> --%>
                     				<td class="text-center"><%=lib.getGenero()%></td>
                     				<td class="text-center"><%=lib.getCUIT()%> - <%=lib.getRazonSocialProv()%></td>
-                    				 
-                    				<td class="text-center"><%=cantidades.get(3)%></td>
+                    				<td class="text-center"><%=ctrlL.cantEjDisponibles(lib)%></td>
+                    				<!-- <td class="text-center"><%=cantidades.get(3)%></td> -->
                     				
                     				<%if (user.isAdmin()) {%>
                     				<td class="text-center">

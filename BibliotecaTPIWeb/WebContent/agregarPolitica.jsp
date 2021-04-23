@@ -59,7 +59,7 @@ html, body{
   <div class="col-md-4">
   <% Calendar c = Calendar.getInstance();
   String dia = Integer.toString(c.get(Calendar.DATE));
-  String mes = Integer.toString(c.get(Calendar.MONTH));
+  String mes = Integer.toString(c.get(Calendar.MONTH)+1);
   String annio = Integer.toString(c.get(Calendar.YEAR));
   %>
  <input class="form-control" type="date" id="fecha" name="fecha" value="<%=dia+'/'+mes+'/'+annio%>" style="display=block" disabled>	     

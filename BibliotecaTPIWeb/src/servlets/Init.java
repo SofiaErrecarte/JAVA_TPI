@@ -48,7 +48,7 @@ public class Init extends HttpServlet {
 	    	per.setEmail(email);
 	    	per.setContraseña(password);
 	    	per = ctrlp.getByEmail(per);
-	    	if (per!=null)
+	    	if (per!=null && per.isActivo())
 	    	{
 	    		
 	    		LibroController ctrlLibro = new LibroController();

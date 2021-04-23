@@ -33,8 +33,8 @@ public class PoliticaPrestamoController {
 		return dpp.getbybusqueda(nombuscar);
 	}
 	
-	public PoliticaPrestamo getLast() {
-		return dpp.getLast();
+	public PoliticaPrestamo getLast(Prestamo p) {
+		return dpp.getLast(p);
 	}
 	public LinkedList<PoliticaPrestamo> getByDesc(String nombuscar) {
 		return dpp.getByDesc(nombuscar);

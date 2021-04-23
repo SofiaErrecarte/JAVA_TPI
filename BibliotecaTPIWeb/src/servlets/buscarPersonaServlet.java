@@ -38,12 +38,18 @@ public class buscarPersonaServlet extends HttpServlet {
 			Persona persona = new Persona();
 			persona=ctrlPers.getByIdPersona(p);
 			LinkedList<Persona> personas= new LinkedList<Persona>();
+			if(persona.getIdPersona()==0) {
+				request.setAttribute("msjFiltro", "No se han encontrado resultados para su búsqueda.");
+				request.setAttribute("listaPersonas", personas);
+				request.getRequestDispatcher("listarPersonas.jsp").forward(request, response);
+			}else {
 			personas.add(persona);
 			request.setAttribute("listaPersonas", personas);
 			request.getRequestDispatcher("listarPersonas.jsp").forward(request, response);
-		}
+		}}
 		else { 
 			LinkedList<Persona> personas = ctrlPers.getAllPersonas();	
+			request.setAttribute("msjFiltro", "Debe ingresar un número válido.");
 			request.setAttribute("listaPersonas", personas);
 			request.getRequestDispatcher("listarPersonas.jsp").forward(request, response);
 		}

@@ -11,7 +11,7 @@ public class Persona {
 	private String direccion;
 	private String dni;
 	private float montoAPagar;
-	private String estado;
+	private boolean activo;
 	
 	public String getApellido() {
 		return apellido;
@@ -84,11 +84,12 @@ public class Persona {
 		String cadena = String.format(patron, dni, nombre, apellido);
 		return cadena;
 	}
-	public String getEstado() {
-		return estado;
+	public boolean isActivo() {
+		return activo;
 	}
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
+	
 	
 }
