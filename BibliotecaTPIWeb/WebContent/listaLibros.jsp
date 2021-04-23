@@ -19,7 +19,7 @@
 <meta charset="ISO-8859-1">
 <title>Libros</title>
 <% 
-LinkedList<Integer> cantidades = (LinkedList<Integer>)request.getAttribute("cantidadesDisp");
+//LinkedList<Integer> cantidades = (LinkedList<Integer>)request.getAttribute("cantidadesDisp");
 LinkedList<Libro> ll = (LinkedList<Libro>)request.getAttribute("listaLibros");
 Persona user = (Persona)session.getAttribute("usuario");
 LibroController ctrlL = new LibroController();
@@ -71,6 +71,9 @@ html, body{
                     </div>
                 </div>
             </div>
+            <%if ((request.getAttribute("msjFiltro"))!=null) { %>
+		<div class="warning"> <%=request.getAttribute("msjFiltro")%> </div>		
+	<% } %>
             <% if (request.getAttribute("result")!=null) {
         	   MyResult res = (MyResult)request.getAttribute("result");
         	   if(res.getResult().equals(MyResult.results.OK)){
@@ -161,7 +164,6 @@ html, body{
                     				<td class="text-center"><%=lib.getGenero()%></td>
                     				<td class="text-center"><%=lib.getCUIT()%> - <%=lib.getRazonSocialProv()%></td>
                     				<td class="text-center"><%=ctrlL.cantEjDisponibles(lib)%></td>
-                    				<!-- <td class="text-center"><%=cantidades.get(3)%></td> -->
                     				
                     				<%if (user.isAdmin()) {%>
                     				<td class="text-center">

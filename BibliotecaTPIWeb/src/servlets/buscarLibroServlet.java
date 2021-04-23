@@ -14,44 +14,32 @@ import entities.PoliticaPrestamo;
 import logic.LibroController;
 import logic.PoliticaPrestamoController;
 
-/**
- * Servlet implementation class buscarLibroServlet
- */
 @WebServlet("/buscarLibroServlet")
 public class buscarLibroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+     
     public buscarLibroServlet() {
         super();
-        // TODO Auto-generated constructor stub
         
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		LibroController ctrlLib = new LibroController();
 		String nombuscar=(request.getParameter("txtbuscar"));
-		//LinkedList<PoliticaPrestamo> politicas=ctrlPP.ppGetByBusqueda(nombuscar);
 		if(nombuscar != null) {
 			LinkedList<Libro> libros= new LinkedList<Libro>();
 			libros = ctrlLib.getByDesc(nombuscar);
-			if (libros == null) {
-				LinkedList<Libro> librs = ctrlLib.getAllLibros();	
-				request.setAttribute("listaLibros", librs);
+			if (libros.isEmpty()) {
+				request.setAttribute("msjFiltro", "No se han encontrado resultados para su búsqueda.");	
+				request.setAttribute("listaLibros", libros);
 				request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
-			}
+			}else {
 			request.setAttribute("listaLibros", libros);
 			request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
-		}
+		}}
 		else{ 
 			LinkedList<Libro> libros = ctrlLib.getAllLibros();	
+			request.setAttribute("msjFiltro", "Debe ingresar un valor válido.");
 			request.setAttribute("listaLibros", libros);
 			request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
 		}
