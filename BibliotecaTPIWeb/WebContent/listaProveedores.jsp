@@ -61,6 +61,9 @@ html, body{
                     </div>
                 </div>
             </div>
+            <%if ((request.getAttribute("advertencia"))!=null) { %>
+		<div class="warning"> <%=request.getAttribute("advertencia")%> </div>		
+	<% } %>  
             <%if ((request.getAttribute("msjFiltro"))!=null) { %>
 		<div class="warning"> <%=request.getAttribute("msjFiltro")%> </div>		
 	<% } %>

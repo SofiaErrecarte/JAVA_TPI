@@ -53,6 +53,13 @@ public class Init extends HttpServlet {
 	    		
 	    		LibroController ctrlLibro = new LibroController();
 	    		LinkedList<Libro> libros = ctrlLibro.getAllLibros();
+	    		int var=1;
+	    		for(Libro l : libros) {
+	    			if(l.getIdLibro()==0) {
+	    				var=0;
+	    			}
+	    		}
+	    		if(var!=0) {
 	    		LinkedList<Integer> cantidades = new LinkedList<Integer>();
 	    		for (Libro l : libros) {
 	    			int cant = ctrlLibro.cantEjDisponibles(l);
@@ -65,7 +72,17 @@ public class Init extends HttpServlet {
 	        	  RequestDispatcher rd = request.getRequestDispatcher("listaLibros.jsp");
 	  			  rd.forward(request, response);
 	     	  
-	        	}	
+	        	}	else {
+		    		request.setAttribute("listaLibros", libros);
+		        	HttpSession sesion = request.getSession();
+		        	sesion.setAttribute("usuario", per);
+	        		request.setAttribute("msjFiltro", "No hay libros registrados");
+	        		request.setAttribute("listaLibros", libros);
+	        		 RequestDispatcher rd = request.getRequestDispatcher("listaLibros.jsp");
+		  			 rd.forward(request, response);
+	        	}
+	    		
+	    	}
 	    		else
 	    		{
 	    			request.setAttribute("error", "Usuario o contraseña incorrecta. Inténtelo nuevamente.");

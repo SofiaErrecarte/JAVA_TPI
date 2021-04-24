@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entities.Ejemplar;
 import entities.Libro;
+import entities.Prestamo;
 import logic.LibroController;
 
 @WebServlet("/listarEjemplaresServlet")
@@ -26,10 +27,24 @@ public class listarEjemplaresServlet extends HttpServlet {
 		Libro lib = new Libro();
 		lib.setIdLibro(ID);
 		Libro l = ctrlLibro.getByIdLibro(lib);
+		
 		LinkedList<Ejemplar> ejemplares = ctrlLibro.getEjByIdLibro(l);
+		int var = 1;
+		for(Ejemplar e : ejemplares) {
+			if(e.getIdEjemplar()==0) {
+				var=0;
+			}
+		}
+		if(var!=0) {
 		request.setAttribute("listaEjemplares", ejemplares);
 		request.setAttribute("libro", l);
 		request.getRequestDispatcher("listaEjemplares.jsp").forward(request, response);
+		}else {
+			request.setAttribute("advertencia", "No existen ejemplares registrados.");
+			request.setAttribute("listaEjemplares", ejemplares);
+			request.setAttribute("libro", l);
+			request.getRequestDispatcher("listaEjemplares.jsp").forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

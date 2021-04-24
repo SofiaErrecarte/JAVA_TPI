@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Persona;
+import entities.PoliticaPrestamo;
 import entities.Proveedor;
 import logic.PersonaController;
 import logic.ProveedorController;
@@ -36,9 +37,21 @@ public class listarPersonasServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		PersonaController ctrlPers = new PersonaController();
 		LinkedList<Persona> personas = ctrlPers.getAllPersonas();
+		int var = 1;
+		for(Persona p : personas) {
+			if(p.getIdPersona()==0) {
+				var=0;
+			}
+		}
+		if(var!=0) {
 		request.setAttribute("listaPersonas", personas);
 		request.getRequestDispatcher("listarPersonas.jsp").forward(request, response);
-		
+		}
+		else {
+			request.setAttribute("advertencia", "No existen usuarios registrados.");
+			request.setAttribute("listaPersonas", personas);
+			request.getRequestDispatcher("listarPersonas.jsp").forward(request, response);
+		}
 	}
 	
 

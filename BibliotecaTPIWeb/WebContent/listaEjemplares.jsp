@@ -63,6 +63,9 @@ html, body{
                     </div>
                 </div>
             </div>
+            <%if ((request.getAttribute("advertencia"))!=null) { %>
+		<div class="warning"> <%=request.getAttribute("advertencia")%> </div>		
+		<% } %>    
             <% if (request.getAttribute("result")!=null) {
         	   MyResult res = (MyResult)request.getAttribute("result");
         	   if(res.getResult().equals(MyResult.results.OK)){

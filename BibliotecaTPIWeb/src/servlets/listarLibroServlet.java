@@ -27,14 +27,26 @@ public class listarLibroServlet extends HttpServlet {
 		LibroController ctrlLibro = new LibroController();
 		LinkedList<Libro> libros = ctrlLibro.getAllLibros();
 		LinkedList<Integer> cantidades = new LinkedList<Integer>();
+		int var=1;
+		for(Libro l : libros) {
+			if(l.getIdLibro()==0) {
+				var=0;
+			}
+		}
+		if(var!=0) {
 		for (Libro l : libros) {
 			int cant = ctrlLibro.cantEjDisponibles(l);
 			cantidades.addLast(cant);
 		}
-		request.setAttribute("cantidadesDisp", cantidades);
+		
+		request.setAttribute("listaLibros", libros);
+		request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
+	}else {
+		request.setAttribute("msjFiltro", "No hay libros registrados");
 		request.setAttribute("listaLibros", libros);
 		request.getRequestDispatcher("listaLibros.jsp").forward(request, response);
 	}
+		}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

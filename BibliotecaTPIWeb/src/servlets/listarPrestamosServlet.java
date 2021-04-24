@@ -44,6 +44,13 @@ public class listarPrestamosServlet extends HttpServlet {
 			request.setAttribute("errorSinPolitica", "Debe cargar primero al menos una política.");
 		}
 		Date fechaHoy = new Date();
+		int var = 1;
+		for(Prestamo p : prestamos) {
+			if(p.getIdPrestamo()==0) {
+				var=0;
+			}
+		}
+		if(var!=0) {
 		for(Prestamo p : prestamos) {
 			if(p.getEstado().equals("Abierto")) {
 				int dias = (int) ((p.getFechaADevoler().getTime() - fechaHoy.getTime())/86400000);
@@ -56,7 +63,10 @@ public class listarPrestamosServlet extends HttpServlet {
 			}
 			
 		}
+		}else {
+			request.setAttribute("advertencia", "No tiene préstamos registrados");
 		
+		}
 		request.setAttribute("listaPrestamos", prestamos);
 		request.setAttribute("listaPrestamosPersonas", prestamos_personas);
 		request.getRequestDispatcher("listaPrestamos.jsp").forward(request, response);

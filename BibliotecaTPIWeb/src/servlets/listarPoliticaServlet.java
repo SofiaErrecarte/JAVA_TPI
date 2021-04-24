@@ -34,9 +34,23 @@ public class listarPoliticaServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController(); 
-		LinkedList<PoliticaPrestamo> politicas = ctrlPP.ppGetAll();	
+		LinkedList<PoliticaPrestamo> politicas = ctrlPP.ppGetAll();
+		int var = 1;
+		for(PoliticaPrestamo p : politicas) {
+			if(p.getIdPoliticaPrestamo()==0) {
+				var=0;
+			}
+		}
+		if(var!=0) {
 		request.setAttribute("listapoliticas", politicas);
 		request.getRequestDispatcher("listaPoliticas.jsp").forward(request, response);
+	}
+		else {
+			request.setAttribute("advertencia", "No existen políticas de prestamo registradas.");
+			request.setAttribute("listapoliticas", politicas);
+			request.getRequestDispatcher("listaPoliticas.jsp").forward(request, response);
+		
+		}
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
