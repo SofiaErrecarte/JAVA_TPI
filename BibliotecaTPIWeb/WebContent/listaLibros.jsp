@@ -132,7 +132,13 @@ html, body{
                                 <table class="table" class="text-center">
                                     <thead>
                                         <tr>
+                                        <% int var=1;
+                                        for(Libro l:ll){
+                                        	var = l.getIdLibro();
+                                        }
+                                        if(var!=0){ %>
                                         	<th class="text-center"></th>
+                                        <%} %>
                                             <th class="text-center">ID</th>
 		                    		    	<th class="text-center">Título</th>
 		                    		    	<th class="text-center">Autor</th>
@@ -150,10 +156,12 @@ html, body{
                                         <%for (Libro lib : ll) { %>
                                        
                     			<tr>
+                    			<%if(lib.getIdLibro()!=0){ %>
                     			<%String photo=Base64.getEncoder().encodeToString(lib.getImagen()); %>
                     				<td class="text-center">
                     				<img src="data:image/png;base64,<%=photo%>" />
                     				</td>
+                    				<%} %>
                     				<td class="text-center"><%=lib.getIdLibro()%></td>
                     				<td class="text-center"><%=lib.getTitulo()%></td>
                     				<td class="text-center"><%=lib.getAutor()%></td>
