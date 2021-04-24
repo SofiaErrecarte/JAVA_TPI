@@ -155,6 +155,7 @@ html, body{
                     				<td class="text-center"><%=p.getFechaDevolucion()%></td>
                     				<td class="text-center"><%=p.getIdPersona()%></td>
                     				<td class="text-center"><%=p.getEstado()%></td>
+                    				<%if(p.getIdPrestamo()!=0){ %>
                     				<td class="text-center"> 
                     				<%if(p.getEstado().equals("Abierto")) {%>
                     				<a class="editbutton" href="modificarPrestamoServlet?id=<%=p.getIdPrestamo()%>" title="Editar"><i class="fa fa-pencil"></i></a>
@@ -163,7 +164,7 @@ html, body{
 									<%if(p.getEstado().equals("Abierto")) {%>
 									<a class="devueltobutton" href="devolverPrestamoServlet?id=<%=p.getIdPrestamo()%>" onclick="return confirm('Prestamo devuelto. Desea confirmar?')" title="Devuelto"><i class="fa fa-check"></i></a>
 									<a class="deletebutton" href="darDeBajaPrestamoServlet?id=<%=p.getIdPrestamo()%>" onclick="return confirm('Se dará de baja el prestamo. Desea confirmar?')" title="Dar de Baja"><i class="fa fa-thumbs-down"></i></a>
-										<%} %>
+										<%} }%>
 									</td>
                     			 </tr>
                     		<% } %>

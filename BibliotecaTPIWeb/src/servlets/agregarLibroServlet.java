@@ -40,22 +40,36 @@ public class agregarLibroServlet extends HttpServlet {
 		String genero = null;
 		
 		String titulo = request.getParameter("titulo"); //required
-		int isbn = Integer.parseInt(request.getParameter("isbn")); //required
+		 //required
 		String autor = request.getParameter("autor"); //required
 		try {
 		nroedicion = Integer.parseInt(request.getParameter("nroedicion"));
 		} catch (NumberFormatException e) {
-			nroedicion = 0;
+			request.setAttribute("errorString", "Ingrese un número en Nro Edición por favor");
+			request.getRequestDispatcher("agregarLibro.jsp").forward(request, response); 
 		}
+		try {
+			int isbn = Integer.parseInt(request.getParameter("isbn"));
+			l.setIsbn(isbn);
+			} catch (NumberFormatException e) {
+				request.setAttribute("errorString", "Ingrese un número en ISBN por favor");
+				request.getRequestDispatcher("agregarLibro.jsp").forward(request, response); 
+			}
 		genero = request.getParameter("genero"); //required
-		l.setIsbn(isbn);
+		
 		
 		l=ctrlLibro.getByIsbnLibro(l);
 		//verificamos que el ISBN no esté cargado
 		if(l==null) {
 			Libro lib = new Libro();
 			lib.setTitulo(titulo);
-			lib.setIsbn(isbn);
+			try {
+				int isbn = Integer.parseInt(request.getParameter("isbn"));
+				lib.setIsbn(isbn);
+				} catch (NumberFormatException e) {
+					request.setAttribute("errorString", "Ingrese un número en ISBN por favor");
+					request.getRequestDispatcher("agregarLibro.jsp").forward(request, response); 
+				}
 			lib.setIdProveedor(Integer.parseInt(request.getParameter("idProveedor")));
 			lib.setNroEdicion(nroedicion);
 			lib.setGenero(genero);

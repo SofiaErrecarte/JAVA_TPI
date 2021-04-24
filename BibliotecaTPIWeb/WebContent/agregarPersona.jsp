@@ -46,6 +46,9 @@ html, body{
                     </div>
                 </div>
             </div>
+             <%if ((request.getAttribute("errorString"))!=null) { %>
+		<div class="warning"> <%=request.getAttribute("errorString")%> </div>		
+	<% } %>  
  <%if ((request.getAttribute("error"))!=null) { %>
 		<div class="error"> <%=request.getAttribute("error")%> </div>		
 	<% } %>

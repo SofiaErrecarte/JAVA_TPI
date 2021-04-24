@@ -56,7 +56,9 @@ Prestamo p = (Prestamo)request.getAttribute("prestamo");
 LibroController ctrlL = new LibroController();
 LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 %>
-
+ <%if ((request.getAttribute("errorString"))!=null) { %>
+		<div class="warning"> <%=request.getAttribute("errorString")%> </div>		
+	<% } %>  
 
 <div class="tab-content" id="nav-tabContent">
 <%if ((request.getAttribute("error"))!=null) { %>

@@ -137,10 +137,12 @@ html, body{
                     				<td  class="text-center"><%=prov.getTelefono()%></td>
                     				<td  class="text-center"><%=prov.getMail()%></td>
                     				<td class="text-center"><%=prov.getDireccion()%></td>
+                    				<%if(prov.getIdProveedor()!=0){ %>
                     				<td class="text-center">
                     				  <a class="editbutton"	href="modificarProveedorServlet?id=<%=prov.getIdProveedor()%>"title="Editar"><i class="fa fa-pencil"></i></a>
 										<a class="deletebutton"	title="Eliminar" onclick="return confirm('Se eliminará el proveedor. Desea confirmar?')" href="borrarProveedorServlet?id=<%=prov.getIdProveedor()%>"><i class="fa fa-trash"></i></a>
-                    				 </td>    
+                    				 </td>  
+                    				 <% } %>  
                     			</tr>
                     		<% } %>
                     		</tbody>

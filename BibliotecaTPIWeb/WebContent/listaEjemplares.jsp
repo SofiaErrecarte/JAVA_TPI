@@ -107,10 +107,11 @@ html, body{
                     			<tr>
                     				<td class="text-center"><%=e.getIdEjemplar()%></td>
                     				<td class="text-center"><%=e.isDisponible()%></td>
+                    				<%if(e.getIdEjemplar()!=0){ %>
 									<td class="text-center"><a title="Eliminar" class="deletebutton" onclick="return confirm('Se eliminará el ejemplar. Desea confirmar?')"
 									href="borrarEjemplarServlet?id=<%=e.getIdEjemplar()%> ">
 										<i class="fa fa-trash"></i></a></td> 
-
+										<% } %>
                     				 </tr>
                     		<% } %>
                                     </tbody>

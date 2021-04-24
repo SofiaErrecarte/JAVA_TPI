@@ -37,8 +37,8 @@ public class agregarPoliticaServlet extends HttpServlet {
 					int numSocio = Integer.parseInt(request.getParameter("numsocio"));
 					pp.setCantMaximaSocio(numSocio);
 					}
-				catch (Exception e){
-					request.setAttribute("errorString", "Ingrese un número en la cantidad por favor");
+				catch (NumberFormatException e){
+					request.setAttribute("errorString", "Ingrese un número en la cantidad máxima socio por favor");
 					request.getRequestDispatcher("agregarPolitica.jsp").forward(request, response); 
 					
 				}
@@ -46,7 +46,7 @@ public class agregarPoliticaServlet extends HttpServlet {
 					int numNoSocio = Integer.parseInt(request.getParameter("numnosocio"));
 					pp.setCantMaximaNoSocio(numNoSocio);
 				} catch (Exception e) {
-					request.setAttribute("errorString", "Ingrese un número en la cantidad por favor");
+					request.setAttribute("errorString", "Ingrese un número en la cantidad máxima no socio por favor");
 					request.getRequestDispatcher("agregarPolitica.jsp").forward(request, response); 
 				}
 				

@@ -124,8 +124,9 @@ html, body{
                                             <th>ID</th>
                     		    	<th class="text-center">Fecha Alta</th>
                         			<th class="text-center">Libros Socio</th>
-                        			<th class="text-center">Libros No Socio </th>
+                        			<th class="text-center">Libros No Socio </th>                        			
                         			<th class="text-center"> Acciones </th>
+                        			
                                         </tr>
                                     </thead>
                                  <tbody>
@@ -136,11 +137,13 @@ html, body{
                     				<td class="text-center"><%=pp.getFechaAlta()%></td>
                     				<td class="text-center"><%=pp.getCantMaximaSocio()%></td>
                     				<td class="text-center"><%=pp.getCantMaximaNoSocio()%></td>
+                    			<%if(pp.getIdPoliticaPrestamo()!=0){ %>
                     				<td class="text-center">
                                 <a href="editarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>" class="editbutton"title="Consultar"><i class="fa fa-eye"></i></a>
                                <a href="borrarPoliticaServlet?id=<%=pp.getIdPoliticaPrestamo()%>" class="deletebutton" title="Eliminar" onclick="return confirm('Se eliminará la política. Desea confirmar?')"><i class="fa fa-trash"></i></a>
                             		</td>                    			                    				
                     			</tr>
+                    			<%} %>
                     		<% } %>
                     		</tbody>	
                                 </table>

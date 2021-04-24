@@ -154,7 +154,21 @@ public class DataPersona extends DataMethods{
 				e.printStackTrace();
 			}
 		}
-		
+		if(personas.isEmpty()) {
+			Persona per = new Persona();
+			per.setIdPersona(0);
+			per.setEmail(null);
+			per.setContraseña(null); //VER cómo hacemos esto
+			per.setAdmin(false); 
+			per.setApellido(null);
+			per.setNombre(null);
+			per.setDireccion(null);
+			per.setDni(null);
+			per.setTelefono(null);
+			per.setActivo(false);
+			
+			personas.add(per);
+		}
 		
 		return personas;
 	}

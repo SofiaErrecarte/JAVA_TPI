@@ -53,7 +53,16 @@ public class DataPrestamo extends DataMethods{
 				e.printStackTrace();
 			}
 		}
-		
+		if(prestamos.isEmpty()) {
+			Prestamo p = new Prestamo();
+			p.setIdPrestamo(0);
+			p.setFechaPrestamo(null);
+			p.setFechaADevoler(null);
+			p.setFechaDevolucion(null);
+			p.setIdPersona(0);
+			p.setEstado(null);
+			prestamos.add(p);
+		}
 		
 		return prestamos;
 	}

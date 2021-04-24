@@ -169,6 +169,7 @@ html, body{
                     				<td class="text-center"><%=p.getTelefono()%></td>
                     				<td class="text-center"><%=p.getDireccion()%></td>
                     				<td class="text-center"><%=p.getEmail()%></td>
+                    				<%if(p.getIdPersona()!=0){ %>
                     				<%if(p.isActivo()){ %>
                     				<td class="text-center" bgcolor="green">Activo</td>
                     				<%}else{ %>
@@ -186,7 +187,7 @@ html, body{
 									<%} %>
 									<a class="ejemplaresbutton" href="listarPrestamoPersonaServlet?id=<%=p.getIdPersona()%>" title="Prestamos"><i class="fa fa-list-ul"></i></a>
 									</td>
-										<%} %>
+										<%}} %>
                     				 </tr>
                     			<%} %>
                     			

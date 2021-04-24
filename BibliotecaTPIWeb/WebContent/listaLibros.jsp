@@ -165,7 +165,7 @@ html, body{
                     				<td class="text-center"><%=lib.getCUIT()%> - <%=lib.getRazonSocialProv()%></td>
                     				<td class="text-center"><%=ctrlL.cantEjDisponibles(lib)%></td>
                     				
-                    				<%if (user.isAdmin()) {%>
+                    				<%if (user.isAdmin() && lib.getIdLibro()!=0) {%>
                     				<td class="text-center">
                     				
                     				<a class="editbutton" href="modificarLibroServlet?id=<%=lib.getIdLibro()%>" title="Editar"><i class="fa fa-pencil"></i></a>

@@ -54,7 +54,20 @@ public class DataLibro extends DataMethods{
 				e.printStackTrace();
 			}
 		}
-		
+		if(libros.isEmpty()) {
+			Libro lib=new Libro();
+			lib.setIdLibro(0);
+			lib.setTitulo(null);
+			lib.setIsbn(0);
+			lib.setNroEdicion(0);
+			lib.setCantDiasMaxPrestamo(0);
+			lib.setGenero(null);
+			lib.setRazonSocialProv(null);
+			lib.setCUIT(null);
+			lib.setImagen(null);
+			lib.setAutor(null);
+			libros.add(lib);
+		}
 		
 		return libros;
 	}
@@ -371,7 +384,14 @@ public class DataLibro extends DataMethods{
 				e.printStackTrace();
 			}
 		}
-		
+		if (ejemplares.isEmpty()) {
+			Ejemplar ej = new Ejemplar();
+			ej.setIdEjemplar(0);
+			ej.setIdLibro(0);
+			ej.setDisponible(false);
+			ej.setTitulo(null);
+			ejemplares.add(ej);
+		}
 		
 		return ejemplares;
 	}
