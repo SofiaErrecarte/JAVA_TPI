@@ -36,6 +36,7 @@
 
 </head>
 <body>
+<%@ include file="navInicio.jsp"%>
 <%request.setAttribute("respuesta", "ok"); %>
 
 <header class="masthead">
@@ -50,6 +51,9 @@
     </div>
 	<%if ((request.getAttribute("error"))!=null) { %>
 		<div class="error"> <%=request.getAttribute("error")%> </div>		
+	<% } %>
+	<%if ((request.getAttribute("logOut"))!=null) { %>
+		<div class="success"> <%=request.getAttribute("logOut")%> </div>		
 	<% } %>
 	<% if (request.getAttribute("result")!=null) {
         	   MyResult res = (MyResult)request.getAttribute("result");
