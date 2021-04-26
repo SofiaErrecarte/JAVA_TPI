@@ -152,7 +152,7 @@ html, body{
 		                        			<th class="text-center">DNI</th>
 		                        			<th class="text-center">Telefono</th>
 		                        			<th class="text-center">Dirección</th>
-		                        			<th class="text-center">Email</th>
+		                        			<th class="text-center">Usuario</th>
 		                        			<th class="text-center">Estado</th>
 		                        			<th class="text-center"> Acciones </th>
                                         </tr>

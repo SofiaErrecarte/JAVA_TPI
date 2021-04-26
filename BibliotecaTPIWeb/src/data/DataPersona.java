@@ -258,6 +258,21 @@ public class DataPersona extends DataMethods{
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"SELECT COUNT(*) FROM persona WHERE email=?"
+					);
+			stmt.setString(1, p.getEmail());
+			keyResultSet = stmt.executeQuery();
+			if(keyResultSet!=null && keyResultSet.next()){
+				// preguntamos si hay al menos un proveedor con ese CUIT
+				if (keyResultSet.getInt(1) > 0) {
+					MyResult res = new MyResult();
+					res.setResult(MyResult.results.Err);
+					res.setErr_message("Existe una persona actualmente con ese usuario.");
+					return res;
+				} else {
+			stmt.close();
+			
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
 							"INSERT INTO `biblioteca`.`persona` (`apellido`, `nombre`, `telefono`, `email`, `direccion`, `dni`, `admin`, `contraseña`, `activo` ) values(?,?,?,?,?,?,?,?,?)",
@@ -278,7 +293,7 @@ public class DataPersona extends DataMethods{
             if(keyResultSet!=null && keyResultSet.next()){
                 p.setIdPersona(keyResultSet.getInt(1));
             }
-		}  catch (SQLException e) {
+		}}}  catch (SQLException e) {
 			e.printStackTrace();
 			return Add(resultado);
 		} finally {
