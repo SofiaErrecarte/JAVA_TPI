@@ -24,7 +24,7 @@ public class agregarPersonaServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PersonaController ctrlPer  = new PersonaController();
-		
+		Persona p = new Persona();
 		String apellido = request.getParameter("apellido");
 		String nombre = request.getParameter("nombre");
 		String telefono = request.getParameter("telefono");
@@ -33,10 +33,10 @@ public class agregarPersonaServlet extends HttpServlet {
 		String dni = request.getParameter("dni");
 		String contraseña = request.getParameter("pass");
 		//p.setAdmin(false);
-		//p.setDni(dni);
-		//p=ctrlPer.getByDNI(p);
+		p.setDni(dni);
+		p=ctrlPer.getByDNI(p);
 		//verificamos que la persona no este cargada
-		//if(p==null) {
+		if(p==null) {
 			Persona per = new Persona();
 			per.setApellido(apellido);
 			per.setContraseña(contraseña);
@@ -55,6 +55,8 @@ public class agregarPersonaServlet extends HttpServlet {
 				request.getRequestDispatcher("listarPersonasServlet").forward(request, response);
 			}
 			
-		//}
+		}else {
+			request.setAttribute("error", "La persona ingresada ya existe.");
+			request.getRequestDispatcher("agregarUsuario.jsp").forward(request, response); }
 	}
 }

@@ -48,8 +48,9 @@ public class Init extends HttpServlet {
 	    	per.setEmail(email);
 	    	per.setContraseña(password);
 	    	per = ctrlp.getByEmail(per);
-	    	if (per!=null && per.isActivo())
+	    	if (per!=null)
 	    	{
+	    		if(per.isActivo()) {
 	    		
 	    		LibroController ctrlLibro = new LibroController();
 	    		LinkedList<Libro> libros = ctrlLibro.getAllLibros();
@@ -81,7 +82,12 @@ public class Init extends HttpServlet {
 	        		 RequestDispatcher rd = request.getRequestDispatcher("listaLibros.jsp");
 		  			 rd.forward(request, response);
 	        	}
-	    		
+	    		}else
+	    		{
+	    			request.setAttribute("error", "Usuario inactivo. Contáctese con el administrador.");
+	    			request.getRequestDispatcher("index.jsp").forward(request, response);
+	    			
+	    		}
 	    	}
 	    		else
 	    		{

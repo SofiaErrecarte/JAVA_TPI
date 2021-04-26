@@ -51,20 +51,6 @@ public class agregarPoliticaServlet extends HttpServlet {
 				}
 				
 				
-				/*Calendar fech = Calendar.getInstance();
-				java.util.Date utilStartDate;
-				try {
-					utilStartDate = formato.parse(request.getParameter("fecha"));
-					fech.setTime(utilStartDate);
-					java.sql.Date date = new java.sql.Date(utilStartDate.getTime());
-					//pp.setFechaAlta(date);
-				} catch (java.text.ParseException e) {
-					e.printStackTrace();
-				}*/
-				
-				
-				
-				
 				MyResult res = ctrlPP.newPolitica(pp);
 				if (res.getResult().equals(MyResult.results.Err)) {
 					request.setAttribute("result", res);
