@@ -53,7 +53,8 @@ public class agregarProveedorServlet extends HttpServlet {
 		}else {
 			request.setAttribute("result", res);
 			request.setAttribute("nuevoProveedor", prov);
-			request.getRequestDispatcher("listarProveedorServlet").forward(request, response);
+			request.setAttribute("listaProveedores",ctrlProv.getAllProveedores());
+			request.getRequestDispatcher("listaProveedores.jsp").forward(request, response);
 		}
 		}else {
 			request.setAttribute("error", "El proveedor ingresado ya existe.");
