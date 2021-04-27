@@ -138,7 +138,11 @@ html, body{
                     				<td  class="text-center"><%=prov.getCUIT()%></td>
                     				<td  class="text-center"><%=prov.getRazonSocial() %></td>
                     				<td  class="text-center"><%=prov.getTelefono()%></td>
+                    				<%if(prov.getMail()!= null) {%>
                     				<td  class="text-center"><%=prov.getMail()%></td>
+                    				<%}else{ %>
+                    				<td  class="text-center">-</td>
+                    				<%} %>
                     				<td class="text-center"><%=prov.getDireccion()%></td>
                     				<%if(prov.getIdProveedor()!=0){ %>
                     				<td class="text-center">

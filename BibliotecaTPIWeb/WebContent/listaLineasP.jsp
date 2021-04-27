@@ -95,7 +95,7 @@ html, body{
                                             <th class="text-center">ID Prestamo</th>
 		                    		    	<th class="text-center">Fecha Prestamo</th>
 		                        			<th class="text-center">Fecha A Devolver </th>
-		                        		    <th class="text-center">Fecha Devolucion </th>
+		                        		    
 		                        			<th class="text-center">ID Persona</th>
 		                        			<th class="text-center">Estado</th>
                                         </tr>
@@ -106,7 +106,7 @@ html, body{
                     				<td class="text-center"><%=p.getIdPrestamo()%></td>
                     				<td class="text-center"><%=p.getFechaPrestamo()%></td>
                     				<td class="text-center"><%=p.getFechaADevoler()%></td>
-                    				<td class="text-center"><%=p.getFechaDevolucion()%></td>
+                    				<!-- ACA ESTABA LA FECHA DE DEVOLUCIÓN QUE NO USAMOS -->
                     				<td class="text-center"><%=p.getIdPersona()%></td>
                     				<td class="text-center"><%=p.getEstado()%></td>
                     				

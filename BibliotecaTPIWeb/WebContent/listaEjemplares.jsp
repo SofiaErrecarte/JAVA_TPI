@@ -109,7 +109,11 @@ html, body{
                                         <% for (Ejemplar e : ej) { %>
                     			<tr>
                     				<td class="text-center"><%=e.getIdEjemplar()%></td>
-                    				<td class="text-center"><%=e.isDisponible()%></td>
+                    				<%if (e.isDisponible()==true){ %>
+                    				<td class="text-center">Disponible</td>
+                    				<%}else{ %>
+                    				<td class="text-center">No Disponible</td>
+                    				<%} %>
                     				<%if(e.getIdEjemplar()!=0){ %>
 									<td class="text-center"><a title="Eliminar" class="deletebutton" onclick="return confirm('Se eliminará el ejemplar. Desea confirmar?')"
 									href="borrarEjemplarServlet?id=<%=e.getIdEjemplar()%> ">

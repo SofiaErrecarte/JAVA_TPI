@@ -167,7 +167,11 @@ html, body{
                     				<td class="text-center"><%=lib.getAutor()%></td>
                     				<td class="text-center"><%=lib.getIsbn()%></td>
                     				<%-- <td><%=lib.getFechaEdicion()%></td> --%>
+                    				<%if (lib.getNroEdicion()!= 0){ %>
                     				<td class="text-center"><%=lib.getNroEdicion()%></td>
+                    				<%}else{ %>
+                    				<td class="text-center">-</td>
+                    				<%} %>
                     				<%-- <td><%=lib.getCantDiasMaxPrestamo()%></td> --%>
                     				<td class="text-center"><%=lib.getGenero()%></td>
                     				<td class="text-center"><%=lib.getCUIT()%> - <%=lib.getRazonSocialProv()%></td>

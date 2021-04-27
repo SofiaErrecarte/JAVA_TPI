@@ -57,9 +57,9 @@ html, body{
   <label class="col-md-4 control-label" for="id">ID Persona: </label>  
   <div class="col-md-4">
       <!-- Este me guarda el atributo id -->	
-    <input type="text" name="id" value=<%=per.getIdPersona()%> hidden="true">	  
+    <input type="text" name="id" value=<%=p.getIdPersona()%> hidden="true">	  
      <!--  Este me lo muestra deshabilitado para q se vea el numero -->  
-	 <input type="text" name="idLibro" value=<%=per.getIdPersona()%>  class="form-control input-md" disabled>
+	 <input type="text" name="idLibro" value=<%=p.getIdPersona()%>  class="form-control input-md" disabled>
   </div>
 </div>
 
