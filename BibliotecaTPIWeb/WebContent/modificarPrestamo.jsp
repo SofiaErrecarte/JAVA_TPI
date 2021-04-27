@@ -78,11 +78,15 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="id">ID Prestamo: </label>  
   <div class="col-md-4">
-      <%-- <input type="text" name="id" value=<%=lib.getIdLibro()%> class="form-control input-md" hidden="true"> --%>
       <!-- Este me guarda el atributo id -->
        <input type="text" name="id" value=<%=p.getIdPrestamo()%> hidden="true">
        <!--  Este me lo muestra deshabilitado para q se vea el numero -->
 	 <input type="text" name="idPrestamo" value=<%=p.getIdPrestamo()%> class="form-control input-md" disabled>
+  </div>
+  <label class="col-md-4 control-label" for="id">Fecha Prestamo: </label>  
+  <div class="col-md-4">
+       <input type="text" name="fechaPrestamo" value=<%=p.getFechaPrestamo()%> hidden="true">
+	 <input type="text" name="fechaPrestamo" value=<%=p.getFechaPrestamo()%> class="form-control input-md" disabled>
   </div>
 </div>         
 <fieldset>  
@@ -101,12 +105,7 @@ html, body{
 				                            <% }%>
 				  </div>
 				</div>
-               	<div class="form-group">
-               	<div class="tab-content" id="nav-tabContent">
-               	<label class="col-md-4 control-label" for="fechaPrestamo">Fecha del Préstamo</label>  
-               	<input class="form-control" type="date" id="fechaPrestamo" value=<%=p.getFechaPrestamo()%> name="fechaPrestamo" style="display=block" disabled>	     
-               	</div>
-                 </div>
+               	
                 <div class="form-group">
                 <div class="tab-content" id="nav-tabContent">
                	<label class="col-md-4 control-label" for="fechaADevolver">Ingrese la Fecha de Devolución Estimada</label>  

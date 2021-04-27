@@ -37,6 +37,7 @@ public class modificarPrestamoServlet extends HttpServlet {
 		PrestamoController ctrlP = new PrestamoController ();
 		Prestamo p = new Prestamo();
 		p.setIdPrestamo(Integer.parseInt(request.getParameter("id")));
+		Prestamo per = ctrlP.getByIdPrestamo(p);
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 		
 		//fechas
@@ -51,20 +52,17 @@ public class modificarPrestamoServlet extends HttpServlet {
 			p.setFechaADevoler(null);
 		}
 		
-		Calendar fech2 = Calendar.getInstance();
-		java.util.Date utilStartDate2;
-		try {
-			utilStartDate2 = formato.parse(request.getParameter("fechaPrestamo"));
-			fech2.setTime(utilStartDate2);
-			java.sql.Date date = new java.sql.Date(utilStartDate2.getTime());
-			p.setFechaPrestamo(date);
-		} catch (java.text.ParseException e) {
-			p.setFechaPrestamo(null);
-		}
+		/*
+		 * Calendar fech2 = Calendar.getInstance(); java.util.Date utilStartDate2; try {
+		 * utilStartDate2 = formato.parse(request.getParameter("fechaPrestamo"));
+		 * fech2.setTime(utilStartDate2); java.sql.Date date = new
+		 * java.sql.Date(utilStartDate2.getTime()); p.setFechaPrestamo(date); } catch
+		 * (java.text.ParseException e) { p.setFechaPrestamo(null); }
+		 */
 		
 		//VERIFICAMOS FECHAS
 				
-		if(p.getFechaPrestamo().after(p.getFechaADevoler())) {
+		if(per.getFechaPrestamo().after(p.getFechaADevoler())) {
 			request.setAttribute("error", "La fecha a devolver no puede ser menor que la fecha de creación.");
 			request.setAttribute ("prestamoAEditar",p);
 			request.getRequestDispatcher("modificarPrestamo.jsp").forward(request, response); 

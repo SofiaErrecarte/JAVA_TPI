@@ -197,8 +197,8 @@ html, body{
 <%}%>
  <%if (user.isAdmin()==false || var=="prestamospersona") {%>
  
-  <%if ((request.getAttribute("advertencia"))!=null) { %>
-		<div class="warning"> <%=request.getAttribute("advertencia")%> </div>		
+  <%if ((request.getAttribute("advertencia2"))!=null) { %>
+		<div class="warning"> <%=request.getAttribute("advertencia2")%> </div>		
 	<% } %>          
                         <% if (request.getAttribute("result")!=null) {
         	   MyResult res = (MyResult)request.getAttribute("result");

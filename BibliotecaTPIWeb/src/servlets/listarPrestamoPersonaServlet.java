@@ -54,6 +54,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 					}
 		
 					}
+				
 	
 					request.setAttribute("listaPrestamos", prestamos);
 					request.setAttribute("listaPrestamosPersonas", prestamos_personas);

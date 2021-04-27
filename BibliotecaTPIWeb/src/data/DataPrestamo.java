@@ -113,13 +113,12 @@ public class DataPrestamo extends DataMethods{
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"UPDATE `biblioteca`.`prestamo` SET `fechaPrestamo` = ?, `fechaADevolver` = ?, `idPersona` = ? WHERE (`idPrestamo` = ?);",
+							"UPDATE `biblioteca`.`prestamo` SET `fechaADevolver` = ?, `idPersona` = ? WHERE (`idPrestamo` = ?);",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
-			stmt.setTimestamp(1, new java.sql.Timestamp(p.getFechaPrestamo().getTime()));
-			stmt.setTimestamp(2, new java.sql.Timestamp(p.getFechaADevoler().getTime()));
-			stmt.setLong(3, p.getIdPersona());
-			stmt.setInt(4, p.getIdPrestamo());
+			stmt.setTimestamp(1, new java.sql.Timestamp(p.getFechaADevoler().getTime()));
+			stmt.setLong(2, p.getIdPersona());
+			stmt.setInt(3, p.getIdPrestamo());
 			stmt.executeUpdate();
 			
 		}  catch (SQLException e) {
