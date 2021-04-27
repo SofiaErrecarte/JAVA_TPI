@@ -59,11 +59,7 @@ public class listarPersonasServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PersonaController ctrlPers = new PersonaController();
-		LinkedList<Persona> personas = ctrlPers.getAllPersonas();
-		request.setAttribute("listaPersonas", personas);
-		request.getRequestDispatcher("listarPersonas.jsp").forward(request, response);
+		doGet(request, response);
 		
 	}
 

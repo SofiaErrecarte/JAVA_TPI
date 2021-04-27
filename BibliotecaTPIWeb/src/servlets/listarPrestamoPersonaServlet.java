@@ -62,33 +62,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 					request.getRequestDispatcher("listaPrestamos.jsp").forward(request, response);
 			}
 			protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-				PersonaController ctrlPers = new PersonaController();
-				PrestamoController ctrlP = new PrestamoController();
-				int idPers = Integer.parseInt((request.getParameter("id")));
-				Persona pers = new Persona();
-				pers.setIdPersona(idPers);
-				Persona pnew =ctrlPers.getByIdPersona(pers);
-				LinkedList<Prestamo> prestamos_personas = ctrlP.getByPersona(pnew);
-				
-				LinkedList<Prestamo> prestamos = ctrlP.getAllPrestamos();
-				Date fechaHoy = new Date();
-				for(Prestamo p : prestamos) {
-					if(p.getEstado().equals("Abierto")) {
-						int dias = (int) ((p.getFechaADevoler().getTime() - fechaHoy.getTime())/86400000);
-						if(dias<6 && dias>=0) {
-							request.setAttribute("advertencia", "Tiene préstamos a vencer en los próximos días. (001)");
-						}
-						if(fechaHoy.after(p.getFechaADevoler())) {
-						request.setAttribute("advertencia", "Tiene préstamos vencidos.(001)");
-						}
-					}
-		
-					}
-	
-					request.setAttribute("listaPrestamos", prestamos);
-					request.setAttribute("listaPrestamosPersonas", prestamos_personas);
-					request.setAttribute("Persona", "prestamospersona");
-					request.getRequestDispatcher("listaPrestamos.jsp").forward(request, response);
+				doGet(request, response);
 			}
 	}
 
