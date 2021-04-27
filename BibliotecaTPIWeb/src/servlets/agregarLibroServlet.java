@@ -56,8 +56,7 @@ public class agregarLibroServlet extends HttpServlet {
 				request.getRequestDispatcher("agregarLibro.jsp").forward(request, response); 
 			}
 		genero = request.getParameter("genero"); //required
-		
-		
+				
 		l=ctrlLibro.getByIsbnLibro(l);
 		//verificamos que el ISBN no esté cargado
 		if(l==null) {

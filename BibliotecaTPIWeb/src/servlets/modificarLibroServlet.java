@@ -39,29 +39,33 @@ public class modificarLibroServlet extends HttpServlet {
 		Libro lib=new Libro();
 		lib.setIdLibro(Integer.parseInt(request.getParameter("id")));
 		String titulo = request.getParameter("titulo");
-		int isbn = 0;
-		int nroedicion = 0;
+		//int isbn = 0;
+		//int nroedicion = 0;
 		try {
-			isbn = Integer.parseInt(request.getParameter("isbn"));
-		}catch (NumberFormatException e) {
-			isbn = 0;
-		}
-		try {
-			nroedicion = Integer.parseInt(request.getParameter("nroedicion"));
-		}catch (NumberFormatException e) {
-			nroedicion = 0;
-		}
+			int isbn = Integer.parseInt(request.getParameter("isbn"));
+			lib.setIsbn(isbn);
+			} catch (NumberFormatException e) {
+				request.setAttribute("msjFiltro", "Modificación incorrecta. Ingrese un número en ISBN por favor"); 
+				request.setAttribute("listaLibros",ctrlLibro.getAllLibros());
+				request.getRequestDispatcher("listarLibroServlet").forward(request, response);
+			}
 		
+		try {
+			int nroedicion = Integer.parseInt(request.getParameter("nroedicion"));
+			lib.setNroEdicion(nroedicion);
+			} catch (NumberFormatException e) {
+				request.setAttribute("msjFiltro", "Modificación incorrecta. Ingrese un número en Nro Edición por favor");
+				request.setAttribute("listaLibros",ctrlLibro.getAllLibros());
+				request.getRequestDispatcher("listarLibroServlet").forward(request, response);
+
+			}
+				
 		String genero = request.getParameter("genero");
 		int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
 		String autor = request.getParameter("autor");
-		
-		
-		
+				
 		lib.setTitulo(titulo);
-		lib.setIsbn(isbn);
 		lib.setAutor(autor);
-		lib.setNroEdicion(nroedicion);
 		lib.setGenero(genero);
 		lib.setIdProveedor(idProveedor);
 		

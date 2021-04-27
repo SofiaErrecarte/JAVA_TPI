@@ -152,7 +152,11 @@ html, body{
                     				<td class="text-center"><%=p.getIdPrestamo()%></td>
                     				<td class="text-center"><%=p.getFechaPrestamo()%></td>
                     				<td class="text-center"><%=p.getFechaADevoler()%></td>
+                    				<%if (p.getFechaDevolucion()!= null){ %>
                     				<td class="text-center"><%=p.getFechaDevolucion()%></td>
+                    				<%}else{ %>
+                    				<td class="text-center">-</td>
+                    				<%} %>
                     				<td class="text-center"><%=p.getIdPersona()%></td>
                     				<td class="text-center"><%=p.getEstado()%></td>
                     				<%if(p.getIdPrestamo()!=0){ %>

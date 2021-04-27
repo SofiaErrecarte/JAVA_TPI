@@ -32,8 +32,9 @@ html, body{
 <div id="footer" class="page-footer2" class="footer">
     <div class="footer-copyright">
         <div class="container">
-            Todos los derechos reservados © 2021 Copyright Text
-        </div>
+            Todos los derechos reservados © 2021 Copyright Text - 
+            Biblioteca Nacional 
+     </div>
     </div>
 </div>
 </body>

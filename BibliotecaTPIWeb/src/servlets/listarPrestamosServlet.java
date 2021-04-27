@@ -58,7 +58,7 @@ public class listarPrestamosServlet extends HttpServlet {
 					request.setAttribute("advertencia", "Tiene préstamos a vencer en los próximos días.");
 				}
 				if(fechaHoy.after(p.getFechaADevoler())) {
-				request.setAttribute("advertencia", "Tiene préstamos vencidos.(001)");
+				request.setAttribute("advertencia", "Tiene préstamos vencidos.");
 				}
 			}
 			
@@ -82,7 +82,7 @@ public class listarPrestamosServlet extends HttpServlet {
 					request.setAttribute("advertencia", "Tiene préstamos a vencer en los próximos días.");
 				}
 				if(fechaHoy.after(p.getFechaADevoler())) {
-				request.setAttribute("advertencia", "Tiene préstamos vencidos.(002)");
+				request.setAttribute("advertencia", "Tiene préstamos vencidos.");
 				}
 			}
 			

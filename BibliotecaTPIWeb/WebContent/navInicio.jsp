@@ -14,6 +14,23 @@ html, body{
 background-color: #85929E ;
  color: white;
 }
+a {
+  color: #92badd;
+  display:inline-block;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+
+h2 {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display:inline-block;
+  margin: 40px 8px 10px 8px; 
+  color: #cccccc;
+}
 </style>
 </head>
 <body>
@@ -66,7 +83,7 @@ background-color: #85929E ;
 
 				<div class="collapse navbar-collapse" id="navbarsExample05">
 					<ul class="navbar-nav pl-md-5 ml-auto">
-						<li class="nav-item"><a class="nav-link" href="contactar.jsp">@Contacto</a>
+						<li class="nav-item"><a class="nav-link" href="contacto.jsp">@Contacto</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="index.jsp">Iniciar
 								Sesión</a></li>
