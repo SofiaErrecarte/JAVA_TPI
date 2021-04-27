@@ -118,7 +118,6 @@ public class DataPrestamo extends DataMethods{
 							);
 			stmt.setTimestamp(1, new java.sql.Timestamp(p.getFechaPrestamo().getTime()));
 			stmt.setTimestamp(2, new java.sql.Timestamp(p.getFechaADevoler().getTime()));
-			//stmt.setTimestamp(3, new java.sql.Timestamp(p.getFechaDevolucion().getTime()));
 			stmt.setLong(3, p.getIdPersona());
 			stmt.setInt(4, p.getIdPrestamo());
 			stmt.executeUpdate();

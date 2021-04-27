@@ -109,7 +109,7 @@ html, body{
                  </div>
                 <div class="form-group">
                 <div class="tab-content" id="nav-tabContent">
-               	<label class="col-md-4 control-label" for="fechaADevolver">Ingrese la Fecha a Devolver</label>  
+               	<label class="col-md-4 control-label" for="fechaADevolver">Ingrese la Fecha de Devolución Estimada</label>  
                	<input class="form-control" type="date" id="fechaADevolver" value=<%=p.getFechaADevoler() %> name="fechaADevolver" style="display=block" required>	     
                 </div>   
                 </div>

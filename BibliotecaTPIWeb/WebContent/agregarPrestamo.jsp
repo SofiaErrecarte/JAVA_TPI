@@ -103,7 +103,7 @@ html, body{
                  	<div class="form-group">
                	<label class="col-md-4 control-label" for="fechaDevolucion">Ingrese la Fecha de Devolución Estimada</label>  
                	<div class="col-md-4">
-               	<input class="form-control" type="date" id="fechaDevolucion" name="fechaDevolucion" style="display=block">	     
+               	<input class="form-control" type="date" id="fechaDevolucion" name="fechaDevolucion" style="display=block" required>	     
                  </div>
                	</div> 
                 

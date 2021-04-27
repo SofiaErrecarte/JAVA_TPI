@@ -32,7 +32,6 @@ public class DataLibro extends DataMethods{
 					lib.setTitulo(rs.getString("titulo"));
 					lib.setIsbn(rs.getInt("isbn"));
 					lib.setNroEdicion( rs.getInt("nroEdicion"));
-					lib.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
 					lib.setGenero(rs.getString("genero"));
 					lib.setRazonSocialProv(rs.getString("razonSocial"));
 					lib.setCUIT(rs.getString("cuit"));
@@ -60,7 +59,6 @@ public class DataLibro extends DataMethods{
 			lib.setTitulo(null);
 			lib.setIsbn(0);
 			lib.setNroEdicion(0);
-			lib.setCantDiasMaxPrestamo(0);
 			lib.setGenero(null);
 			lib.setRazonSocialProv(null);
 			lib.setCUIT(null);
@@ -124,12 +122,11 @@ public class DataLibro extends DataMethods{
 					prepareStatement(
 							"INSERT INTO `biblioteca`.`libro` ( `titulo`,`autor`,`isbn`, `nroEdicion`, `genero`, `idProveedor`, `imagen` ) VALUES(?,?,?,?,?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
-							); //, `fechaEdicion`
+							); 
 			stmt.setString(1, lib.getTitulo());
 			stmt.setString(2, lib.getAutor());
 			stmt.setLong(3, lib.getIsbn());
 			stmt.setLong(4, lib.getNroEdicion());
-			//stmt.setLong(5, lib.getCantDiasMaxPrestamo());
 			stmt.setString(5, lib.getGenero());	
 			stmt.setInt(6, lib.getIdProveedor());
 			stmt.setBlob(7, lib.getImagen_carga());
@@ -174,9 +171,7 @@ public class DataLibro extends DataMethods{
 				l.setIdLibro(rs.getInt("idLibro"));
 				l.setIsbn(rs.getInt("isbn"));
 				l.setTitulo(rs.getString("titulo"));
-				l.setFechaEdicion(rs.getDate("fechaEdicion"));
 				l.setNroEdicion(rs.getInt("nroEdicion"));
-				//l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
 				l.setGenero(rs.getString("genero"));
 				l.setIdProveedor(rs.getInt("idProveedor"));
 				l.setImagen(rs.getBytes("imagen"));
@@ -226,7 +221,6 @@ public class DataLibro extends DataMethods{
 			stmt.setString(1, lib.getTitulo());
 			stmt.setLong(2, lib.getIsbn());
 			stmt.setLong(3, lib.getNroEdicion());
-			//stmt.setLong(4, lib.getCantDiasMaxPrestamo());
 			stmt.setString(4, lib.getGenero());	
 			stmt.setInt(5, lib.getIdProveedor());
 			stmt.setString(6, lib.getAutor());
@@ -320,9 +314,7 @@ public class DataLibro extends DataMethods{
 					l.setIdLibro(rs.getInt("idLibro"));
 					l.setIsbn(rs.getInt("isbn"));
 					l.setTitulo(rs.getString("titulo"));
-					l.setFechaEdicion(rs.getDate("fechaEdicion"));
 					l.setNroEdicion(rs.getInt("nroEdicion"));
-					//l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
 					l.setGenero(rs.getString("genero"));
 					l.setIdProveedor(rs.getInt("idProveedor"));
 					l.setImagen(rs.getBytes("imagen"));
@@ -727,7 +719,6 @@ public class DataLibro extends DataMethods{
 				l.setIdLibro(rs.getInt("idLibro"));
 				l.setIsbn(rs.getInt("isbn"));
 				l.setTitulo(rs.getString("titulo"));
-				l.setFechaEdicion(rs.getDate("fechaEdicion"));
 				l.setNroEdicion(rs.getInt("nroEdicion"));
 				//l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
 				l.setGenero(rs.getString("genero"));
