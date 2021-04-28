@@ -414,7 +414,7 @@ public class DataPersona extends DataMethods{
 	
 
 	public LinkedList<Persona> getByApellidoA() {
-		Persona per =null;
+		
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		LinkedList<Persona> personas = new LinkedList<>();
@@ -425,6 +425,7 @@ public class DataPersona extends DataMethods{
 			rs=stmt.executeQuery();
 			if(rs!=null) {
 				while(rs.next()) {
+					Persona per = new Persona();
 					per.setIdPersona(rs.getInt("idPersona"));
 					per.setEmail(rs.getString("email"));
 					per.setContraseña(rs.getString("contraseña")); //VER cómo hacemos esto
@@ -452,7 +453,7 @@ public class DataPersona extends DataMethods{
 	}
 	
 	public LinkedList<Persona> getByApellidoZ() {
-		Persona per =null;
+		
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		LinkedList<Persona> personas = new LinkedList<>();
@@ -463,6 +464,7 @@ public class DataPersona extends DataMethods{
 			rs=stmt.executeQuery();
 			if(rs!=null) {
 				while(rs.next()) {
+					Persona per = new Persona();
 					per.setIdPersona(rs.getInt("idPersona"));
 					per.setEmail(rs.getString("email"));
 					per.setContraseña(rs.getString("contraseña")); //VER cómo hacemos esto
@@ -490,7 +492,7 @@ public class DataPersona extends DataMethods{
 	}
 
 	public LinkedList<Persona> getByNombreA() {
-		Persona per =  new Persona();
+		
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		LinkedList<Persona> personas = new LinkedList<>();
@@ -501,6 +503,7 @@ public class DataPersona extends DataMethods{
 			rs=stmt.executeQuery();
 			if(rs!=null) {
 				while(rs.next()) {
+					Persona per =  new Persona();
 					per.setIdPersona(rs.getInt("idPersona"));
 					per.setEmail(rs.getString("email"));
 					per.setContraseña(rs.getString("contraseña")); //VER cómo hacemos esto
@@ -527,7 +530,7 @@ public class DataPersona extends DataMethods{
 		return personas;
 	}
 	public LinkedList<Persona> getByNombreZ() {
-		Persona per =null;
+		
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		LinkedList<Persona> personas = new LinkedList<>();
@@ -538,6 +541,7 @@ public class DataPersona extends DataMethods{
 			rs=stmt.executeQuery();
 			if(rs!=null) {
 				while(rs.next()) {
+					Persona per =  new Persona();
 					per.setIdPersona(rs.getInt("idPersona"));
 					per.setEmail(rs.getString("email"));
 					per.setContraseña(rs.getString("contraseña")); //VER cómo hacemos esto

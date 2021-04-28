@@ -75,45 +75,46 @@ html, body{
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="cuit">CUIT: </label>  
-  <div class="col-md-4">
+
   <input id="cuit" name="cuit" type="text" placeholder="CUIT" class="form-control input-md" required>
-  </div>
+  
 </div>
 
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="razonSocial">Razón Social </label>  
-  <div class="col-md-4">
+  
   <input id="razonSocial" name="razonSocial" type="text" placeholder="Razon Social" class="form-control input-md" required>
-  </div>
+  
 </div>
 
 
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="telefono">Telefono: </label>  
-  <div class="col-md-4">
+ 
   <input id="telefono" name="telefono" type="text" placeholder="Telefono" class="form-control input-md" required>
-  </div>
+ 
 </div>
 
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="mail">E - Mail: </label>  
-  <div class="col-md-4">
+  
   <input id="mail" name="mail" type="text" placeholder="E - Mail" class="form-control input-md">
-  </div>
+  
 </div>
 
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="direccion">Direccion: </label>  
-  <div class="col-md-4">
+  
   <input id="direccion" name="direccion" type="text" placeholder="Direccion" class="form-control input-md" required>
-  </div>
+ 
 </div>
 
 </fieldset>
+<br>
 <table>
 <tr>
 <td>

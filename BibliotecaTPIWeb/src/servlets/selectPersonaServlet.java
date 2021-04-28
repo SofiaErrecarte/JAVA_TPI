@@ -56,10 +56,10 @@ public class selectPersonaServlet extends HttpServlet {
 		}
 		else if (op.equalsIgnoreCase("nomB")) {
 			personas=ctrlPers.getByNombreZ();
-		
+		}
 		request.setAttribute("listaPersonas", personas);
 		request.getRequestDispatcher("listarPersonas.jsp").forward(request, response);
 		
-	}
+	
 	}
 }

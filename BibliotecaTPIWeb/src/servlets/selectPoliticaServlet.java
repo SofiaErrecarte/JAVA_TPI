@@ -54,7 +54,7 @@ public class selectPoliticaServlet extends HttpServlet {
 		else if (op.equalsIgnoreCase("fechamenor")) {
 			politicas=ctrlPP.getByFechaMinimo();
 		}
-		else if (op.equalsIgnoreCase("fechamayor")) {
+		else if (op.equalsIgnoreCase("fechamenor")) {
 			politicas=ctrlPP.getByFechaMayor();
 		}
 		request.setAttribute("listapoliticas", politicas);

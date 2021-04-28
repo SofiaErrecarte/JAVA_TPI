@@ -261,8 +261,7 @@ public class DataLibro extends DataMethods{
 				if (rs.getInt(1) > 0) {
 					MyResult res = new MyResult();
 					res.setResult(MyResult.results.Err);
-					res.setErr_message("Existe al menos un ejemplar de este libro asignado a un préstamo.");
-					return res;
+					res.setErr_message("Existe al menos un ejemplar de este libro asignado a un préstamo. Por favor, revise los ejemplares que no hayan sido borrados.");					return res;
 				} else {
 			stmt.close();
 		
@@ -780,7 +779,7 @@ public class DataLibro extends DataMethods{
 		LinkedList<Libro> libros = new LinkedList<>();
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"select * from libro order by titulo"
+					"select * from libro order by titulo asc"
 					);
 			rs=stmt.executeQuery();
 			if(rs!=null) {
@@ -789,7 +788,7 @@ public class DataLibro extends DataMethods{
 				l.setIdLibro(rs.getInt("idLibro"));
 				l.setTitulo(rs.getString("titulo"));
 				l.setIsbn(rs.getInt("isbn"));
-				l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+				//l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
 				l.setGenero(rs.getString("genero"));
 				l.setIdProveedor(rs.getInt("idProveedor"));
 				l.setImagen(rs.getBytes("imagen"));

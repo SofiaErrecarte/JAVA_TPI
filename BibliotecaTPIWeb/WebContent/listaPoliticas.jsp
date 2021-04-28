@@ -93,8 +93,8 @@ html, body{
 			   				<option selected>Ordenar por..</option>
 			   				<option value="idmenor"> Menor a Mayor ID</option>
 			   				<option value="idmayor">Mayor a Menor ID</option>
-			   				<option value="fechamenor">Menor a Mayor Fecha Alta</option>
-			   				<option value="fechamayor">Mayor a Menor Fecha Alta</option>
+			   				<option value="fechamayor">Menor a Mayor Fecha Alta</option>
+			   				<option value="fechamenor">Mayor a Menor Fecha Alta</option>
 			   				
 			  			</select>
 			      <span class="input-group-btn">
@@ -161,8 +161,8 @@ html, body{
 						
                    
             </section>
-       
-
+ <br>      
+ <br>   
 <%@ include file = "footer.jsp" %>
 
  	<!--  <form action="agregarPolitica.jsp" method="post">

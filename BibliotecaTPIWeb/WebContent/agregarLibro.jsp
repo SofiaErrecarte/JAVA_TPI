@@ -84,44 +84,44 @@ html, body{
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="titulo">Título: </label>  
-  <div class="col-md-4">
+ 
   <input id="titulo" name="titulo" type="text" placeholder="Titulo" class="form-control input-md" required>
-  </div>
+  
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="autor">Autor </label>  
-  <div class="col-md-4">
+
   <input id="autor" name="autor" type="text" placeholder="Autor" class="form-control input-md" required>
-  </div>
+ 
 </div>
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="isbn">ISBN: </label>  
-  <div class="col-md-4">
+ 
   <input id="isbn" name="isbn" type="text" placeholder="ISBN" class="form-control input-md" required>
-  </div>
+  
 </div>
 
 
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="nroedicion">Numero de edicion: </label>  
-  <div class="col-md-4">
+
   <input id="nroedicion" name="nroedicion" type="text" placeholder="Numero Edicion" class="form-control input-md">
-  </div>
+
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="genero">Género:</label>  
-  <div class="col-md-4">
+ 
    <input type="text" name="genero" class="form-control input-md" placeholder="Género" required>
-     </div>
+     
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="prov">Proveedor: </label>  
-  <div class="col-md-4">
+
    <% if( proveedores.isEmpty()){%>
 		<a  href="agregarProveedor.jsp" style="color: #147A9B">
 	Añadir proveedor </a>
@@ -134,10 +134,12 @@ html, body{
                                 <% } %>
                             </select>
                             
-                        	<td> Su proveedor no se encuentra en la lista? <a 
+                        	 Su proveedor no se encuentra en la lista? <a 
 									href="agregarProveedor.jsp" style="color: #147A9B">
-										Añadir un nuevo proveedor</a></td><% } %>
-  </div>
+										Añadir un nuevo proveedor</a>
+						<% } %>
+										
+  
 </div>
 
 <div class="form-group">
@@ -147,6 +149,7 @@ html, body{
   </div>
 </div>
 </fieldset>
+<br>
 <table>
 <tr>
 <td>

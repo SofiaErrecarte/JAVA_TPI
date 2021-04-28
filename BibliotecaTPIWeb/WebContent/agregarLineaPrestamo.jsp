@@ -114,6 +114,7 @@ LinkedList<Ejemplar> ejemplares = ctrlL.getAllEjemplaresDisponibles();
 
 
 </fieldset>
+<br>
 <table>
 <tr>
 <td>

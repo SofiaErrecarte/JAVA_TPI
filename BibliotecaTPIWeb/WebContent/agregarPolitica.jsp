@@ -67,28 +67,20 @@ html, body{
   String mes = Integer.toString(c.get(Calendar.MONTH)+1);
   String annio = Integer.toString(c.get(Calendar.YEAR));
   %>
- <input class="form-control" type="date" id="fecha" name="fecha" value="<%=dia+'/'+mes+'/'+annio%>" style="display=block" disabled>	     
-  </div>
+<input class="form-control" type="text" id="fecha" name="fecha" value="<%=dia+'/'+mes+'/'+annio%>" style="display=block" disabled>  </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="numsocio">Cantidad maxima de libros Socio: </label>  
-  <div class="col-md-4">
   <input id="numsocio" name="numsocio" type="text" placeholder="Cant libros Socio" class="form-control input-md" required>
-  </div>
 </div>
 
 
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="numnosocio">Cantidad maxima de libros No Socio: </label>  
-  <div class="col-md-4">
-  
   <input id="numnosocio" name="numnosocio" type="text" placeholder="Cant de Libros No socio" class="form-control input-md" required>
-  
-  
-  </div>
 </div>
 
 </fieldset>

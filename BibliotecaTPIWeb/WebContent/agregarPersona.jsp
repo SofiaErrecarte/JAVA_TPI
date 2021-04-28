@@ -67,6 +67,7 @@ html, body{
                 
 
 <h3 class="login-heading mb-4 text-center">Usuario Nuevo</h3>
+<fieldset>
 <form class="form-horizontal" action="agregarPersonaServlet" method="post">
 
 <div class="form-group">
@@ -106,7 +107,7 @@ html, body{
   <label  for="pass">Contraseña </label>  
   <input  id="pass" name="pass" type="text" placeholder="Contraseña" class="form-control input-md" required/>
 </div>
- 
+ </fieldset>
 <br>
 
 <table>

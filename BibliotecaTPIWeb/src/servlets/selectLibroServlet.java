@@ -45,6 +45,7 @@ public class selectLibroServlet extends HttpServlet {
 		LibroController ctrlLib = new LibroController();
 		LinkedList<Libro> libros = ctrlLib.getByIDMinimo();
 		String op = request.getParameter("opcion");
+		
 		if (op.equalsIgnoreCase("idmenor")) {
 		libros= ctrlLib.getByIDMinimo();
 		}

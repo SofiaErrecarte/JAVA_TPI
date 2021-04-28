@@ -77,23 +77,23 @@ html, body{
 <section>     
 <div class="form-group">
   <label class="col-md-4 control-label" for="id">ID Prestamo: </label>  
-  <div class="col-md-4">
+ <div class="col-md-4">
       <!-- Este me guarda el atributo id -->
-       <input type="text" name="id" value=<%=p.getIdPrestamo()%> hidden="true">
+       <input type="text" name="id" value="<%=p.getIdPrestamo()%>" hidden="true">
        <!--  Este me lo muestra deshabilitado para q se vea el numero -->
-	 <input type="text" name="idPrestamo" value=<%=p.getIdPrestamo()%> class="form-control input-md" disabled>
-  </div>
+	 <input type="text" name="idPrestamo" value="<%=p.getIdPrestamo()%>" class="form-control input-md" disabled>
+ </div>
   <label class="col-md-4 control-label" for="id">Fecha Prestamo: </label>  
-  <div class="col-md-4">
-       <input type="text" name="fechaPrestamo" value=<%=p.getFechaPrestamo()%> hidden="true">
-	 <input type="text" name="fechaPrestamo" value=<%=p.getFechaPrestamo()%> class="form-control input-md" disabled>
-  </div>
+ <div class="col-md-4">
+       <input type="text" name="fechaPrestamo" value="<%=p.getFechaPrestamo()%>" hidden="true">
+	 <input type="text" name="fechaPrestamo" value="<%=p.getFechaPrestamo()%>" class="form-control input-md" disabled>
+ </div>
 </div>         
 <fieldset>  
                             	
               	<div class="form-group">
   			<label class="col-md-4 control-label" for="idEjemplar">Ingrese el Cliente: </label>  
- 			<div class="col-md-4">
+ 			
 				   <% if( personas != null) {%>
 				                            <select name="idPersona" class="form-control">
 				                                <%  for(int i = 0; i < personas.size(); i++) {
@@ -103,13 +103,13 @@ html, body{
 				                                <% } %>
 				                            </select>
 				                            <% }%>
-				  </div>
+				
 				</div>
                	
                 <div class="form-group">
                 <div class="tab-content" id="nav-tabContent">
                	<label class="col-md-4 control-label" for="fechaADevolver">Ingrese la Fecha de Devolución Estimada</label>  
-               	<input class="form-control" type="date" id="fechaADevolver" value=<%=p.getFechaADevoler() %> name="fechaADevolver" style="display=block" required>	     
+               	<input class="form-control" type="date" id="fechaADevolver" value="<%=p.getFechaADevoler() %>" name="fechaADevolver" style="display=block" required>	     
                 </div>   
                 </div>
 				<%-- <%if(p.getEstado().equals("Cerrado")){ %>

@@ -86,54 +86,54 @@ html, body{
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="id">ID Libro: </label>  
-  <div class="col-md-4">
+ 
       <%-- <input type="text" name="id" value=<%=lib.getIdLibro()%> class="form-control input-md" hidden="true"> --%>
       <!-- Este me guarda el atributo id -->
-       <input type="text" name="id" value=<%=lib.getIdLibro()%> hidden="true">
+       <input type="text" name="id" value="<%=lib.getIdLibro()%>" hidden="true">
        <!--  Este me lo muestra deshabilitado para q se vea el numero -->
-	 <input type="text" name="idLibro" value=<%=lib.getIdLibro()%> class="form-control input-md" disabled>
-  </div>
+	 <input type="text" name="idLibro" value="<%=lib.getIdLibro()%>" class="form-control " disabled>
+ 
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="razonSocial">ISBN:</label>  
-  <div class="col-md-4">
-    <input type="text"  name="isbn" value="<%=lib.getIsbn()%>"  class="form-control input-md" required>
-     </div>
+
+    <input type="text"  name="isbn" value="<%=lib.getIsbn()%>"  class="form-control" required>
+     
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="cuit">Titulo:</label>  
-  <div class="col-md-4">  
+  
   <input type="text" name="titulo"  placeholder="Título" class="form-control"  value="<%=lib.getTitulo()%>" required>
-  </div>
+
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="autor">Autor </label>  
-  <div class="col-md-4">
-  <input id="autor" name="autor" type="text" value=<%=lib.getAutor()%> placeholder="Autor" class="form-control input-md" required>
-  </div>
+ 
+  <input id="autor" name="autor" type="text" value="<%=lib.getAutor()%>" placeholder="Autor" class="form-control " required>
+  
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="razonSocial">Nro Edición:</label>  
-  <div class="col-md-4">
-    <input type="text" name="nroedicion" value=<%=lib.getNroEdicion()%> placeholder="Nro Edición" class="form-control input-md">
-</div>
+  
+    <input type="text" name="nroedicion" value="<%=lib.getNroEdicion()%>" placeholder="Nro Edición" class="form-control ">
+
 </div>
 
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="genero">Género:</label>  
-  <div class="col-md-4">
-   <input type="text" name="genero" value=<%=lib.getGenero()%> placeholder="Género" class="form-control input-md" required>
-     </div>
+ 
+   <input type="text" name="genero" value="<%=lib.getGenero()%>" placeholder="Género" class="form-control " required>
+     
 </div>
 
  <div class="form-group">
   <label class="col-md-4 control-label" for="idProveedor">ID Proveedor:</label>  
-  <div class="col-md-4">
+
     <% if( proveedores.isEmpty()){%>
 		<a class="ejemplaresbutton" href="agregarProveedor.jsp">
 	Añadir proveedor </a>
@@ -147,12 +147,13 @@ html, body{
                                 <% } %>
                             </select>
                             <% } %>
-                        	<td> Su proveedor no se encuentra en la lista? <a class="agreggatebutton"
-									href="agregarProveedor.jsp">
-										Añadir un nuevo proveedor</a></td>
+                        	 Su proveedor no se encuentra en la lista? <a class="agreggatebutton"
+									href="agregarProveedor.jsp" style="color: #147A9B">
+										Añadir un nuevo proveedor</a>
     </div>
-</div> 
+ 
 </fieldset>
+<br>
 <table>
 <tr>
 <td>
