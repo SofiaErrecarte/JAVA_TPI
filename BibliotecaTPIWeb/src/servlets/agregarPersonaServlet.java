@@ -56,7 +56,7 @@ public class agregarPersonaServlet extends HttpServlet {
 			}
 			
 		}else {
-			request.setAttribute("error", "La persona ingresada ya existe.");
+			request.setAttribute("error", "Existe una persona actualmente con ese DNI.");
 			request.getRequestDispatcher("agregarUsuario.jsp").forward(request, response); }
 	}
 }

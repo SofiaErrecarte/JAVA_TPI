@@ -332,6 +332,21 @@ public class DataPersona extends DataMethods{
 				} else {
 			stmt.close();
 			
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"SELECT COUNT(*) FROM persona WHERE email=?"
+					);
+			stmt.setString(1, per.getEmail());
+			rs = stmt.executeQuery();
+			if(rs!=null && rs.next()){
+				// preguntamos si hay al menos un proveedor con ese CUIT
+				if (rs.getInt(1) > 0) {
+					MyResult res = new MyResult();
+					res.setResult(MyResult.results.Err);
+					res.setErr_message("Existe una persona actualmente con ese usuario.");
+					return res;
+				} else {
+			stmt.close();
+			
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
 							"UPDATE `biblioteca`.`persona` SET `apellido` = ?, `nombre` = ?, `telefono` = ?, `email` = ?, `direccion` = ?, `dni` = ?, `admin` = ? WHERE (`idPersona` = ?);",							
@@ -347,7 +362,7 @@ public class DataPersona extends DataMethods{
 			stmt.setInt(8, per.getIdPersona());
 			stmt.executeUpdate();
 			
-		} }} catch (SQLException e) {
+		} }} }}catch (SQLException e) {
 			return Update(resultado);
 		} finally {
             try {

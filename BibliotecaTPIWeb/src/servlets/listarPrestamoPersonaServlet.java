@@ -54,8 +54,20 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 					}
 		
 					}
+				for(Prestamo p : prestamos_personas) {
+					if(p.getEstado().equals("Abierto")) {
+						int dias = (int) ((p.getFechaADevoler().getTime() - fechaHoy.getTime())/86400000);
+						if(dias<6 && dias>=0) {
+							request.setAttribute("advertencia2", "Tiene préstamos a vencer en los próximos días.");
+						}
+						if(fechaHoy.after(p.getFechaADevoler())) {
+						request.setAttribute("advertencia2", "Tiene préstamos vencidos.");
+						}
+					}
+					
+				}
 				
-	
+					request.setAttribute("PersonaDueña", pnew);
 					request.setAttribute("listaPrestamos", prestamos);
 					request.setAttribute("listaPrestamosPersonas", prestamos_personas);
 					request.setAttribute("Persona", "prestamospersona");

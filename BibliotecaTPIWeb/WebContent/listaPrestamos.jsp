@@ -17,7 +17,7 @@ String var = (String)request.getAttribute("Persona");
 LinkedList<Prestamo> prestamos = (LinkedList<Prestamo>)request.getAttribute("listaPrestamos");
 LinkedList<Prestamo> prestamos_personas = (LinkedList<Prestamo>)request.getAttribute("listaPrestamosPersonas");
 Persona user = (Persona)session.getAttribute("usuario");
-%>
+Persona dueña = (Persona)request.getAttribute("PersonaDueña");%>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -213,8 +213,11 @@ html, body{
                    }
                  %>
             <br>
+            <%if(user.isAdmin()==false){ %>
                   <h3 class="login-heading mb-4 text-center">Prestamos de <%=user.getNombre() %>   <%=user.getApellido() %>  </h3>
- 
+ 			<%}else{ %>
+ 			      <h3 class="login-heading mb-4 text-center">Prestamos de <%=dueña.getNombre() %> <%=dueña.getApellido() %></h3>
+ 			<%} %>
              <div class="container w3-container">
               <div class="row">
               <table class="table" class="text-center">
