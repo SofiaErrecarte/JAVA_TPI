@@ -333,9 +333,10 @@ public class DataPersona extends DataMethods{
 			stmt.close();
 			
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"SELECT COUNT(*) FROM persona WHERE email=?"
+					"SELECT COUNT(*) FROM persona WHERE email=? and idPersona!=?"
 					);
 			stmt.setString(1, per.getEmail());
+			stmt.setInt(2, per.getIdPersona());
 			rs = stmt.executeQuery();
 			if(rs!=null && rs.next()){
 				// preguntamos si hay al menos un proveedor con ese CUIT

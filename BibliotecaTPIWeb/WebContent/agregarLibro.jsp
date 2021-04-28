@@ -99,7 +99,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="isbn">ISBN: </label>  
  
-  <input id="isbn" name="isbn" type="text" placeholder="ISBN" class="form-control input-md" required>
+  <input id="isbn" name="isbn" type="number" placeholder="ISBN" class="form-control input-md" required>
   
 </div>
 
@@ -108,7 +108,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="nroedicion">Numero de edicion: </label>  
 
-  <input id="nroedicion" name="nroedicion" type="text" placeholder="Numero Edicion" class="form-control input-md">
+  <input id="nroedicion" name="nroedicion" type="number" placeholder="Numero Edicion" class="form-control input-md" required>
 
 </div>
 

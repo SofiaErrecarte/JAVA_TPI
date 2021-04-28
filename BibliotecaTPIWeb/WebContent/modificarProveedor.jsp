@@ -56,9 +56,9 @@ html, body{
   <label class="col-md-4 control-label" for="id">ID proveedor: </label>  
   <div class="col-md-4">
       <!-- Este me guarda el atributo id -->	
-    <input type="text" name="id" value="<%=prov.getIdProveedor()%> "hidden="true">	  
+    <input type="text" name="id" value="<%=prov.getIdProveedor()%>"hidden="true">	  
      <!--  Este me lo muestra deshabilitado para q se vea el numero -->  
-	 <input type="text" name="idLibro" value="<%=prov.getIdProveedor()%> " class="form-control input-md" disabled>
+	 <input type="text" name="idLibro" value="<%=prov.getIdProveedor()%>" class="form-control input-md" disabled>
   </div>
 </div>
 
@@ -78,21 +78,21 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="telefono">Teléfono:</label>  
 
-    <input type="text" name="telefono" value="<%=prov.getTelefono() %>" placeholder="Teléfono" class="form-control input-md " required>
+    <input type="text" name="telefono" value="<%=prov.getTelefono()%>" placeholder="Teléfono" class="form-control input-md " required>
 
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="mail">E-Mail:</label>  
 
-    <input type="text" name="mail" value="<%=prov.getMail() %>" placeholder="E-Mail" class="form-control input-md ">
+    <input type="text" name="mail" value="<%=prov.getMail()%>" placeholder="E-Mail" class="form-control input-md ">
 
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="direccion">Dirección:</label>  
   
-    <input type="text" name="direccion" value="<%=prov.getDireccion() %>" placeholder="Dirección" class="form-control  input-md" required>
+    <input type="text" name="direccion" value="<%=prov.getDireccion()%>" placeholder="Dirección" class="form-control  input-md" required>
   
 </div>
 </fieldset>

@@ -59,7 +59,7 @@ html, body{
       <!-- Este me guarda el atributo id -->	
     <input type="text" name="id" value="<%=p.getIdPersona()%>" hidden="true">	  
      <!--  Este me lo muestra deshabilitado para q se vea el numero -->  
-	 <input type="text" name="idLibro" value="<%=p.getIdPersona()%> " class="form-control input-md" disabled>
+	 <input type="text" name="idLibro" value="<%=p.getIdPersona()%>" class="form-control input-md" disabled>
   </div>
 </div>
 
