@@ -220,8 +220,8 @@ html, body{
               <table class="table" class="text-center">
               <tr>
               
-               <td class="text-center">
-              <!--  div class="form-group"-->
+               <!-- <td class="text-center">
+               div class="form-group"
               <form action="selectPrestamoServlet" method="post">
              	<div class="input-group">
              <select class="custom-select form-control" id="inlineFormCustomSelectPref" name="opcion" >
@@ -237,7 +237,7 @@ html, body{
 			      </span></div>
 			      </form>
 			  </td> 		 
-			  
+			   -->
 			      <td>
               <a class="btn btn-outline-secondary" title="Volver" href="listarLibroServlet"><i class="fa fa-mail-reply">Volver</i></a>
                </td>
