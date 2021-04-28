@@ -98,7 +98,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="razonSocial">ISBN:</label>  
 
-    <input type="text"  name="isbn" value="<%=lib.getIsbn()%>"  class="form-control" required>
+    <input type="number" min="0"  name="isbn" value="<%=lib.getIsbn()%>"  class="form-control" required>
      
 </div>
 
@@ -119,7 +119,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="razonSocial">Nro Edición:</label>  
   
-    <input type="text" name="nroedicion" value="<%=lib.getNroEdicion()%>" placeholder="Nro Edición" class="form-control ">
+    <input type="number" min="0" name="nroedicion" value="<%=lib.getNroEdicion()%>" placeholder="Nro Edición" class="form-control ">
 
 </div>
 
@@ -143,7 +143,7 @@ html, body{
                                 <%  for(int i = 0; i < proveedores.size(); i++) {
                                     Proveedor p = (Proveedor)proveedores.get(i);
                                 %>
-                                <option value="<%= p.getIdProveedor() %>"><%=p.getCUIT()%> - <%= p.getRazonSocial()%></option>
+                                <option value="<%=p.getIdProveedor() %>"><%=p.getCUIT()%> - <%= p.getRazonSocial()%></option>
                                 <% } %>
                             </select>
                             <% } %>

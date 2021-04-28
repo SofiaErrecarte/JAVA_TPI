@@ -147,7 +147,9 @@ html, body{
 		                        			<th class="text-center">Genero</th>
 		                        			<th class="text-center">Proveedor</th>
 		                        			<th class="text-center">Cantidad Disponible</th>
+		                        			<%if (user.isAdmin()){%>
 		                        			<th class="text-center">Acciones</th>
+		                        			<%} %>
 		                        			<th class="text-center">  </th>
                                         </tr>
                                     </thead>
@@ -166,23 +168,19 @@ html, body{
                     				<td class="text-center"><%=lib.getTitulo()%></td>
                     				<td class="text-center"><%=lib.getAutor()%></td>
                     				<td class="text-center"><%=lib.getIsbn()%></td>
-                    				<%-- <td><%=lib.getFechaEdicion()%></td> --%>
                     				<%if (lib.getNroEdicion()!= 0){ %>
                     				<td class="text-center"><%=lib.getNroEdicion()%></td>
                     				<%}else{ %>
                     				<td class="text-center">-</td>
                     				<%} %>
-                    				<%-- <td><%=lib.getCantDiasMaxPrestamo()%></td> --%>
                     				<td class="text-center"><%=lib.getGenero()%></td>
                     				<td class="text-center"><%=lib.getCUIT()%> - <%=lib.getRazonSocialProv()%></td>
                     				<td class="text-center"><%=ctrlL.cantEjDisponibles(lib)%></td>
                     				
                     				<%if (user.isAdmin() && lib.getIdLibro()!=0) {%>
                     				<td class="text-center">
-                    				
                     				<a class="editbutton" href="modificarLibroServlet?id=<%=lib.getIdLibro()%>" title="Editar"><i class="fa fa-pencil"></i></a>
-                    				<!-- ver como poner este mensaje pa q el user entienda algo -->
-									<a href="borrarLibroServlet?id=<%=lib.getIdLibro()%>" class="deletebutton" title="Eliminar" onclick="return confirm('Se eliminará el libro y/o aquellos ejemplares que no hayan sido asignados a préstamos. Desea confirmar?')"><i class="fa fa-trash"></i></a> 
+                    				<a href="borrarLibroServlet?id=<%=lib.getIdLibro()%>" class="deletebutton" title="Eliminar" onclick="return confirm('Se eliminará el libro y/o aquellos ejemplares que no hayan sido asignados a préstamos. Desea confirmar?')"><i class="fa fa-trash"></i></a> 
 									<a href="listarEjemplaresServlet?id=<%=lib.getIdLibro()%>" class="ejemplaresbutton" title="Ejemplares"><i class="fa fa-list-ul"></i></a>
 									</td>
 									

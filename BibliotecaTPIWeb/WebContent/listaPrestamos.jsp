@@ -180,18 +180,6 @@ html, body{
                    
                 </div>
           
-      <!--   <table>
-                            <td>
-                           
-                             <form action="agregarPrestamo.jsp" method="post">
-                             <button class="addbutton">Agregar Prestamo</button>
-							 </form> 
-							</td>
-							 <td>
-							    <a type="button" class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto; color: white" href="listarLibroServlet" >Inicio</a>
-							  </td>
-							 
-                            </table>-->
         </section>
    <%@ include file = "footer.jsp" %>
 <%}%>
@@ -223,27 +211,9 @@ html, body{
               <table class="table" class="text-center">
               <tr>
               
-               <!-- <td class="text-center">
-               div class="form-group"
-              <form action="selectPrestamoServlet" method="post">
-             	<div class="input-group">
-             <select class="custom-select form-control" id="inlineFormCustomSelectPref" name="opcion" >
-			   				<option selected>Ordenar por..</option>
-			   				<option value="idmenor"> Menor a Mayor ID</option>
-			   				<option value="idmayor">Mayor a Menor ID</option>
-			   				<option value="fechamenor">Menor a Mayor Fecha Prestamo</option>
-			   				<option value="fechamayor">Mayor a Menor Fecha Prestamo</option>
-			   				
-			  			</select>
-			      <span class="input-group-btn">
-			        <input class="btn btn-outline-secondary" type="submit" name="AplicarFiltro" value= "Aplicar Filtro"> 
-			      </span></div>
-			      </form>
-			  </td> 		 
-			   -->
+             
 			      <td>
-              <a class="btn btn-outline-secondary" title="Volver" href="listarLibroServlet"><i class="fa fa-mail-reply">Volver</i></a>
-               </td>
+              <a class="btn btn-outline-secondary" href="listarLibroServlet">Volver</a></td>
 			  </tr>
 			  </table>
 			  </div>
@@ -278,24 +248,6 @@ html, body{
                                 </table>
                             </div>
                         </div>
-                   
-              
-          
-      <!--   <table>
-                            <td>
-                           
-                             <form action="agregarPrestamo.jsp" method="post">
-                             <button class="addbutton">Agregar Prestamo</button>
-							 </form> 
-							</td>
-							 <td>
-							    <a type="button" class="btn btn-lg btn-primary" style = "FONT-SIZE: 10pt;width:250px; margin:0 auto; color: white" href="listarLibroServlet" >Inicio</a>
-							  </td>
-							 
-                            </table>-->
-     
-
-         <!-- Footer -->
 
 <%} %>
 </body>
