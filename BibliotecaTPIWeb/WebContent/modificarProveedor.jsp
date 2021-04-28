@@ -64,7 +64,7 @@ html, body{
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="cuit">CUIT:</label>  
-   <input type="text" name="cuit" value="<%=prov.getCUIT()%>" placeholder="CUIT" class="form-control input-md" required>
+   <input type="number" min="10000000000" max="99999999999" name="cuit" value="<%=prov.getCUIT()%>" placeholder="CUIT" class="form-control input-md" required>
 </div>
 
 
