@@ -31,6 +31,7 @@ public class DataPersona extends DataMethods{
 				per.setDireccion(rs.getString("direccion"));
 				per.setDni(rs.getString("dni"));
 				per.setTelefono(rs.getString("telefono")); 
+				per.setActivo(rs.getBoolean("activo"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -236,6 +237,7 @@ public class DataPersona extends DataMethods{
 				per.setDireccion(rs.getString("direccion"));
 				per.setDni(rs.getString("dni"));
 				per.setTelefono(rs.getString("telefono"));
+				per.setActivo(rs.getBoolean("activo"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -436,6 +438,7 @@ public class DataPersona extends DataMethods{
 					per.setDireccion(rs.getString("direccion"));
 					per.setDni(rs.getString("dni"));
 					per.setTelefono(rs.getString("telefono"));
+					per.setActivo(rs.getBoolean("activo"));
 				personas.add(per);
 			}}
 		} catch (SQLException e) {
@@ -475,6 +478,7 @@ public class DataPersona extends DataMethods{
 					per.setDireccion(rs.getString("direccion"));
 					per.setDni(rs.getString("dni"));
 					per.setTelefono(rs.getString("telefono"));
+					per.setActivo(rs.getBoolean("activo"));
 				personas.add(per);
 			}}
 		} catch (SQLException e) {
@@ -514,6 +518,7 @@ public class DataPersona extends DataMethods{
 					per.setDireccion(rs.getString("direccion"));
 					per.setDni(rs.getString("dni"));
 					per.setTelefono(rs.getString("telefono"));
+					per.setActivo(rs.getBoolean("activo"));
 				personas.add(per);
 			}}
 		} catch (SQLException e) {
@@ -552,6 +557,7 @@ public class DataPersona extends DataMethods{
 					per.setDireccion(rs.getString("direccion"));
 					per.setDni(rs.getString("dni"));
 					per.setTelefono(rs.getString("telefono"));
+					per.setActivo(rs.getBoolean("activo"));
 				personas.add(per);
 			}}
 		} catch (SQLException e) {
