@@ -74,13 +74,18 @@ html, body{
                    <%}
                    }
                  %>
+            
+             	 
                              <br>
                  
-  
-  <%if (cant>=limiteNS) { %>
-		<div class="warning">No puede agregar más libros a este préstamo. Límite de política alcanzado.</div>		
-	<% } %>
-  
+   <%if(pp.getIdPoliticaPrestamo()!=0){ %>
+  		<%if (cant>=limiteNS) { %>
+				<div class="warning">No puede agregar más libros a este préstamo. Límite de política alcanzado.</div>		
+		<% } %>  
+   <%} else { %>
+   			<div class="error">No puede cargar líneas. No hay políticas registradas con fecha anterior a este préstamo. Comuníquese con el administrador.</div>
+           
+   <% } %>  	
   
   <div class="card">
     <div class="card-body">
@@ -119,8 +124,13 @@ html, body{
                         </div>
    <div class="card">
     <div class="card-body">
+    <%if(pp.getIdPoliticaPrestamo()!=0){ %>
       <h5 class="card-title"> Política aplicada: <%=pp.getIdPoliticaPrestamo() %></h5>
       <h6>Límite de libros: <%=pp.getCantMaximaNoSocio()%></h6>
+      <%} else { %>
+      <h5 class="card-title"> Política aplicada: No corresponde</h5>
+      <h6>Límite de libros: No corresponde</h6>
+       <% } %>  
     </div>
   </div>
   <br>
