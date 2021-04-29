@@ -64,21 +64,21 @@ html, body{
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="cuit">CUIT:</label>  
-   <input type="number" min="10000000000" max="99999999999" name="cuit" value="<%=prov.getCUIT()%>" placeholder="CUIT" class="form-control input-md" required>
+   <input type="text" pattern="[0-9]{11}" title="Ingrese los 11 números del CUIT sin guiones." name="cuit" value="<%=prov.getCUIT()%>" placeholder="CUIT" class="form-control input-md" required>
 </div>
 
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="razonSocial">Razón Social:</label>  
 
-    <input type="text" name="razonSocial" value="<%=prov.getRazonSocial()%>" placeholder="Razón Social" class="form-control input-md " required>
+    <input type="text" name="razonSocial" pattern="[A-Za-z ]{1,20}" title="No utilices caracteres especiales. Máximo 20 caracteres" value="<%=prov.getRazonSocial()%>" placeholder="Razón Social" class="form-control input-md " required>
 
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="telefono">Teléfono:</label>  
 
-    <input type="text" name="telefono" value="<%=prov.getTelefono()%>" placeholder="Teléfono" class="form-control input-md " required>
+    <input type="text" pattern="[0-9]{6,20}" title="Ingresa un número de telefono válido" name="telefono" value="<%=prov.getTelefono()%>" placeholder="Teléfono" class="form-control input-md " required>
 
 </div>
 

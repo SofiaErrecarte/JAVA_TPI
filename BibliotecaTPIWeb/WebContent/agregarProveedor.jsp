@@ -76,7 +76,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="cuit">CUIT: </label>  
 
-  <input id="cuit" name="cuit" type="number" min="10000000000" max="99999999999" placeholder="CUIT" class="form-control input-md" required>
+  <input id="cuit" name="cuit" type="text" pattern="[0-9]{11}" title="Ingrese los 11 números del CUIT sin guiones."  placeholder="CUIT" class="form-control input-md" required>
   
 </div>
 
@@ -84,7 +84,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="razonSocial">Razón Social </label>  
   
-  <input id="razonSocial" name="razonSocial" type="text" placeholder="Razon Social" class="form-control input-md" required>
+  <input id="razonSocial" name="razonSocial" pattern="[A-Za-z ]{1,20}" title="No utilices caracteres especiales. Máximo 20 caracteres" type="text" placeholder="Razon Social" class="form-control input-md" required>
   
 </div>
 
@@ -93,7 +93,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="telefono">Telefono: </label>  
  
-  <input id="telefono" name="telefono" type="text" placeholder="Telefono" class="form-control input-md" required>
+  <input id="telefono" name="telefono" type="text" pattern="[0-9]{6,20}" title="Ingresa un número de telefono válido" placeholder="Telefono" class="form-control input-md" required>
  
 </div>
 

@@ -72,24 +72,24 @@ html, body{
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="apellido">Apellido </label>  
-  <input id="apellido" name="apellido" type="text" placeholder="Apellido" class="form-control input-md" required>
+  <input id="apellido" name="apellido" type="text" pattern="[A-Za-z ]{1,20}" title="No utilices caracteres especiales. Máximo 20 caracteres" placeholder="Apellido" class="form-control input-md" required>
 </div>
 <!-- Text input-->
 <div class="form-group">
   <label  for="nombre">Nombre </label>  
-  <input id="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control input-md" required>
+  <input id="nombre" name="nombre" type="text" pattern="[A-Za-z ]{1,20}" title="No utilices caracteres especiales. Máximo 20 caracteres" placeholder="Nombre" class="form-control input-md" required>
 
 </div>
 
 <div class="form-group">
   <label>DNI </label>  
-  <input  id="dni" name="dni" type="text" placeholder="DNI" class="form-control input-md" required>
+  <input  id="dni" name="dni" type="text" pattern="[0-9]{8}" title="Ingrese DNI sin puntos" placeholder="DNI" class="form-control input-md" required>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
   <label  for="telefono">Telefono </label>  
-  <input id="telefono" name="telefono" type="text" placeholder="Telefono" class="form-control input-md" required>
+  <input id="telefono" name="telefono" type="text" pattern="[0-9]{6,20}" title="Ingresa un número de telefono válido" placeholder="Telefono" class="form-control input-md" required>
   </div>
   
 <div class="form-group">
@@ -100,7 +100,7 @@ html, body{
 <!-- Text input-->
 <div class="form-group">
   <label for="mail">Usuario </label>  
-  <input  id="mail" name="mail" type="text" placeholder="Usuario" class="form-control input-md" required>
+  <input  id="mail" name="mail" type="text" pattern="[A-Za-z0-9]{5,15}" title="No utilices caracteres especiales. Mínimo 5 caracteres, máximo 15" placeholder="Usuario" class="form-control input-md" required>
 </div>
 
  <div class="form-group">

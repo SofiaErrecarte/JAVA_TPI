@@ -70,8 +70,8 @@ public void setIdLibro(int idLibro) {
 public int getIsbn() {
 	return isbn;
 }
-public void setIsbn(int isbn) {
-	this.isbn = isbn;
+public void setIsbn(int isbn2) {
+	this.isbn = isbn2;
 }
 public Date getFechaEdicion() {
 	return fechaEdicion;

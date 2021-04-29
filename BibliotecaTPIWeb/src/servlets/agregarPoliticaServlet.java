@@ -30,25 +30,13 @@ public class agregarPoliticaServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 				PoliticaPrestamoController ctrlPP = new PoliticaPrestamoController();
 				PoliticaPrestamo pp = new PoliticaPrestamo();
-				try {
-					int numSocio = Integer.parseInt(request.getParameter("numsocio"));
-					pp.setCantMaximaSocio(numSocio);
-					}
-				catch (NumberFormatException e){
-					request.setAttribute("errorString", "Ingrese un número en la Cantidad Máxima Socio por favor");
-					request.getRequestDispatcher("agregarPolitica.jsp").forward(request, response); 
-					
-				}
-				try {
-					int numNoSocio = Integer.parseInt(request.getParameter("numnosocio"));
-					pp.setCantMaximaNoSocio(numNoSocio);
-				} catch (Exception e) {
-					request.setAttribute("errorString", "Ingrese un número en la Cantidad Máxima No Socio por favor.");
-					request.getRequestDispatcher("agregarPolitica.jsp").forward(request, response); 
-				}
+				int numSocio = Integer.parseInt(request.getParameter("numsocio"));
+				pp.setCantMaximaSocio(numSocio);
+				int numNoSocio = Integer.parseInt(request.getParameter("numnosocio"));
+				pp.setCantMaximaNoSocio(numNoSocio);
+				
 				
 				
 				MyResult res = ctrlPP.newPolitica(pp);

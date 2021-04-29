@@ -178,7 +178,7 @@ public class DataProveedor extends DataMethods{
 				if (rs.getInt(1) > 0) {
 					MyResult res = new MyResult();
 					res.setResult(MyResult.results.Err);
-					res.setErr_message("Existe un proveedor actualmente con ese CUIT");
+					res.setErr_message("Existe un proveedor actualmente con ese CUIT(001).");
 					return res;
 				} else {
 			stmt.close();

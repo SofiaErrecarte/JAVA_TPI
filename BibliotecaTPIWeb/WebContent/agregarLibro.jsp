@@ -85,21 +85,21 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="titulo">Título: </label>  
  
-  <input id="titulo" name="titulo" type="text" placeholder="Titulo" class="form-control input-md" required>
+  <input id="titulo" name="titulo" type="text" pattern="[A-Za-z ]{1,20}" title="No utilices caracteres especiales. Máximo 20 caracteres" placeholder="Titulo" class="form-control input-md" required>
   
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="autor">Autor </label>  
 
-  <input id="autor" name="autor" type="text" placeholder="Autor" class="form-control input-md" required>
+  <input id="autor" name="autor" type="text" pattern="[A-Za-z ]{1,20}" title="No utilices caracteres especiales. Máximo 20 caracteres" placeholder="Autor" class="form-control input-md" required>
  
 </div>
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="isbn">ISBN: </label>  
  
-  <input id="isbn" name="isbn" type="number" min="0" placeholder="ISBN" class="form-control input-md" required>
+  <input id="isbn" name="isbn" type="text" pattern="[0-9]{5}" title="Ingrese 5 números. No utilice letras ni caracteres especiales." placeholder="ISBN" class="form-control input-md" required>
   
 </div>
 
@@ -108,14 +108,14 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="nroedicion">Numero de edicion: </label>  
 
-  <input id="nroedicion" name="nroedicion" type="number" min="0" placeholder="Numero Edicion" class="form-control input-md" required>
+  <input id="nroedicion" name="nroedicion" type="text" pattern="[0-9]{1,3}" title="No utilice letras ni caracteres especiales. Máximo 3 números" placeholder="Numero Edicion" class="form-control input-md" required>
 
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="genero">Género:</label>  
  
-   <input type="text" name="genero" class="form-control input-md" placeholder="Género" required>
+   <input type="text" name="genero" pattern="[A-Za-z ]{1,20}" title="No utilices caracteres especiales. Máximo 20 caracteres" class="form-control input-md" placeholder="Género" required>
      
 </div>
 

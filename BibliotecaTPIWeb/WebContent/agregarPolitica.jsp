@@ -73,14 +73,14 @@ html, body{
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="numsocio">Cantidad maxima de libros Socio: </label>  
-  <input id="numsocio" name="numsocio" type="number" min="0"  placeholder="Cant libros Socio" class="form-control input-md" required>
+  <input id="numsocio" name="numsocio" type="text" pattern="[1-9]{1,2}" title="Ingrese un número del 1 al 99." placeholder="Cant libros Socio" class="form-control input-md" required>
 </div>
 
 
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="numnosocio">Cantidad maxima de libros No Socio: </label>  
-  <input id="numnosocio" name="numnosocio" type="number" min="0"  placeholder="Cant de Libros No socio" class="form-control input-md" required>
+  <input id="numnosocio" name="numnosocio" type="text" pattern="[1-9]{1,2}" title="Ingrese un número del 1 al 99."  placeholder="Cant de Libros No socio" class="form-control input-md" required>
 </div>
 
 </fieldset>

@@ -41,8 +41,6 @@ public class modificarProveedorServlet extends HttpServlet {
 		}
 		String direccion = request.getParameter("direccion");
 		
-		
-		
 		prov.setCUIT(CUIT);
 		prov.setRazonSocial(razonSocial);
 		prov.setMail(mail);

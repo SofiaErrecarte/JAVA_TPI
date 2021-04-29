@@ -304,7 +304,7 @@ public class DataLibro extends DataMethods{
 		
 		try {
 			stmt= DbConnector.getInstancia().getConn().createStatement();
-			rs= stmt.executeQuery("select * from libro where titulo LIKE '%" +nombuscar+ "%'"
+			rs= stmt.executeQuery("select * from libro where LOWER(titulo) LIKE '%" +nombuscar+ "%'"
 					);
 			//intencionalmente no se recupera la password
 			if(rs!=null) {
@@ -779,7 +779,7 @@ public class DataLibro extends DataMethods{
 		LinkedList<Libro> libros = new LinkedList<>();
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"select * from libro order by titulo asc"
+					"select * from libro inner join proveedor on proveedor.idProveedor=libro.idProveedor order by titulo asc"
 					);
 			rs=stmt.executeQuery();
 			if(rs!=null) {
@@ -788,9 +788,11 @@ public class DataLibro extends DataMethods{
 				l.setIdLibro(rs.getInt("idLibro"));
 				l.setTitulo(rs.getString("titulo"));
 				l.setIsbn(rs.getInt("isbn"));
-				//l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+				l.setNroEdicion( rs.getInt("nroEdicion"));
+				l.setIsbn(rs.getInt("isbn"));
 				l.setGenero(rs.getString("genero"));
-				l.setIdProveedor(rs.getInt("idProveedor"));
+				l.setRazonSocialProv(rs.getString("razonSocial"));
+				l.setCUIT(rs.getString("cuit"));
 				l.setImagen(rs.getBytes("imagen"));
 				l.setAutor(rs.getString("autor"));
 				libros.add(l);
@@ -817,7 +819,7 @@ public class DataLibro extends DataMethods{
 		LinkedList<Libro> libros = new LinkedList<>();
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"select * from libro order by titulo desc"
+					"select * from libro inner join proveedor on proveedor.idProveedor=libro.idProveedor order by titulo desc"
 					);
 			rs=stmt.executeQuery();
 			if(rs!=null) {
@@ -826,9 +828,11 @@ public class DataLibro extends DataMethods{
 				l.setIdLibro(rs.getInt("idLibro"));
 				l.setTitulo(rs.getString("titulo"));
 				l.setIsbn(rs.getInt("isbn"));
-				//l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+				l.setNroEdicion( rs.getInt("nroEdicion"));
+				l.setIsbn(rs.getInt("isbn"));
 				l.setGenero(rs.getString("genero"));
-				l.setIdProveedor(rs.getInt("idProveedor"));
+				l.setRazonSocialProv(rs.getString("razonSocial"));
+				l.setCUIT(rs.getString("cuit"));
 				l.setImagen(rs.getBytes("imagen"));
 				l.setAutor(rs.getString("autor"));
 				libros.add(l);
@@ -855,7 +859,7 @@ public class DataLibro extends DataMethods{
 		LinkedList<Libro> libros = new LinkedList<>();
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"select * from libro order by idLibro"
+					"select * from libro inner join proveedor on proveedor.idProveedor=libro.idProveedor order by idLibro"
 					);
 			rs=stmt.executeQuery();
 			if(rs!=null) {
@@ -863,10 +867,11 @@ public class DataLibro extends DataMethods{
 				l = new Libro();
 				l.setIdLibro(rs.getInt("idLibro"));
 				l.setTitulo(rs.getString("titulo"));
-				l.setIsbn(rs.getInt("isbn"));
-				//l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
+				l.setNroEdicion( rs.getInt("nroEdicion"));
 				l.setGenero(rs.getString("genero"));
-				l.setIdProveedor(rs.getInt("idProveedor"));
+				l.setIsbn(rs.getInt("isbn"));
+				l.setRazonSocialProv(rs.getString("razonSocial"));
+				l.setCUIT(rs.getString("cuit"));
 				l.setImagen(rs.getBytes("imagen"));
 				l.setAutor(rs.getString("autor"));
 				libros.add(l);
@@ -893,7 +898,7 @@ public class DataLibro extends DataMethods{
 		LinkedList<Libro> libros = new LinkedList<>();
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"select * from libro order by idLibro desc"
+					"select * from libro inner join proveedor on proveedor.idProveedor=libro.idProveedor order by idLibro desc"
 					);
 			rs=stmt.executeQuery();
 			if(rs!=null) {
@@ -901,10 +906,11 @@ public class DataLibro extends DataMethods{
 				l = new Libro();
 				l.setIdLibro(rs.getInt("idLibro"));
 				l.setTitulo(rs.getString("titulo"));
+				l.setNroEdicion( rs.getInt("nroEdicion"));
 				l.setIsbn(rs.getInt("isbn"));
-				//l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
 				l.setGenero(rs.getString("genero"));
-				l.setIdProveedor(rs.getInt("idProveedor"));
+				l.setRazonSocialProv(rs.getString("razonSocial"));
+				l.setCUIT(rs.getString("cuit"));
 				l.setImagen(rs.getBytes("imagen"));
 				l.setAutor(rs.getString("autor"));
 				libros.add(l);
@@ -931,7 +937,7 @@ public class DataLibro extends DataMethods{
 		LinkedList<Libro> libros = new LinkedList<>();
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
-					"select * from libro order by idProveedor"
+					"select * from libro inner join proveedor on proveedor.idProveedor=libro.idProveedor order by razonSocial"
 					);
 			rs=stmt.executeQuery();
 			if(rs!=null) {
@@ -939,10 +945,11 @@ public class DataLibro extends DataMethods{
 				l = new Libro();
 				l.setIdLibro(rs.getInt("idLibro"));
 				l.setTitulo(rs.getString("titulo"));
+				l.setNroEdicion( rs.getInt("nroEdicion"));
 				l.setIsbn(rs.getInt("isbn"));
-				//l.setCantDiasMaxPrestamo(rs.getInt("cantDiasMaxPrestamo"));
 				l.setGenero(rs.getString("genero"));
-				l.setIdProveedor(rs.getInt("idProveedor"));
+				l.setRazonSocialProv(rs.getString("razonSocial"));
+				l.setCUIT(rs.getString("cuit"));
 				l.setImagen(rs.getBytes("imagen"));
 				l.setAutor(rs.getString("autor"));
 				libros.add(l);

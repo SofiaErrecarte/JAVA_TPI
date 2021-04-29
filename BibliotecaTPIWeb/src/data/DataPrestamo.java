@@ -373,6 +373,7 @@ public class DataPrestamo extends DataMethods{
 				p.setIdPrestamo(rs.getInt("idPrestamo"));
 				p.setFechaPrestamo(rs.getDate("fechaPrestamo"));
 				p.setFechaADevoler(rs.getDate("fechaADevolver"));
+				p.setFechaDevolucion(rs.getDate("fechaDevolucion"));
 				p.setIdPersona(rs.getInt("idPersona"));
 				p.setEstado(rs.getString("estado"));
 				prestamos.add(p);
@@ -407,6 +408,7 @@ public class DataPrestamo extends DataMethods{
 				p.setIdPrestamo(rs.getInt("idPrestamo"));
 				p.setFechaPrestamo(rs.getDate("fechaPrestamo"));
 				p.setFechaADevoler(rs.getDate("fechaADevolver"));
+				p.setFechaDevolucion(rs.getDate("fechaDevolucion"));
 				p.setIdPersona(rs.getInt("idPersona"));
 				p.setEstado(rs.getString("estado"));
 				prestamos.add(p);
@@ -442,6 +444,7 @@ public class DataPrestamo extends DataMethods{
 				p.setIdPrestamo(rs.getInt("idPrestamo"));
 				p.setFechaPrestamo(rs.getDate("fechaPrestamo"));
 				p.setFechaADevoler(rs.getDate("fechaADevolver"));
+				p.setFechaDevolucion(rs.getDate("fechaDevolucion"));
 				p.setIdPersona(rs.getInt("idPersona"));
 				p.setEstado(rs.getString("estado"));
 				prestamos.add(p);
@@ -477,6 +480,7 @@ public class DataPrestamo extends DataMethods{
 				p.setIdPrestamo(rs.getInt("idPrestamo"));
 				p.setFechaPrestamo(rs.getDate("fechaPrestamo"));
 				p.setFechaADevoler(rs.getDate("fechaADevolver"));
+				p.setFechaDevolucion(rs.getDate("fechaDevolucion"));
 				p.setIdPersona(rs.getInt("idPersona"));
 				p.setEstado(rs.getString("estado"));
 				prestamos.add(p);
