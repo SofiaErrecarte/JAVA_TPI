@@ -3,6 +3,8 @@
 <%@page import="entities.Libro"%>
 <%@page import="entities.Persona"%>
 <%@page import="entities.MyResult"%>
+<%@page import="java.util.Base64"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -84,16 +86,32 @@ html, body{
                    }}
                  %>
                    <br>
-					<div class="panel-group">
- 
-<div class="card">
-    <div class="card-body">
-      <h3 class="card-title">Libro: <%=lib.getTitulo()%> </h3>
-      <h5 class="card-text">Autor: <%=lib.getAutor()%></h5>
-      <h6 class="card-text">Género: <%=lib.getGenero()%></h6>
-    </div>
-  </div>
+                   
 
+<div class="container w3-container">
+              <div class="row">
+              <table class="table" class="text-center">
+              <tr>
+               <td class="text-center">
+              <!--  div class="form-group"-->
+			  <div class="card">
+			    <div class="card-body">
+			      <h3 class="card-title">Libro: <%=lib.getTitulo()%> </h3>
+			      <h5 class="card-text">Autor: <%=lib.getAutor()%></h5>
+			      <h6 class="card-text">Género: <%=lib.getGenero()%></h6>
+			    </div>
+			  </div>
+			  </td> 		 
+			  <td>		
+			  <div class="col-md-6">
+  					<%String photo=Base64.getEncoder().encodeToString(lib.getImagen()); %>
+  					<img src="data:image/png;base64,<%=photo%>" />
+    			</div>
+			      </td>
+			  </tr>
+			  </table>
+			  </div>
+               	</div>           
                <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <table class="table" class="text-center">
@@ -126,7 +144,7 @@ html, body{
                             </div>
 
                         </div>
-                    </div>
+                  
                 </div>
             </div>
       <!--  <table>

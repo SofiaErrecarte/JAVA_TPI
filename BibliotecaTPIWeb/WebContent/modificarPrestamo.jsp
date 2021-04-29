@@ -93,7 +93,7 @@ html, body{
                             	
               	<div class="form-group">
   			<label class="col-md-4 control-label" for="idEjemplar">Ingrese el Cliente: </label>  
- 			
+ 			<div class="col-md-4">
 				   <% if( personas != null) {%>
 				                            <select name="idPersona" class="form-control">
 				                                <%  for(int i = 0; i < personas.size(); i++) {
@@ -103,14 +103,16 @@ html, body{
 				                                <% } %>
 				                            </select>
 				                            <% }%>
-				
+				</div>
 				</div>
                	
                 <div class="form-group">
                 <div class="tab-content" id="nav-tabContent">
-               	<label class="col-md-4 control-label" for="fechaADevolver">Ingrese la Fecha de Devolución Estimada</label>  
+               	<label class="col-md-4 control-label" for="fechaADevolver">Ingrese la Fecha de Devolución Estimada</label> 
+               <div class="col-md-4">
                	<input class="form-control" type="date" id="fechaADevolver" value="<%=p.getFechaADevoler() %>" name="fechaADevolver" style="display=block" required>	     
                 </div>   
+                </div>
                 </div>
                 
                 

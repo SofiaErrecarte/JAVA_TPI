@@ -166,12 +166,7 @@ html, body{
                     				<td class="text-center"><%=p.getNombre()%></td>
                     				<td class="text-center"><%=p.getApellido()%></td>
                     				<td class="text-center"><%=p.getDni()%></td>
-                    				<%if (!p.getTelefono().equals(null)){ %>
                     				<td class="text-center"><%=p.getTelefono()%></td>
-                    				<%}else{ %>
-                    				<td class="text-center">-</td>
-                    				<%} %>
-
                     				<td class="text-center"><%=p.getDireccion()%></td>
                     				<td class="text-center"><%=p.getEmail()%></td>
                     				<%if(p.getIdPersona()!=0){ %>

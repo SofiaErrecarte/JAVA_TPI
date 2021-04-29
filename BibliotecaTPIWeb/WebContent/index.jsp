@@ -27,15 +27,12 @@
 	h1, .h1 {
 	  font-size: 4em;
 	}
-	
-
-
-	
 </style>
 
 
 </head>
 <body>
+
 <%@ include file="navInicio.jsp"%>
 <%request.setAttribute("respuesta", "ok"); %>
 
@@ -68,11 +65,13 @@
                    }
                  %> 
 	
-    <!-- Login Form -->
+ <!-- Login Form -->
     <form action="init" method="post">
+     <FONT SIZE=6>  
       <input type="text" id="login" class="fadeIn second" placeholder="Usuario" name="email" required>
       <input type="password" id="password" class="fadeIn third" placeholder="Contraseña" name="password" required>
       <input type="submit" class="fadeIn fourth" value="Ingresar">
+      </font>
     </form>
 
     <!-- Remind Passowrd -->
@@ -83,6 +82,8 @@
   </div>
 </div>
 </header>
+
 <%@ include file = "footer.jsp" %>
+
 </body>
 </html>

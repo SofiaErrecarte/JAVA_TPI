@@ -91,35 +91,36 @@ html, body{
       <!-- Este me guarda el atributo id -->
        <input type="text" name="id" value="<%=lib.getIdLibro()%>" hidden="true">
        <!--  Este me lo muestra deshabilitado para q se vea el numero -->
+       <div class="col-md-4">
 	 <input type="text" name="idLibro" value="<%=lib.getIdLibro()%>" class="form-control " disabled>
- 
+ </div>
 </div>
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="isbn">ISBN:</label>  
+  <label class="col-md-4 control-label" for="razonSocial">ISBN:</label>  
 
-    <input type="text" pattern="[0-9]{5}" title="Ingrese 5 números. No utilice letras ni caracteres especiales." name="isbn" value="<%=lib.getIsbn()%>"  class="form-control" required>
+    <input type="number" min="0"  name="isbn" value="<%=lib.getIsbn()%>"  class="form-control" required>
      
 </div>
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="titulo">Titulo:</label>  
+  <label class="col-md-4 control-label" for="cuit">Titulo:</label>  
   
-  <input type="text" name="titulo" pattern="[A-Za-z ]{1,20}" title="No utilices caracteres especiales. Máximo 20 caracteres" placeholder="Título" class="form-control"  value="<%=lib.getTitulo()%>" required>
+  <input type="text" name="titulo"  placeholder="Título" class="form-control"  value="<%=lib.getTitulo()%>" required>
 
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="autor">Autor </label>  
  
-  <input id="autor" name="autor" type="text" pattern="[A-Za-z ]{1,20}" title="No utilices caracteres especiales. Máximo 20 caracteres" value="<%=lib.getAutor()%>" placeholder="Autor" class="form-control " required>
+  <input id="autor" name="autor" type="text" value="<%=lib.getAutor()%>" placeholder="Autor" class="form-control " required>
   
 </div>
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="nroEdicion">Nro Edición:</label>  
+  <label class="col-md-4 control-label" for="razonSocial">Nro Edición:</label>  
   
-    <input type="text" pattern="[0-9]{1,3}" title="No utilice letras ni caracteres especiales. Máximo 3 números" name="nroedicion" value="<%=lib.getNroEdicion()%>" placeholder="Nro Edición" class="form-control ">
+    <input type="number" min="0" name="nroedicion" value="<%=lib.getNroEdicion()%>" placeholder="Nro Edición" class="form-control ">
 
 </div>
 
@@ -127,7 +128,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="genero">Género:</label>  
  
-   <input type="text" name="genero" pattern="[A-Za-z ]{1,20}" title="No utilices caracteres especiales. Máximo 20 caracteres"  value="<%=lib.getGenero()%>" placeholder="Género" class="form-control " required>
+   <input type="text" name="genero" value="<%=lib.getGenero()%>" placeholder="Género" class="form-control " required>
      
 </div>
 
