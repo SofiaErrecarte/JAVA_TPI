@@ -57,7 +57,7 @@ CREATE TABLE `ejemplar` (
   KEY `fk_ejemplar_libro_idx` (`idLibro`),
   KEY `fk_ejemplar_lineaPrestamo_idx` (`disponible`),
   CONSTRAINT `fk_ejemplar_libro` FOREIGN KEY (`idLibro`) REFERENCES `libro` (`idLibro`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `ejemplar` (
 
 LOCK TABLES `ejemplar` WRITE;
 /*!40000 ALTER TABLE `ejemplar` DISABLE KEYS */;
-INSERT INTO `ejemplar` VALUES (24,17,0),(26,17,1);
+INSERT INTO `ejemplar` VALUES (24,17,0),(26,17,0),(30,17,1);
 /*!40000 ALTER TABLE `ejemplar` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +90,7 @@ CREATE TABLE `libro` (
   UNIQUE KEY `idLibro_UNIQUE` (`idLibro`),
   KEY `fk_libro_proveedor_idx` (`nroEdicion`),
   KEY `fk_libro_proveedor_idx1` (`idProveedor`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,7 +121,7 @@ CREATE TABLE `linea_prestamo` (
   KEY `fk_lp_ejemplar_idx` (`idEjemplar`),
   CONSTRAINT `fk_lp_ejemplar` FOREIGN KEY (`idEjemplar`) REFERENCES `ejemplar` (`idEjemplar`) ON UPDATE CASCADE,
   CONSTRAINT `fk_lp_prestamo` FOREIGN KEY (`idPrestamo`) REFERENCES `prestamo` (`idPrestamo`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,7 +130,7 @@ CREATE TABLE `linea_prestamo` (
 
 LOCK TABLES `linea_prestamo` WRITE;
 /*!40000 ALTER TABLE `linea_prestamo` DISABLE KEYS */;
-INSERT INTO `linea_prestamo` VALUES (33,'2021-04-27',1,96,24),(34,'2021-04-28',1,97,26);
+INSERT INTO `linea_prestamo` VALUES (33,'2021-04-27',1,96,24),(34,'2021-04-28',1,97,26),(35,NULL,0,105,26);
 /*!40000 ALTER TABLE `linea_prestamo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +153,7 @@ CREATE TABLE `persona` (
   `contraseña` varchar(45) COLLATE utf8_bin NOT NULL,
   `activo` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`idPersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,7 +162,7 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
-INSERT INTO `persona` VALUES (1,'Errecarte','Sofia','null','sofia','null','111',1,'1234',1),(2,'Biondo','Dolores','342222567','lola','Santa Joaquina 669','41406209',0,'1234',0),(4,'bruno','anelisa','123456','Anelisa','nose 1234','123456',0,'1234',1),(5,'Camila','Erre','2485652325','camila2','Prof Montes 135','49885226',0,'1234',1);
+INSERT INTO `persona` VALUES (1,'Errecarte','Sofia','03414943445','sofia','Laprida 112','44444444',1,'1234',1),(2,'Biondo','Dolores','342222567','lola','Santa Joaquina 669','41406209',0,'1234',0),(4,'bruno','anelisa','123456','Anelisa','nose 1234','12345678',0,'1234',1),(5,'Camila','Erre','2485652325','camila2','Prof Montes 135','49885226',0,'1234',1);
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +179,7 @@ CREATE TABLE `politica_prestamo` (
   `cantMaximaNoSocio` int(11) NOT NULL,
   `fechaAlta` datetime NOT NULL,
   PRIMARY KEY (`idPolitica`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -210,7 +210,7 @@ CREATE TABLE `prestamo` (
   UNIQUE KEY `idPrestamo_UNIQUE` (`idPrestamo`),
   KEY `fk_prestamo_persona_idx` (`idPersona`),
   CONSTRAINT `fk_prestamo_persona` FOREIGN KEY (`idPersona`) REFERENCES `persona` (`idPersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,7 +219,7 @@ CREATE TABLE `prestamo` (
 
 LOCK TABLES `prestamo` WRITE;
 /*!40000 ALTER TABLE `prestamo` DISABLE KEYS */;
-INSERT INTO `prestamo` VALUES (96,'2021-04-27','2021-05-07',1,'De Baja','2021-04-27'),(97,'2021-04-27','2021-05-27',1,'Cerrado','2021-04-28'),(98,'2021-04-24','2021-04-25',1,'De Baja','2021-04-28'),(105,'2021-04-28','2021-04-29',1,'Abierto',NULL);
+INSERT INTO `prestamo` VALUES (96,'2021-04-27','2021-05-07',1,'De Baja','2021-04-27'),(97,'2021-04-27','2021-05-27',1,'Cerrado','2021-04-28'),(98,'2021-04-24','2021-04-25',1,'De Baja','2021-04-28'),(105,'2021-04-28','2021-04-29',1,'Abierto',NULL),(106,'2021-04-22','2021-04-27',4,'Abierto',NULL);
 /*!40000 ALTER TABLE `prestamo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,7 +238,7 @@ CREATE TABLE `proveedor` (
   `direccion` varchar(75) COLLATE utf8_bin NOT NULL,
   `idProveedor` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`idProveedor`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -247,7 +247,7 @@ CREATE TABLE `proveedor` (
 
 LOCK TABLES `proveedor` WRITE;
 /*!40000 ALTER TABLE `proveedor` DISABLE KEYS */;
-INSERT INTO `proveedor` VALUES ('30709460145','Edhasa','011','info@edhasa.com.ar','Av. Sarmiento',1),('30709460145','Penguin Random House Grupo Editorial S.A.','+5411 5235 4400','info@penguinrandomhouse.com','Humberto Primo 555, C1103ACK, Buenos Aires',19),('30625378210','Grupo','011-7890','rrobledo@eplaneta.com.ar','Av.Belgrano',28);
+INSERT INTO `proveedor` VALUES ('30709460145','Edhasa','011456779','info@edhasa.com.ar','Av. Sarmiento 556',1),('33527019759','Penguin Random House Grupo Editorial S.A.','+5411 5235 4400','info@penguinrandomhouse.com','Humberto Primo 555, C1103ACK, Buenos Aires',19),('30625378210','Grupo','011-7890','rrobledo@eplaneta.com.ar','Av.Belgrano',28);
 /*!40000 ALTER TABLE `proveedor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -264,4 +264,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-28 19:28:15
+-- Dump completed on 2021-04-28 22:40:25
