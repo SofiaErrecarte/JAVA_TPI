@@ -35,7 +35,7 @@ public class DbConnector {
 		try {
 			if(conn==null || conn.isClosed()) {
 				//conn=DriverManager.getConnection("jdbc:mysql://"+host+":"+port+"/"+db, user, password);
-				conn = DriverManager.getConnection("jdbc:mysql://node68079-bibliotecanacional.jelastic.saveincloud.net/"+db+"?serverTimezone=UTC", user, password);
+				conn = DriverManager.getConnection("jdbc:mysql://node68079-bibliotecanacional.jelastic.saveincloud.net/"+db, user, password);
 				conectados=0;
 			}
 		} catch (SQLException e) {

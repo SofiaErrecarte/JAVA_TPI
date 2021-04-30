@@ -63,7 +63,7 @@ public class DataPoliticaPrestamo extends DataMethods{
 			stmt= DbConnector.getInstancia().getConn().prepareStatement(
 			"SELECT * FROM politica_prestamo T0 WHERE\r\n" + 
 					"					T0.fechaAlta = (SELECT MAX(T1.fechaAlta) FROM\r\n" + 
-					"					(SELECT * FROM politica_prestamo WHERE fechaAlta <= concat(?, ' 24:00:00')) as T1)");
+					"					(SELECT * FROM politica_prestamo WHERE fechaAlta <= concat(?, ' 00:00:00')) as T1)");
 			stmt.setDate(1, (Date) p.getFechaPrestamo());
 			rs=stmt.executeQuery();
 			if(rs!=null  && rs.next()) {
