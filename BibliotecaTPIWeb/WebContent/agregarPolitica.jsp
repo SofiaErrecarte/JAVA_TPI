@@ -74,7 +74,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="numsocio">Cantidad maxima de libros Socio: </label>  
   <div class="col-md-4">
-<input id="numsocio" name="numsocio" type="text" pattern="[1-9]{1,2}" title="Ingrese un número del 1 al 99." placeholder="Cant libros Socio" class="form-control input-md" required></div>
+<input id="numsocio" name="numsocio" type="text" pattern="[0-9]{1,2}" title="Ingrese un número del 1 al 99." placeholder="Cant libros Socio" class="form-control input-md" required></div>
 </div>
 
 
@@ -82,7 +82,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="numnosocio">Cantidad maxima de libros No Socio: </label>  
   <div class="col-md-4">
-<input id="numnosocio" name="numnosocio" type="text" pattern="[1-9]{1,2}" title="Ingrese un número del 1 al 99." placeholder="Cant de Libros No socio" class="form-control input-md" required></div>
+<input id="numnosocio" name="numnosocio" type="text" pattern="[0-9]{1,2}" title="Ingrese un número del 1 al 99." placeholder="Cant de Libros No socio" class="form-control input-md" required></div>
 </div>
 
 </fieldset>
