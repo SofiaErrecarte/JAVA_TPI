@@ -10,7 +10,8 @@ public class DbConnector {
 	private String host="localhost";
 	private String port="3306";
 	private String user="root";
-	private String password="root";
+	private String password="GAScvg17247";
+	//private String password="41406209";
 	private String db="biblioteca";
 	private int conectados=0;
 	private Connection conn=null;
@@ -33,7 +34,8 @@ public class DbConnector {
 	public Connection getConn() {
 		try {
 			if(conn==null || conn.isClosed()) {
-				conn=DriverManager.getConnection("jdbc:mysql://"+host+":"+port+"/"+db, user, password);
+				//conn=DriverManager.getConnection("jdbc:mysql://"+host+":"+port+"/"+db, user, password);
+				conn = DriverManager.getConnection("jdbc:mysql://node68079-bibliotecanacional.jelastic.saveincloud.net/"+db+"?serverTimezone=UTC", user, password);
 				conectados=0;
 			}
 		} catch (SQLException e) {
