@@ -51,7 +51,7 @@ h2 {
 
 				<div class="collapse navbar-collapse" id="navbarsExample05">
 					<ul class="navbar-nav pl-md-5 ml-auto">
-						<li class="nav-item"><a class="nav-link" href="index.jsp" style = "font-family:arial; size=4">Inicio</a>
+						<li class="nav-item"><a class="nav-link" href="listarLibroServlet" style = "font-family:arial; size=4">Inicio</a>
 						</li>
 						<li class="nav-item"><a class="nav-link"
 							href="miPerfil.jsp" style = "font-family:arial; size=4">Mi Perfil </a></li>

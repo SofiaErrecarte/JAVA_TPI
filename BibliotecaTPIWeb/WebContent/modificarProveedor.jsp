@@ -71,7 +71,7 @@ html, body{
 <div class="form-group">
   <label class="col-md-4 control-label" for="razonSocial">Razón Social:</label>  
 
-    <input type="text" name="razonSocial" pattern="[A-Za-z ]{1,20}" title="No utilices caracteres especiales. Máximo 20 caracteres" value="<%=prov.getRazonSocial()%>" placeholder="Razón Social" class="form-control input-md " required>
+    <input type="text" name="razonSocial" pattern="[A-Za-z ]{1,50}" title="No utilices caracteres especiales. Máximo 50 caracteres" value="<%=prov.getRazonSocial()%>" placeholder="Razón Social" class="form-control input-md " required>
 
 </div>
 
