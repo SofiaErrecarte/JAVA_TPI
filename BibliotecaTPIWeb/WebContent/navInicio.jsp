@@ -40,7 +40,7 @@ h2 {
 	<header role="banner">
 		<nav class="navbar navbar-expand-lg bg-secondary bg-gradient">
 			<div class="container-fluid">
-				<a class="navbar-brand " href="logOutServlet">Biblioteca Nacional </a>
+				<a class="navbar-brand " href="listarLibroServlet">Biblioteca Nacional </a>
 
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarsExample05" aria-controls="navbarsExample05"
