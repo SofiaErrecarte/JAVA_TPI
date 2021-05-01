@@ -109,7 +109,7 @@ html,body{
 
  <div class="form-group">
   <label  for="pass">Contraseña </label>  
-  <input  id="pass" name="pass" type="text" placeholder="Contraseña" class="form-control input-md" required/>
+  <input  id="pass" name="pass" type="text" pattern="[A-Za-z0-9]{6,45}" title="No utilices caracteres especiales. Mínimo 6 caracteres." placeholder="Contraseña" class="form-control input-md" required/>
 </div>
  <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"  onclick="return confirm('Se agregará un nuevo usuario. Desea confirmar?')">Crear Cuenta</button>
  
