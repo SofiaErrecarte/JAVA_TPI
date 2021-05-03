@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `biblioteca` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `biblioteca`;
 -- MySQL dump 10.13  Distrib 5.7.25, for Win64 (x86_64)
 --
 -- Host: localhost    Database: biblioteca
@@ -14,33 +16,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `cuota`
---
-
-DROP TABLE IF EXISTS `cuota`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cuota` (
-  `fecha` date NOT NULL,
-  `idPersona` int(11) NOT NULL,
-  `importe` float(9,3) DEFAULT NULL,
-  `periodo` date NOT NULL,
-  PRIMARY KEY (`fecha`,`idPersona`),
-  KEY `fk_cuota_persona_idx` (`idPersona`),
-  CONSTRAINT `fk_cuota_persona` FOREIGN KEY (`idPersona`) REFERENCES `persona` (`idPersona`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `cuota`
---
-
-LOCK TABLES `cuota` WRITE;
-/*!40000 ALTER TABLE `cuota` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cuota` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `ejemplar`
@@ -89,8 +64,9 @@ CREATE TABLE `libro` (
   PRIMARY KEY (`idLibro`),
   UNIQUE KEY `idLibro_UNIQUE` (`idLibro`),
   KEY `fk_libro_proveedor_idx` (`nroEdicion`),
-  KEY `fk_libro_proveedor_idx1` (`idProveedor`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `fk_libro_proveedor_idx1` (`idProveedor`),
+  CONSTRAINT `fk_libro_proveedor` FOREIGN KEY (`idProveedor`) REFERENCES `proveedor` (`idProveedor`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,7 +129,7 @@ CREATE TABLE `persona` (
   `contraseña` varchar(45) COLLATE utf8_bin NOT NULL,
   `activo` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`idPersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,7 +155,7 @@ CREATE TABLE `politica_prestamo` (
   `cantMaximaNoSocio` int(11) NOT NULL,
   `fechaAlta` datetime NOT NULL,
   PRIMARY KEY (`idPolitica`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -238,7 +214,7 @@ CREATE TABLE `proveedor` (
   `direccion` varchar(75) COLLATE utf8_bin NOT NULL,
   `idProveedor` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`idProveedor`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -264,4 +240,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-29 19:32:54
+-- Dump completed on 2021-05-03 20:30:35
