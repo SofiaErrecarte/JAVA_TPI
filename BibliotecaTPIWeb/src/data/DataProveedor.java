@@ -44,16 +44,6 @@ public class DataProveedor extends DataMethods{
 				e.printStackTrace();
 			}
 		}
-		if(proveedores.isEmpty()) {
-			Proveedor prov=new Proveedor();
-			prov.setCUIT(null);
-			prov.setRazonSocial(null);
-			prov.setDireccion(null);
-			prov.setMail(null);
-			prov.setTelefono(null);
-			prov.setIdProveedor(0);
-			proveedores.add(prov);
-		}
 		
 		return proveedores;
 	}

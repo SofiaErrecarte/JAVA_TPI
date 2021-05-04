@@ -42,14 +42,7 @@ public class DataPoliticaPrestamo extends DataMethods{
 				e.printStackTrace();
 			}
 		}
-		if(politicas.isEmpty()) {
-			PoliticaPrestamo pp = new PoliticaPrestamo();
-			pp.setIdPoliticaPrestamo(0);
-			pp.setFechaAlta(null);
-			pp.setCantMaximaSocio(0);
-			pp.setCantMaximaNoSocio(0);
-			politicas.add(pp);
-		}
+		
 		
 		return politicas;
 	}
